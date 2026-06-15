@@ -1,5 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#1e3a5f"/>
-  <circle cx="256" cy="256" r="150" fill="none" stroke="#c9a32f" stroke-width="6" opacity="0.5"/>
-  <text x="256" y="356" font-family="Georgia, 'Times New Roman', serif" font-size="300" font-weight="700" text-anchor="middle" fill="#e6c558">☧</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#274a73"/>
+      <stop offset="1" stop-color="#11233a"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="100" x2="0" y2="412" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f3dd8d"/>
+      <stop offset="0.5" stop-color="#e6c558"/>
+      <stop offset="1" stop-color="#c79f2c"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="224" fill="none" stroke="#e6c558" stroke-opacity="0.40" stroke-width="3"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="#e6c558" stroke-opacity="0.14" stroke-width="1.5"/>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Chi (X) — crosses the stem, kept a touch lighter so the Rho leads -->
+    <path d="M168 224 L344 360" stroke-width="26"/>
+    <path d="M344 224 L168 360" stroke-width="26"/>
+    <!-- Rho stem — the dominant vertical, with a clear tail below the Chi -->
+    <path d="M256 104 L256 404" stroke-width="32"/>
+    <!-- Rho loop — a closed 'P' bowl on the stem -->
+    <path d="M256 108 C 332 108 346 150 346 168 C 346 200 318 224 256 224" stroke-width="30"/>
+  </g>
 </svg>
