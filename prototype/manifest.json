@@ -1,0 +1,25 @@
+{
+  "name": "Scriptoria",
+  "short_name": "Scriptoria",
+  "description": "Your whole life of prayer, gathered into one quiet manuscript.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4ecd8",
+  "theme_color": "#1e3a5f",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%231e3a5f'/><text x='96' y='130' font-size='120' text-anchor='middle' fill='%23c9a32f'>☧</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%231e3a5f'/><text x='256' y='360' font-size='320' text-anchor='middle' fill='%23c9a32f'>☧</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["lifestyle", "education"],
+  "lang": "en",
+  "dir": "ltr"
+}
