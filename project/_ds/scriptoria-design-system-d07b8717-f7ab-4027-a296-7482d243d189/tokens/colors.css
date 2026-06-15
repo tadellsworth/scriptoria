@@ -1,0 +1,121 @@
+/* ============================================================
+   Scriptoria — Color
+   An illuminated-manuscript palette: parchment grounds, lapis-blue
+   primaries, gilt gold, vermillion rubrics, and warm sepia ink.
+   Base values first; semantic aliases below. A dark "scriptorium
+   at candlelight" theme is scoped to [data-theme="dark"].
+   ============================================================ */
+
+:root {
+  /* — Grounds: parchment & vellum — */
+  --parchment:    #f4ecd8;  /* primary page */
+  --vellum:       #faf4e8;  /* lighter leaf  */
+  --parchment-2:  #ebe0c4;  /* sunk panel    */
+  --parchment-3:  #ddc99b;  /* deep edge / tooled border */
+
+  /* — Ink: warm sepia — */
+  --ink:          #2a1f15;
+  --ink-soft:     #6a574a;
+  --ink-faint:    #9b8a7a;
+
+  /* — Lapis: the primary blue (azurite/ultramarine) — */
+  --lapis:        #1e3a5f;
+  --lapis-deep:   #142940;
+  --lapis-soft:   #3a4a82;
+
+  /* — Gold: gilding & illumination — */
+  --gold:         #c9a32f;
+  --gold-light:   #e6c558;
+  --gold-dark:    #8a6f15;
+
+  /* — Rubric & seasonal accents — */
+  --vermillion:      #c41e1e;  /* rubrics, feast-red */
+  --vermillion-deep: #8a1414;
+  --emerald:         #2d7a4f;  /* Ordinary Time / success */
+  --amethyst:        #5b3a72;  /* Lent & Advent / penitential */
+
+  /* — Gilt washes (gold at low alpha — borders, tints, glows) — */
+  --gold-04:  rgba(201,163,47,0.04);
+  --gold-08:  rgba(201,163,47,0.08);
+  --gold-12:  rgba(201,163,47,0.12);
+  --gold-20:  rgba(201,163,47,0.20);
+  --gold-30:  rgba(201,163,47,0.30);
+  --gold-40:  rgba(201,163,47,0.40);
+
+  /* — White washes (translucent leaves over textured grounds) — */
+  --leaf-50:  rgba(255,255,255,0.50);
+  --leaf-60:  rgba(255,255,255,0.60);
+  --leaf-70:  rgba(255,255,255,0.70);
+  --leaf-95:  rgba(255,255,255,0.95);
+
+  /* ---- Semantic aliases ---- */
+  --bg-page:        var(--parchment);
+  --bg-page-2:      var(--parchment-2);
+  --surface-card:   var(--leaf-50);
+  --surface-card-hover: var(--leaf-60);
+  --surface-sunk:   var(--gold-08);
+  --surface-input:  var(--leaf-70);
+  --surface-ink:    var(--lapis);     /* dark panels / headers */
+  --overlay:        var(--leaf-95);
+
+  --text-display:   var(--lapis);
+  --text-title:     var(--lapis);
+  --text-body:      var(--ink);
+  --text-muted:     var(--ink-soft);
+  --text-faint:     var(--ink-faint);
+  --text-on-ink:    var(--parchment);
+  --text-gilt:      var(--gold-dark);
+
+  --line-hair:      var(--gold-20);   /* hairline rules / card borders */
+  --line:           var(--gold-30);
+  --line-strong:    var(--gold-40);
+  --rule-gold:      var(--gold);      /* ornamental divider */
+
+  --accent:         var(--gold);
+  --accent-press:   var(--gold-dark);
+  --focus-ring:     var(--gold-40);
+
+  --success: var(--emerald);
+  --danger:  var(--vermillion);
+  --feast:   var(--vermillion);
+}
+
+/* ---- Dark: a scriptorium by candlelight ---- */
+[data-theme="dark"] {
+  --parchment:    #161320;
+  --vellum:       #1d1a28;
+  --parchment-2:  #221d30;
+  --parchment-3:  #342c44;
+
+  --ink:          #ece2cf;
+  --ink-soft:     #c4b69e;
+  --ink-faint:    #8a7e6a;
+
+  --lapis:        #9db8e0;   /* lapis lifts to a luminous sky-blue */
+  --lapis-deep:   #6f8fc4;
+  --lapis-soft:   #b0c4e8;
+
+  --gold:         #d8b75a;
+  --gold-light:   #ecd07e;
+  --gold-dark:    #b08a3e;
+
+  --vermillion:      #e87a6a;
+  --vermillion-deep: #c45a4a;
+  --emerald:         #62b07a;
+  --amethyst:        #a584c0;
+
+  --gold-04:  rgba(216,183,90,0.05);
+  --gold-08:  rgba(216,183,90,0.09);
+  --gold-12:  rgba(216,183,90,0.14);
+  --gold-20:  rgba(216,183,90,0.20);
+  --gold-30:  rgba(216,183,90,0.28);
+  --gold-40:  rgba(216,183,90,0.38);
+
+  --leaf-50:  rgba(255,255,255,0.05);
+  --leaf-60:  rgba(255,255,255,0.08);
+  --leaf-70:  rgba(255,255,255,0.10);
+  --leaf-95:  rgba(29,26,40,0.97);
+
+  --surface-ink:  #100d18;
+  --text-on-ink:  #ece2cf;
+}

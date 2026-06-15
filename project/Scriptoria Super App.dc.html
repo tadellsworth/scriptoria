@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/scriptoria-design-system-d07b8717-f7ab-4027-a296-7482d243d189/styles.css">
+<style>
+  body { margin: 0; }
+  .stage {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(201,163,47,0.10), transparent 55%),
+      radial-gradient(ellipse at 50% 120%, rgba(31,45,92,0.18), transparent 60%),
+      #211c17;
+    padding: 56px 48px 96px;
+    box-sizing: border-box;
+  }
+  .ph { width: 390px; flex: 0 0 auto; }
+  .ph-label { margin: 0 4px 14px; }
+  .ph-frame {
+    width: 390px; height: 844px;
+    background: linear-gradient(145deg, #15110d, #070604);
+    border-radius: 56px; padding: 11px;
+    box-shadow: 0 2px 2px rgba(255,255,255,0.06) inset, 0 30px 60px rgba(0,0,0,0.55), 0 8px 22px rgba(0,0,0,0.4);
+    box-sizing: border-box; position: relative;
+  }
+  .ph-screen {
+    width: 100%; height: 100%; border-radius: 45px; overflow: hidden;
+    position: relative; background: var(--tex-parchment), var(--parchment);
+  }
+  .ph-island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 116px; height: 33px; background: #070604; border-radius: 18px; z-index: 8; }
+  .sb { height: 50px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 26px 7px 32px; font-family: var(--font-ui); position: relative; z-index: 6; }
+  .sb-time { font-weight: 600; font-size: 14px; color: var(--ink); letter-spacing: 0.02em; }
+  .sb-icons { display: flex; align-items: center; gap: 6px; color: var(--ink); }
+  .content { position: absolute; top: 50px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+  .tabbar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; background: var(--leaf-95); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-top: 1px solid var(--gold-20); padding: 9px 6px 0; }
+  .tabs { display: flex; justify-content: space-around; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; color: var(--ink-faint); }
+  .tab.on { color: var(--lapis); }
+  .tab span { font-family: var(--font-ui); font-size: 9.5px; letter-spacing: 0.05em; font-weight: 500; }
+  .tab.on span { font-weight: 600; }
+  .home-ind { height: 5px; width: 134px; background: var(--ink); opacity: 0.3; border-radius: 3px; margin: 8px auto 9px; }
+  .vellum { background: linear-gradient(180deg, var(--vellum), var(--parchment)); border: 1px solid var(--gold-30); border-radius: var(--r-leaf); box-shadow: var(--sh-vellum); }
+  .dropcap::first-letter { font-family: var(--font-display); font-size: 3em; line-height: 0.78; float: left; padding: 0.06em 0.12em 0 0; color: var(--lapis); font-weight: 700; }
+</style>
+</helmet>
+
+<div class="stage">
+
+  <!-- ============ MASTHEAD ============ -->
+  <div style="max-width: 1180px; margin: 0 auto 8px;">
+    <div style="font-family: var(--font-display); color: var(--gold-light); font-weight: 700; letter-spacing: 0.16em; font-size: 13px;">☧ &nbsp;THE SCRIPTORIA SUITE</div>
+    <h1 style="font-family: var(--font-display); color: var(--parchment); font-weight: 700; letter-spacing: 0.04em; font-size: 44px; margin: 10px 0 6px;">One Super App, five companions</h1>
+    <p style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 20px; max-width: 720px; margin: 0; line-height: 1.5;">The Little Missal, Lingua Latina, Credo, Confiteor, and Laudate — dissolved into a single illuminated companion under one consistent Scriptoria look.</p>
+  </div>
+
+  <!-- ============ DESIGN BRIEF ============ -->
+  <div style="max-width: 1180px; margin: 30px auto 8px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px;">
+    <div class="vellum" style="padding: 26px 28px;">
+      <div class="scriptoria-eyebrow" style="margin-bottom: 8px;">The merge · information architecture</div>
+      <p style="font-family: var(--font-body); font-size: 17px; line-height: 1.6; color: var(--ink); margin: 0 0 14px;">The five apps overlap (readings, confession, and catechism each appear in more than one). I've resolved them into <strong>five tabs</strong>, each absorbing the apps that belong to it:</p>
+      <div style="display: flex; flex-direction: column; gap: 9px;">
+        <div style="display: flex; gap: 12px; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: var(--gold-dark); text-transform: uppercase; min-width: 58px;">Today</span><span style="font-family: var(--font-body); font-size: 16px; color: var(--ink-soft);">Daily readings + the Little Missal devotion</span></div>
+        <div style="display: flex; gap: 12px; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: var(--gold-dark); text-transform: uppercase; min-width: 58px;">Pray</span><span style="font-family: var(--font-body); font-size: 16px; color: var(--ink-soft);">Prayer library, Rosary, Liturgy of the Hours, Examen</span></div>
+        <div style="display: flex; gap: 12px; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: var(--gold-dark); text-transform: uppercase; min-width: 58px;">Learn</span><span style="font-family: var(--font-body); font-size: 16px; color: var(--ink-soft);">Credo catechism path + Lingua Latina flashcards</span></div>
+        <div style="display: flex; gap: 12px; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: var(--gold-dark); text-transform: uppercase; min-width: 58px;">Find</span><span style="font-family: var(--font-body); font-size: 16px; color: var(--ink-soft);">Confiteor — Mass, Confession &amp; Adoration near you</span></div>
+        <div style="display: flex; gap: 12px; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: var(--gold-dark); text-transform: uppercase; min-width: 58px;">Me</span><span style="font-family: var(--font-body); font-size: 16px; color: var(--ink-soft);">Quiet streak, journal, confession tracker, progress</span></div>
+      </div>
+    </div>
+    <div class="vellum" style="padding: 26px 28px;">
+      <div class="scriptoria-eyebrow" style="margin-bottom: 8px;">The system · what stays constant</div>
+      <ul style="font-family: var(--font-body); font-size: 16px; line-height: 1.62; color: var(--ink-soft); margin: 0; padding-left: 18px;">
+        <li><strong style="color: var(--ink);">Parchment ground, lapis &amp; gilt.</strong> One palette everywhere — Credo's gamified chrome and Confiteor's dark theme are retired into the unified light look.</li>
+        <li><strong style="color: var(--ink);">Three voices.</strong> Cinzel titles, Cormorant prose, Outfit chrome.</li>
+        <li><strong style="color: var(--ink);">Gentle, not gamified.</strong> Hearts and XP are gone; a single quiet streak (✦) is all that remains.</li>
+        <li><strong style="color: var(--ink);">Masthead &amp; gilt rule</strong> open every screen; the Chi-Rho is the constant mark.</li>
+      </ul>
+      <p style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-faint); margin: 14px 0 0;">Below: three directions for the home screen, then every tab as a finished screen.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION A — HOME DIRECTIONS ============ -->
+  <div style="max-width: 1180px; margin: 52px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION A</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">Three directions for Home</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+
+    <!-- ---------- A1 · THE LEAF ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">A1 · THE LEAF</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">The day as one devotional manuscript page</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 10px 22px 96px;">
+              <!-- masthead -->
+              <div style="text-align: center; padding: 6px 0 2px;">
+                <div style="font-family: var(--font-display); color: var(--gold); font-size: 34px; line-height: 1;">☧</div>
+                <div class="scriptoria-title" style="font-size: 15px; margin-top: 8px;">Scriptoria</div>
+                <div style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 17px; margin-top: 6px;">Monday, the 15th of June</div>
+                <div class="scriptoria-eyebrow" style="margin-top: 7px; font-size: 9.5px;">11th Week in Ordinary Time</div>
+              </div>
+              <div class="scriptoria-rule" style="margin: 12px 0 14px;"><span class="scriptoria-ornament" style="font-size: 13px;">❦</span></div>
+
+              <!-- streak ribbon -->
+              <div style="display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 16px;">
+                <span style="color: var(--gold); font-size: 13px;">✦</span>
+                <span style="font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft);">12 days kept · a quiet streak</span>
+              </div>
+
+              <!-- gospel card -->
+              <div class="vellum" style="padding: 18px 18px 16px; margin-bottom: 14px;">
+                <div class="scriptoria-eyebrow" style="text-align: center; margin-bottom: 3px;">Gospel · Matthew 5:38–42</div>
+                <div style="width: 26px; height: 1px; background: var(--gold); opacity: 0.55; margin: 8px auto 12px;"></div>
+                <p class="dropcap" style="font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--ink); margin: 0;">You have heard it said, ‘An eye for an eye.’ But I say to you, offer no resistance to one who is evil. When someone strikes you on the cheek, turn the other to him as well.</p>
+              </div>
+
+              <!-- ponder -->
+              <div class="vellum" style="padding: 16px 18px; margin-bottom: 14px;">
+                <div class="scriptoria-eyebrow" style="text-align: center; margin-bottom: 9px;">A thought to carry</div>
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--lapis); margin: 0; text-align: center;">Where is Christ asking you to answer a wrong with peace today, rather than with its mirror?</p>
+              </div>
+
+              <!-- prayer callout -->
+              <div style="background: var(--gold-08); border-left: 3px solid var(--gold); border-radius: 0 var(--r-leaf) var(--r-leaf) 0; padding: 15px 18px;">
+                <div class="scriptoria-eyebrow" style="margin-bottom: 7px;">Let us pray</div>
+                <p style="font-family: var(--font-body); font-size: 16.5px; line-height: 1.6; color: var(--ink); margin: 0;">Lord, when others are unkind, keep me from returning unkindness. Give me your patience and your peace.<span style="display: block; margin-top: 8px; font-family: var(--font-display); font-size: 11px; letter-spacing: 0.28em; color: var(--vermillion);">AMEN ✠</span></p>
+                <div style="margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--gold-20);">
+                  <span style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 15px; border-bottom: 1px dotted var(--gold-dark);">Non resístere malo</span>
+                  <span style="font-family: var(--font-body); font-size: 14.5px; color: var(--ink-faint); margin-left: 8px;">— offer no resistance to evil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- A2 · THE CLOISTER ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">A2 · THE CLOISTER</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">A hub of gilt tiles — each companion a door</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 12px 20px 96px;">
+              <!-- greeting -->
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                <div>
+                  <div class="scriptoria-eyebrow" style="font-size: 9.5px;">Pax tecum</div>
+                  <div style="font-family: var(--font-display); font-weight: 700; letter-spacing: 0.03em; color: var(--lapis); font-size: 24px; margin-top: 4px;">Good morning</div>
+                  <div style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 16px;">Monday · 11th Week, Ordinary Time</div>
+                </div>
+                <div style="width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold), var(--sh-emboss); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-family: var(--font-display); font-weight: 700; font-size: 17px;">JM</div>
+              </div>
+
+              <!-- featured today -->
+              <div style="background: linear-gradient(165deg, var(--lapis), var(--lapis-deep)); border-radius: var(--r-md); padding: 18px 18px 16px; margin: 16px 0 18px; position: relative; overflow: hidden; box-shadow: var(--sh-card);">
+                <div style="position: absolute; right: -14px; top: -14px; font-family: var(--font-display); font-size: 96px; color: rgba(201,163,47,0.13); line-height: 1;">☧</div>
+                <div style="font-family: var(--font-display); font-size: 9.5px; letter-spacing: 0.22em; color: var(--gold-light); text-transform: uppercase;">Today's Gospel</div>
+                <div style="font-family: var(--font-display); color: var(--parchment); font-size: 18px; letter-spacing: 0.02em; margin: 7px 0 8px;">Matthew 5:38–42</div>
+                <p style="font-family: var(--font-body); font-style: italic; color: rgba(244,236,216,0.9); font-size: 16px; line-height: 1.5; margin: 0; position: relative;">“Offer no resistance to one who is evil…”</p>
+                <div style="margin-top: 13px; display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.08em; color: var(--gold-light);">READ &amp; PRAY <span style="font-size: 14px;">→</span></div>
+              </div>
+
+              <!-- tiles -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="vellum" style="padding: 16px 14px;">
+                  <div style="width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-size: 20px; margin-bottom: 11px;">❧</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; letter-spacing: 0.06em; color: var(--lapis); font-size: 15px;">Pray</div>
+                  <div style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 14px;">Rosary · Joyful today</div>
+                </div>
+                <div class="vellum" style="padding: 16px 14px;">
+                  <div style="width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-size: 18px; margin-bottom: 11px;">✦</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; letter-spacing: 0.06em; color: var(--lapis); font-size: 15px;">Learn</div>
+                  <div style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 14px;">12 words to review</div>
+                </div>
+                <div class="vellum" style="padding: 16px 14px;">
+                  <div style="width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-size: 18px; margin-bottom: 11px;">⌖</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; letter-spacing: 0.06em; color: var(--lapis); font-size: 15px;">Find</div>
+                  <div style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 14px;">Confession · 5:00 PM</div>
+                </div>
+                <div class="vellum" style="padding: 16px 14px;">
+                  <div style="width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-size: 18px; margin-bottom: 11px;">†</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; letter-spacing: 0.06em; color: var(--lapis); font-size: 15px;">Journal</div>
+                  <div style="font-family: var(--font-body); font-style: italic; color: var(--ink-soft); font-size: 14px;">Last written Sat</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- A3 · THE DAY'S HOURS ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">A3 · THE DAY'S HOURS</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">A rule-of-life spine — the hours of the day</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 12px 22px 96px;">
+              <div style="text-align: center; margin-bottom: 6px;">
+                <div class="scriptoria-eyebrow" style="font-size: 9.5px;">Monday · 15 June</div>
+                <div class="scriptoria-title" style="font-size: 17px; margin-top: 6px;">The Day's Hours</div>
+              </div>
+              <div class="scriptoria-rule" style="margin: 10px 0 16px;"><span class="scriptoria-ornament" style="font-size: 12px;">✠</span></div>
+
+              <!-- timeline -->
+              <div style="position: relative; padding-left: 30px;">
+                <div style="position: absolute; left: 9px; top: 8px; bottom: 24px; width: 2px; background: linear-gradient(180deg, var(--gold), var(--gold-30));"></div>
+
+                <!-- done -->
+                <div style="position: relative; margin-bottom: 14px;">
+                  <div style="position: absolute; left: -29px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--emerald); border: 2px solid var(--parchment); display: flex; align-items: center; justify-content: center; color: var(--vellum); font-size: 9px; font-family: var(--font-ui); font-weight: 700;">✓</div>
+                  <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;">6:30 AM · Lauds</div>
+                  <div style="font-family: var(--font-body); font-size: 16px; color: var(--ink-soft);">Morning Prayer — prayed</div>
+                </div>
+
+                <!-- current -->
+                <div style="position: relative; margin-bottom: 14px;">
+                  <div style="position: absolute; left: -31px; top: 1px; width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); border: 2px solid var(--parchment); box-shadow: 0 0 0 4px var(--gold-12);"></div>
+                  <div class="vellum" style="padding: 13px 15px; border-color: var(--gold);">
+                    <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.1em; color: var(--gold-dark); text-transform: uppercase;">Now · The Gospel</div>
+                    <div style="font-family: var(--font-display); font-size: 16px; color: var(--lapis); letter-spacing: 0.02em; margin: 4px 0 5px;">Matthew 5:38–42</div>
+                    <p style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft); margin: 0 0 10px; line-height: 1.45;">“Offer no resistance to one who is evil…”</p>
+                    <div style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.08em; color: var(--lapis); font-weight: 600;">OPEN READING →</div>
+                  </div>
+                </div>
+
+                <!-- upcoming -->
+                <div style="position: relative; margin-bottom: 14px;">
+                  <div style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--parchment-3);"></div>
+                  <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;">12:00 PM · Sext</div>
+                  <div style="font-family: var(--font-body); font-size: 16px; color: var(--ink);">Midday examen</div>
+                </div>
+                <div style="position: relative; margin-bottom: 14px;">
+                  <div style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--parchment-3);"></div>
+                  <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;">5:00 PM · Rosary</div>
+                  <div style="font-family: var(--font-body); font-size: 16px; color: var(--ink);">Joyful Mysteries</div>
+                </div>
+                <div style="position: relative;">
+                  <div style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--parchment-3);"></div>
+                  <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;">9:00 PM · Compline</div>
+                  <div style="font-family: var(--font-body); font-size: 16px; color: var(--ink);">Night Prayer &amp; examen</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SECTION B — TODAY ============ -->
+  <div style="max-width: 1180px; margin: 64px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION B · TODAY</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">The day's readings &amp; devotion</div>
+      <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 16px; margin-top: 4px;">Laudate's lectionary and the Little Missal's reflection, woven into one scrolling leaf.</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">B1 · TODAY</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Liturgical day, three readings, the saint</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 8px 20px 96px;">
+              <!-- date nav -->
+              <div style="display: flex; align-items: center; justify-content: center; gap: 18px; margin: 4px 0 14px;">
+                <div style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--gold-30); display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 18px;">‹</div>
+                <div style="text-align: center;">
+                  <div class="scriptoria-eyebrow" style="font-size: 9px;">Monday</div>
+                  <div style="font-family: var(--font-display); font-size: 17px; color: var(--ink); letter-spacing: 0.03em; margin-top: 2px;">June 15, 2026</div>
+                </div>
+                <div style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--gold-30); display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 18px;">›</div>
+              </div>
+
+              <!-- liturgical banner — Ordinary Time green -->
+              <div style="text-align: center; padding: 13px 16px; border-radius: var(--r-leaf); border: 1px solid rgba(45,122,79,0.3); background: rgba(45,122,79,0.07); margin-bottom: 14px;">
+                <div style="font-family: var(--font-display); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--emerald); opacity: 0.85;">Ordinary Time · Green</div>
+                <div style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--emerald); letter-spacing: 0.04em; margin-top: 4px;">Monday, 11th Week</div>
+                <div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-soft); margin-top: 3px;">Optional: St. Germaine Cousin, Virgin</div>
+              </div>
+
+              <!-- readings accordion -->
+              <div style="display: flex; flex-direction: column; gap: 7px;">
+                <!-- first reading collapsed -->
+                <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 13px 15px; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--vermillion);">First Reading</div>
+                    <div style="font-family: var(--font-body); font-weight: 600; font-size: 17px; color: var(--ink); margin-top: 1px;">1 Kings 21:1–16</div>
+                  </div>
+                  <span style="color: var(--ink-faint); font-size: 16px;">⌄</span>
+                </div>
+                <!-- psalm collapsed -->
+                <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 13px 15px; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--vermillion);">Responsorial Psalm</div>
+                    <div style="font-family: var(--font-body); font-weight: 600; font-size: 17px; color: var(--ink); margin-top: 1px;">Psalm 5:2–7</div>
+                  </div>
+                  <span style="color: var(--ink-faint); font-size: 16px;">⌄</span>
+                </div>
+                <!-- gospel expanded -->
+                <div style="border: 1px solid var(--gold); border-radius: var(--r-leaf); background: linear-gradient(180deg, var(--vellum), var(--parchment)); box-shadow: var(--sh-vellum); padding: 14px 16px 15px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                      <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--vermillion);">Gospel</div>
+                      <div style="font-family: var(--font-body); font-weight: 600; font-size: 17px; color: var(--ink); margin-top: 1px;">Matthew 5:38–42</div>
+                    </div>
+                    <span style="color: var(--gold-dark); font-size: 16px; transform: rotate(180deg);">⌄</span>
+                  </div>
+                  <div style="height: 1px; background: var(--gold-20); margin: 12px 0;"></div>
+                  <p style="font-family: var(--font-body); font-size: 16.5px; line-height: 1.62; color: var(--ink); margin: 0; text-align: justify;">Jesus said to his disciples: “You have heard that it was said, <em>An eye for an eye and a tooth for a tooth.</em> But I say to you, offer no resistance to one who is evil. When someone strikes you on your right cheek, turn the other one as well.”</p>
+                </div>
+              </div>
+
+              <!-- saint strip -->
+              <div style="display: flex; gap: 13px; align-items: center; margin-top: 14px; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--gold-04);">
+                <div style="width: 52px; height: 52px; border-radius: 50%; flex: 0 0 auto; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-family: var(--font-display); font-size: 22px;">✦</div>
+                <div>
+                  <div style="font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--lapis); letter-spacing: 0.02em;">St. Germaine Cousin</div>
+                  <div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-soft);">Shepherdess · patron of the abused &amp; the sick</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION C — PRAY ============ -->
+  <div style="max-width: 1180px; margin: 64px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION C · PRAY</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">The prayer companion</div>
+      <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 16px; margin-top: 4px;">Laudate's library, Rosary, Liturgy of the Hours and Examen — one tab, Latin always within reach.</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+
+    <!-- ---------- C1 · PRAY HOME ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">C1 · PRAY HOME</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Rosary, Hours, and the prayer library</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 10px 20px 96px;">
+              <div style="text-align: center; margin-bottom: 4px;">
+                <div class="scriptoria-eyebrow" style="font-size: 9.5px;">Oremus</div>
+                <div class="scriptoria-title" style="font-size: 18px; margin-top: 5px;">Prayer</div>
+              </div>
+              <div class="scriptoria-rule" style="margin: 9px 0 15px;"><span class="scriptoria-ornament" style="font-size: 12px;">❧</span></div>
+
+              <!-- rosary feature -->
+              <div style="background: linear-gradient(165deg, var(--lapis), var(--lapis-deep)); border-radius: var(--r-md); padding: 17px 18px; box-shadow: var(--sh-card); position: relative; overflow: hidden;">
+                <div style="position: absolute; right: 14px; top: 14px; display: flex; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--gold);"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--gold-30);"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--gold-30);"></span></div>
+                <div style="font-family: var(--font-display); font-size: 9.5px; letter-spacing: 0.22em; color: var(--gold-light); text-transform: uppercase;">Today · Monday</div>
+                <div style="font-family: var(--font-display); color: var(--parchment); font-size: 21px; letter-spacing: 0.03em; margin: 6px 0 3px;">The Holy Rosary</div>
+                <div style="font-family: var(--font-body); font-style: italic; color: rgba(244,236,216,0.85); font-size: 16px;">The Joyful Mysteries</div>
+                <div style="margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--lapis); font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 18px; border-radius: var(--r-pill);">Begin ✠</div>
+              </div>
+
+              <!-- two quick tiles -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin: 14px 0;">
+                <div class="vellum" style="padding: 14px;">
+                  <div style="font-family: var(--font-display); color: var(--gold); font-size: 20px; line-height: 1;">☩</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--lapis); letter-spacing: 0.04em; margin-top: 8px;">Liturgy of the Hours</div>
+                  <div style="font-family: var(--font-body); font-style: italic; font-size: 13.5px; color: var(--ink-soft);">Sext is next · 12 PM</div>
+                </div>
+                <div class="vellum" style="padding: 14px;">
+                  <div style="font-family: var(--font-display); color: var(--gold); font-size: 20px; line-height: 1;">✦</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--lapis); letter-spacing: 0.04em; margin-top: 8px;">Daily Examen</div>
+                  <div style="font-family: var(--font-body); font-style: italic; font-size: 13.5px; color: var(--ink-soft);">Five steps · this evening</div>
+                </div>
+              </div>
+
+              <!-- library list -->
+              <div class="scriptoria-eyebrow" style="margin: 4px 2px 8px;">The Prayer Library</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);">
+                  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-family: var(--font-body); font-weight: 600; font-size: 16.5px; color: var(--ink);">Pater Noster</span><span style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-faint);">Our Father</span></div>
+                  <span style="color: var(--ink-faint);">›</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);">
+                  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-family: var(--font-body); font-weight: 600; font-size: 16.5px; color: var(--ink);">Ave Maria</span><span style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-faint);">Hail Mary</span></div>
+                  <span style="color: var(--ink-faint);">›</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);">
+                  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-family: var(--font-body); font-weight: 600; font-size: 16.5px; color: var(--ink);">Gloria Patri</span><span style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-faint);">Glory Be</span></div>
+                  <span style="color: var(--ink-faint);">›</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- C2 · ROSARY PLAYER ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">C2 · ROSARY</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">A bead-by-bead prayer surface with Latin</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; display: flex; flex-direction: column;">
+              <!-- ink header -->
+              <div style="background: linear-gradient(180deg, var(--lapis), var(--lapis-deep)); padding: 16px 20px 18px; text-align: center; position: relative;">
+                <span style="position: absolute; left: 18px; top: 16px; color: var(--gold-light); font-size: 22px;">×</span>
+                <div style="font-family: var(--font-display); font-size: 16px; letter-spacing: 0.14em; color: var(--gold-light); text-transform: uppercase;">Joyful Mysteries</div>
+                <div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: rgba(244,236,216,0.75); margin-top: 3px;">The Visitation · Second Mystery</div>
+                <!-- bead dots -->
+                <div style="display: flex; gap: 3px; justify-content: center; align-items: center; margin-top: 12px;">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--vermillion);"></span>
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-30);"></span>
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-30);"></span>
+                  <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--gold);"></span>
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-30);"></span>
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-30);"></span>
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-30);"></span>
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-30);"></span>
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--gold-20);"></span>
+                </div>
+                <div style="font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.1em; color: rgba(244,236,216,0.6); margin-top: 8px;">BEAD 14 OF 59</div>
+              </div>
+
+              <!-- prayer body -->
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 28px;">
+                <div class="scriptoria-eyebrow" style="color: var(--vermillion); margin-bottom: 14px;">Ave Maria</div>
+                <p style="font-family: var(--font-body); font-size: 21px; line-height: 1.6; color: var(--ink); margin: 0;">Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus.</p>
+                <div style="width: 40px; height: 1px; background: var(--gold-30); margin: 18px 0;"></div>
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.55; color: var(--ink-soft); margin: 0;">Ave María, grátia plena, Dóminus tecum. Benedícta tu in muliéribus…</p>
+              </div>
+
+              <!-- footer nav -->
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--gold-20); background: var(--gold-04); margin-bottom: 86px;">
+                <div style="font-family: var(--font-display); font-size: 12px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--gold-30); border-radius: var(--r-pill); padding: 9px 18px;">← BACK</div>
+                <div style="font-family: var(--font-display); font-size: 12px; letter-spacing: 0.1em; color: var(--lapis); background: var(--gold); border-radius: var(--r-pill); padding: 9px 22px; font-weight: 600;">NEXT →</div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SECTION D — LEARN ============ -->
+  <div style="max-width: 1180px; margin: 64px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION D · LEARN</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">Two paths of study</div>
+      <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 16px; margin-top: 4px;">Credo's catechism and Lingua Latina's vocabulary — the gilt coins kept, the hearts &amp; XP retired for a gentler pace.</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+
+    <!-- ---------- D1 · LEARN HOME ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">D1 · LEARN HOME</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Catechism path &amp; Latin, gentle progress</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 10px 20px 96px;">
+              <div style="text-align: center; margin-bottom: 4px;">
+                <div class="scriptoria-eyebrow" style="font-size: 9.5px;">Disce · Study</div>
+                <div class="scriptoria-title" style="font-size: 18px; margin-top: 5px;">Learn</div>
+              </div>
+              <div class="scriptoria-rule" style="margin: 9px 0 15px;"><span class="scriptoria-ornament" style="font-size: 12px;">❦</span></div>
+
+              <!-- Credo track -->
+              <div class="vellum" style="padding: 16px 17px; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 13px;">
+                  <div style="width: 50px; height: 50px; border-radius: 50%; flex: 0 0 auto; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold), var(--sh-emboss); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-family: var(--font-display); font-weight: 700; font-size: 18px;">☧</div>
+                  <div style="flex: 1;">
+                    <div class="scriptoria-eyebrow" style="font-size: 9px;">Credo · Catechism</div>
+                    <div style="font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--lapis); letter-spacing: 0.03em; margin-top: 2px;">Pillar I · The Creed</div>
+                  </div>
+                </div>
+                <div style="margin-top: 13px;">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 11px; color: var(--ink-soft); margin-bottom: 5px;"><span style="letter-spacing: 0.06em;">The Holy Trinity</span><span>7 / 24</span></div>
+                  <div style="height: 6px; background: var(--gold-20); border-radius: var(--r-pill); overflow: hidden;"><div style="width: 29%; height: 100%; background: linear-gradient(90deg, var(--gold-light), var(--gold)); border-radius: var(--r-pill);"></div></div>
+                </div>
+                <div style="margin-top: 13px; text-align: center; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lapis); background: var(--gold); border-radius: var(--r-pill); padding: 9px;">Continue lesson</div>
+              </div>
+
+              <!-- Lingua track -->
+              <div class="vellum" style="padding: 16px 17px;">
+                <div style="display: flex; align-items: center; gap: 13px;">
+                  <div style="width: 50px; height: 50px; border-radius: 50%; flex: 0 0 auto; background: var(--lapis); box-shadow: var(--sh-card); display: flex; align-items: center; justify-content: center; color: var(--gold-light); font-family: var(--font-display); font-weight: 700; font-size: 20px;">Λ</div>
+                  <div style="flex: 1;">
+                    <div class="scriptoria-eyebrow" style="font-size: 9px;">Lingua Latina</div>
+                    <div style="font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--lapis); letter-spacing: 0.03em; margin-top: 2px;">Unit III · Prayer Words</div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 8px; margin-top: 13px;">
+                  <div style="flex: 1; text-align: center; padding: 9px 0; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--gold-04);">
+                    <div style="font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--gold-dark);">12</div>
+                    <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); text-transform: uppercase;">to review</div>
+                  </div>
+                  <div style="flex: 1; text-align: center; padding: 9px 0; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--gold-04);">
+                    <div style="font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--emerald);">48</div>
+                    <div style="font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); text-transform: uppercase;">mastered</div>
+                  </div>
+                </div>
+                <div style="margin-top: 12px; text-align: center; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lapis); border: 1px solid var(--gold-40); border-radius: var(--r-pill); padding: 9px;">Review flashcards</div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- D2 · CREDO LESSON ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">D2 · CREDO LESSON</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">A catechism question, calm not gamey</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 10px 20px 96px;">
+              <!-- lesson topbar: progress + quit -->
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px;">
+                <span style="color: var(--ink-soft); font-size: 20px;">×</span>
+                <div style="flex: 1; height: 8px; background: var(--gold-20); border-radius: var(--r-pill); overflow: hidden;"><div style="width: 45%; height: 100%; background: linear-gradient(90deg, var(--gold-light), var(--gold)); border-radius: var(--r-pill);"></div></div>
+                <span style="font-family: var(--font-ui); font-size: 12px; color: var(--ink-soft); font-weight: 600;">4/9</span>
+              </div>
+
+              <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--ink-faint); margin-bottom: 10px;">CCC 253 · Multiple choice</div>
+              <p style="font-family: var(--font-body); font-size: 22px; line-height: 1.4; color: var(--ink); font-weight: 500; margin: 0 0 22px;">Each Person of the Holy Trinity is —</p>
+
+              <div style="display: flex; flex-direction: column; gap: 11px;">
+                <div style="display: flex; align-items: center; gap: 13px; padding: 15px 16px; border: 1.5px solid var(--gold-30); border-radius: var(--r-md); background: var(--leaf-50);">
+                  <span style="width: 26px; height: 26px; border-radius: var(--r-sm); background: var(--gold-12); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-weight: 700; font-size: 13px; color: var(--ink-soft); flex: 0 0 auto;">A</span>
+                  <span style="font-family: var(--font-body); font-size: 17.5px; color: var(--ink);">a part of God</span>
+                </div>
+                <!-- selected/correct -->
+                <div style="display: flex; align-items: center; gap: 13px; padding: 15px 16px; border: 1.5px solid var(--emerald); border-radius: var(--r-md); background: rgba(45,122,79,0.1);">
+                  <span style="width: 26px; height: 26px; border-radius: var(--r-sm); background: var(--emerald); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-weight: 700; font-size: 13px; color: var(--vellum); flex: 0 0 auto;">B</span>
+                  <span style="font-family: var(--font-body); font-size: 17.5px; color: var(--emerald); font-weight: 600;">fully and equally God</span>
+                  <span style="margin-left: auto; color: var(--emerald); font-size: 17px;">✓</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 13px; padding: 15px 16px; border: 1.5px solid var(--gold-30); border-radius: var(--r-md); background: var(--leaf-50);">
+                  <span style="width: 26px; height: 26px; border-radius: var(--r-sm); background: var(--gold-12); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-weight: 700; font-size: 13px; color: var(--ink-soft); flex: 0 0 auto;">C</span>
+                  <span style="font-family: var(--font-body); font-size: 17.5px; color: var(--ink);">a mode or mask of God</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 13px; padding: 15px 16px; border: 1.5px solid var(--gold-30); border-radius: var(--r-md); background: var(--leaf-50);">
+                  <span style="width: 26px; height: 26px; border-radius: var(--r-sm); background: var(--gold-12); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-weight: 700; font-size: 13px; color: var(--ink-soft); flex: 0 0 auto;">D</span>
+                  <span style="font-family: var(--font-body); font-size: 17.5px; color: var(--ink);">subordinate to the Father</span>
+                </div>
+              </div>
+
+              <!-- gentle feedback -->
+              <div style="margin-top: 18px; padding: 14px 16px; border-radius: var(--r-leaf); background: rgba(45,122,79,0.08); border-left: 3px solid var(--emerald);">
+                <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--emerald);">Deo gratias</div>
+                <p style="font-family: var(--font-body); font-size: 15.5px; line-height: 1.5; color: var(--ink-soft); margin: 6px 0 0;">The Father is God, the Son is God, the Holy Spirit is God — yet there is one God. Each Person is fully and equally divine.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- D3 · LINGUA FLASHCARD ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">D3 · FLASHCARD</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">A Latin word revealed, with tappable verse</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 10px 20px 96px; display: flex; flex-direction: column;">
+              <!-- progress dots -->
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span style="color: var(--ink-soft); font-size: 20px;">×</span>
+                <div style="flex: 1; display: flex; gap: 4px;">
+                  <div style="flex: 1; height: 5px; border-radius: var(--r-pill); background: var(--emerald);"></div>
+                  <div style="flex: 1; height: 5px; border-radius: var(--r-pill); background: var(--emerald);"></div>
+                  <div style="flex: 1; height: 5px; border-radius: var(--r-pill); background: var(--gold);"></div>
+                  <div style="flex: 1; height: 5px; border-radius: var(--r-pill); background: var(--gold-20);"></div>
+                  <div style="flex: 1; height: 5px; border-radius: var(--r-pill); background: var(--gold-20);"></div>
+                </div>
+                <span style="font-family: var(--font-ui); font-size: 12px; color: var(--ink-soft); font-weight: 600;">3/12</span>
+              </div>
+
+              <!-- the flip card (revealed) -->
+              <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; margin: 6px 0 14px;">
+                <div class="vellum" style="padding: 30px 24px; text-align: center; position: relative;">
+                  <div style="position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-family: var(--font-display); color: var(--gold); font-size: 14px;">☧</div>
+                  <div class="scriptoria-eyebrow" style="font-size: 9px; margin-bottom: 4px;">Verb · 1st conjugation</div>
+                  <div style="font-family: var(--font-display); font-weight: 700; font-size: 38px; color: var(--lapis); letter-spacing: 0.04em;">ORÁRE</div>
+                  <div style="width: 44px; height: 1px; background: var(--gold); opacity: 0.6; margin: 16px auto;"></div>
+                  <div style="font-family: var(--font-body); font-style: italic; font-size: 24px; color: var(--ink);">to pray</div>
+                  <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--gold-30);">
+                    <div class="scriptoria-eyebrow" style="font-size: 8.5px; color: var(--ink-faint); margin-bottom: 8px;">In a phrase — tap a word</div>
+                    <p style="font-family: var(--font-body); font-size: 19px; line-height: 1.7; color: var(--ink); margin: 0;">
+                      <span style="border-bottom: 1.5px dotted var(--gold-dark); color: var(--lapis); font-weight: 500;">Ora</span> et <span style="border-bottom: 1.5px dotted var(--gold-dark); color: var(--lapis); font-weight: 500;">labora</span>
+                    </p>
+                    <p style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-faint); margin: 6px 0 0;">Pray and work.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- recall buttons -->
+              <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; text-align: center; padding: 13px 0; border: 1px solid var(--gold-40); border-radius: var(--r-pill); font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vermillion-deep);">Again</div>
+                <div style="flex: 1; text-align: center; padding: 13px 0; border-radius: var(--r-pill); font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lapis); background: var(--gold);">Knew it</div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SECTION E — FIND ============ -->
+  <div style="max-width: 1180px; margin: 64px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION E · FIND</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">Confession, Mass &amp; Adoration near you</div>
+      <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 16px; margin-top: 4px;">Confiteor's live finder, its dark candlelit theme retired into the unified parchment look.</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">E1 · FIND</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Next opportunity, then the parishes</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 8px 18px 96px;">
+              <div style="text-align: center; margin-bottom: 12px;">
+                <div class="scriptoria-eyebrow" style="font-size: 9.5px;">Confiteor</div>
+                <div class="scriptoria-title" style="font-size: 17px; margin-top: 5px;">Near Canton, GA</div>
+              </div>
+
+              <!-- next opportunity banner -->
+              <div style="border: 1px solid rgba(91,58,114,0.35); border-left: 4px solid var(--amethyst); border-radius: var(--r-leaf); background: rgba(91,58,114,0.06); padding: 12px 15px; margin-bottom: 13px;">
+                <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--amethyst);"></span><span style="font-family: var(--font-display); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);">Next Opportunity</span></div>
+                <div style="font-family: var(--font-body); font-size: 17px; color: var(--ink); margin-top: 4px;"><strong style="color: var(--amethyst);">St. Michael the Archangel</strong> — Today · 5:00 PM</div>
+              </div>
+
+              <!-- filter chips -->
+              <div style="display: flex; gap: 7px; margin-bottom: 13px;">
+                <span style="font-family: var(--font-display); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 14px; border-radius: var(--r-pill); background: var(--lapis); color: var(--parchment);">All</span>
+                <span style="font-family: var(--font-display); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 14px; border-radius: var(--r-pill); border: 1px solid var(--gold-30); color: var(--ink-soft);">Today</span>
+                <span style="font-family: var(--font-display); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 14px; border-radius: var(--r-pill); border: 1px solid var(--gold-30); color: var(--ink-soft);">Saturday</span>
+                <span style="font-family: var(--font-display); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 14px; border-radius: var(--r-pill); border: 1px solid var(--gold-30); color: var(--ink-soft);">Nearest</span>
+              </div>
+
+              <!-- parish cards -->
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- soonest -->
+                <div style="border: 1px solid var(--gold); border-radius: var(--r-leaf); background: var(--leaf-50); box-shadow: 0 0 0 3px var(--gold-12), var(--sh-soft); padding: 14px 15px;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                      <div style="font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); letter-spacing: 0.01em;">St. Michael the Archangel <span style="font-family: var(--font-display); font-size: 8px; letter-spacing: 0.12em; background: var(--gold); color: var(--lapis); padding: 2px 6px; border-radius: 2px; vertical-align: middle;">SOONEST</span></div>
+                      <div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-faint);">Woodstock <span style="opacity: 0.5;">·</span> <span style="color: var(--sage, var(--emerald));">Adoration now</span></div>
+                    </div>
+                    <div style="text-align: right; font-family: var(--font-display); font-size: 10px; letter-spacing: 0.08em; color: var(--gold-dark);">9.1 MI<div style="font-size: 9px; color: var(--ink-faint); margin-top: 2px;">~18 MIN</div></div>
+                  </div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 11px;">
+                    <span style="font-family: var(--font-body); font-size: 14px; background: var(--gold); color: var(--lapis); border: 1px solid var(--gold-dark); border-radius: 3px; padding: 2px 9px; font-weight: 600;">Today · 5:00 PM</span>
+                    <span style="font-family: var(--font-body); font-size: 14px; background: var(--gold-12); border: 1px solid var(--gold-30); border-radius: 3px; padding: 2px 9px; color: var(--ink-soft);">Sat · 9:30 AM</span>
+                  </div>
+                </div>
+
+                <!-- next -->
+                <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 14px 15px;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                      <div style="font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); letter-spacing: 0.01em;">Our Lady of La Salette</div>
+                      <div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-faint);">Canton</div>
+                    </div>
+                    <div style="text-align: right; font-family: var(--font-display); font-size: 10px; letter-spacing: 0.08em; color: var(--gold-dark);">2.4 MI<div style="font-size: 9px; color: var(--ink-faint); margin-top: 2px;">~8 MIN</div></div>
+                  </div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 11px;">
+                    <span style="font-family: var(--font-body); font-size: 14px; background: var(--gold-12); border: 1px solid var(--gold-30); border-radius: 3px; padding: 2px 9px; color: var(--ink-soft);">Wed · 5:00 PM</span>
+                    <span style="font-family: var(--font-body); font-size: 14px; background: var(--gold-12); border: 1px solid var(--gold-30); border-radius: 3px; padding: 2px 9px; color: var(--ink-soft);">Sat · 4:00 PM</span>
+                  </div>
+                </div>
+
+                <!-- another -->
+                <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 14px 15px;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                      <div style="font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); letter-spacing: 0.01em;">St. Catherine of Siena</div>
+                      <div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-faint);">Kennesaw <span style="opacity: 0.5;">·</span> <span style="color: var(--emerald);">Perpetual Adoration</span></div>
+                    </div>
+                    <div style="text-align: right; font-family: var(--font-display); font-size: 10px; letter-spacing: 0.08em; color: var(--gold-dark);">11.2 MI<div style="font-size: 9px; color: var(--ink-faint); margin-top: 2px;">~25 MIN</div></div>
+                  </div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 11px;">
+                    <span style="font-family: var(--font-body); font-size: 14px; background: var(--gold-12); border: 1px solid var(--gold-30); border-radius: 3px; padding: 2px 9px; color: var(--ink-soft);">Wed · 6:00 PM</span>
+                    <span style="font-family: var(--font-body); font-size: 14px; background: var(--gold-12); border: 1px solid var(--gold-30); border-radius: 3px; padding: 2px 9px; color: var(--ink-soft);">Sat · 9:00 AM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- E2 · PARISH DETAIL ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">E2 · PARISH DETAIL</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Full schedule, with an Act of Contrition</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden;">
+              <!-- ink header -->
+              <div style="background: linear-gradient(180deg, var(--lapis), var(--lapis-deep)); padding: 16px 20px 18px; position: relative;">
+                <span style="position: absolute; left: 18px; top: 16px; color: var(--gold-light); font-size: 20px;">←</span>
+                <div style="text-align: center;">
+                  <div style="font-family: var(--font-display); font-size: 9px; letter-spacing: 0.2em; color: var(--gold-light); text-transform: uppercase;">Woodstock · 9.1 mi</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; color: var(--parchment); font-size: 19px; letter-spacing: 0.02em; margin-top: 4px;">St. Michael the Archangel</div>
+                </div>
+              </div>
+
+              <div style="padding: 16px 20px 96px;">
+                <!-- confession -->
+                <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--amethyst); margin-bottom: 8px;">Confession</div>
+                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px;">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-body); font-size: 16px; color: var(--ink); padding-bottom: 5px; border-bottom: 1px dotted var(--gold-20);"><span style="font-weight: 600;">Wednesday</span><span>5:00 – 6:00 PM</span></div>
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-body); font-size: 16px; color: var(--ink);"><span style="font-weight: 600;">Saturday</span><span>9:30 – 10:30 AM</span></div>
+                </div>
+
+                <!-- adoration -->
+                <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--emerald); margin-bottom: 8px;">Adoration <span style="background: var(--emerald); color: var(--vellum); padding: 1px 6px; border-radius: 2px; letter-spacing: 0.1em;">NOW</span></div>
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft); margin: 0 0 16px; line-height: 1.5;">Near-perpetual in the chapel, Tuesday 9:30 AM through Saturday 9:00 AM.</p>
+
+                <!-- actions -->
+                <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: var(--r-leaf); background: var(--amethyst); color: var(--vellum); font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Directions</div>
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: var(--r-leaf); border: 1px solid var(--gold-30); color: var(--ink); font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Call</div>
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: var(--r-leaf); border: 1px solid var(--gold-30); color: var(--ink); font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Website</div>
+                </div>
+
+                <!-- act of contrition -->
+                <div style="background: var(--gold-08); border-left: 3px solid var(--gold); border-radius: 0 var(--r-leaf) var(--r-leaf) 0; padding: 14px 16px;">
+                  <div class="scriptoria-eyebrow" style="font-size: 9px; margin-bottom: 7px;">An Act of Contrition</div>
+                  <p style="font-family: var(--font-body); font-style: italic; font-size: 15.5px; line-height: 1.55; color: var(--ink); margin: 0;">O my God, I am heartily sorry for having offended Thee, and I detest all my sins…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SECTION F — ME ============ -->
+  <div style="max-width: 1180px; margin: 64px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION F · ME</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">The quiet record of a life of prayer</div>
+      <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 16px; margin-top: 4px;">One gentle streak, the journal, the confession tracker, and progress — gathered from across the suite.</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+
+    <!-- ---------- F1 · PROFILE ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">F1 · ME</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Streak, trackers, and the theme toggle</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 14px 20px 96px;">
+              <!-- profile head -->
+              <div style="text-align: center; margin-bottom: 18px;">
+                <div style="width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 12px; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold), var(--sh-emboss); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-family: var(--font-display); font-weight: 700; font-size: 30px;">JM</div>
+                <div style="font-family: var(--font-display); font-weight: 700; font-size: 21px; color: var(--lapis); letter-spacing: 0.03em;">John Mary</div>
+                <div style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft);">Walking with Scriptoria since Lent</div>
+              </div>
+
+              <!-- quiet streak -->
+              <div style="background: linear-gradient(165deg, var(--lapis), var(--lapis-deep)); border-radius: var(--r-md); padding: 16px 18px; box-shadow: var(--sh-card); margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <div style="font-family: var(--font-display); font-size: 9px; letter-spacing: 0.2em; color: var(--gold-light); text-transform: uppercase;">A quiet streak</div>
+                    <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 34px; color: var(--parchment);">12</span><span style="font-family: var(--font-body); font-style: italic; font-size: 16px; color: rgba(244,236,216,0.8);">days kept</span></div>
+                  </div>
+                  <span style="color: var(--gold-light); font-size: 30px;">✦</span>
+                </div>
+                <!-- week dots -->
+                <div style="display: flex; gap: 7px; margin-top: 14px;">
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: var(--gold);"></span>
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: var(--gold);"></span>
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: var(--gold);"></span>
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: var(--gold);"></span>
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: var(--gold);"></span>
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: rgba(244,236,216,0.25);"></span>
+                  <span style="flex: 1; height: 7px; border-radius: var(--r-pill); background: rgba(244,236,216,0.25);"></span>
+                </div>
+              </div>
+
+              <!-- tracker rows -->
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 13px; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);">
+                  <span style="font-family: var(--font-display); color: var(--amethyst); font-size: 19px; width: 24px; text-align: center;">†</span>
+                  <div style="flex: 1;">
+                    <div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--ink); letter-spacing: 0.02em;">Confession</div>
+                    <div style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-soft);">21 days since · last on 25 May</div>
+                  </div>
+                  <span style="color: var(--ink-faint);">›</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 13px; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);">
+                  <span style="font-family: var(--font-display); color: var(--gold-dark); font-size: 19px; width: 24px; text-align: center;">❦</span>
+                  <div style="flex: 1;">
+                    <div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--ink); letter-spacing: 0.02em;">My Journal</div>
+                    <div style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-soft);">38 reflections · last on Saturday</div>
+                  </div>
+                  <span style="color: var(--ink-faint);">›</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 13px; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);">
+                  <span style="font-family: var(--font-display); color: var(--emerald); font-size: 19px; width: 24px; text-align: center;">☧</span>
+                  <div style="flex: 1;">
+                    <div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--ink); letter-spacing: 0.02em;">Learning</div>
+                    <div style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-soft);">7 lessons · 48 Latin words mastered</div>
+                  </div>
+                  <span style="color: var(--ink-faint);">›</span>
+                </div>
+              </div>
+
+              <!-- theme toggle -->
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--gold-04);">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--ink); letter-spacing: 0.04em;">Theme</span>
+                <div style="display: flex; border: 1px solid var(--gold-30); border-radius: var(--r-pill); overflow: hidden;">
+                  <span style="font-family: var(--font-ui); font-size: 11px; padding: 6px 14px; background: var(--lapis); color: var(--parchment); letter-spacing: 0.04em;">Parchment</span>
+                  <span style="font-family: var(--font-ui); font-size: 11px; padding: 6px 14px; color: var(--ink-soft); letter-spacing: 0.04em;">Candlelight</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- F2 · JOURNAL ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">F2 · JOURNAL</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">A reflection tied to today's Gospel</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 14px 20px 96px;">
+              <div style="text-align: center; margin-bottom: 4px;">
+                <div class="scriptoria-eyebrow" style="font-size: 9.5px;">Monday · 15 June</div>
+                <div class="scriptoria-title" style="font-size: 17px; margin-top: 5px;">My Journal</div>
+              </div>
+              <div class="scriptoria-rule" style="margin: 9px 0 14px;"><span class="scriptoria-ornament" style="font-size: 12px;">❦</span></div>
+
+              <p style="font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--ink-soft); text-align: center; margin: 0 0 12px; line-height: 1.45;">What in today's Gospel spoke to your heart?</p>
+
+              <!-- writing surface -->
+              <div style="border: 1px solid var(--gold-30); border-radius: var(--r-md); background: var(--leaf-70); padding: 15px 16px; min-height: 150px; position: relative;">
+                <p style="font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--ink); margin: 0;">There is a man at work I have wanted to answer in kind. Today's reading asks the opposite of me — to turn the other cheek. I will try, just once, to meet his sharpness with quiet…<span style="display: inline-block; width: 2px; height: 20px; background: var(--gold); vertical-align: middle; margin-left: 2px;"></span></p>
+              </div>
+              <div style="text-align: right; font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-faint); margin-top: 7px;">Saved just now ✦</div>
+
+              <!-- past entries -->
+              <div class="scriptoria-eyebrow" style="font-size: 9px; margin: 18px 2px 9px;">Past reflections</div>
+              <div style="display: flex; flex-direction: column; gap: 7px;">
+                <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 11px 14px;">
+                  <div style="font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-faint);">SAT · 13 JUN · Luke 7:36–8:3</div>
+                  <div style="font-family: var(--font-body); font-size: 15.5px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">Her many sins are forgiven, for she has loved much…</div>
+                </div>
+                <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 11px 14px;">
+                  <div style="font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-faint);">FRI · 12 JUN · Sacred Heart</div>
+                  <div style="font-family: var(--font-body); font-size: 15.5px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">He leaves the ninety-nine to come and find me…</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SECTION G — SECONDARY SCREENS & STATES ============ -->
+  <div style="max-width: 1180px; margin: 64px auto 22px; display: flex; align-items: center; gap: 18px;">
+    <div>
+      <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.22em; font-size: 11px; font-weight: 600;">SECTION G · SECONDARY SCREENS &amp; STATES</div>
+      <div style="font-family: var(--font-display); color: var(--parchment); letter-spacing: 0.04em; font-size: 26px; font-weight: 700; margin-top: 3px;">The screens a developer shouldn't have to guess</div>
+      <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 16px; margin-top: 4px;">Onboarding, sub-flows, modals, settings, and the quiet edge states — so the handoff is complete.</div>
+    </div>
+    <div style="flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-40), transparent);"></div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; justify-content: center;">
+
+    <!-- ---------- G1 · ONBOARDING ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">G1 · WELCOME</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">First run — one mark, one promise, one button</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px 34px;">
+              <div style="width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); box-shadow: var(--sh-gold), var(--sh-emboss); display: flex; align-items: center; justify-content: center; color: var(--lapis); font-family: var(--font-display); font-weight: 700; font-size: 68px; line-height: 1; margin-bottom: 30px;">☧</div>
+              <div class="scriptoria-display" style="font-size: 40px; letter-spacing: 0.06em;">Scriptoria</div>
+              <p style="font-family: var(--font-body); font-style: italic; font-size: 19px; color: var(--ink-soft); margin: 12px 0 0; line-height: 1.45;">Your whole life of prayer,<br>gathered into one quiet manuscript.</p>
+              <div class="scriptoria-rule" style="margin: 26px 0;"><span class="scriptoria-ornament" style="font-size: 14px;">❦</span></div>
+              <p style="font-family: var(--font-body); font-size: 16.5px; color: var(--ink); margin: 0 0 32px; line-height: 1.55;">Daily readings, prayer and the Rosary, the Catechism and Latin, confession near you — and a gentle record of the days you keep.</p>
+              <div style="width: 100%; padding: 15px; border-radius: var(--r-lg); background: linear-gradient(180deg, var(--lapis), var(--lapis-deep)); color: var(--parchment); font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; box-shadow: var(--sh-card);">Begin ✠</div>
+              <div style="margin-top: 16px; font-family: var(--font-ui); font-size: 13px; color: var(--ink-soft); letter-spacing: 0.02em;">I already have an account</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- G2 · LITURGY OF THE HOURS ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">G2 · THE HOURS</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Pray → the full canonical day, with Latin</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 8px 20px 96px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <span style="color: var(--ink-soft); font-size: 20px;">←</span>
+                <div>
+                  <div class="scriptoria-eyebrow" style="font-size: 9px;">Liturgia Horarum</div>
+                  <div style="font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--lapis); letter-spacing: 0.03em;">Liturgy of the Hours</div>
+                </div>
+              </div>
+
+              <div style="position: relative; padding-left: 28px; margin-top: 6px;">
+                <div style="position: absolute; left: 8px; top: 10px; bottom: 16px; width: 2px; background: linear-gradient(180deg, var(--gold-30), var(--gold), var(--gold-30));"></div>
+
+                <div style="position: relative; margin-bottom: 11px;">
+                  <div style="position: absolute; left: -27px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--emerald); border: 2px solid var(--parchment); display: flex; align-items: center; justify-content: center; color: var(--vellum); font-size: 8px; font-family: var(--font-ui); font-weight: 700;">✓</div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.04em;">Lauds <span style="font-family: var(--font-body); font-style: italic; font-weight: 400; color: var(--ink-faint);">Morning</span></span><span style="font-family: var(--font-ui); font-size: 11px; color: var(--ink-faint);">6:30 AM</span></div>
+                </div>
+                <div style="position: relative; margin-bottom: 11px;">
+                  <div style="position: absolute; left: -27px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--emerald); border: 2px solid var(--parchment); display: flex; align-items: center; justify-content: center; color: var(--vellum); font-size: 8px; font-family: var(--font-ui); font-weight: 700;">✓</div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.04em;">Terce <span style="font-family: var(--font-body); font-style: italic; font-weight: 400; color: var(--ink-faint);">Mid-morning</span></span><span style="font-family: var(--font-ui); font-size: 11px; color: var(--ink-faint);">9:00 AM</span></div>
+                </div>
+
+                <!-- current -->
+                <div style="position: relative; margin-bottom: 11px;">
+                  <div style="position: absolute; left: -29px; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark)); border: 2px solid var(--parchment); box-shadow: 0 0 0 4px var(--gold-12);"></div>
+                  <div class="vellum" style="padding: 13px 15px; border-color: var(--gold);">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--lapis); letter-spacing: 0.03em;">Sext <span style="font-family: var(--font-body); font-style: italic; font-weight: 400; color: var(--ink-soft); font-size: 15px;">Midday</span></span><span style="font-family: var(--font-ui); font-size: 11px; color: var(--gold-dark); letter-spacing: 0.06em;">NOW · 12 PM</span></div>
+                    <p style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft); margin: 7px 0 0;">Deus, in adiutórium meum inténde.</p>
+                    <p style="font-family: var(--font-body); font-size: 14px; color: var(--ink-faint); margin: 2px 0 0;">O God, come to my assistance.</p>
+                  </div>
+                </div>
+
+                <div style="position: relative; margin-bottom: 11px;">
+                  <div style="position: absolute; left: -26px; top: 3px; width: 11px; height: 11px; border-radius: 50%; background: var(--parchment-3);"></div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em;">None <span style="font-family: var(--font-body); font-style: italic; font-weight: 400; color: var(--ink-faint);">Mid-afternoon</span></span><span style="font-family: var(--font-ui); font-size: 11px; color: var(--ink-faint);">3:00 PM</span></div>
+                </div>
+                <div style="position: relative; margin-bottom: 11px;">
+                  <div style="position: absolute; left: -26px; top: 3px; width: 11px; height: 11px; border-radius: 50%; background: var(--parchment-3);"></div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em;">Vespers <span style="font-family: var(--font-body); font-style: italic; font-weight: 400; color: var(--ink-faint);">Evening</span></span><span style="font-family: var(--font-ui); font-size: 11px; color: var(--ink-faint);">6:00 PM</span></div>
+                </div>
+                <div style="position: relative;">
+                  <div style="position: absolute; left: -26px; top: 3px; width: 11px; height: 11px; border-radius: 50%; background: var(--parchment-3);"></div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em;">Compline <span style="font-family: var(--font-body); font-style: italic; font-weight: 400; color: var(--ink-faint);">Night</span></span><span style="font-family: var(--font-ui); font-size: 11px; color: var(--ink-faint);">9:00 PM</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- G3 · DAILY EXAMEN ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">G3 · EXAMEN</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Pray → the five-step evening review</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 8px 20px 96px;">
+              <div style="text-align: center; margin-bottom: 4px;">
+                <div class="scriptoria-eyebrow" style="font-size: 9px;">Ignatian · this evening</div>
+                <div class="scriptoria-title" style="font-size: 16px; margin-top: 5px;">The Daily Examen</div>
+              </div>
+              <div class="scriptoria-rule" style="margin: 9px 0 14px;"><span class="scriptoria-ornament" style="font-size: 11px;">✠</span></div>
+
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="vellum" style="padding: 12px 14px;">
+                  <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--gold-dark); width: 18px;">I</span><div style="flex: 1;"><div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--lapis); letter-spacing: 0.03em;">Gratitude</div><div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-soft); line-height: 1.4;">Give thanks for the gifts of the day.</div></div></div>
+                  <div style="margin-top: 9px; border: 1px solid var(--gold-20); border-radius: var(--r-sm); background: var(--leaf-70); padding: 9px 11px; font-family: var(--font-body); font-size: 15px; color: var(--ink); font-style: italic;">The quiet half-hour after lunch, and the rain.</div>
+                </div>
+                <div class="vellum" style="padding: 12px 14px;">
+                  <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--gold-dark); width: 18px;">II</span><div style="flex: 1;"><div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--lapis); letter-spacing: 0.03em;">Petition</div><div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-soft); line-height: 1.4;">Ask the Spirit to show you your day clearly.</div></div></div>
+                </div>
+                <div class="vellum" style="padding: 12px 14px;">
+                  <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--gold-dark); width: 18px;">III</span><div style="flex: 1;"><div style="font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--lapis); letter-spacing: 0.03em;">Review</div><div style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--ink-soft); line-height: 1.4;">Walk through the hours. Where was God?</div></div></div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <div class="vellum" style="padding: 11px 13px; flex: 1; opacity: 0.7;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink-faint);">IV</span> <span style="font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--ink-soft); letter-spacing: 0.02em;">Respond</span></div>
+                  <div class="vellum" style="padding: 11px 13px; flex: 1; opacity: 0.7;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink-faint);">V</span> <span style="font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--ink-soft); letter-spacing: 0.02em;">Resolve</span></div>
+                </div>
+              </div>
+
+              <div style="margin-top: 14px; text-align: center; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lapis); background: var(--gold); border-radius: var(--r-pill); padding: 11px;">Save to journal</div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- G4 · CONFESSION TRACKER + RECORD MODAL ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">G4 · CONFESSION + MODAL</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Me → tracker, with the record sheet open</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 14px 20px 96px; filter: brightness(0.96);">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                <span style="color: var(--ink-soft); font-size: 20px;">←</span>
+                <div class="scriptoria-title" style="font-size: 15px;">Confession</div>
+              </div>
+              <div style="text-align: center; padding: 14px 0;">
+                <div class="scriptoria-eyebrow" style="font-size: 9px; color: var(--amethyst);">Days since absolution</div>
+                <div style="font-family: var(--font-display); font-weight: 700; font-size: 64px; color: var(--amethyst); line-height: 1; margin: 6px 0;">21</div>
+                <div style="font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft);">Last on the 25th of May</div>
+              </div>
+              <div style="background: var(--gold-08); border-left: 3px solid var(--amethyst); border-radius: 0 var(--r-leaf) var(--r-leaf) 0; padding: 14px 16px; margin-top: 6px;">
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 16px; line-height: 1.55; color: var(--ink); margin: 0;">“If we confess our sins, he is faithful and just, and will forgive us.”</p>
+                <div style="font-family: var(--font-display); font-size: 10px; letter-spacing: 0.16em; color: var(--ink-faint); margin-top: 8px; text-transform: uppercase;">1 John 1:9</div>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+          <!-- modal overlay -->
+          <div style="position: absolute; inset: 0; z-index: 10; background: rgba(20,15,9,0.5); display: flex; align-items: flex-end;">
+            <div style="width: 100%; background: var(--overlay); border-radius: 22px 22px 45px 45px; border-top: 1px solid var(--gold-30); padding: 22px 22px calc(22px + 9px); box-shadow: 0 -10px 30px rgba(0,0,0,0.25);">
+              <div style="width: 38px; height: 4px; border-radius: 2px; background: var(--gold-30); margin: 0 auto 16px;"></div>
+              <div style="text-align: center; margin-bottom: 16px;">
+                <div style="font-family: var(--font-display); color: var(--amethyst); font-size: 19px;">†</div>
+                <div class="scriptoria-title" style="font-size: 15px; margin-top: 6px;">Record a Confession</div>
+              </div>
+              <div class="scriptoria-eyebrow" style="font-size: 8.5px; margin-bottom: 6px;">Date</div>
+              <div style="border: 1px solid var(--gold-30); border-radius: var(--r-sm); background: var(--leaf-70); padding: 11px 13px; font-family: var(--font-body); font-size: 16px; color: var(--ink); margin-bottom: 13px;">Monday, 15 June 2026</div>
+              <div class="scriptoria-eyebrow" style="font-size: 8.5px; margin-bottom: 6px;">Penance assigned</div>
+              <div style="border: 1px solid var(--gold-30); border-radius: var(--r-sm); background: var(--leaf-70); padding: 11px 13px; font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--ink-faint); margin-bottom: 18px;">Three Hail Marys, a kindness to my brother…</div>
+              <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; text-align: center; padding: 13px 0; border-radius: var(--r-md); border: 1px solid var(--gold-30); font-family: var(--font-display); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);">Cancel</div>
+                <div style="flex: 1.4; text-align: center; padding: 13px 0; border-radius: var(--r-md); background: var(--amethyst); color: var(--vellum); font-family: var(--font-display); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Save ✠</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- G5 · SETTINGS ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">G5 · SETTINGS</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Theme, Latin, reminders, cycle, location</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 14px 20px 96px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <span style="color: var(--ink-soft); font-size: 20px;">←</span>
+                <div class="scriptoria-title" style="font-size: 15px;">Settings</div>
+              </div>
+
+              <div class="scriptoria-eyebrow" style="font-size: 8.5px; margin: 0 2px 8px;">Appearance</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); margin-bottom: 6px;">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--ink); letter-spacing: 0.03em;">Theme</span>
+                <div style="display: flex; border: 1px solid var(--gold-30); border-radius: var(--r-pill); overflow: hidden;"><span style="font-family: var(--font-ui); font-size: 11px; padding: 6px 13px; background: var(--lapis); color: var(--parchment);">Parchment</span><span style="font-family: var(--font-ui); font-size: 11px; padding: 6px 13px; color: var(--ink-soft);">Candlelight</span></div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); margin-bottom: 16px;">
+                <div><span style="font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--ink); letter-spacing: 0.03em;">Show Latin</span><div style="font-family: var(--font-body); font-style: italic; font-size: 13.5px; color: var(--ink-soft);">Beneath prayers &amp; verses</div></div>
+                <div style="width: 44px; height: 26px; border-radius: var(--r-pill); background: var(--gold); position: relative;"><span style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--vellum); box-shadow: var(--sh-soft);"></span></div>
+              </div>
+
+              <div class="scriptoria-eyebrow" style="font-size: 8.5px; margin: 0 2px 8px;">Rhythm</div>
+              <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);"><span style="font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--ink); letter-spacing: 0.03em;">Daily reminder</span><span style="font-family: var(--font-body); font-size: 15px; color: var(--ink-soft);">7:00 AM ›</span></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);"><span style="font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--ink); letter-spacing: 0.03em;">Reading cycle</span><span style="font-family: var(--font-body); font-size: 15px; color: var(--ink-soft);">Year II · Weekday ›</span></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);"><span style="font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--ink); letter-spacing: 0.03em;">Confession finder</span><span style="font-family: var(--font-body); font-size: 15px; color: var(--ink-soft);">Canton, GA ›</span></div>
+              </div>
+
+              <div class="scriptoria-eyebrow" style="font-size: 8.5px; margin: 0 2px 8px;">Account</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50);"><span style="font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--ink); letter-spacing: 0.03em;">John Mary</span><span style="font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-faint);">Manage ›</span></div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- G6 · QUIET STATES ---------- -->
+    <div class="ph">
+      <div class="ph-label">
+        <div style="font-family: var(--font-display); color: var(--gold-light); letter-spacing: 0.16em; font-size: 12px; font-weight: 600;">G6 · QUIET STATES</div>
+        <div style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 15px; margin-top: 2px;">Empty &amp; offline, kept reverent — not error-red</div>
+      </div>
+      <div class="ph-frame">
+        <div class="ph-island"></div>
+        <div class="ph-screen">
+          <div class="sb">
+            <span class="sb-time">9:41</span>
+            <span class="sb-icons">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.3" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.4 0 4.6 1 6.2 2.5l-1.5 1.5A6.6 6.6 0 0 0 8 5.7 6.6 6.6 0 0 0 3.3 6.4L1.8 4.9A8.7 8.7 0 0 1 8 2.4zm0 3.7c1.4 0 2.7.6 3.6 1.5l-1.6 1.6c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8L4.4 7.6A5 5 0 0 1 8 6.1zm0 3.6 1.6 1.6L8 12 6.4 11.3 8 9.7z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="5" rx="0.75" fill="currentColor" opacity="0.5"/></svg>
+            </span>
+          </div>
+          <div class="content">
+            <div style="height: 100%; overflow: hidden; padding: 10px 20px 96px;">
+              <!-- offline ribbon -->
+              <div style="display: flex; align-items: center; gap: 8px; justify-content: center; padding: 9px 14px; border: 1px dashed var(--gold-30); border-radius: var(--r-pill); background: var(--gold-04); margin-bottom: 20px;">
+                <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ink-faint);"></span>
+                <span style="font-family: var(--font-ui); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink-soft);">Offline — showing your last saved day</span>
+              </div>
+
+              <!-- empty reading state -->
+              <div style="text-align: center; padding: 30px 16px 24px;">
+                <div style="font-family: var(--font-display); font-size: 52px; color: var(--gold); opacity: 0.5; line-height: 1;">❦</div>
+                <div class="scriptoria-title" style="font-size: 14px; margin-top: 18px; color: var(--ink-soft);">No entry for this day yet</div>
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 16.5px; color: var(--ink-soft); margin: 12px auto 0; max-width: 250px; line-height: 1.5;">Return to today, or come back after the next update to the lectionary.</p>
+                <div style="margin-top: 22px; display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lapis); border: 1px solid var(--gold-40); border-radius: var(--r-pill); padding: 10px 22px;">Return to today</div>
+              </div>
+
+              <!-- empty journal example -->
+              <div class="scriptoria-rule" style="margin: 8px 0 18px;"><span class="scriptoria-ornament" style="font-size: 11px;">·</span></div>
+              <div style="border: 1px solid var(--gold-20); border-radius: var(--r-leaf); background: var(--leaf-50); padding: 20px; text-align: center;">
+                <div class="scriptoria-eyebrow" style="font-size: 8.5px;">A blank leaf</div>
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--ink-faint); margin: 8px 0 0; line-height: 1.5;">Nothing written yet. The first reflection begins the streak.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/><line x1="18.6" y1="5.4" x2="16.9" y2="7.1"/><line x1="7.1" y1="16.9" x2="5.4" y2="18.6"/></svg><span>Today</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.8 2 4.2 3 5.6 1 1.4 1.5 2.7 1.5 4.4a4.5 4.5 0 0 1-9 0c0-1.2.4-2.2 1-3"/><path d="M12 21a2.5 2.5 0 0 0 2.5-2.5c0-1.4-1-2.2-2.5-4-1.5 1.8-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 21z"/></svg><span>Pray</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.4 5 5v13c3-.6 5.5 0 7 1.5 1.5-1.5 4-2.1 7-1.5V5c-3-.6-5.5 0-7 1.5z"/><line x1="12" y1="6.5" x2="12" y2="20"/></svg><span>Learn</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.1-6-10a6 6 0 0 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg><span>Find</span></div>
+              <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg><span>Me</span></div>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- closing note -->
+  <div style="max-width: 1180px; margin: 60px auto 0; text-align: center;">
+    <div class="scriptoria-rule" style="margin: 0 0 16px;"><span class="scriptoria-ornament" style="font-size: 16px; color: var(--gold);">☧</span></div>
+    <p style="font-family: var(--font-body); font-style: italic; color: #b7a88f; font-size: 17px; max-width: 680px; margin: 0 auto; line-height: 1.5;">Nineteen screens, five companions, one quiet manuscript — primary tabs, every sub-flow, onboarding, settings, the record sheet, and the reverent empty states. The design is complete and ready for the Claude Code handoff.</p>
+  </div>
+
+  <!-- ALL SECTIONS COMPLETE -->
+
+</div>
+</x-dc>
+</body>
+</html>

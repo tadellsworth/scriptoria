@@ -1,0 +1,62 @@
+/* ============================================================
+   Scriptoria — Spacing, Radii, Shadows, Motion, Texture
+   ============================================================ */
+
+:root {
+  /* Spacing — 4px base, the rhythm of a ruled page */
+  --sp-1:  0.25rem;  /*  4 */
+  --sp-2:  0.5rem;   /*  8 */
+  --sp-3:  0.75rem;  /* 12 */
+  --sp-4:  1rem;     /* 16 */
+  --sp-5:  1.5rem;   /* 24 */
+  --sp-6:  2rem;     /* 32 */
+  --sp-7:  3rem;     /* 48 */
+  --sp-8:  4rem;     /* 64 */
+
+  /* Radii — two registers.
+     "leaf" is sharp & manuscript-like (cut vellum, tooled panels);
+     "app" is the softer rounding of the interactive products.    */
+  --r-leaf:  3px;    /* cards, panels, badges — the manuscript register */
+  --r-sm:    8px;
+  --r-md:    12px;   /* app cards / inputs */
+  --r-lg:    14px;   /* primary buttons, headers */
+  --r-pill:  999px;  /* chips, toggles, nav pills */
+  --r-circle:50%;    /* emblems, lesson nodes, avatars */
+
+  /* Shadows — warm sepia, never neutral grey */
+  --sh-soft:  0 2px 6px rgba(42,31,21,0.10), 0 1px 2px rgba(42,31,21,0.06);
+  --sh-card:  0 4px 12px rgba(42,31,21,0.14), 0 2px 4px rgba(42,31,21,0.08);
+  --sh-deep:  0 8px 24px rgba(42,31,21,0.22);
+  --sh-gold:  0 4px 14px rgba(201,163,47,0.35), 0 2px 4px rgba(42,31,21,0.12);
+  /* Inner emboss for gilt emblems / pressed coins */
+  --sh-emboss: inset 0 -4px 8px rgba(0,0,0,0.15), inset 0 2px 6px rgba(255,255,255,0.4); /* @kind shadow */
+  /* Vellum card lift: hairline highlight + soft drop */
+  --sh-vellum: 0 1px 2px rgba(42,36,29,0.08), 0 4px 14px rgba(42,36,29,0.05), inset 0 1px 0 rgba(255,255,255,0.7);
+
+  /* Motion — unhurried, reverent. Fades & gentle rises; no bounce. */
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);   /* @kind other */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);  /* @kind other */
+  --dur-fast:    0.15s;   /* @kind other */
+  --dur:         0.25s;   /* @kind other */
+  --dur-slow:    0.55s;   /* @kind other */
+
+  /* Texture — the faint tooth of parchment.
+     Layer over a ground: background: var(--tex-parchment), var(--bg-page); */
+  --tex-parchment: radial-gradient(ellipse at 20% 10%, rgba(221,201,155,0.40) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(201,163,47,0.08) 0%, transparent 50%); /* @kind other */
+  --tex-vellum: radial-gradient(ellipse at top, rgba(176,138,62,0.05), transparent 60%), radial-gradient(ellipse at bottom, rgba(31,45,92,0.04), transparent 65%); /* @kind other */
+}
+
+/* A gentle, reverent rise — the canonical entrance animation. */
+@keyframes scriptoria-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scriptoria-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* Slow gilt pulse for the "next" / active call-to-action. */
+@keyframes scriptoria-glow {
+  0%, 100% { box-shadow: var(--sh-gold), 0 0 0 0 rgba(201,163,47,0.5); }
+  50%      { box-shadow: var(--sh-gold), 0 0 0 12px rgba(201,163,47,0); }
+}
