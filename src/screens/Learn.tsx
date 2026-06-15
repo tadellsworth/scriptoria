@@ -9,7 +9,27 @@ export function LearnScreen() {
   const nav = useNav();
   if (nav.route === 'credo') return <CredoLesson />;
   if (nav.route === 'flashcard') return <Flashcard />;
+  if (nav.route === 'lingua') return <LinguaCourse />;
   return <LearnHome />;
+}
+
+/* ---------- Lingua Latina — the full course (embedded, Scriptoria-skinned) ---------- */
+function LinguaCourse() {
+  const nav = useNav();
+  const { state } = useStore();
+  return (
+    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', background: 'var(--parchment)' }}>
+      <div className="back-header" style={{ padding: '6px 16px 8px', margin: 0, borderBottom: '1px solid var(--gold-20)', flex: '0 0 auto' }}>
+        <button className="back-btn" onClick={() => nav.home()} aria-label="Back to Learn">←</button>
+        <div className="scriptoria-title" style={{ fontSize: '1rem', color: 'var(--lapis)' }}>Lingua Latina</div>
+      </div>
+      <iframe
+        title="Lingua Latina — the Latin course"
+        src={`/lingua/index.html?theme=${state.theme}`}
+        style={{ flex: '1 1 auto', width: '100%', border: 'none', display: 'block' }}
+      />
+    </div>
+  );
 }
 
 /* ---------- D1 · Learn home ---------- */
@@ -27,7 +47,6 @@ function LearnHome() {
 
   const review = reviewCount(state);
   const mastered = masteredCount(state);
-  const linguaUnit = VOCAB_UNITS[2]; // Unit III · People & Roles
 
   return (
     <div className="screen-pad anim-rise">
@@ -56,22 +75,26 @@ function LearnHome() {
         <Button variant="gold" block style={{ marginTop: 14 }} onClick={() => nav.open('credo')}>Continue lesson</Button>
       </div>
 
-      {/* Lingua card */}
+      {/* Lingua card — entry to the full Latin course */}
       <div className="vellum">
         <div style={{ display: 'flex', gap: 13, alignItems: 'flex-start' }}>
           <Coin size={50} lapis>Λ</Coin>
           <div style={{ flex: 1 }}>
             <Eyebrow>Lingua Latina</Eyebrow>
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, color: 'var(--lapis)', letterSpacing: '0.03em', marginTop: 2 }}>
-              {linguaUnit.title}
+              The Latin course
             </div>
           </div>
         </div>
+        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 14.5, color: 'var(--ink-soft)', lineHeight: 1.45, margin: '10px 0 0' }}>
+          Vocabulary, prayers, grammar, the Mass, hymns, Scripture &amp; stories — every word tappable, at your own pace.
+        </p>
         <div style={{ display: 'flex', gap: 8, margin: '14px 0 0' }}>
           <StatCell value={review} label="to review" color="var(--gold-dark)" />
           <StatCell value={mastered} label="mastered" color="var(--emerald)" />
         </div>
-        <Button variant="outline" block style={{ marginTop: 14 }} onClick={() => nav.open('flashcard')}>Review flashcards</Button>
+        <Button variant="gold" block style={{ marginTop: 14 }} onClick={() => nav.open('lingua')}>Enter the course →</Button>
+        <Button variant="outline" block style={{ marginTop: 8 }} onClick={() => nav.open('flashcard')}>Quick flashcards</Button>
       </div>
     </div>
   );
