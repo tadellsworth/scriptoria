@@ -218,7 +218,7 @@ function Confession() {
   }
 
   return (
-    <div className="screen-pad anim-rise" style={{ position: 'relative' }}>
+    <div className="screen-pad anim-rise">
       <div style={{ filter: modalOpen ? 'brightness(0.96)' : 'none' }}>
         <BackHeader onBack={nav.home} title="Confession" />
 
@@ -275,9 +275,20 @@ function Confession() {
 }
 
 /* ---------- G5 · Settings ---------- */
+const REMINDERS = ['6:30 AM', '7:00 AM', '8:00 AM', '12:00 PM', '9:00 PM', 'Off'];
+const CYCLES = ['Year I · Weekday', 'Year II · Weekday', 'Sunday · Year A', 'Sunday · Year B', 'Sunday · Year C'];
+const cycle = (list: string[], cur: string) => list[(list.indexOf(cur) + 1) % list.length];
+
 function Settings() {
   const { state, patch } = useStore();
   const nav = useNav();
+
+  function renameProfile() {
+    const name = window.prompt('Your name', state.profile.name);
+    if (!name || !name.trim()) return;
+    const initials = name.trim().split(/\s+/).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
+    patch({ profile: { ...state.profile, name: name.trim(), initials } });
+  }
 
   return (
     <div className="screen-pad anim-rise">
@@ -296,6 +307,8 @@ function Settings() {
           </div>
           <div
             onClick={() => patch({ showLatin: !state.showLatin })}
+            role="switch"
+            aria-checked={state.showLatin}
             style={{ width: 44, height: 26, borderRadius: 'var(--r-pill)', background: state.showLatin ? 'var(--gold)' : 'var(--gold-20)', position: 'relative', cursor: 'pointer', transition: 'background 0.2s var(--ease)', flex: '0 0 auto' }}
           >
             <span style={{ position: 'absolute', top: 3, left: state.showLatin ? 21 : 3, width: 20, height: 20, borderRadius: '50%', background: '#fff', transition: 'left 0.2s var(--ease)', boxShadow: '0 1px 3px rgba(0,0,0,0.25)' }} />
@@ -305,23 +318,23 @@ function Settings() {
 
       <Eyebrow style={{ margin: '16px 2px 8px' }}>Rhythm</Eyebrow>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <SettingRow label="Daily reminder" value={state.reminderTime} />
-        <SettingRow label="Reading cycle" value={state.readingCycle} />
-        <SettingRow label="Confession finder" value={state.location?.label ?? 'Canton, GA'} />
+        <SettingRow label="Daily reminder" value={state.reminderTime} onClick={() => patch({ reminderTime: cycle(REMINDERS, state.reminderTime) })} />
+        <SettingRow label="Reading cycle" value={state.readingCycle} onClick={() => patch({ readingCycle: cycle(CYCLES, state.readingCycle) })} />
+        <SettingRow label="Confession finder" value={state.location?.label ?? 'Canton, GA'} onClick={() => nav.go('find')} />
       </div>
 
       <Eyebrow style={{ margin: '16px 2px 8px' }}>Account</Eyebrow>
-      <div style={{ ...trackerRow, justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{state.profile.name}</span>
+      <div style={trackerRow} onClick={renameProfile}>
+        <span style={{ flex: 1, fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{state.profile.name}</span>
         <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 14, color: 'var(--ink-soft)' }}>Manage ›</span>
       </div>
     </div>
   );
 }
 
-function SettingRow({ label, value }: { label: string; value: string }) {
+function SettingRow({ label, value, onClick }: { label: string; value: string; onClick?: () => void }) {
   return (
-    <div style={{ ...trackerRow, cursor: 'default', justifyContent: 'space-between' }}>
+    <div style={{ ...trackerRow, cursor: onClick ? 'pointer' : 'default', justifyContent: 'space-between' }} onClick={onClick}>
       <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{label}</span>
       <span style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--ink-soft)' }}>{value} ›</span>
     </div>
