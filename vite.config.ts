@@ -31,6 +31,10 @@ export default defineConfig({
         ],
       },
       workbox: {
+        // The embedded Latin course is its own page — keep the SPA navigation
+        // fallback (which serves the React index.html) away from /lingua/*,
+        // otherwise the course iframe would be served the app shell.
+        navigateFallbackDenylist: [/^\/lingua\//],
         // Cache the app shell; readings/parish data are runtime-cached so the
         // app stays useful offline (with the bundled fallbacks).
         globPatterns: ['**/*.{js,css,html,svg,woff,woff2}'],

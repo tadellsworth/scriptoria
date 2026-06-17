@@ -25,7 +25,9 @@ function LinguaCourse() {
       </div>
       <iframe
         title="Lingua Latina — the Latin course"
-        src={`/lingua/index.html?theme=${state.theme}`}
+        // Theme via hash (not query) so the precached /lingua/index.html matches
+        // exactly and the course works offline; read client-side on load.
+        src={`/lingua/index.html#theme=${state.theme}`}
         style={{ flex: '1 1 auto', width: '100%', border: 'none', display: 'block' }}
       />
     </div>
