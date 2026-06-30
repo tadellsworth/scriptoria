@@ -1,0 +1,102 @@
+[
+ {
+  "id": "rosary-glorious-1-resurrection",
+  "type": "meditation",
+  "title": "The Resurrection",
+  "body": "On the third day the tomb is empty, and death — the one certainty no one had ever escaped — is broken from the inside. The women come expecting to anoint a corpse and instead meet angels, and then the Lord himself. Every Christian hope rests on this one morning: that the worst thing is never the last thing.",
+  "ref": "Matthew 28:1-10 — First Glorious Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "glorious", "resurrection", "easter", "hope"],
+  "verified": true
+ },
+ {
+  "id": "rosary-glorious-2-ascension",
+  "type": "meditation",
+  "title": "The Ascension",
+  "body": "Jesus is taken up before the apostles' eyes, not abandoning them but going to prepare a place and to send the Spirit. He ascends in his human body, the same flesh he took from Mary, so that our humanity itself is now seated at the right hand of the Father. He has not left; he has gone ahead.",
+  "ref": "Luke 24:50-53; Acts 1:6-11 — Second Glorious Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "glorious", "ascension", "hope"],
+  "verified": true
+ },
+ {
+  "id": "rosary-glorious-3-pentecost",
+  "type": "meditation",
+  "title": "The Descent of the Holy Spirit",
+  "body": "Tongues of fire descend on the frightened apostles huddled in the upper room, and they walk out preaching boldly in languages they never learned. The same Spirit that overshadowed Mary at the Annunciation now forms the Church, turning a handful of fishermen into witnesses who would carry the Gospel to the ends of the earth.",
+  "ref": "Acts 2:1-13 — Third Glorious Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "glorious", "pentecost", "holy-spirit", "church"],
+  "verified": true
+ },
+ {
+  "id": "rosary-glorious-4-assumption",
+  "type": "meditation",
+  "title": "The Assumption of Mary",
+  "body": "At the end of her earthly life, Mary is taken body and soul into heaven — the first to share fully in the resurrection her Son won. What is promised to every believer at the end of the age is already accomplished in her, a sign of where the whole Church is headed and a mother already arrived to intercede for those still on the way.",
+  "ref": "Revelation 12:1 (traditional association) — Fourth Glorious Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "glorious", "assumption", "mary", "hope"],
+  "verified": true
+ },
+ {
+  "id": "rosary-glorious-5-coronation",
+  "type": "meditation",
+  "title": "The Coronation of Mary",
+  "body": "Mary is crowned Queen of Heaven and earth — not as a power seized but as the fitting honor of the lowly handmaid who said yes without reservation. 'He who is mighty has done great things for me,' she sang at the Visitation; the Coronation is that song's final verse. Greatness in God's kingdom is always the far side of humility.",
+  "ref": "Revelation 12:1 (traditional association) — Fifth Glorious Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "glorious", "coronation", "mary", "humility"],
+  "verified": true
+ },
+ {
+  "id": "rosary-luminous-1-baptism",
+  "type": "meditation",
+  "title": "The Baptism in the Jordan",
+  "body": "Jesus, sinless, stands in line with sinners to be baptized by John, and the Father's voice and the Spirit's descent reveal the Trinity together for the first time in the Gospels: 'This is my beloved Son.' He begins his public work not by setting himself apart from us but by stepping into the water beside us.",
+  "ref": "Matthew 3:13-17 — First Luminous Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "luminous", "baptism", "trinity"],
+  "verified": true
+ },
+ {
+  "id": "rosary-luminous-2-cana",
+  "type": "meditation",
+  "title": "The Wedding at Cana",
+  "body": "At his mother's quiet word — 'they have no wine' — Jesus works his first sign, turning water into the finest vintage of the feast. Mary's instruction to the servants is the last of her words recorded in Scripture, and it is addressed as much to us: 'Do whatever he tells you.'",
+  "ref": "John 2:1-11 — Second Luminous Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "luminous", "cana", "mary", "miracles"],
+  "verified": true
+ },
+ {
+  "id": "rosary-luminous-3-kingdom",
+  "type": "meditation",
+  "title": "The Proclamation of the Kingdom",
+  "body": "Jesus goes through Galilee preaching that the kingdom of God is at hand, calling all who hear him to repentance and to faith in the good news. His words carry an authority unlike the scribes', because he is not relaying a kingdom — he is bringing it. The invitation he preached then is the same one offered now: turn, and believe.",
+  "ref": "Mark 1:14-15 — Third Luminous Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "luminous", "kingdom", "preaching", "repentance"],
+  "verified": true
+ },
+ {
+  "id": "rosary-luminous-4-transfiguration",
+  "type": "meditation",
+  "title": "The Transfiguration",
+  "body": "On Mount Tabor, Peter, James, and John glimpse Christ's hidden glory — his face shining like the sun, Moses and Elijah beside him, the Father's voice again naming him beloved. It is a brief unveiling, given to strengthen them for what is coming: the road to Jerusalem, and the cross that glory does not bypass but passes through.",
+  "ref": "Matthew 17:1-8 — Fourth Luminous Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "luminous", "transfiguration", "glory"],
+  "verified": true
+ },
+ {
+  "id": "rosary-luminous-5-eucharist",
+  "type": "meditation",
+  "title": "The Institution of the Eucharist",
+  "body": "At the Last Supper, Jesus takes bread and wine and gives his body and blood to his apostles, commanding them to do this in remembrance of him. He chooses to remain with his Church not as a memory but as a presence, under the humblest of signs, given again at every altar until he comes.",
+  "ref": "Matthew 26:26-29 — Fifth Luminous Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "luminous", "eucharist", "last-supper"],
+  "verified": true
+ }
+]

@@ -1,0 +1,102 @@
+[
+ {
+  "id": "rosary-joyful-1-annunciation",
+  "type": "meditation",
+  "title": "The Annunciation",
+  "body": "The angel Gabriel comes to a young woman in Nazareth with the most consequential question ever asked of a creature, and waits on her answer. Mary's fiat — 'be it done unto me according to thy word' — is not passive resignation but the freest act in salvation history: a yes spoken in the dark, before she could see where it led. Pray for the grace to answer God as readily, in whatever he is asking of you today.",
+  "ref": "Luke 1:26-38 — First Joyful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "joyful", "mary", "annunciation", "fiat"],
+  "verified": true
+ },
+ {
+  "id": "rosary-joyful-2-visitation",
+  "type": "meditation",
+  "title": "The Visitation",
+  "body": "Mary, newly carrying God within her, does not stay to ponder the mystery alone — she goes in haste to serve her kinswoman Elizabeth. The child in Elizabeth's womb leaps for joy at a greeting; the Magnificat pours out. Charity that has just received Christ does not hoard him; it hurries toward whoever needs him next.",
+  "ref": "Luke 1:39-56 — Second Joyful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "joyful", "mary", "visitation", "charity"],
+  "verified": true
+ },
+ {
+  "id": "rosary-joyful-3-nativity",
+  "type": "meditation",
+  "title": "The Nativity",
+  "body": "No room at the inn; a feeding-trough for a cradle; shepherds, not kings, the first to be told. God enters the world at its edges, in poverty, where no one was watching for him. Ask for eyes that recognize him just as readily in the overlooked and the small.",
+  "ref": "Luke 2:1-20 — Third Joyful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "joyful", "nativity", "poverty", "christmas"],
+  "verified": true
+ },
+ {
+  "id": "rosary-joyful-4-presentation",
+  "type": "meditation",
+  "title": "The Presentation",
+  "body": "Mary and Joseph bring the infant Jesus to the Temple as the Law requires, and old Simeon, who has waited a lifetime, takes him in his arms and is ready to die. He also speaks of a sword that will pierce Mary's own soul. Obedience to ordinary religious duty becomes, without warning, the place where the deepest things are revealed.",
+  "ref": "Luke 2:22-35 — Fourth Joyful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "joyful", "presentation", "simeon", "obedience"],
+  "verified": true
+ },
+ {
+  "id": "rosary-joyful-5-finding",
+  "type": "meditation",
+  "title": "The Finding in the Temple",
+  "body": "Three days of searching, and Mary and Joseph find the boy Jesus sitting among the teachers, listening and asking questions. 'Did you not know I must be about my Father's business?' Even those closest to him do not always understand him at once. Faith keeps seeking, and keeps the things it cannot yet explain in its heart.",
+  "ref": "Luke 2:41-52 — Fifth Joyful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "joyful", "finding", "temple", "seeking"],
+  "verified": true
+ },
+ {
+  "id": "rosary-sorrowful-1-agony",
+  "type": "meditation",
+  "title": "The Agony in the Garden",
+  "body": "Sweating blood under the olive trees, Jesus asks that the cup pass from him — and then surrenders his will entirely to the Father's. The apostles, asked only to stay awake, fall asleep beside him. Even friendship fails him here; what holds is obedience, chosen freely in the dark.",
+  "ref": "Luke 22:39-46 — First Sorrowful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "sorrowful", "gethsemane", "obedience", "suffering"],
+  "verified": true
+ },
+ {
+  "id": "rosary-sorrowful-2-scourging",
+  "type": "meditation",
+  "title": "The Scourging at the Pillar",
+  "body": "Pilate has him scourged, hoping it will be enough to satisfy the crowd. It is not. Christ's body absorbs a violence that solves nothing and changes no one's mind — except that it is, in the deeper economy of love, the price willingly paid for every sin that will ever be committed. Suffering accepted in love is never wasted, even when it appears to accomplish nothing.",
+  "ref": "John 19:1 — Second Sorrowful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "sorrowful", "scourging", "passion", "redemption"],
+  "verified": true
+ },
+ {
+  "id": "rosary-sorrowful-3-crowning",
+  "type": "meditation",
+  "title": "The Crowning with Thorns",
+  "body": "Soldiers dress him as a mock king and press thorns into his scalp, jeering at the very thing that is true: he is King, though not as they understand kingship. The world's cruelty becomes, without the world knowing it, an act of unwitting worship. Christ's kingship is not won by power but revealed in how he bears its opposite.",
+  "ref": "Matthew 27:27-31 — Third Sorrowful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "sorrowful", "crowning", "kingship", "humility"],
+  "verified": true
+ },
+ {
+  "id": "rosary-sorrowful-4-carrying",
+  "type": "meditation",
+  "title": "The Carrying of the Cross",
+  "body": "Exhausted, Jesus is made to carry the instrument of his own death through the streets, until Simon of Cyrene is pressed into helping him bear it. Even God's Son does not refuse another's hand. Every cross we are given is, in some way, also an invitation to let someone help carry it — and to be that someone for another.",
+  "ref": "Luke 23:26-32 — Fourth Sorrowful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "sorrowful", "cross", "simon-of-cyrene", "endurance"],
+  "verified": true
+ },
+ {
+  "id": "rosary-sorrowful-5-crucifixion",
+  "type": "meditation",
+  "title": "The Crucifixion",
+  "body": "From the cross Jesus forgives his executioners, promises paradise to a thief, entrusts his mother to John, and finally commends his spirit to the Father. Even at the furthest extreme of abandonment — 'My God, my God, why hast thou forsaken me?' — he does not stop loving, forgiving, and giving himself away. This is what love looks like carried all the way to the end.",
+  "ref": "John 19:17-30 — Fifth Sorrowful Mystery",
+  "source": "original meditation",
+  "tags": ["rosary", "sorrowful", "crucifixion", "forgiveness", "love"],
+  "verified": true
+ }
+]

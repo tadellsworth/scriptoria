@@ -1,0 +1,45 @@
+[
+ {
+  "id": "prayer-apostles-creed",
+  "type": "prayer",
+  "title": "The Apostles' Creed",
+  "body": "I believe in God, the Father Almighty, Creator of heaven and earth; and in Jesus Christ, His only Son, our Lord; Who was conceived by the Holy Ghost, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died, and was buried. He descended into hell; the third day He rose again from the dead; He ascended into heaven, and sitteth at the right hand of God, the Father Almighty; from thence He shall come to judge the living and the dead. I believe in the Holy Ghost, the Holy Catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.",
+  "ref": "The Apostles' Creed (traditional)",
+  "source": "PD",
+  "tags": [
+   "creed",
+   "faith",
+   "trinity"
+  ],
+  "verified": true
+ },
+ {
+  "id": "prayer-nicene-creed",
+  "type": "prayer",
+  "title": "The Nicene Creed",
+  "body": "I believe in one God, the Father Almighty, Maker of heaven and earth, and of all things visible and invisible. And in one Lord Jesus Christ, the only-begotten Son of God, born of the Father before all ages. God of God, Light of Light, true God of true God; begotten, not made; consubstantial with the Father; by whom all things were made. Who for us men, and for our salvation, came down from heaven, and was incarnate by the Holy Ghost of the Virgin Mary, and was made man. He was crucified also for us, suffered under Pontius Pilate, and was buried. And the third day He rose again, according to the Scriptures; and ascended into heaven, and sitteth at the right hand of the Father; and He shall come again with glory to judge the living and the dead; of whose kingdom there shall be no end. And in the Holy Ghost, the Lord and Giver of life, who proceedeth from the Father and the Son; who together with the Father and the Son is adored and glorified; who spoke by the prophets. And in one holy, catholic, and apostolic Church. I confess one baptism for the remission of sins. And I look for the resurrection of the dead, and the life of the world to come. Amen.",
+  "ref": "The Nicene Creed (Nicaea–Constantinople, traditional)",
+  "source": "PD",
+  "tags": [
+   "creed",
+   "faith",
+   "trinity"
+  ],
+  "verified": true
+ },
+ {
+  "id": "prayer-athanasian-creed",
+  "type": "prayer",
+  "title": "The Athanasian Creed (Quicumque)",
+  "body": "Whosoever will be saved, before all things it is necessary that he hold the Catholic Faith; which Faith except every one do keep whole and undefiled, without doubt he shall perish everlastingly. And the Catholic Faith is this: that we worship one God in Trinity, and Trinity in Unity; neither confounding the Persons, nor dividing the Substance. For there is one Person of the Father, another of the Son, and another of the Holy Ghost. But the Godhead of the Father, of the Son, and of the Holy Ghost, is all one; the Glory equal, the Majesty coeternal. Such as the Father is, such is the Son, and such is the Holy Ghost. The Father uncreate, the Son uncreate, and the Holy Ghost uncreate. The Father incomprehensible, the Son incomprehensible, and the Holy Ghost incomprehensible. The Father eternal, the Son eternal, and the Holy Ghost eternal; and yet they are not three eternals, but one eternal. So likewise the Father is Almighty, the Son Almighty, and the Holy Ghost Almighty; and yet they are not three Almighties, but one Almighty. So the Father is God, the Son is God, and the Holy Ghost is God; and yet they are not three Gods, but one God. So likewise the Father is Lord, the Son Lord, and the Holy Ghost Lord; and yet not three Lords, but one Lord. For like as we are compelled by the Christian verity to acknowledge every Person by himself to be God and Lord, so are we forbidden by the Catholic Religion to say, There be three Gods, or three Lords. The Father is made of none, neither created, nor begotten. The Son is of the Father alone; not made, nor created, but begotten. The Holy Ghost is of the Father and of the Son; neither made, nor created, nor begotten, but proceeding. So there is one Father, not three Fathers; one Son, not three Sons; one Holy Ghost, not three Holy Ghosts. And in this Trinity none is afore, or after other; none is greater, or less than another; but the whole three Persons are coeternal together, and coequal. So that in all things, as is aforesaid, the Unity in Trinity, and the Trinity in Unity, is to be worshipped. He therefore that will be saved must thus think of the Trinity. Furthermore, it is necessary to everlasting salvation that he also believe rightly the Incarnation of our Lord Jesus Christ. For the right Faith is, that we believe and confess, that our Lord Jesus Christ, the Son of God, is God and Man: God, of the Substance of the Father, begotten before the worlds; and Man, of the Substance of his Mother, born in the world; perfect God and perfect Man, of a reasonable soul and human flesh subsisting; equal to the Father, as touching his Godhead, and inferior to the Father, as touching his Manhood; who although he be God and Man, yet he is not two, but one Christ: one, not by conversion of the Godhead into flesh, but by taking of the Manhood into God; one altogether, not by confusion of Substance, but by unity of Person. For as the reasonable soul and flesh is one man, so God and Man is one Christ; who suffered for our salvation, descended into hell, rose again the third day from the dead. He ascended into heaven, he sitteth on the right hand of the Father, God Almighty, from whence he shall come to judge the quick and the dead. At whose coming all men shall rise again with their bodies, and shall give account for their own works. And they that have done good shall go into life everlasting, and they that have done evil into everlasting fire. This is the Catholic Faith, which except a man believe faithfully, he cannot be saved.",
+  "ref": "The Athanasian Creed (Quicumque vult, traditional)",
+  "source": "PD",
+  "tags": [
+   "creed",
+   "faith",
+   "trinity",
+   "incarnation"
+  ],
+  "verified": false
+ }
+]
