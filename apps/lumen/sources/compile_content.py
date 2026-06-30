@@ -17,6 +17,7 @@ SOURCES = [
     os.path.join(HERE, "curated_marian_antiphons.json"),
     os.path.join(HERE, "curated_rosary_1.json"),
     os.path.join(HERE, "curated_rosary_2.json"),
+    os.path.join(HERE, "curated_fathers_ignatius.json"),
     os.path.join(HERE, "sanctoral.json"),
     os.path.join(HERE, "baltimore.json"),
     os.path.join(HERE, "book_imitation.json"),
