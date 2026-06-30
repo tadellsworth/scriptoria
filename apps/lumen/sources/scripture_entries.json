@@ -1,0 +1,113 @@
+[
+  {
+    "id": "scripture-jn-6-35",
+    "type": "scripture",
+    "body": "And Jesus said to them: I am the bread of life. He that cometh to me shall not hunger: and he that believeth in me shall never thirst.",
+    "ref": "John 6:35",
+    "source": "DRC",
+    "tags": [
+      "eucharist",
+      "bread-of-life"
+    ]
+  },
+  {
+    "id": "scripture-jn-1-1",
+    "type": "scripture",
+    "body": "In the beginning was the Word: and the Word was with God: and the Word was God.",
+    "ref": "John 1:1",
+    "source": "DRC",
+    "tags": [
+      "word",
+      "incarnation"
+    ]
+  },
+  {
+    "id": "scripture-jn-14-6",
+    "type": "scripture",
+    "body": "Jesus saith to him: I am the way, and the truth, and the life. No man cometh to the Father, but by me.",
+    "ref": "John 14:6",
+    "source": "DRC",
+    "tags": [
+      "christ",
+      "truth"
+    ]
+  },
+  {
+    "id": "scripture-mt-5-3-4",
+    "type": "scripture",
+    "body": "Blessed are the poor in spirit: for theirs is the kingdom of heaven. Blessed are the meek: for they shall possess the land.",
+    "ref": "Matthew 5:3-4",
+    "source": "DRC",
+    "tags": [
+      "beatitudes",
+      "poverty-of-spirit"
+    ]
+  },
+  {
+    "id": "scripture-mt-11-28",
+    "type": "scripture",
+    "body": "Come to me all you that labor and are burdened, and I will refresh you.",
+    "ref": "Matthew 11:28",
+    "source": "DRC",
+    "tags": [
+      "rest",
+      "trust"
+    ]
+  },
+  {
+    "id": "scripture-mt-22-37-39",
+    "type": "scripture",
+    "body": "Jesus said to him: Thou shalt love the Lord thy God with thy whole heart and with thy whole soul and with thy whole mind. This is the greatest and the first commandment. And the second is like to this: Thou shalt love thy neighbour as thyself.",
+    "ref": "Matthew 22:37-39",
+    "source": "DRC",
+    "tags": [
+      "love",
+      "greatest-commandment"
+    ]
+  },
+  {
+    "id": "scripture-ps-22-1",
+    "type": "scripture",
+    "body": "A psalm for David. The Lord ruleth me: and I shall want nothing.",
+    "ref": "Psalm 22:1 (DR)",
+    "source": "DRC",
+    "tags": [
+      "trust",
+      "providence"
+    ]
+  },
+  {
+    "id": "scripture-php-4-6-7",
+    "type": "scripture",
+    "body": "Be nothing solicitous: but in every thing, by prayer and supplication, with thanksgiving, let your petitions be made known to God. And the peace of God, which surpasseth all understanding, keep your hearts and minds in Christ Jesus.",
+    "ref": "Philippians 4:6-7",
+    "source": "DRC",
+    "tags": [
+      "peace",
+      "trust",
+      "prayer"
+    ]
+  },
+  {
+    "id": "scripture-1cor-13-4-5",
+    "type": "scripture",
+    "body": "Charity is patient, is kind: charity envieth not, dealeth not perversely, is not puffed up, Is not ambitious, seeketh not her own, is not provoked to anger, thinketh no evil:",
+    "ref": "1 Corinthians 13:4-5",
+    "source": "DRC",
+    "tags": [
+      "charity",
+      "love"
+    ]
+  },
+  {
+    "id": "scripture-rom-8-28",
+    "type": "scripture",
+    "body": "And we know that to them that love God all things work together unto good: to such as, according to his purpose, are called to be saints.",
+    "ref": "Romans 8:28",
+    "source": "DRC",
+    "tags": [
+      "providence",
+      "trust"
+    ]
+  }
+]

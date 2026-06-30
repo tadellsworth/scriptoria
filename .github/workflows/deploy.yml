@@ -1,0 +1,83 @@
+name: Deploy apps to GitHub Pages
+
+# Builds both apps in the monorepo and publishes them to one GitHub Pages site:
+#   Scriptoria → https://<user>.github.io/scriptoria/
+#   Lumen      → https://<user>.github.io/scriptoria/lumen/
+#
+# One-time setup: repo Settings → Pages → "Build and deployment" → Source =
+# "GitHub Actions". After that, every push to main deploys.
+
+on:
+  push:
+    branches: [main]
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+# Least-privilege token plus the permissions the Pages deploy needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time; let an in-progress run finish (don't cancel mid-publish).
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: apps/scriptoria/package-lock.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # --- Scriptoria (Vite + React) → site root -------------------------------
+      - name: Build Scriptoria
+        working-directory: apps/scriptoria
+        run: |
+          npm ci
+          npm run build
+
+      # --- Lumen (vanilla PWA assembled by build.py) → /lumen ------------------
+      # build.py validates content.json, runs `node --check` twice, inlines app.js
+      # + the base64 icon, and copies content.json / depth.json / sw.js.
+      - name: Build Lumen
+        working-directory: apps/lumen/app
+        env:
+          LUMEN_OUT: ${{ github.workspace }}/_site/lumen
+        run: python3 build.py
+
+      # --- Assemble the published site -----------------------------------------
+      - name: Assemble site
+        run: |
+          # Scriptoria at the root; Lumen already written to _site/lumen above.
+          cp -r apps/scriptoria/dist/. _site/
+          # Disable Jekyll so files/folders beginning with _ are served verbatim.
+          touch _site/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

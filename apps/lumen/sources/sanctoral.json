@@ -1,0 +1,161 @@
+[
+ { "id": "saint-anthony-egypt", "type": "saint", "title": "St. Anthony of Egypt", "feast": "01-17",
+   "body": "A third- and fourth-century Egyptian hermit who withdrew into the desert to seek God in solitude, prayer, and ascetic struggle. Honored as the father of Christian monasticism, his life was written by St. Athanasius and inspired countless others to the monastic vocation.",
+   "ref": "Feast: January 17", "source": "Lumen sanctoral", "tags": ["saint", "monastic", "desert"], "verified": true },
+
+ { "id": "saint-agnes", "type": "saint", "title": "St. Agnes", "feast": "01-21",
+   "body": "A young Roman girl martyred in the early fourth century who consecrated her virginity to Christ and refused to renounce her faith. One of the most venerated of the early virgin-martyrs, she is named in the Roman Canon of the Mass.",
+   "ref": "Feast: January 21", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "virgin"], "verified": true },
+
+ { "id": "saint-paul-conversion", "type": "saint", "title": "The Conversion of St. Paul", "feast": "01-25",
+   "body": "The feast recalling Saul of Tarsus, a zealous persecutor of the early Church, who was struck down on the road to Damascus by the risen Christ and rose a believer. Transformed into the Apostle to the Gentiles, he carried the Gospel across the Roman world and wrote much of the New Testament.",
+   "ref": "Feast: January 25", "source": "Lumen sanctoral", "tags": ["saint", "apostle"], "verified": true },
+
+ { "id": "saint-john-bosco", "type": "saint", "title": "St. John Bosco", "feast": "01-31",
+   "body": "A nineteenth-century Italian priest who devoted his life to poor and abandoned boys, teaching them trades and the faith with patience rather than punishment. He founded the Salesian order and is honored as a patron of youth and educators.",
+   "ref": "Feast: January 31", "source": "Lumen sanctoral", "tags": ["saint", "educator", "founder"], "verified": true },
+
+ { "id": "saint-agatha", "type": "saint", "title": "St. Agatha", "feast": "02-05",
+   "body": "A Sicilian virgin martyred in the third century for refusing to abandon her consecration to Christ. Among the most honored early martyrs, she too is named in the Roman Canon.",
+   "ref": "Feast: February 5", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "virgin"], "verified": true },
+
+ { "id": "saint-scholastica", "type": "saint", "title": "St. Scholastica", "feast": "02-10",
+   "body": "The sister of St. Benedict and, by tradition, the first Benedictine nun, who gave herself wholly to prayer and the religious life. Her story is preserved in the Dialogues of St. Gregory the Great.",
+   "ref": "Feast: February 10", "source": "Lumen sanctoral", "tags": ["saint", "monastic", "virgin"], "verified": true },
+
+ { "id": "saint-thomas-aquinas", "type": "saint", "title": "St. Thomas Aquinas", "feast": "03-07",
+   "body": "A thirteenth-century Dominican friar and the greatest theologian of the Middle Ages, whose Summa Theologiae sought to unite faith and reason. Called the Angelic Doctor, he is a patron of students and Catholic schools.",
+   "ref": "Feast: March 7", "source": "Lumen sanctoral", "tags": ["saint", "doctor", "dominican"], "verified": true },
+
+ { "id": "saint-patrick", "type": "saint", "title": "St. Patrick", "feast": "03-17",
+   "body": "A fifth-century missionary bishop who, after years of captivity in Ireland as a youth, returned to evangelize the island he had once been enslaved in. Honored as the apostle and patron of Ireland.",
+   "ref": "Feast: March 17", "source": "Lumen sanctoral", "tags": ["saint", "bishop", "missionary"], "verified": true },
+
+ { "id": "saint-joseph", "type": "saint", "title": "St. Joseph", "feast": "03-19",
+   "body": "The husband of the Blessed Virgin Mary and the foster-father and guardian of Jesus, a just man who sheltered and provided for the Holy Family. He is patron of the universal Church, of workers, and of a happy death.",
+   "ref": "Feast: March 19", "source": "Lumen sanctoral", "tags": ["saint", "holy family", "patron"], "verified": true },
+
+ { "id": "saint-benedict", "type": "saint", "title": "St. Benedict of Nursia", "feast": "03-21",
+   "body": "A sixth-century monk whose Rule, balancing prayer and work, became the foundation of Western monasticism. Often called the father of Europe, he is a patron of monks and of a Christian civilization formed by the cloister.",
+   "ref": "Feast: March 21", "source": "Lumen sanctoral", "tags": ["saint", "monastic", "founder"], "verified": true },
+
+ { "id": "saint-mark", "type": "saint", "title": "St. Mark the Evangelist", "feast": "04-25",
+   "body": "The author of the second Gospel, a companion of St. Peter whose preaching he is said to have set down. By tradition he founded the Church of Alexandria and is symbolized by the winged lion.",
+   "ref": "Feast: April 25", "source": "Lumen sanctoral", "tags": ["saint", "evangelist"], "verified": true },
+
+ { "id": "saint-catherine-siena", "type": "saint", "title": "St. Catherine of Siena", "feast": "04-30",
+   "body": "A fourteenth-century Dominican mystic and reformer whose letters and counsel helped return the popes from Avignon to Rome. A Doctor of the Church, she is honored for her writings on the love of God and the soul.",
+   "ref": "Feast: April 30", "source": "Lumen sanctoral", "tags": ["saint", "doctor", "mystic"], "verified": true },
+
+ { "id": "saint-philip-neri", "type": "saint", "title": "St. Philip Neri", "feast": "05-26",
+   "body": "A sixteenth-century Roman priest of irrepressible joy who drew the city to holiness through friendship, prayer, and good humor. He founded the Oratory and is remembered as the Apostle of Rome.",
+   "ref": "Feast: May 26", "source": "Lumen sanctoral", "tags": ["saint", "priest", "founder"], "verified": true },
+
+ { "id": "saint-joan-arc", "type": "saint", "title": "St. Joan of Arc", "feast": "05-30",
+   "body": "A fifteenth-century French peasant girl who, moved by what she believed were heavenly voices, led armies in defense of her country before being burned at the stake. Condemned in life and vindicated after, she was canonized in 1920.",
+   "ref": "Feast: May 30", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "virgin"], "verified": true },
+
+ { "id": "saint-barnabas", "type": "saint", "title": "St. Barnabas", "feast": "06-11",
+   "body": "An early disciple and companion of St. Paul on his first missionary journeys, named in the Acts of the Apostles as a man full of the Holy Spirit. Though not one of the Twelve, he is traditionally honored as an apostle.",
+   "ref": "Feast: June 11", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "missionary"], "verified": true },
+
+ { "id": "saint-anthony-padua", "type": "saint", "title": "St. Anthony of Padua", "feast": "06-13",
+   "body": "A thirteenth-century Franciscan friar renowned as a preacher and teacher, gifted in drawing souls back to God. A Doctor of the Church, he is popularly invoked as the finder of what is lost.",
+   "ref": "Feast: June 13", "source": "Lumen sanctoral", "tags": ["saint", "doctor", "franciscan"], "verified": true },
+
+ { "id": "saint-john-baptist", "type": "saint", "title": "The Nativity of St. John the Baptist", "feast": "06-24",
+   "body": "The forerunner of the Lord, who leapt in his mother's womb at the approach of Christ and later preached repentance and baptized at the Jordan. He pointed to Jesus as the Lamb of God and was beheaded by Herod for his witness to the truth.",
+   "ref": "Feast: June 24", "source": "Lumen sanctoral", "tags": ["saint", "prophet", "forerunner"], "verified": true },
+
+ { "id": "saint-peter-paul", "type": "saint", "title": "Saints Peter and Paul", "feast": "06-29",
+   "body": "The two great apostles and pillars of the Church, both martyred at Rome: Peter, the fisherman to whom Christ entrusted the keys, and Paul, the Apostle to the Gentiles. Their joint feast celebrates the foundation of the Church on apostolic faith.",
+   "ref": "Feast: June 29", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "martyr"], "verified": true },
+
+ { "id": "saint-mary-magdalene", "type": "saint", "title": "St. Mary Magdalene", "feast": "07-22",
+   "body": "A faithful disciple delivered by Christ, who stood by the cross and was the first to meet the risen Lord on Easter morning. Sent by him to announce the Resurrection to the apostles, she is honored as the Apostle to the Apostles.",
+   "ref": "Feast: July 22", "source": "Lumen sanctoral", "tags": ["saint", "disciple"], "verified": true },
+
+ { "id": "saint-james-greater", "type": "saint", "title": "St. James the Greater", "feast": "07-25",
+   "body": "One of the Twelve and, with his brother John, among the closest companions of Jesus. The first apostle to be martyred, he is by tradition venerated at Compostela in Spain, a great goal of medieval pilgrimage.",
+   "ref": "Feast: July 25", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "martyr"], "verified": true },
+
+ { "id": "saint-ignatius-loyola", "type": "saint", "title": "St. Ignatius of Loyola", "feast": "07-31",
+   "body": "A sixteenth-century Basque soldier converted during a long convalescence, who founded the Society of Jesus and wrote the Spiritual Exercises. His Jesuits became leaders in education and the missions.",
+   "ref": "Feast: July 31", "source": "Lumen sanctoral", "tags": ["saint", "founder", "jesuit"], "verified": true },
+
+ { "id": "saint-lawrence", "type": "saint", "title": "St. Lawrence", "feast": "08-10",
+   "body": "A deacon of Rome martyred in the third century who, charged to surrender the Church's treasures, presented the poor. One of the most honored of the Roman martyrs, he is named in the Roman Canon.",
+   "ref": "Feast: August 10", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "deacon"], "verified": true },
+
+ { "id": "saint-bernard", "type": "saint", "title": "St. Bernard of Clairvaux", "feast": "08-20",
+   "body": "A twelfth-century Cistercian abbot and the most influential churchman of his age, famed for his preaching and his tender devotion to Our Lady. A Doctor of the Church, he is called the Mellifluous Doctor for the sweetness of his words.",
+   "ref": "Feast: August 20", "source": "Lumen sanctoral", "tags": ["saint", "doctor", "cistercian"], "verified": true },
+
+ { "id": "saint-bartholomew", "type": "saint", "title": "St. Bartholomew", "feast": "08-24",
+   "body": "One of the Twelve Apostles, generally identified with the Nathanael whom Jesus called a man without guile. By tradition he carried the Gospel to the East and was martyred for the faith.",
+   "ref": "Feast: August 24", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "martyr"], "verified": true },
+
+ { "id": "saint-mary-nativity", "type": "saint", "title": "The Nativity of the Blessed Virgin Mary", "feast": "09-08",
+   "body": "The feast of Our Lady's birth, kept since ancient times nine months after her Immaculate Conception. The Church rejoices in the dawn that heralds the coming of the Sun of Justice, Christ her Son.",
+   "ref": "Feast: September 8", "source": "Lumen sanctoral", "tags": ["saint", "marian"], "verified": true },
+
+ { "id": "saint-matthew", "type": "saint", "title": "St. Matthew", "feast": "09-21",
+   "body": "A tax collector called by Jesus from his post to become an apostle and evangelist. His Gospel, written especially for Jewish readers, presents Jesus as the promised Messiah and king.",
+   "ref": "Feast: September 21", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "evangelist"], "verified": true },
+
+ { "id": "saint-michael-archangels", "type": "saint", "title": "St. Michael and the Holy Archangels", "feast": "09-29",
+   "body": "The feast of the archangels Michael, Gabriel, and Raphael. Michael is the captain of the heavenly host who casts down the dragon, Gabriel the messenger of the Annunciation, and Raphael the companion and healer of Tobias.",
+   "ref": "Feast: September 29", "source": "Lumen sanctoral", "tags": ["saint", "angels"], "verified": true },
+
+ { "id": "saint-jerome", "type": "saint", "title": "St. Jerome", "feast": "09-30",
+   "body": "A fourth- and fifth-century scholar who translated the Scriptures into Latin, producing the Vulgate that shaped Western Christianity for over a thousand years. A Doctor of the Church, he taught that ignorance of Scripture is ignorance of Christ.",
+   "ref": "Feast: September 30", "source": "Lumen sanctoral", "tags": ["saint", "doctor", "scripture"], "verified": true },
+
+ { "id": "saint-francis-assisi", "type": "saint", "title": "St. Francis of Assisi", "feast": "10-04",
+   "body": "A thirteenth-century merchant's son who renounced wealth to embrace Lady Poverty and follow the poor Christ. Founder of the Franciscans and lover of all creation, he bore the marks of the Lord's wounds in his own flesh.",
+   "ref": "Feast: October 4", "source": "Lumen sanctoral", "tags": ["saint", "founder", "franciscan"], "verified": true },
+
+ { "id": "saint-rosary", "type": "saint", "title": "Our Lady of the Rosary", "feast": "10-07",
+   "body": "A Marian feast giving thanks for Our Lady's protection, long associated with the victory at Lepanto in 1571 attributed to the praying of the Rosary. It honors the meditation on the mysteries of Christ through the eyes of his Mother.",
+   "ref": "Feast: October 7", "source": "Lumen sanctoral", "tags": ["saint", "marian", "rosary"], "verified": true },
+
+ { "id": "saint-luke", "type": "saint", "title": "St. Luke the Evangelist", "feast": "10-18",
+   "body": "A physician and companion of St. Paul, author of the third Gospel and the Acts of the Apostles. He preserves the infancy narratives and the parables of mercy, and is symbolized by the ox.",
+   "ref": "Feast: October 18", "source": "Lumen sanctoral", "tags": ["saint", "evangelist"], "verified": true },
+
+ { "id": "saint-martin-tours", "type": "saint", "title": "St. Martin of Tours", "feast": "11-11",
+   "body": "A fourth-century soldier who, before his baptism, divided his cloak to clothe a beggar and saw Christ in the man he had helped. He became a monk and bishop and a great evangelizer of the Gallic countryside.",
+   "ref": "Feast: November 11", "source": "Lumen sanctoral", "tags": ["saint", "bishop"], "verified": true },
+
+ { "id": "saint-cecilia", "type": "saint", "title": "St. Cecilia", "feast": "11-22",
+   "body": "A Roman virgin and martyr of the early Church, honored among the most ancient of the Roman martyrs and named in the Roman Canon. She is venerated as the patroness of music and sacred song.",
+   "ref": "Feast: November 22", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "virgin"], "verified": true },
+
+ { "id": "saint-andrew", "type": "saint", "title": "St. Andrew", "feast": "11-30",
+   "body": "The brother of St. Peter and one of the first called by Jesus, a fisherman who left his nets to follow the Lord. By tradition he preached in Greece and was martyred on a cross, and he is the patron of Scotland.",
+   "ref": "Feast: November 30", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "martyr"], "verified": true },
+
+ { "id": "saint-francis-xavier", "type": "saint", "title": "St. Francis Xavier", "feast": "12-03",
+   "body": "A sixteenth-century companion of St. Ignatius and one of the first Jesuits, who carried the Gospel to India, the East Indies, and Japan. One of the greatest missionaries since the apostles, he is a patron of the missions.",
+   "ref": "Feast: December 3", "source": "Lumen sanctoral", "tags": ["saint", "missionary", "jesuit"], "verified": true },
+
+ { "id": "saint-nicholas", "type": "saint", "title": "St. Nicholas of Myra", "feast": "12-06",
+   "body": "A fourth-century bishop in Asia Minor famed for his charity and secret gifts to the poor, the kernel of the later figure of Santa Claus. He is a patron of children and of sailors.",
+   "ref": "Feast: December 6", "source": "Lumen sanctoral", "tags": ["saint", "bishop"], "verified": true },
+
+ { "id": "saint-ambrose", "type": "saint", "title": "St. Ambrose", "feast": "12-07",
+   "body": "A fourth-century bishop of Milan, acclaimed to the office while still a layman, who confronted emperors and helped convert St. Augustine. A Doctor of the Church, he gave the West some of its earliest hymns.",
+   "ref": "Feast: December 7", "source": "Lumen sanctoral", "tags": ["saint", "doctor", "bishop"], "verified": true },
+
+ { "id": "saint-lucy", "type": "saint", "title": "St. Lucy", "feast": "12-13",
+   "body": "A virgin of Syracuse martyred in the early fourth century, whose name means light and whose feast falls near the darkest days of the year. She is among the martyrs named in the Roman Canon.",
+   "ref": "Feast: December 13", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "virgin"], "verified": true },
+
+ { "id": "saint-stephen", "type": "saint", "title": "St. Stephen, First Martyr", "feast": "12-26",
+   "body": "One of the first deacons of the Church and the first to die for Christ, stoned while praying for his persecutors as he beheld the heavens opened. His feast follows immediately upon Christmas.",
+   "ref": "Feast: December 26", "source": "Lumen sanctoral", "tags": ["saint", "martyr", "deacon"], "verified": true },
+
+ { "id": "saint-john-evangelist", "type": "saint", "title": "St. John the Evangelist", "feast": "12-27",
+   "body": "The beloved disciple who reclined at the Lord's side, stood by the cross, and received the care of his Mother. Author of the fourth Gospel and the Apocalypse, he is the great theologian of divine love.",
+   "ref": "Feast: December 27", "source": "Lumen sanctoral", "tags": ["saint", "apostle", "evangelist"], "verified": true }
+]

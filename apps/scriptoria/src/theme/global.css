@@ -1,0 +1,242 @@
+/* ============================================================
+   GLOBAL + SHARED COMPONENT STYLES
+   ============================================================ */
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Dark scriptorium "desk" the phone sits on (desktop); on a real phone the
+   app fills the viewport. */
+.stage {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201, 163, 47, 0.10), transparent 55%),
+    radial-gradient(ellipse at 50% 120%, rgba(31, 45, 92, 0.18), transparent 60%),
+    #211c17;
+  padding: 0;
+}
+
+/* The phone frame only renders on wide screens; on mobile the app is full-bleed. */
+.phone-frame {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  position: relative;
+  background: var(--tex-parchment), var(--parchment);
+  overflow: hidden;
+  transition: background 0.4s var(--ease);
+}
+@media (min-width: 480px) {
+  .stage { padding: 24px; }
+  .phone-frame {
+    height: 880px;
+    max-height: calc(100dvh - 48px);
+    border-radius: 44px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.4);
+    border: 11px solid #15110d;
+  }
+}
+
+/* ---------- App shell ---------- */
+.app-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* On a real device the OS draws the status bar; reserve the notch/Dynamic
+     Island space so content clears it. */
+  padding-top: env(safe-area-inset-top);
+}
+
+/* The fake "9:41" status bar is only for the desktop phone-frame mockup; on a
+   real phone (or installed PWA) iOS/Android draws the real one. */
+.status-bar { display: none; }
+
+@media (min-width: 480px) {
+  .app-shell { padding-top: 0; }
+  .status-bar {
+    display: flex;
+    height: 50px;
+    flex: 0 0 auto;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 26px 7px 32px;
+    font-family: var(--font-ui);
+    position: relative;
+    z-index: 6;
+  }
+}
+.status-bar .sb-time { font-weight: 600; font-size: 14px; color: var(--ink); letter-spacing: 0.02em; }
+.status-bar .sb-icons { display: flex; align-items: center; gap: 6px; color: var(--ink); }
+
+.screen-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  position: relative; /* positioning context for full-bleed embeds (Lingua course) */
+}
+.screen-scroll::-webkit-scrollbar { width: 0; }
+
+.screen-pad { padding: 10px 20px calc(28px + env(safe-area-inset-bottom)); }
+
+/* ---------- Tab bar ---------- */
+.tab-bar {
+  flex: 0 0 auto;
+  z-index: 7;
+  background: var(--leaf-95);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--gold-20);
+  padding: 9px 6px calc(6px + env(safe-area-inset-bottom));
+}
+.tab-bar .tabs { display: flex; justify-content: space-around; }
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  flex: 1; color: var(--ink-faint); cursor: pointer; border: none; background: none;
+  transition: color 0.2s var(--ease); padding: 0;
+}
+.tab:active { transform: translateY(0.5px); }
+.tab.on { color: var(--lapis); }
+.tab span { font-family: var(--font-ui); font-size: 9.5px; letter-spacing: 0.05em; font-weight: 500; }
+.tab.on span { font-weight: 600; }
+.home-ind { height: 5px; width: 134px; background: var(--ink); opacity: 0.3; border-radius: 3px; margin: 8px auto 2px; }
+
+/* ---------- Type primitives ---------- */
+.scriptoria-display {
+  font-family: var(--font-display); font-weight: 700; color: var(--ink);
+  letter-spacing: 0.06em;
+}
+.scriptoria-title {
+  font-family: var(--font-display); font-weight: 600; color: var(--ink);
+  letter-spacing: 0.04em; text-transform: none;
+}
+.eyebrow {
+  font-family: var(--font-display); font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint);
+}
+.eyebrow-gold { color: var(--gold-dark); }
+.eyebrow-vermillion { color: var(--vermillion); }
+.eyebrow-amethyst { color: var(--amethyst); }
+.eyebrow-emerald { color: var(--emerald); }
+
+/* ---------- Gilt rule ---------- */
+.gilt-rule { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 12px 0; }
+.gilt-rule > span:first-child { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-40)); }
+.gilt-rule > span:last-child { flex: 1; height: 1px; background: linear-gradient(to left, transparent, var(--gold-40)); }
+.gilt-rule .ornament { color: var(--gold); font-family: var(--font-display); }
+
+/* ---------- Cards ---------- */
+.vellum {
+  background: linear-gradient(180deg, var(--vellum), var(--parchment));
+  border: 1px solid var(--gold-30);
+  border-radius: var(--r-leaf);
+  box-shadow: var(--sh-vellum);
+  padding: 16px 18px;
+}
+.lapis-panel {
+  background: linear-gradient(165deg, var(--lapis), var(--lapis-deep));
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-card);
+  padding: 17px 18px;
+  color: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+[data-theme='dark'] .lapis-panel { color: var(--surface-ink); }
+.keyline-gold {
+  background: var(--gold-08);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--r-leaf) var(--r-leaf) 0;
+  padding: 15px 18px;
+}
+.keyline-amethyst {
+  background: var(--gold-08);
+  border-left: 3px solid var(--amethyst);
+  border-radius: 0 var(--r-leaf) var(--r-leaf) 0;
+  padding: 14px 16px;
+}
+
+.hairline { width: 26px; height: 1px; background: var(--gold); opacity: 0.55; margin: 8px auto 12px; }
+
+/* ---------- Gilt coin ---------- */
+.coin {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%, var(--gold-dark));
+  box-shadow: var(--sh-gold), var(--sh-emboss);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lapis); font-family: var(--font-display); font-weight: 700;
+  flex: 0 0 auto;
+}
+.coin-lapis {
+  background: var(--lapis);
+  color: var(--gold-light);
+  box-shadow: var(--sh-card);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; border: none; cursor: pointer; border-radius: var(--r-pill);
+  padding: 11px 22px; font-size: 0.75rem; transition: transform 0.12s var(--ease), filter 0.2s var(--ease);
+}
+.btn:active { transform: scale(0.97); }
+.btn-gold { background: var(--gold); color: var(--lapis); }
+.btn-lapis { background: linear-gradient(180deg, var(--lapis), var(--lapis-deep)); color: var(--parchment); box-shadow: var(--sh-card); }
+[data-theme='dark'] .btn-lapis { color: var(--surface-ink); }
+.btn-amethyst { background: var(--amethyst); color: var(--vellum); }
+.btn-outline { background: transparent; border: 1px solid var(--gold-40); color: var(--lapis); }
+.btn-block { display: block; width: 100%; }
+
+/* ---------- Rows / pressables ---------- */
+.row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border: 1px solid var(--gold-20); border-radius: var(--r-leaf);
+  background: var(--leaf-50); cursor: pointer; transition: background 0.2s var(--ease);
+}
+.row:active { background: var(--gold-08); }
+.pressable { cursor: pointer; transition: transform 0.12s var(--ease); }
+.pressable:active { transform: scale(0.985); }
+
+/* ---------- Drop cap ---------- */
+.dropcap::first-letter {
+  font-family: var(--font-display); font-size: 3em; line-height: 0.78;
+  float: left; padding: 0.06em 0.12em 0 0; color: var(--lapis); font-weight: 700;
+}
+
+/* ---------- Back header ---------- */
+.back-header { display: flex; align-items: center; gap: 12px; padding: 4px 0 12px; }
+.back-btn {
+  background: none; border: none; cursor: pointer; color: var(--ink-soft);
+  font-size: 22px; line-height: 1; padding: 0; display: flex; align-items: center;
+}
+
+/* ---------- Motion ---------- */
+@keyframes scriptoria-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scriptoria-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gold-12); }
+  50% { box-shadow: 0 0 0 5px var(--gold-08); }
+}
+.anim-rise { animation: scriptoria-rise 0.5s var(--ease-out) both; }
+.glow { animation: scriptoria-glow 2.4s var(--ease) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise, .glow { animation: none; }
+  * { scroll-behavior: auto; }
+}
+
+textarea, input, button { font-family: inherit; }
