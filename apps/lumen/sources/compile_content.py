@@ -30,10 +30,8 @@ SOURCES = [
     # replacing the earlier modern ICS translation that was under copyright.
     os.path.join(HERE, "book_story_of_a_soul.json"),
     os.path.join(HERE, "book_practice.json"),
-    # book_abandonment.json / book_glories.json withheld: harvest_books.py's
-    # split_long() truncates ~16% of glories' cards mid-sentence on "St." and
-    # leaves ~7% near-duplicate adjacent cards; needs an abbreviation-aware
-    # sentence splitter fix before these ship. See harvest_books.py CONFIGS.
+    os.path.join(HERE, "book_abandonment.json"),
+    os.path.join(HERE, "book_glories.json"),
 ]
 OUT = os.path.join(ROOT, "content.json")
 VALIDATE = os.path.join(ROOT, "validate_content.py")
