@@ -10,7 +10,10 @@ A daily *florilegium*: Scripture, the Church Fathers, the Catechism, the saints,
 prayers of the Church — a measured ~25-card "office" each day, styled as a scrollable
 illuminated manuscript, meant to be read slowly instead of scrolled endlessly. Vanilla JS
 in the browser, Python for all tooling. No framework, no runtime dependencies. iPhone-first,
-installable, offline-capable. Hosted on Netlify at **onefaithdelivered.org**.
+installable, offline-capable. Lives in the **`scriptoria` monorepo** under `apps/lumen/` and
+deploys to GitHub Pages at **https://tadellsworth.github.io/scriptoria/lumen/** (a sibling of
+the Scriptoria app at the Pages root). Was previously a standalone Netlify site at
+onefaithdelivered.org.
 
 ## 2. Golden rules (do not violate)
 
@@ -36,14 +39,20 @@ installable, offline-capable. Hosted on Netlify at **onefaithdelivered.org**.
 
 ## 3. Repository layout
 
+Lumen is one app in the `scriptoria` monorepo; everything below is rooted at
+`apps/lumen/` (this used to be the standalone `formato/` directory). The Scriptoria
+React app lives alongside it under `apps/scriptoria/`, and the GitHub Pages deploy
+workflow is at the repo root in `.github/workflows/deploy.yml`.
+
 ```
-formato/
+apps/lumen/
 ├── CLAUDE.md                 ← this file
 ├── content.json              compiled corpus (~7,640 cards)          [generated]
 ├── depth.json                compiled "go deeper" layer              [generated]
 ├── commentary.json           Fathers-only intermediate               [generated, NOT deployed]
 ├── validate_content.py       schema / PD gate (invoked by build.py)
 ├── TAXONOMY.md               card-type & genre reference
+├── dist/                     build output: the 4 deployable files    [generated, gitignored]
 ├── app/
 │   ├── shell.html            DOM + ALL CSS; placeholders /*__APP_JS__*/ and __ICON_B64__
 │   ├── app.js                the whole app, one IIFE: engine + UI + sync + depth
@@ -71,14 +80,19 @@ python3 test_engine.py       # 42 tests — must all pass (engine only)
 python3 build.py             # assemble; add --strict for public builds
 ```
 
-`build.py` writes `index.html`, `content.json`, `depth.json`, `sw.js` to **`OUT`**
-(`build.py`, near the top). **`OUT` is currently `/mnt/user-data/outputs` — the Claude
-sandbox's download dir. Change it to your local deploy/dist folder.** Deploy all four files
-to the same Netlify root (HTTPS is required for the service worker).
+`build.py` writes `index.html`, `content.json`, `depth.json`, `sw.js` to **`OUT`**, which
+resolves in this order: `--out <dir>` arg → `LUMEN_OUT` env var → `apps/lumen/dist`
+(default). For local work just run `python3 build.py` and open `../dist/index.html`.
+
+**Deploying is automatic.** Pushing to `main` runs `.github/workflows/deploy.yml`, which
+runs this same `build.py` with `LUMEN_OUT` pointed at the published site's `/lumen` folder
+and publishes to GitHub Pages — Lumen at `…/scriptoria/lumen/`, Scriptoria at the root. No
+manual file copying. (HTTPS, required for the service worker, is provided by Pages.) All
+paths in the app are relative, so it works unchanged under the `/lumen/` subpath.
 
 **Bump the service-worker cache version (`lumen-vN` in `sw.js`) on every content or asset
-change.** Installed devices only pick up a new `content.json` / `depth.json` when the cache
-name changes. Currently **lumen-v13**.
+change.** Installed devices (incl. iPhone home-screen PWAs) only pick up a new
+`content.json` / `depth.json` when the cache name changes. Currently **lumen-v13**.
 
 Regenerate data when sources change:
 
@@ -138,7 +152,7 @@ test harness can keep extracting them.
 
 ## 8. Service worker
 
-`sw.js`: precache = app shell + `content.json`; navigations network-first (so new Netlify
+`sw.js`: precache = app shell + `content.json`; navigations network-first (so new Pages
 deploys reach installed devices); `content.json` stale-while-revalidate; other same-origin
 GETs (incl. `depth.json`) cache-first; `firebaseio.com` passes through uncached. **Bump
 `lumen-vN` on any change** — this is the cache-busting mechanism.
