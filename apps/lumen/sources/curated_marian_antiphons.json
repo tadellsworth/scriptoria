@@ -1,0 +1,62 @@
+[
+ {
+  "id": "prayer-salve-regina",
+  "type": "prayer",
+  "title": "Salve Regina",
+  "body": "Hail, holy Queen, Mother of mercy, our life, our sweetness, and our hope. To thee do we cry, poor banished children of Eve. To thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us, and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.",
+  "ref": "Marian antiphon, Advent through Trinity Sunday (traditional)",
+  "source": "PD",
+  "tags": ["mary", "antiphon", "intercession"],
+  "verified": true
+ },
+ {
+  "id": "prayer-alma-redemptoris",
+  "type": "prayer",
+  "title": "Alma Redemptoris Mater",
+  "body": "Loving Mother of the Redeemer, gate of heaven, star of the sea, assist your people who have fallen yet strive to rise again. To the wonderment of nature you bore your Creator, yet remained a virgin after as before. You who received Gabriel's joyful greeting, have pity on us poor sinners.",
+  "ref": "Marian antiphon, Advent to the Purification (traditional)",
+  "source": "PD",
+  "tags": ["mary", "antiphon", "advent"],
+  "verified": true
+ },
+ {
+  "id": "prayer-ave-regina-caelorum",
+  "type": "prayer",
+  "title": "Ave Regina Caelorum",
+  "body": "Hail, O Queen of Heaven enthroned. Hail, by angels Mistress owned. Root of Jesse, Gate of morn, whence the world's true light was born. Glorious Virgin, joy to thee, loveliest whom in heaven they see. Fairest thou, where all are fair, plead with Christ our sins to spare.",
+  "ref": "Marian antiphon, Purification to Holy Thursday (traditional)",
+  "source": "PD",
+  "tags": ["mary", "antiphon", "lent"],
+  "verified": true
+ },
+ {
+  "id": "prayer-regina-caeli",
+  "type": "prayer",
+  "title": "Regina Caeli",
+  "body": "Queen of Heaven, rejoice, alleluia. For He whom thou didst merit to bear, alleluia, has risen as He said, alleluia. Pray for us to God, alleluia.",
+  "ref": "Marian antiphon, Easter season (traditional)",
+  "source": "PD",
+  "tags": ["mary", "antiphon", "easter"],
+  "verified": true
+ },
+ {
+  "id": "prayer-sub-tuum",
+  "type": "prayer",
+  "title": "Sub Tuum Praesidium",
+  "body": "We fly to thy patronage, O holy Mother of God; despise not our petitions in our necessities, but deliver us always from all dangers, O glorious and blessed Virgin.",
+  "ref": "Sub Tuum Praesidium, 3rd c. (traditional; oldest known Marian prayer)",
+  "source": "PD",
+  "tags": ["mary", "protection", "antiphon"],
+  "verified": true
+ },
+ {
+  "id": "prayer-angelus",
+  "type": "prayer",
+  "title": "The Angelus",
+  "body": "The Angel of the Lord declared unto Mary, and she conceived of the Holy Ghost. Hail Mary, full of grace, the Lord is with thee; blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen. Behold the handmaid of the Lord; be it done unto me according to thy word. Hail Mary... And the Word was made flesh, and dwelt among us. Hail Mary... Pray for us, O holy Mother of God, that we may be made worthy of the promises of Christ.",
+  "ref": "The Angelus (traditional, recited morning, noon, evening)",
+  "source": "PD",
+  "tags": ["mary", "incarnation", "angelus"],
+  "verified": true
+ }
+]
