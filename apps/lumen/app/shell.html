@@ -70,6 +70,13 @@
     max-width:640px; margin:0 auto;
     padding:18px max(18px,env(safe-area-inset-left)) 0 max(18px,env(safe-area-inset-right));
     padding-bottom:calc(78px + env(safe-area-inset-bottom));
+    /* Always keep the page just taller than the viewport so EVERY view scrolls.
+       The tab bar is position:fixed; bottom:0 — on iOS a non-scrollable view (e.g.
+       an empty Saved list) forces Safari's bottom toolbar to stay expanded, which
+       shoves the fixed bar upward, while scrollable views (Today, More) let it
+       collapse. Forcing a hair of scroll on short views keeps the toolbar — and the
+       tab bar — in the same place across all three tabs. */
+    min-height:calc(100vh + 1px);
   }
   .view-h{
     font-family:var(--display); text-transform:uppercase; letter-spacing:.22em;

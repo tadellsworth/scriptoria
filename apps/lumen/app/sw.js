@@ -1,9 +1,9 @@
 /* Lumen service worker.
    - app shell + content.json precached for offline
-   - navigations: network-first (so new Netlify deploys reach installed devices)
+   - navigations: network-first (so new Pages deploys reach installed devices)
    - content.json: stale-while-revalidate (instant from cache, refresh in background)
    - Firebase sync calls pass straight through, never cached */
-var CACHE = 'lumen-v13';
+var CACHE = 'lumen-v14';
 var SHELL = ['./', './index.html', './content.json'];
 
 self.addEventListener('install', function (e) {
