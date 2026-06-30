@@ -65,6 +65,11 @@ def clean(s, cfg):
     s = s.replace("\x0c", " ")
     # marginal manuscript tags: [20] [12v deg] [13r] etc.
     s = re.sub(r"\[\s*\d{1,3}\s*[rvRV]?\s*\u00b0?\s*\]", " ", s)
+    # plain numeric footnote markers: [1754] etc. (1-4 digits, nothing else inside
+    # the brackets) \u2014 the manuscript-tag regex above only covers up to 3 digits
+    # plus an optional folio letter/degree sign, so it misses these (Glories of
+    # Mary's 1852 translation runs to footnote [1934]).
+    s = re.sub(r"\[\d{1,4}\]", " ", s)
     # join internal line breaks
     s = re.sub(r"\s*\n\s*", " ", s)
     s = re.sub(r"[ \t]+", " ", s).strip()
@@ -301,6 +306,55 @@ CONFIGS = {
         "section_fmt": lambda m: "Book " + m.group(1),
         "section0": "Book I",
         "drop_lead_line_res": [re.compile(r"^BOOK [IVX]+\b")],
+    },
+    # Public-domain compilation, Gutenberg ebook #5657. The work's own internal
+    # lead-ins ("First Conversation:", "First Letter:") are short enough to read
+    # naturally as part of the harvested paragraph text, so they don't need
+    # special stripping.
+    "practice": {
+        "file": "practice", "prefix": "practice",
+        "title": "The Practice of the Presence of God",
+        "source": "The Practice of the Presence of God",
+        "tags": ["meditation", "practice of the presence of god",
+                 "brother lawrence", "prayer"],
+        "start_re": re.compile(r"^CONVERSATIONS$"),
+        "section_re": re.compile(r"^(CONVERSATIONS|Letters)$"),
+        "section_fmt": lambda m: {"CONVERSATIONS": "Conversations",
+                                  "Letters": "Letters"}[m.group(1)],
+        "section0": "Conversations",
+    },
+    # Public-domain translation by Ella McMahon, Gutenberg ebook #52057,
+    # explicitly marked public domain in the USA in its Gutenberg metadata.
+    "abandonment": {
+        "file": "abandonment", "prefix": "abandonment",
+        "title": "Abandonment to Divine Providence",
+        "source": "Abandonment to Divine Providence",
+        "tags": ["meditation", "abandonment", "de caussade", "providence",
+                 "surrender"],
+        "start_re": re.compile(r"^Book First\.$"),
+        "section_re": re.compile(r"^Book (First|Second|Third)\.$"),
+        "section_fmt": lambda m: "Book " + {"First": "I", "Second": "II",
+                                            "Third": "III"}[m.group(1)],
+        "section0": "Book I",
+        "drop_lead_line_res": [re.compile(r"^_CHAPTER [IVXLC]+\._$"),
+                               re.compile(r"^Book (First|Second|Third)\.$")],
+    },
+    # Public-domain 1852 Dunigan translation, Gutenberg ebook #72411, explicitly
+    # marked public domain in the USA in its Gutenberg metadata. Bracketed
+    # footnote markers (e.g. "[1754]") are stripped during cleaning (see clean()).
+    "glories": {
+        "file": "glories", "prefix": "glories",
+        "title": "The Glories of Mary",
+        "source": "The Glories of Mary",
+        "tags": ["meditation", "glories of mary", "liguori", "mary",
+                 "salve regina"],
+        "start_re": re.compile(r"^PART FIRST: ON THE SALVE REGINA\.$"),
+        "section_re": re.compile(r"^PART (FIRST|SECOND)"),
+        "section_fmt": lambda m: {"FIRST": "Part I: On the Salve Regina",
+                                  "SECOND": "Part II"}[m.group(1)],
+        "section0": "Part I: On the Salve Regina",
+        "drop_lead_line_res": [re.compile(r"^CHAPTER [IVXLCDM]+\.$"),
+                               re.compile(r"^DISCOURSE [IVXLCDM]+\.$")],
     },
 }
 
