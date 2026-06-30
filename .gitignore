@@ -1,6 +1,16 @@
+# Dependencies
 node_modules
+
+# Build output (Vite dist, Lumen dist, CI Pages assembly)
 dist
 dist-ssr
+_site
+
+# Python tooling (Lumen)
+__pycache__/
+*.pyc
+
+# Tooling caches & local files
 *.local
 .DS_Store
 .vite

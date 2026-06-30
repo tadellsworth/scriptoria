@@ -1,0 +1,242 @@
+[
+ {
+  "id": "scripture-deutero-wis-3-1",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "The Souls of the Just",
+  "body": "But the souls of the just are in the hand of God, and the torment of death shall not touch them. In the sight of the unwise they seemed to die: and their departure was taken for misery: And their going away from us, for utter destruction: but they are in peace.",
+  "ref": "Wisdom 3:1-3",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "wis"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-wis-6-12",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "Wisdom Is Easily Found",
+  "body": "Covet ye, therefore, my words, and love them, and you shall have instruction. Wisdom is glorious, and never fadeth away, and is easily seen by them that love her, and is found by them that seek her. She preventeth them that covet her, so that she first sheweth herself unto them.",
+  "ref": "Wisdom 6:12-14",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "wis"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-wis-7-26",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "The Brightness of Eternal Light",
+  "body": "For she is the brightness of eternal light, and the unspotted mirror of God's majesty, and the image of his goodness. And being but one, she can do all things: and remaining in herself the same, she reneweth all things, and through nations conveyeth herself into holy souls, she maketh the friends of God and prophets.",
+  "ref": "Wisdom 7:26-27",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "wis"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-wis-11-24",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "Thou Lovest All Things That Are",
+  "body": "But thou hast mercy upon all, because thou canst do all things, and overlookest the sins of men for the sake of repentance. For thou lovest all things that are, and hatest none of the things which thou hast made: for thou didst not appoint, or make any thing hating it. And how could any thing endure, if thou wouldst not? or be preserved, if not called by thee? But thou sparest all: because they are thine, O Lord, who lovest souls.",
+  "ref": "Wisdom 11:24-27",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "wis"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-sir-2-1",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "Prepare Thy Soul for Temptation",
+  "body": "Son, when thou comest to the service of God, stand in justice and in fear, and prepare thy soul for temptation. Humble thy heart, and endure: incline thy ear, and receive the words of understanding: and make not haste in the time of clouds. Wait on God with patience: join thyself to God, and endure, that thy life may be increased in the latter end. Take all that shall be brought upon thee: and in thy sorrow endure, and in thy humiliation keep patience. For gold and silver are tried in the fire, but acceptable men in the furnace of humiliation.",
+  "ref": "Sirach 2:1-5",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "sir"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-sir-6-14",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "A Faithful Friend",
+  "body": "A faithful friend is a strong defence: and he that hath found him, hath found a treasure. Nothing can be compared to a faithful friend, and no weight of gold and silver is able to countervail the goodness of his fidelity. A faithful friend is the medicine of life and immortality: and they that fear the Lord, shall find him. He that feareth God, shall likewise have good friendship: because according to him shall his friend be.",
+  "ref": "Sirach 6:14-17",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "sir"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-tob-4-7",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "Alms Deliver from Death",
+  "body": "Give alms out of thy substance, and turn not away thy face from any poor person: for so it shall come to pass that the face of the Lord shall not be turned from thee. According to thy ability be merciful. If thou have much give abundantly: if thou have little, take care even so to bestow willingly a little. For thus thou storest up to thyself a good reward for the day of necessity. For alms deliver from all sin, and from death, and will not suffer the soul to go into darkness.",
+  "ref": "Tobias 4:7-11",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "tob"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-tob-8-5",
+  "type": "scripture",
+  "genre": "psalm",
+  "title": "The Prayer of Tobias and Sara",
+  "body": "For we are the children of saints, and we must not be joined together like heathens that know not God. So they both arose, and prayed earnestly both together that health might be given them. And Tobias said: Lord God of our fathers, may the heavens and the earth, and the sea, and the fountains, and the rivers, and all thy creatures that are in them, bless thee. Thou madest Adam of the slime of the earth, and gavest him Eve for a helper.",
+  "ref": "Tobias 8:5-8",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "tob"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-tob-12-6",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "Prayer, Fasting, and Alms",
+  "body": "Then he said to them secretly, Bless ye the God of heaven, give glory to him in the sight of all that live, because he hath shewn his mercy to you. For it is good to hide the secret of a king: to reveal and confess the works of God. Prayer is good with fasting and alms more than to lay up treasures of gold. For alms delivereth from death, and the same is that which purgeth away sins, and maketh to find mercy and life everlasting.",
+  "ref": "Tobias 12:6-9",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "tob"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-jdt-13-23",
+  "type": "scripture",
+  "genre": "psalm",
+  "title": "Blessed Art Thou Among Women",
+  "body": "And Ozias the prince of the people of Israel, said to her: Blessed art thou, O daughter, by the Lord the most high God, above all women upon the earth. Blessed be the Lord who made heaven and earth, who hath directed thee to the cutting off the head of the prince of our enemies. Because he hath so magnified thy name this day, that thy praise shall not depart out of the mouth of men who shall be mindful of the power of the Lord for ever, for that thou hast not spared thy life, by reason of the distress and tribulation of thy people, but hast prevented our ruin in the presence of our God.",
+  "ref": "Judith 13:23-25",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "jdt"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-bar-3-36",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "He Was Seen Upon Earth",
+  "body": "This is our God, and there shall no other be accounted of in comparison of him. He found out all the way of knowledge, and gave it to Jacob his servant, and to Israel his beloved. Afterwards he was seen upon earth, and conversed with men.",
+  "ref": "Baruch 3:36-38",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "bar"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-1mac-2-61",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "Be Valiant for the Law",
+  "body": "And thus consider, through all generations: that none that trust in him, fail in strength. And fear not the words of a sinful man, for his glory is dung and worms: Today he is lifted up, and tomorrow he shall not be found, because he is returned into his earth and his thought is come to nothing. You, therefore, my sons, take courage, and behave manfully in the law: for by it you shall be glorious.",
+  "ref": "1 Machabees 2:61-64",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "1mac"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-2mac-7-27",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "The Mother's Courage",
+  "body": "So bending herself towards him, mocking the cruel tyrant, she said in her own language: My son have pity upon me, that bore thee nine months in my womb, and gave thee suck three years, and nourished thee, and brought thee up unto this age. I beseech thee, my son, look upon heaven and earth, and all that is in them, and consider that God made them out of nothing, and mankind also: So thou shalt not fear this tormentor, but being made a worthy partner with thy brethren, receive death, that in that mercy I may receive thee again with thy brethren.",
+  "ref": "2 Machabees 7:27-29",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "2mac"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-2mac-12-43",
+  "type": "scripture",
+  "genre": "wisdom",
+  "title": "A Holy and Wholesome Thought",
+  "body": "And making a gathering, he sent twelve thousand drachms of silver to Jerusalem for sacrifice to be offered for the sins of the dead, thinking well and religiously concerning the resurrection. (For if he had not hoped that they that were slain should rise again, it would have seemed superfluous and vain to pray for the dead,) And because he considered that they who had fallen asleep with godliness, had great grace laid up for them. It is therefore a holy and wholesome thought to pray for the dead, that they may be loosed from sins.",
+  "ref": "2 Machabees 12:43-46",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "2mac"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-dan-3-57",
+  "type": "scripture",
+  "genre": "psalm",
+  "title": "Bless the Lord, All Ye Works",
+  "body": "All ye works of the Lord, bless the Lord: praise and exalt him above all for ever. O ye angels of the Lord, bless the Lord: praise and exalt him above all for ever. O ye heavens, bless the Lord: praise and exalt him above all for ever. O all ye waters that are above the heavens, bless the Lord: praise and exalt him above all for ever. O all ye powers of the Lord, bless the Lord: praise and exalt him above all for ever. O ye sun and moon, bless the Lord: praise and exalt him above all for ever. O ye stars of heaven, bless the Lord: praise and exalt him above all for ever.",
+  "ref": "Daniel 3:57-63",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "dan"
+  ],
+  "verified": true
+ },
+ {
+  "id": "scripture-deutero-dan-13-42",
+  "type": "scripture",
+  "genre": "psalm",
+  "title": "Susanna's Prayer",
+  "body": "Then Susanna cried out with a loud voice, and said: O eternal God, who knowest hidden things, who knowest all things before they come to pass, Thou knowest that they have borne false witness against me: and behold I must die, whereas I have done none of these things, which these men have maliciously forged against me.",
+  "ref": "Daniel 13:42-43",
+  "source": "DRC",
+  "tags": [
+   "scripture",
+   "deuterocanon",
+   "dan"
+  ],
+  "verified": true
+ }
+]

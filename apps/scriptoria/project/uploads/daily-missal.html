@@ -1,0 +1,3091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Laudate">
+<meta name="theme-color" content="#3C2415">
+<title>Laudate</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAIjElEQVR4nO3da4xUZxnA8edcZnZnZ9lloRRKLWyLUKBFLgts5VKwlcZIYhps4qXRGBRCBGNiE61JkWXRmBhLogmN1oaQJlr9oKmEjUkTyy0hoSxiC9TgWuNiIuWyZXeYYWZnzpnjh+G4s+NcYYZlnvn/kpPMmX3Zfefw3zdnZmCOsebj0zwBlDAnegJANRE0VCFoqELQUIWgoYpd6Asvbb55N+cBVOSH+1vy3s8KDVUKrtC+Qr8JwEQodebACg1VSq7Qvv27w321nAhQzOZdsY3ljCs76Eq+KVBNlSymnHJAFYKGKgQNVQgaqhA0VCFoqGIbJQYYBW4Dd1Nue4VaZIWGKgQNVQgaqhA0VCFoqELQUIWgoQpBQxWChioEDVUIGqoQNFQhaKhC0FCFoKEKQUMVgoYqtlHiv6Fkf73UWKBWctsr1CIrNFQhaKhC0FCFoKEKQUMVgoYqBA1VCBqqEDRUIWioQtBQhaChCkFDlYou64bb81pP+KR/+xs9se6JnIt2rNA1lh1zvn1UF0FDFYKGKqYhmetV5G6+7P1CY9kKb1tyzpm39MS6J3pO9bZJzm0pMpYnhTXyq55w9m53vvu39MTu4owaA6ccUIWgoQpBQxWChir2+OeO+eQ+t0T1cDzLl3us8h87VmioQtBQhaChCkFDFYKGKgQNVQgaqhA0VCFoqELQUIWgoQrXWJlAHM/ylXuNFf7HSgGv7mq553/G1t03qzQTPTjlgCqs0Le8uqvlf5+XsXX3zbr5MJh6nXetsELL+Cjy7d+r6nXetUTQUIWgoQpBy/+fe9bLuWi9zruWeFJ4S73GUK/zrhVWaKjCCl3Anb5pUc6bJrwxUn2s0FCFoKEKQUMVgoYqBA1VCBqqEDRUsfns0YnD8SxfeZ89ygoNZQgaqhA0VCFoqELQUIWgoQpBQxWChioEDVUIGqoQNFQhaKhC0FCFoKEKQUMVgoYqBA1VuMbKBOJ4lq/ca6ywQkMVgoYqBA1VCBqqEDRUIWioQtBQhU/wr5FtvWOfzv+LH4xdP3BbL9dEqSVW6BrLjjnfPqqLoKEKQUMVM/M5jvk2X/Z+obFshbZtvfFx58yZ/YmfV31tknNbCo7lSeFdkBs1aodTDqhC0FCFoKEKQUMVrrGCupDbXqEWWaGhCkFDFYKGKgQNVQgaqhA0VCFoqELQUIWgoQpBQxWChioEDVUIGqoQNFQhaKhC0FCFoKEK11hBXeAaK2hIBA1VCBqqEDRUIWioQtBQhaChCkFDFYKGKg31gedru+zIlz4buOrvJ1NivvTzxKzoTc/KHvf8xsDV1cvsiL9/ecgL7H4lMWv5Y1Z086bg5eyxkZhnvbg30Wlb4n36k/bwykV2dEq7kYqPeublIS945n033H/enRSLe6aISLnjsm3eFLy8/DEr+ts/pe471u+0Z3+t2Jzu6GDVqYYK+vhpp+3sgNvSu6P5om2JFwxI+qlue+Tg4dQUf8zkSYbT9bgd9fffOuFMfvPPqakiIv3n3dZ3L8TDP/t+6J8iIsf/4rS90ZeaJiLyhc8Erq1eZkd+05eaduqc02oahszrNONf+VzgyuyZ5ujrB5P3VzLO195quEsXWDERkfUr7Ehu0MXm1Iga8pRjaNizBwbTIRGRdSuskVCTkfa/tmGVPXzqrNNayfczDZEVi+wbblqME2ecttGkmPFRz3z3ghs+eNiZUum4bGuX2yNXhtIBEZEZ9xnJ+Q+b8dt71I2hIYMWEek7muoQEQk1Gel1K6wREZHWFsNdMt+KHX5n/CpYimmKF7DFs0zxvv754OV5nWY8YIsnInKs32n3V91yx/lsS7zlC63ovjeSDyRTmU+Q/dRKe+TOH71eDXXKke3vg+nQwGA6NHe2GX+q2x55+6Qz+ekn7JFj/U5bIlnZL7rjinFuwA0vmmfFli6woksXWFE3LcbFS+mmM++74aP9TnvKEaPccf73XbbQip77hxv+aMSzT77nTFrbZUcen2vFpk42UkPDXqD6R6X+NewKLTK2Sre2GO6GVYHrXQut6JFTla3Ovtd+n5zed8zpuDKUCc0yxXv4QTOxaUNgaMeXmy4ZFY4TEXlyuR05csppExE5/I7T7knmn02uWzH2hBXjNewKLTJ+ld74pH39j2+npo4mxQw1S7r0nx4v5YjRdzQ1pe9oakpri+E+8pCZWLXEuvGJeVZs7mwzPmOambx0NR0sd1znTHP0kY+Zid4dzRdzf9bqJVbk0JFURzLV2AtSPg1/QPxVOnrTs/zV8Hb85IXmf90/1Uj53+u9C274l79LzvDPfZuDmV+ScsetX2kP7/9Dcvo398Tn+NuvD2VevQg1G+nuRWOvxBSzeqkdefbpwNDtPq56Yxa7dqdI/mt51vuW/VgGBtOh7Xvic773cqIzmRw7HtlKHRtDMqcCW58Lfjh3lhlvCkg61CTptV12JBgQ79p1L/DvS+mmcse1hQ13zkNm4q9/c8PZP6P/nDMpnsi8Tr1+pTVSck5F7q+nTXJuF3s8DXXKsbbLjnzx1hsr+3aGPujZl5h19aPxT66yx4iIPLPKHl78qBXrfSUxqyvnTYw1y+zI4ket2It7E517D4zOfGKxfeO5ZwJDUzuMVHPQ8IZveNaJM07boaNOh5vO/H2UGjep1XB/9O3mQRGRH3+nefC7Px17g+Rbzzf9J9SceYnxgWlmct/O0AcH3kxO/9qz4+e0Ztn4c+y3TjiTq3kc72UNFfTx007b8dPFTyuKjTl93m09fT6e9zXqD695Qf8NmGLKGbd9T3xOvvtfPjD6YL77T53NP6dG1PDn0NCFoKEKQUMVgoYqFT0p3Lcz1FeriQDVUHbQ2/fEN9ZyIkA1cMoBVUqu0C98tax3WIF7Ais0VDE2zJ/uTfQkgGphhYYqBA1VCBqqEDRUIWio8l/zjuT4s6Kg6wAAAABJRU5ErkJggg==">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIkxhdWRhdGUiLCAic2hvcnRfbmFtZSI6ICJMYXVkYXRlIiwgInN0YXJ0X3VybCI6ICIuL2RhaWx5LW1pc3NhbC5odG1sIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGNUU2RDAiLCAidGhlbWVfY29sb3IiOiAiIzNDMjQxNSJ9">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&display=swap');
+
+:root {
+  --parchment: #F5E6D0;
+  --parchment-dark: #E8D5B8;
+  --parchment-deeper: #D4C0A0;
+  --ink: #2C1810;
+  --ink-light: #5C3D2E;
+  --ink-faded: #8B7355;
+  --gold: #B8860B;
+  --gold-light: #DAA520;
+  --gold-pale: #F0D080;
+  --crimson: #8B0000;
+  --crimson-light: #A52A2A;
+  --forest: #2D5016;
+  --white: #FDFAF5;
+  --violet: #4B0082;
+  --violet-light: #6A2C91;
+  --rose: #C46585;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+html, body {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #2C1810;
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--safe-top);
+}
+
+/* ─── Header ─── */
+.app-header {
+  background: linear-gradient(180deg, #3C2415 0%, #2C1810 100%);
+  padding: 14px 20px 12px;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold-light) 50%, var(--gold) 80%, transparent 100%);
+}
+
+.header-cross {
+  font-size: 24px;
+  color: var(--gold);
+  letter-spacing: 0;
+  margin-bottom: 0px;
+  opacity: 0.85;
+}
+
+.header-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gold-pale);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.header-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* ─── Navigation ─── */
+.bottom-nav {
+  display: flex;
+  background: #2C1810;
+  border-top: 2px solid var(--gold);
+  flex-shrink: 0;
+  padding-bottom: var(--safe-bottom);
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 2px 6px;
+  background: none;
+  border: none;
+  color: var(--ink-faded);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-btn.active { color: var(--gold-light); }
+.nav-btn.active::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 20%; right: 20%;
+  height: 2px;
+  background: var(--gold-light);
+}
+
+.nav-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ─── Main Content ─── */
+.main-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  background: var(--parchment);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(180,150,100,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(160,130,80,0.1) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.page { display: none; padding: 20px; padding-bottom: 20px; }
+.page.active { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Date Navigation ─── */
+.date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.date-nav button {
+  background: none;
+  border: 1px solid var(--parchment-deeper);
+  color: var(--ink-light);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.date-nav button:hover { border-color: var(--gold); color: var(--gold); }
+
+.date-display {
+  text-align: center;
+  cursor: pointer;
+}
+
+.date-display .day-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--ink-faded);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.date-display .full-date {
+  font-family: 'Cinzel', serif;
+  font-size: 19px;
+  color: var(--ink);
+  letter-spacing: 1px;
+}
+
+.today-btn {
+  display: block;
+  margin: -8px auto 16px;
+  background: none;
+  border: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--gold);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ─── Liturgical Banner ─── */
+.liturgical-banner {
+  text-align: center;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  position: relative;
+  border: 1px solid;
+}
+
+.liturgical-banner .season-label {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.liturgical-banner .celebration-name {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+.liturgical-banner .celebration-type {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.liturgical-banner .celebration-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 10px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.season-violet { background: rgba(75,0,130,0.06); border-color: rgba(75,0,130,0.2); color: var(--violet); }
+.season-green { background: rgba(45,80,22,0.06); border-color: rgba(45,80,22,0.2); color: var(--forest); }
+.season-white { background: rgba(218,165,32,0.06); border-color: rgba(218,165,32,0.25); color: var(--ink); }
+.season-red { background: rgba(139,0,0,0.06); border-color: rgba(139,0,0,0.2); color: var(--crimson); }
+.season-rose { background: rgba(196,101,133,0.06); border-color: rgba(196,101,133,0.2); color: var(--rose); }
+
+/* ─── Reading Cards (Accordion) ─── */
+.reading-card {
+  margin-bottom: 4px;
+  position: relative;
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.reading-card.expanded { border-color: var(--gold); }
+
+.reading-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.2s;
+}
+
+.reading-header:hover { background: rgba(255,255,255,0.4); }
+
+.reading-header-left { flex: 1; }
+
+.reading-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 2px;
+}
+
+.reading-reference {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.reading-chevron {
+  font-size: 20px;
+  color: var(--ink-faded);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.reading-card.expanded .reading-chevron { transform: rotate(180deg); }
+
+.reading-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.reading-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  line-height: 1.75;
+  color: var(--ink);
+  text-align: justify;
+  hyphens: auto;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--parchment-deeper);
+  padding-top: 14px;
+}
+
+.reading-text p { margin-bottom: 12px; }
+
+.reading-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0;
+  color: var(--ink-faded);
+}
+
+.reading-divider::before,
+.reading-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--parchment-deeper), transparent);
+}
+
+.reading-divider span {
+  font-size: 16px;
+  opacity: 0.4;
+}
+
+
+/* ─── USCCB Link ─── */
+.usccb-link {
+  display: block;
+  text-align: center;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(139,0,0,0.08), rgba(139,0,0,0.03));
+  border: 1px solid rgba(139,0,0,0.15);
+  border-radius: 4px;
+  color: var(--crimson);
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: all 0.2s;
+}
+
+.usccb-link:hover { background: rgba(139,0,0,0.12); }
+
+/* ─── Loading State ─── */
+.loading-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ink-faded);
+}
+
+.loading-spinner {
+  width: 36px; height: 36px;
+  border: 2px solid var(--parchment-deeper);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-state p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* ─── Error State ─── */
+.error-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--ink-faded);
+}
+
+.error-state .error-icon { font-size: 32px; margin-bottom: 12px; }
+.error-state p { font-size: 17px; line-height: 1.6; margin-bottom: 12px; }
+
+.retry-btn {
+  background: var(--crimson);
+  color: var(--white);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* ─── Saint Section ─── */
+.saint-card {
+  background: linear-gradient(135deg, rgba(184,134,11,0.06), rgba(184,134,11,0.02));
+  border: 1px solid rgba(184,134,11,0.2);
+  border-radius: 4px;
+  padding: 24px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.saint-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.saint-card .saint-name {
+  font-family: 'Cinzel', serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.saint-card .saint-type {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ink-faded);
+  margin-bottom: 14px;
+}
+
+.saint-card .saint-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-light);
+  text-align: left;
+}
+
+.saint-card .saint-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ink);
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(184,134,11,0.2);
+  line-height: 1.6;
+}
+
+.saint-card .saint-quote::before { content: '\201C'; }
+.saint-card .saint-quote::after { content: '\201D'; }
+
+
+
+/* ─── Journal Page ─── */
+.journal-date-header {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: var(--ink-faded);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.journal-prompt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ink-light);
+  text-align: center;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.journal-textarea {
+  width: 100%;
+  min-height: 200px;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  padding: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.journal-textarea:focus { border-color: var(--gold); }
+.journal-textarea::placeholder { color: var(--ink-faded); font-style: italic; }
+
+.journal-save-indicator {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--ink-faded);
+  font-style: italic;
+  margin-top: 8px;
+  min-height: 20px;
+}
+
+.journal-history-title {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: var(--ink-faded);
+  text-align: center;
+  margin: 32px 0 16px;
+  text-transform: uppercase;
+}
+
+.journal-entry-preview {
+  background: rgba(255,255,255,0.3);
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.journal-entry-preview:hover { border-color: var(--gold); }
+
+.journal-entry-preview .entry-date {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--ink-faded);
+}
+
+.journal-entry-preview .entry-snippet {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: var(--ink-light);
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.no-entries {
+  text-align: center;
+  color: var(--ink-faded);
+  font-style: italic;
+  font-size: 17px;
+  padding: 20px;
+}
+
+/* ─── Streak Page ─── */
+.streak-display {
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 24px;
+}
+
+.streak-flame {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.streak-count {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.streak-label {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.streak-best {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--ink-faded);
+  font-style: italic;
+  margin-top: 12px;
+}
+
+.checkin-btn {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 28px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(139,0,0,0.3);
+}
+
+.checkin-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,0,0,0.4); }
+.checkin-btn:disabled {
+  background: var(--parchment-deeper);
+  color: var(--ink-faded);
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.cal-header {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  text-align: center;
+  color: var(--ink-faded);
+  letter-spacing: 1px;
+  padding: 4px 0;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  border-radius: 50%;
+  color: var(--ink-light);
+}
+
+.cal-day.empty { visibility: hidden; }
+.cal-day.today { border: 1px solid var(--gold); font-weight: 700; }
+.cal-day.checked {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--white);
+  font-weight: 600;
+}
+
+.cal-month-label {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  background: rgba(255,255,255,0.3);
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.stat-item { text-align: center; }
+
+.stat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.stat-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--ink-faded);
+  margin-top: 2px;
+}
+
+/* ─── Section Titles ─── */
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+
+
+/* ─── Prayers List ─── */
+.prayer-category {
+  margin-bottom: 16px;
+}
+
+.prayer-category-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.prayer-item {
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.prayer-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  background: rgba(255,255,255,0.15);
+  gap: 10px;
+}
+
+.prayer-header:hover { background: rgba(255,255,255,0.3); }
+
+.prayer-icon { font-size: 20px; flex-shrink: 0; }
+
+.prayer-name {
+  flex: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+
+.prayer-expand {
+  font-size: 18px;
+  color: var(--ink-faded);
+  transition: transform 0.3s;
+}
+
+.prayer-item.expanded .prayer-expand { transform: rotate(180deg); }
+.prayer-item.expanded { border-color: var(--gold); }
+
+.prayer-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.prayer-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink);
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--parchment-deeper);
+  padding-top: 12px;
+  white-space: pre-line;
+}
+
+/* ─── Holy Days & Routines ─── */
+.holy-day-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  margin-bottom: 4px;
+  background: rgba(255,255,255,0.1);
+}
+
+.holy-day-date {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--crimson);
+  min-width: 60px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.holy-day-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: var(--ink);
+  flex: 1;
+}
+
+.holy-day-item.past { opacity: 0.45; }
+
+.routine-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.1);
+}
+
+.routine-card:hover { border-color: var(--gold); }
+.routine-card.checked-today { border-color: var(--gold); background: rgba(184,134,11,0.08); }
+
+.routine-icon { font-size: 22px; flex-shrink: 0; }
+
+.routine-info { flex: 1; }
+
+.routine-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+
+.routine-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--ink-faded);
+  margin-top: 2px;
+}
+
+.routine-check {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--parchment-deeper);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.routine-card.checked-today .routine-check {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184,134,11,0.1);
+}
+
+
+
+/* ─── Rosary Launch Button ─── */
+.rosary-launch-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(139,0,0,0.08), rgba(139,0,0,0.03));
+  border: 1px solid rgba(139,0,0,0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+}
+
+.rosary-launch-btn:hover { background: rgba(139,0,0,0.1); }
+
+/* ─── Rosary Overlay ─── */
+.rosary-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--parchment);
+  z-index: 400;
+  flex-direction: column;
+}
+
+.rosary-overlay.active { display: flex; }
+
+.rosary-header {
+  background: linear-gradient(180deg, #3C2415, #2C1810);
+  padding: 14px 20px;
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  text-align: center;
+  position: relative;
+}
+
+.rosary-close {
+  position: absolute;
+  right: 16px;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  background: none;
+  border: none;
+  color: var(--gold-pale);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.rosary-mystery-label {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  color: var(--gold-pale);
+  letter-spacing: 2px;
+}
+
+.rosary-progress {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.rosary-body {
+  flex: 1;
+  padding: 24px 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  min-height: 0;
+}
+
+.rosary-bead-area {
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+}
+
+.rosary-prayer-name {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 8px;
+}
+
+.rosary-mystery-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  min-height: 20px;
+}
+
+.rosary-prayer-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.rosary-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  background: rgba(0,0,0,0.03);
+  border-top: 1px solid var(--parchment-deeper);
+}
+
+.rosary-nav-btn {
+  background: none;
+  border: 1px solid var(--parchment-deeper);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--ink-light);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.rosary-nav-btn.rosary-next {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: var(--white);
+}
+
+.rosary-bead-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.rosary-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--parchment-deeper);
+  flex-shrink: 0;
+}
+
+.rosary-dot.active { background: var(--gold); width: 8px; height: 8px; }
+.rosary-dot.done { background: var(--crimson); }
+.rosary-dot.big { width: 9px; height: 9px; }
+
+/* ─── Latin Text ─── */
+.prayer-latin {
+  display: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-faded);
+  font-style: italic;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--parchment-deeper);
+  white-space: pre-line;
+}
+
+.show-latin .prayer-latin { display: block; }
+
+/* ─── Liturgical Countdown ─── */
+.countdown-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.countdown-chip {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  text-align: center;
+  background: rgba(255,255,255,0.25);
+}
+
+.countdown-days {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.countdown-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--ink-faded);
+  margin-top: 1px;
+}
+
+/* ─── Pope Intention ─── */
+.pope-card {
+  padding: 12px 14px;
+  border: 1px solid rgba(184,134,11,0.2);
+  border-radius: 4px;
+  background: rgba(184,134,11,0.04);
+}
+
+.pope-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.pope-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ─── Confess Sub-tabs ─── */
+.confess-sub-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.c-tab {
+  flex: 1;
+  padding: 8px 4px;
+  background: none;
+  border: none;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--ink-faded);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.c-tab.active {
+  background: rgba(255,255,255,0.5);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.c-panel { display: none; }
+.c-panel.active { display: block; }
+
+/* ─── Commandment Accordion ─── */
+.cmd-section { margin-bottom: 4px; }
+
+.cmd-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.3px;
+}
+
+.cmd-title:hover { background: rgba(255,255,255,0.35); }
+
+.cmd-badge {
+  background: var(--crimson);
+  color: var(--white);
+  font-size: 12px;
+  font-family: 'Cinzel', serif;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.cmd-badge.visible { display: flex; }
+
+.cmd-items {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.cmd-items.open { max-height: 2000px; }
+
+.cmd-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cmd-item:hover { background: rgba(0,0,0,0.02); }
+
+.cmd-check {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--parchment-deeper);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 15px;
+  color: transparent;
+  transition: all 0.2s;
+}
+
+.cmd-item.checked .cmd-check {
+  border-color: var(--crimson);
+  background: var(--crimson);
+  color: var(--white);
+}
+
+.cmd-item-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.cmd-item.checked .cmd-item-text {
+  color: var(--ink-faded);
+  text-decoration: line-through;
+}
+
+/* ─── Examen Steps ─── */
+.examen-step-card {
+  padding: 14px;
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.15);
+}
+
+.examen-num {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.examen-title {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 2px 0;
+}
+
+.examen-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--ink-faded);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ─── History Items ─── */
+.conf-history-item {
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.15);
+}
+
+.conf-history-date {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.conf-history-detail {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--ink-faded);
+  line-height: 1.5;
+}
+
+.penance-toggle {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.penance-toggle.pending { background: rgba(139,0,0,0.1); color: var(--crimson); }
+.penance-toggle.done { background: rgba(45,80,22,0.1); color: var(--forest); }
+
+/* ─── Confession Modal ─── */
+.conf-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.conf-modal-overlay.active { display: flex; }
+
+.conf-modal {
+  background: var(--parchment);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* ─── Hours Page ─── */
+.hours-intro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hours-intro-title {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.hours-intro-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+.hours-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+.hours-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--parchment-deeper), var(--gold), var(--parchment-deeper));
+}
+
+.hour-card {
+  position: relative;
+  margin-bottom: 6px;
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.hour-card::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--parchment-deeper);
+  border: 2px solid var(--parchment);
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.hour-card.current {
+  border-color: var(--gold);
+  background: rgba(184,134,11,0.06);
+}
+
+.hour-card.current::before {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(184,134,11,0.4);
+}
+
+.hour-card.past { opacity: 0.5; }
+
+.hour-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 14px 14px 12px;
+  text-decoration: none;
+  color: inherit;
+  gap: 12px;
+}
+
+.hour-time {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--ink-faded);
+  min-width: 52px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.hour-info { flex: 1; }
+
+.hour-name {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+
+.hour-card.current .hour-name { color: var(--gold); }
+
+.hour-latin {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink-faded);
+  margin-top: 1px;
+}
+
+.hour-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--ink-light);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.hour-arrow {
+  color: var(--ink-faded);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.hour-card.current .hour-arrow { color: var(--gold); }
+
+.hour-current-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--gold);
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.hours-note {
+  text-align: center;
+  margin-top: 20px;
+  padding: 14px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ink-faded);
+  line-height: 1.5;
+  border-top: 1px solid var(--parchment-deeper);
+}
+
+.hours-note a {
+  color: var(--crimson);
+  text-decoration: none;
+}
+
+/* ─── Scrollbar ─── */
+.main-content::-webkit-scrollbar { width: 6px; }
+.main-content::-webkit-scrollbar-track { background: transparent; }
+.main-content::-webkit-scrollbar-thumb { background: var(--parchment-deeper); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ─── Header ─── -->
+<header class="app-header">
+  <div class="header-cross">☧</div>
+  <div class="header-title">Laudate</div>
+  <div class="header-subtitle">Your Catholic Companion</div>
+</header>
+
+<!-- ─── Main Content ─── -->
+<main class="main-content">
+
+  <!-- Readings Page -->
+  <div id="page-readings" class="page active">
+    <div class="date-nav">
+      <button id="prev-day" aria-label="Previous day">&#8249;</button>
+      <div class="date-display" id="date-display">
+        <div class="day-name" id="day-name"></div>
+        <div class="full-date" id="full-date"></div>
+      </div>
+      <button id="next-day" aria-label="Next day">&#8250;</button>
+    </div>
+    <button class="today-btn" id="today-btn" style="display:none">Return to Today</button>
+    <div id="liturgical-countdown" style="margin-bottom:12px;"></div>
+    <div id="pope-intention" style="margin-bottom:12px;"></div>
+    <div id="saint-inline"></div>
+    <div id="readings-content">
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Preparing today's readings...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prayers Page -->
+  <div id="page-prayers" class="page">
+    <div class="section-title" style="margin-bottom:12px;">Catholic Prayers</div>
+    <button class="rosary-launch-btn" onclick="openRosary()">
+      <span style="font-size:20px;">&#x1F4FF;</span>
+      <div><div style="font-family:Cinzel,serif;font-size: 15px;letter-spacing:1px;">Pray the Rosary</div>
+      <div id="rosary-today-mystery" style="font-family:Cormorant Garamond,serif;font-size: 14px;font-style:italic;color:var(--ink-faded);margin-top:2px;"></div></div>
+      <span style="color:var(--ink-faded);">&#x203A;</span>
+    </button>
+    <div id="latin-toggle-wrap" style="text-align:right;margin:12px 0 8px;">
+      <label style="font-family:Cinzel,serif;font-size: 11px;letter-spacing:1px;color:var(--ink-faded);cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+        <input type="checkbox" id="latin-toggle" onchange="toggleLatin()" style="accent-color:var(--gold);"> SHOW LATIN
+      </label>
+    </div>
+    <div id="prayers-list"></div>
+    <div class="section-title" style="margin-top:24px;margin-bottom:12px;">Catechism Reference</div>
+    <div id="catechism-search" style="margin-bottom:12px;">
+      <input type="text" id="ccc-search" class="journal-textarea" placeholder="Search the Catechism..." style="min-height:auto;padding:10px;font-size: 16px;" oninput="filterCatechism()">
+    </div>
+    <div id="catechism-list"></div>
+  </div>
+
+  <!-- Journal Page -->
+  <div id="page-journal" class="page">
+    <div class="journal-date-header" id="journal-date-header"></div>
+    <div class="journal-prompt">What spoke to your heart in today's readings?</div>
+    <textarea class="journal-textarea" id="journal-textarea" placeholder="Write your reflection here..."></textarea>
+    <div class="journal-save-indicator" id="journal-save"></div>
+    <div class="journal-history-title">Past Reflections</div>
+    <div id="journal-history"></div>
+  </div>
+
+  <!-- Calendar Page -->
+  <div id="page-calendar" class="page">
+    <div class="streak-display">
+      <div class="streak-flame" id="streak-flame">&#128293;</div>
+      <div class="streak-count" id="streak-count">0</div>
+      <div class="streak-label">Day Streak</div>
+      <div class="streak-best" id="streak-best"></div>
+    </div>
+    <button class="checkin-btn" id="checkin-btn">&#10013; Mark Today's Reading</button>
+    <div class="stats-row" id="stats-row">
+      <div class="stat-item">
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">Total Days</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="stat-month">0</div>
+        <div class="stat-label">This Month</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="stat-week">0</div>
+        <div class="stat-label">This Week</div>
+      </div>
+    </div>
+    <div class="cal-month-label" id="cal-month-label"></div>
+    <div class="calendar-grid" id="calendar-grid"></div>
+
+    <div class="section-title" style="margin-top:24px;">Holy Days of Obligation</div>
+    <div id="holy-days-list"></div>
+
+    <div class="section-title" style="margin-top:24px;">Prayer Routines</div>
+    <div id="routines-list"></div>
+  </div>
+
+
+  <!-- Hours Page -->
+  <div id="page-hours" class="page">
+    <div class="hours-intro">
+      <div class="hours-intro-title">Liturgy of the Hours</div>
+      <div class="hours-intro-sub">The prayer of the Church, sanctifying each hour of the day</div>
+    </div>
+    <div class="hours-timeline" id="hours-timeline"></div>
+    <div class="hours-note">
+      Full prayer texts provided by <a href="https://universalis.com" target="_blank" rel="noopener">Universalis.com</a><br>
+      Tap any hour to pray.
+    </div>
+  </div>
+
+
+  <!-- Confess Page -->
+  <div id="page-confess" class="page">
+    <div class="confess-sub-tabs" id="confess-tabs">
+      <button class="c-tab active" data-ctab="tracker">Tracker</button>
+      <button class="c-tab" data-ctab="examine">Examine</button>
+      <button class="c-tab" data-ctab="history">History</button>
+      <button class="c-tab" data-ctab="examen">Examen</button>
+    </div>
+
+    <!-- Tracker -->
+    <div class="c-panel active" id="cpanel-tracker">
+      <div style="text-align:center;padding:24px 0 16px;">
+        <div style="font-size: 15px;color:var(--ink-faded);font-family:Cinzel,serif;letter-spacing:2px;text-transform:uppercase;">Days Since Confession</div>
+        <div id="conf-days" style="font-family:Cinzel Decorative,serif;font-size:56px;font-weight:700;color:var(--gold);line-height:1;">—</div>
+        <div id="conf-last-date" style="font-family:Cormorant Garamond,serif;font-size: 16px;color:var(--ink-faded);font-style:italic;margin-top:4px;">No confession recorded</div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:24px;">
+        <button class="checkin-btn" style="max-width:180px;" onclick="showConfModal()">Record Confession</button>
+      </div>
+      <div id="conf-verse" style="text-align:center;padding:16px;border:1px solid var(--parchment-deeper);border-radius:4px;background:rgba(255,255,255,0.2);">
+        <div id="conf-verse-text" style="font-family:Cormorant Garamond,serif;font-size: 18px;font-style:italic;line-height:1.6;color:var(--ink);"></div>
+        <div id="conf-verse-ref" style="font-family:Cinzel,serif;font-size: 13px;color:var(--ink-faded);margin-top:8px;"></div>
+      </div>
+    </div>
+
+    <!-- Examine -->
+    <div class="c-panel" id="cpanel-examine">
+      <div style="text-align:center;margin-bottom:12px;">
+        <div style="font-family:Cinzel,serif;font-size: 13px;letter-spacing:2px;color:var(--ink-faded);text-transform:uppercase;">Items Marked: <span id="examine-total">0</span></div>
+        <div style="margin-top:6px;display:flex;gap:8px;justify-content:center;">
+          <button class="today-btn" style="display:inline;margin:0;" onclick="clearExamine()">Clear All</button>
+          <button class="today-btn" style="display:inline;margin:0;" onclick="copyExamineToJournal()">Copy to Journal</button>
+        </div>
+      </div>
+      <div id="examine-list"></div>
+    </div>
+
+    <!-- History -->
+    <div class="c-panel" id="cpanel-history">
+      <div id="conf-history-list"></div>
+    </div>
+
+    <!-- Examen -->
+    <div class="c-panel" id="cpanel-examen">
+      <div style="text-align:center;margin-bottom:16px;">
+        <div style="font-family:Cinzel,serif;font-size: 15px;letter-spacing:2px;color:var(--gold);">IGNATIAN DAILY EXAMEN</div>
+        <div style="font-family:Cormorant Garamond,serif;font-size: 16px;font-style:italic;color:var(--ink-faded);margin-top:4px;">A brief evening review of your day in God's presence</div>
+      </div>
+      <div class="examen-step-card"><div class="examen-num">1</div><div class="examen-title">Gratitude</div><div class="examen-desc">Review your day and give thanks for the gifts you received.</div><textarea class="journal-textarea" id="examen-1" placeholder="What am I grateful for today?" style="min-height:60px;margin-top:8px;"></textarea></div>
+      <div class="examen-step-card"><div class="examen-num">2</div><div class="examen-title">Petition</div><div class="examen-desc">Ask the Holy Spirit to help you see your day clearly and honestly.</div></div>
+      <div class="examen-step-card"><div class="examen-num">3</div><div class="examen-title">Review</div><div class="examen-desc">Walk through your day hour by hour. Where did you feel God? Where did you turn away?</div><textarea class="journal-textarea" id="examen-3" placeholder="What moments stand out?" style="min-height:60px;margin-top:8px;"></textarea></div>
+      <div class="examen-step-card"><div class="examen-num">4</div><div class="examen-title">Respond</div><div class="examen-desc">Speak to God about what arose. Ask forgiveness. Give thanks.</div><textarea class="journal-textarea" id="examen-4" placeholder="What do I want to say to God?" style="min-height:60px;margin-top:8px;"></textarea></div>
+      <div class="examen-step-card"><div class="examen-num">5</div><div class="examen-title">Resolve</div><div class="examen-desc">Look ahead to tomorrow. Ask for God's help with one specific intention.</div><textarea class="journal-textarea" id="examen-5" placeholder="My intention for tomorrow" style="min-height:60px;margin-top:8px;"></textarea></div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;">
+        <button class="checkin-btn" style="max-width:180px;" onclick="saveExamenToJournal()">Save to Journal</button>
+        <button class="checkin-btn" style="max-width:120px;background:var(--parchment-deeper);color:var(--ink-faded);box-shadow:none;" onclick="clearExamenFields()">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confession Modal -->
+  <div class="conf-modal-overlay" id="conf-modal">
+    <div class="conf-modal">
+      <div style="font-family:Cinzel,serif;font-size: 19px;color:var(--gold);text-align:center;margin-bottom:12px;">Record Confession</div>
+      <label style="font-family:Cinzel,serif;font-size: 12px;letter-spacing:1px;color:var(--ink-faded);text-transform:uppercase;display:block;margin-bottom:4px;">Date</label>
+      <input type="date" id="conf-date-input" class="journal-textarea" style="min-height:auto;padding:10px;margin-bottom:10px;">
+      <label style="font-family:Cinzel,serif;font-size: 12px;letter-spacing:1px;color:var(--ink-faded);text-transform:uppercase;display:block;margin-bottom:4px;">Penance Assigned</label>
+      <textarea id="conf-penance-input" class="journal-textarea" placeholder="e.g. 3 Hail Marys" style="min-height:50px;margin-bottom:10px;"></textarea>
+      <div style="display:flex;gap:8px;">
+        <button class="checkin-btn" style="background:var(--parchment-deeper);color:var(--ink-faded);box-shadow:none;" onclick="closeConfModal()">Cancel</button>
+        <button class="checkin-btn" onclick="saveConfession()">Save</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Rosary Overlay -->
+  <div class="rosary-overlay" id="rosary-overlay">
+    <div class="rosary-header">
+      <button class="rosary-close" onclick="closeRosary()">&times;</button>
+      <div class="rosary-mystery-label" id="rosary-mystery-label">Glorious Mysteries</div>
+      <div class="rosary-progress" id="rosary-progress">Bead 1 of 59</div>
+    </div>
+    <div class="rosary-body">
+      <div class="rosary-bead-area">
+        <div class="rosary-prayer-name" id="rosary-prayer-name"></div>
+        <div class="rosary-mystery-title" id="rosary-mystery-title"></div>
+        <div class="rosary-prayer-text" id="rosary-prayer-text"></div>
+      </div>
+    </div>
+    <div class="rosary-footer">
+      <button class="rosary-nav-btn" id="rosary-prev">&larr; Back</button>
+      <div class="rosary-bead-dots" id="rosary-dots"></div>
+      <button class="rosary-nav-btn rosary-next" id="rosary-next">Next &rarr;</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── Bottom Navigation ─── -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-page="readings">
+    <svg viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 12h8v1.5H8V12zm0 3h8v1.5H8V15zm0 3h5v1.5H8V18z"/></svg>
+    READINGS
+  </button>
+  <button class="nav-btn" data-page="hours">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+    HOURS
+  </button>
+  <button class="nav-btn" data-page="prayers">
+    <svg viewBox="0 0 24 24"><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+    PRAYERS
+  </button>
+  <button class="nav-btn" data-page="calendar">
+    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+    CALENDAR
+  </button>
+  <button class="nav-btn" data-page="journal">
+    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+    JOURNAL
+  </button>
+  <button class="nav-btn" data-page="confess">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    CONFESS
+  </button>
+</nav>
+
+<script>
+// ─── State ───
+const READINGS_API = 'https://cpbjr.github.io/catholic-readings-api';
+let currentDate = new Date();
+let readingsCache = {};
+let calendarCache = {};
+
+// ─── Helpers ───
+function dateKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function apiDateKey(d) {
+  return `${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function formatDate(d) {
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return {
+    dayName: days[d.getDay()],
+    fullDate: `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
+  };
+}
+
+function isToday(d) {
+  const t = new Date();
+  return d.getFullYear() === t.getFullYear() && d.getMonth() === t.getMonth() && d.getDate() === t.getDate();
+}
+
+function todayKey() { return dateKey(new Date()); }
+
+// ─── Storage Helpers ───
+function getStore(key, fallback) {
+  try { return JSON.parse(localStorage.getItem('missal_' + key)) || fallback; }
+  catch { return fallback; }
+}
+
+function setStore(key, val) {
+  localStorage.setItem('missal_' + key, JSON.stringify(val));
+}
+
+// ─── Reading Accordion: Expand with on-demand text fetch ───
+function toggleCard(card) {
+  const body = card.querySelector('.reading-body');
+  if (!body) return;
+
+  if (card.classList.contains('expanded')) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    requestAnimationFrame(() => { body.style.maxHeight = '0px'; });
+    card.classList.remove('expanded');
+  } else {
+    card.classList.add('expanded');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    body.addEventListener('transitionend', function handler() {
+      if (card.classList.contains('expanded')) body.style.maxHeight = 'none';
+      body.removeEventListener('transitionend', handler);
+    });
+  }
+}
+
+async function expandReading(cardId, label, reference, dateStr) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const textEl = document.getElementById(cardId + '-text');
+
+  // If already expanded, just toggle closed
+  if (card.classList.contains('expanded')) {
+    toggleCard(card);
+    return;
+  }
+
+  // Expand the card
+  toggleCard(card);
+
+  // If already loaded, done
+  if (card.dataset.loaded === 'true') return;
+
+  // Fetch the full reading text via Claude API + web search
+  const text = await fetchReadingText(label, reference, dateStr);
+
+  if (text) {
+    // Convert line breaks to paragraphs
+    const paragraphs = text.split(/\n\n+/).filter(p => p.trim());
+    textEl.innerHTML = paragraphs.map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+  } else {
+    const mm = String(currentDate.getMonth()+1).padStart(2,'0');
+    const dd = String(currentDate.getDate()).padStart(2,'0');
+    const yy = String(currentDate.getFullYear()).slice(-2);
+    textEl.innerHTML = `<p style="text-align:center;font-style:italic;color:var(--ink-faded);">Could not load reading text.<br><a href="https://bible.usccb.org/bible/readings/${mm}${dd}${yy}.cfm" target="_blank" rel="noopener" style="color:var(--crimson);">Read on USCCB.org &rarr;</a></p>`;
+  }
+
+  card.dataset.loaded = 'true';
+
+  // Re-measure height after content loaded
+  const body = card.querySelector('.reading-body');
+  if (body && card.classList.contains('expanded')) {
+    body.style.maxHeight = 'none';
+  }
+}
+
+// ─── On-Demand Reading Text via bible-api.com (free, CORS-enabled) ───
+let readingTextCache = {};
+
+function cleanReference(ref) {
+  // Remove trailing letter suffixes like "18b" -> "18", "Wisdom 9:13-18b" -> "Wisdom 9:13-18"
+  // Also handle "Psalm 90:3-4, 5-6, 12-13, 14 and 17" -> multiple ranges
+  return ref.replace(/(\d+)[a-d]\b/g, '$1');
+}
+
+async function fetchReadingText(label, reference, dateStr) {
+  const cacheKey = dateStr + ':' + reference;
+  if (readingTextCache[cacheKey]) return readingTextCache[cacheKey];
+
+  const cleanRef = cleanReference(reference);
+
+  // Use Douay-Rheims (Catholic translation) from bible-api.com
+  const url = `https://bible-api.com/${encodeURIComponent(cleanRef)}?translation=dra`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('API returned ' + response.status);
+    const data = await response.json();
+
+    if (data.text) {
+      const text = data.text.trim();
+      readingTextCache[cacheKey] = text;
+      return text;
+    }
+    return null;
+  } catch (e) {
+    console.warn('Bible API fetch failed for "' + reference + '":', e);
+    // Fallback: try World English Bible (more forgiving with references)
+    try {
+      const fallbackUrl = `https://bible-api.com/${encodeURIComponent(cleanRef)}`;
+      const resp2 = await fetch(fallbackUrl);
+      if (!resp2.ok) throw new Error('Fallback also failed');
+      const data2 = await resp2.json();
+      if (data2.text) {
+        const text = data2.text.trim();
+        readingTextCache[cacheKey] = text;
+        return text;
+      }
+    } catch (e2) {
+      console.warn('Bible API fallback also failed:', e2);
+    }
+    return null;
+  }
+}
+
+// ─── Catholic Readings API (references + liturgical info) ───
+async function fetchReadings(d) {
+  const key = dateKey(d);
+  if (readingsCache[key]) return readingsCache[key];
+  const year = d.getFullYear();
+  const mmdd = apiDateKey(d);
+  try {
+    const res = await fetch(`${READINGS_API}/readings/${year}/${mmdd}.json`);
+    if (!res.ok) throw new Error('Not found');
+    const data = await res.json();
+    readingsCache[key] = data;
+    return data;
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchCalendar(d) {
+  const key = dateKey(d);
+  if (calendarCache[key]) return calendarCache[key];
+  const year = d.getFullYear();
+  const mmdd = apiDateKey(d);
+  try {
+    const res = await fetch(`${READINGS_API}/liturgical-calendar/${year}/${mmdd}.json`);
+    if (!res.ok) throw new Error('Not found');
+    const data = await res.json();
+    calendarCache[key] = data;
+    return data;
+  } catch (e) {
+    return null;
+  }
+}
+
+// ─── Season Color ───
+function seasonClass(season) {
+  if (!season) return 'season-green';
+  const s = season.toLowerCase();
+  if (s.includes('lent') || s.includes('advent')) return 'season-violet';
+  if (s.includes('christmas') || s.includes('easter')) return 'season-white';
+  return 'season-green';
+}
+
+function celebrationSeasonClass(type) {
+  if (!type) return 'season-green';
+  const t = type.toUpperCase();
+  if (t === 'SOLEMNITY' || t === 'FEAST') return 'season-white';
+  if (t === 'MEMORIAL') return 'season-red';
+  return 'season-green';
+}
+
+
+
+// ─── Render Readings ───
+async function renderReadings() {
+  const container = document.getElementById('readings-content');
+  container.innerHTML = `<div class="loading-state"><div class="loading-spinner"></div><p>Preparing the readings\u2026</p></div>`;
+
+  // Fetch references and calendar info
+  const [readings, calendar] = await Promise.all([
+    fetchReadings(currentDate),
+    fetchCalendar(currentDate)
+  ]);
+
+  if (!readings && !calendar) {
+    const mm = String(currentDate.getMonth()+1).padStart(2,'0');
+    const dd = String(currentDate.getDate()).padStart(2,'0');
+    const yy = String(currentDate.getFullYear()).slice(-2);
+    container.innerHTML = `
+      <div class="error-state">
+        <div class="error-icon">\u{1F4D6}</div>
+        <p>Readings could not be loaded for this date. Check your internet connection and try again.</p>
+        <a class="usccb-link" href="https://bible.usccb.org/bible/readings/${mm}${dd}${yy}.cfm" target="_blank" rel="noopener">\u271F Read on USCCB.org</a>
+        <br><button class="retry-btn" onclick="renderReadings()">Try Again</button>
+      </div>`;
+    return;
+  }
+
+  let html = '';
+
+  // Liturgical banner
+  if (calendar) {
+    const cel = calendar.celebration || {};
+    const sClass = cel.type ? celebrationSeasonClass(cel.type) : seasonClass(calendar.season);
+    html += `<div class="liturgical-banner ${sClass}">`;
+    html += `<div class="season-label">${calendar.season || 'Ordinary Time'}</div>`;
+    if (cel.name) {
+      html += `<div class="celebration-name">${cel.name}</div>`;
+      if (cel.type) html += `<div class="celebration-type">${cel.type}</div>`;
+    }
+    html += `</div>`;
+  } else if (readings && readings.season) {
+    html += `<div class="liturgical-banner ${seasonClass(readings.season)}">`;
+    html += `<div class="season-label">${readings.season}</div>`;
+    html += `</div>`;
+  }
+
+  if (readings) {
+    const r = readings.readings || {};
+    const dStr = formatDate(currentDate).fullDate;
+    let cardIndex = 0;
+
+    function buildCard(label, reference) {
+      const id = 'reading-card-' + (cardIndex++);
+      let card = `<div class="reading-card" id="${id}">`;
+      card += `<div class="reading-header" onclick="expandReading('${id}', '${label.replace(/'/g,"\\'")}', '${(reference||'').replace(/'/g,"\\'")}', '${dStr.replace(/'/g,"\\'")}')">`;
+      card += `<div class="reading-header-left">`;
+      card += `<div class="reading-label">${label}</div>`;
+      if (reference) card += `<div class="reading-reference">${reference}</div>`;
+      card += `</div>`;
+      card += `<div class="reading-chevron">\u25BE</div>`;
+      card += `</div>`;
+      card += `<div class="reading-body">`;
+      card += `<div class="reading-text" id="${id}-text"><div class="summary-loading"><div class="loading-spinner"></div>Loading reading\u2026</div></div>`;
+      card += `</div>`;
+      card += `</div>`;
+      return card;
+    }
+
+    if (r.firstReading) html += buildCard('First Reading', r.firstReading);
+    if (r.psalm) html += buildCard('Responsorial Psalm', r.psalm);
+    if (r.secondReading) html += buildCard('Second Reading', r.secondReading);
+    if (r.gospel) html += buildCard('Gospel', r.gospel);
+
+    // USCCB Link
+    if (readings.usccbLink) {
+      html += `<a class="usccb-link" href="${readings.usccbLink}" target="_blank" rel="noopener">\u271F View on USCCB.org</a>`;
+    } else {
+      const mm = String(currentDate.getMonth()+1).padStart(2,'0');
+      const dd = String(currentDate.getDate()).padStart(2,'0');
+      const yy = String(currentDate.getFullYear()).slice(-2);
+      html += `<a class="usccb-link" href="https://bible.usccb.org/bible/readings/${mm}${dd}${yy}.cfm" target="_blank" rel="noopener">\u271F View on USCCB.org</a>`;
+    }
+  }
+
+  container.innerHTML = html;
+}
+
+
+
+// ─── Date Navigation ───
+function updateDateDisplay() {
+  const info = formatDate(currentDate);
+  document.getElementById('day-name').textContent = info.dayName;
+  document.getElementById('full-date').textContent = info.fullDate;
+
+  const todayBtn = document.getElementById('today-btn');
+  todayBtn.style.display = isToday(currentDate) ? 'none' : 'block';
+}
+
+document.getElementById('prev-day').addEventListener('click', () => {
+  currentDate = new Date(currentDate.getTime() - 86400000);
+  updateDateDisplay();
+  renderReadings();
+  renderSaintInline();
+});
+
+document.getElementById('next-day').addEventListener('click', () => {
+  currentDate = new Date(currentDate.getTime() + 86400000);
+  updateDateDisplay();
+  renderReadings();
+  renderSaintInline();
+});
+
+document.getElementById('today-btn').addEventListener('click', () => {
+  currentDate = new Date();
+  updateDateDisplay();
+  renderReadings();
+  renderSaintInline();
+});
+
+// ─── Journal ───
+let journalSaveTimer = null;
+
+function getJournalKey(d) { return 'journal_' + dateKey(d || currentDate); }
+
+function loadJournal() {
+  const key = getJournalKey(currentDate);
+  const entry = getStore(key, '');
+  document.getElementById('journal-textarea').value = entry;
+  document.getElementById('journal-date-header').textContent = formatDate(currentDate).fullDate;
+  document.getElementById('journal-save').textContent = '';
+  loadJournalHistory();
+}
+
+function saveJournal() {
+  const key = getJournalKey(currentDate);
+  const val = document.getElementById('journal-textarea').value;
+  if (val.trim()) {
+    setStore(key, val);
+    const dates = getStore('journal_dates', []);
+    const dk = dateKey(currentDate);
+    if (!dates.includes(dk)) {
+      dates.push(dk);
+      setStore('journal_dates', dates);
+    }
+  } else {
+    localStorage.removeItem('missal_' + key);
+    let dates = getStore('journal_dates', []);
+    dates = dates.filter(d => d !== dateKey(currentDate));
+    setStore('journal_dates', dates);
+  }
+  document.getElementById('journal-save').textContent = 'Saved';
+  setTimeout(() => {
+    document.getElementById('journal-save').textContent = '';
+  }, 2000);
+  loadJournalHistory();
+}
+
+document.getElementById('journal-textarea').addEventListener('input', () => {
+  clearTimeout(journalSaveTimer);
+  document.getElementById('journal-save').textContent = 'Saving...';
+  journalSaveTimer = setTimeout(saveJournal, 1000);
+});
+
+function loadJournalHistory() {
+  const container = document.getElementById('journal-history');
+  const dates = getStore('journal_dates', []);
+  const currentDk = dateKey(currentDate);
+  const sorted = dates.filter(d => d !== currentDk).sort().reverse().slice(0, 20);
+
+  if (sorted.length === 0) {
+    container.innerHTML = `<div class="no-entries">Your reflections will appear here as you write them.</div>`;
+    return;
+  }
+
+  let html = '';
+  sorted.forEach(dk => {
+    const entry = getStore('journal_' + dk, '');
+    if (!entry) return;
+    const parts = dk.split('-');
+    const d = new Date(parts[0], parts[1]-1, parts[2]);
+    const info = formatDate(d);
+    html += `<div class="journal-entry-preview" data-date="${dk}">
+      <div class="entry-date">${info.fullDate}</div>
+      <div class="entry-snippet">${entry.substring(0, 80)}${entry.length > 80 ? '...' : ''}</div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('.journal-entry-preview').forEach(el => {
+    el.addEventListener('click', () => {
+      const dk = el.dataset.date;
+      const parts = dk.split('-');
+      currentDate = new Date(parts[0], parts[1]-1, parts[2]);
+      updateDateDisplay();
+      loadJournal();
+      renderReadings();
+      renderSaintInline();
+    });
+  });
+}
+
+// ─── Streak ───
+function getCheckins() { return getStore('checkins', {}); }
+
+function calculateStreak() {
+  const checkins = getCheckins();
+  let streak = 0;
+  let d = new Date();
+  if (!checkins[dateKey(d)]) {
+    d = new Date(d.getTime() - 86400000);
+  }
+  while (checkins[dateKey(d)]) {
+    streak++;
+    d = new Date(d.getTime() - 86400000);
+  }
+  return streak;
+}
+
+function getBestStreak() { return getStore('best_streak', 0); }
+
+function renderStreak() {
+  const checkins = getCheckins();
+  const streak = calculateStreak();
+  const best = getBestStreak();
+
+  document.getElementById('streak-count').textContent = streak;
+  document.getElementById('streak-best').textContent = best > 0 ? `Best streak: ${best} days` : '';
+  document.getElementById('streak-flame').textContent = streak > 0 ? '\uD83D\uDD25' : '\uD83D\uDD6F\uFE0F';
+
+  const btn = document.getElementById('checkin-btn');
+  const todayChecked = checkins[todayKey()];
+  btn.disabled = todayChecked;
+  btn.textContent = todayChecked ? '\u2713 Today\u2019s Reading Complete' : '\u271F Mark Today\u2019s Reading';
+
+  const allDates = Object.keys(checkins);
+  document.getElementById('stat-total').textContent = allDates.length;
+
+  const now = new Date();
+  const monthCount = allDates.filter(d => {
+    const parts = d.split('-');
+    return parseInt(parts[0]) === now.getFullYear() && parseInt(parts[1]) === (now.getMonth()+1);
+  }).length;
+  document.getElementById('stat-month').textContent = monthCount;
+
+  const dayOfWeek = now.getDay();
+  const weekStart = new Date(now);
+  weekStart.setDate(now.getDate() - dayOfWeek);
+  weekStart.setHours(0,0,0,0);
+  const weekCount = allDates.filter(d => {
+    const parts = d.split('-');
+    const dd = new Date(parts[0], parts[1]-1, parts[2]);
+    return dd >= weekStart && dd <= now;
+  }).length;
+  document.getElementById('stat-week').textContent = weekCount;
+
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const checkins = getCheckins();
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  document.getElementById('cal-month-label').textContent = `${months[month]} ${year}`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  let html = '';
+  ['S','M','T','W','T','F','S'].forEach(d => {
+    html += `<div class="cal-header">${d}</div>`;
+  });
+
+  for (let i = 0; i < firstDay; i++) {
+    html += `<div class="cal-day empty"></div>`;
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dk = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isT = (d === now.getDate() && month === now.getMonth());
+    const checked = checkins[dk];
+    let cls = 'cal-day';
+    if (isT) cls += ' today';
+    if (checked) cls += ' checked';
+    html += `<div class="${cls}">${d}</div>`;
+  }
+
+  document.getElementById('calendar-grid').innerHTML = html;
+}
+
+document.getElementById('checkin-btn').addEventListener('click', () => {
+  const checkins = getCheckins();
+  checkins[todayKey()] = true;
+  setStore('checkins', checkins);
+  const streak = calculateStreak();
+  const best = getBestStreak();
+  if (streak > best) setStore('best_streak', streak);
+  renderStreak();
+});
+
+
+// ─── Liturgy of the Hours ───
+const HOURS_DATA = [
+  {
+    name: 'Office of Readings',
+    latin: 'Officium Lectionum',
+    time: 'Any time',
+    timeRange: [0, 24],
+    url: 'https://universalis.com/readings.htm',
+    desc: 'Psalms and extended readings from Scripture and the Church Fathers'
+  },
+  {
+    name: 'Morning Prayer',
+    latin: 'Lauds',
+    time: '6:00 AM',
+    timeRange: [5, 9],
+    url: 'https://universalis.com/lauds.htm',
+    desc: 'Praise at dawn \u2014 consecrating the new day to God'
+  },
+  {
+    name: 'Mid-Morning Prayer',
+    latin: 'Terce',
+    time: '9:00 AM',
+    timeRange: [9, 11],
+    url: 'https://universalis.com/terce.htm',
+    desc: 'The hour the Holy Spirit descended at Pentecost'
+  },
+  {
+    name: 'Midday Prayer',
+    latin: 'Sext',
+    time: '12:00 PM',
+    timeRange: [11, 14],
+    url: 'https://universalis.com/sext.htm',
+    desc: 'A pause at the summit of the day'
+  },
+  {
+    name: 'Afternoon Prayer',
+    latin: 'None',
+    time: '3:00 PM',
+    timeRange: [14, 17],
+    url: 'https://universalis.com/none.htm',
+    desc: 'The hour Christ gave up his spirit on the Cross'
+  },
+  {
+    name: 'Evening Prayer',
+    latin: 'Vespers',
+    time: '6:00 PM',
+    timeRange: [17, 21],
+    url: 'https://universalis.com/vespers.htm',
+    desc: 'Thanksgiving at the close of day, with the Magnificat'
+  },
+  {
+    name: 'Night Prayer',
+    latin: 'Compline',
+    time: '9:00 PM',
+    timeRange: [21, 24],
+    url: 'https://universalis.com/compline.htm',
+    desc: 'The Church\u2019s final prayer before sleep'
+  }
+];
+
+function renderHours() {
+  const container = document.getElementById('hours-timeline');
+  const now = new Date();
+  const currentHour = now.getHours();
+
+  let html = '';
+  HOURS_DATA.forEach((hour, i) => {
+    // Determine if this is current, past, or future
+    let state = '';
+    const [start, end] = hour.timeRange;
+
+    // Office of Readings is special (any time) - don't mark it as current
+    if (i === 0) {
+      state = '';
+    } else if (currentHour >= start && currentHour < end) {
+      state = 'current';
+    } else if (currentHour >= end) {
+      state = 'past';
+    }
+
+    html += `<div class="hour-card ${state}">`;
+    html += `<a class="hour-link" href="${hour.url}" target="_blank" rel="noopener">`;
+    html += `<div class="hour-time">${hour.time}</div>`;
+    html += `<div class="hour-info">`;
+    html += `<div class="hour-name">${hour.name}</div>`;
+    html += `<div class="hour-latin">${hour.latin}</div>`;
+    html += `<div class="hour-desc">${hour.desc}</div>`;
+    if (state === 'current') {
+      html += `<div class="hour-current-label">Current Hour</div>`;
+    }
+    html += `</div>`;
+    html += `<div class="hour-arrow">\u203A</div>`;
+    html += `</a></div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+// ─── Navigation ───
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + btn.dataset.page).classList.add('active');
+    if (btn.dataset.page === 'journal') loadJournal();
+    if (btn.dataset.page === 'prayers') renderPrayers();
+initConfess();
+updateRosaryLabel();
+renderCatechism();
+renderCountdown();
+renderPopeIntention();
+    if (btn.dataset.page === 'calendar') renderCalendarPage();
+    if (btn.dataset.page === 'confess') initConfess();
+    
+renderHours();
+    
+    if (btn.dataset.page === 'hours') renderHours();
+    document.querySelector('.main-content').scrollTop = 0;
+  });
+});
+
+
+// ─── Prayers Data & Rendering ───
+const PRAYERS = [
+  { cat: 'Essential Prayers', prayers: [
+    { name: 'Our Father', icon: '\u2720', text: 'Our Father, who art in heaven,\nhallowed be thy name;\nthy kingdom come,\nthy will be done\non earth as it is in heaven.\nGive us this day our daily bread,\nand forgive us our trespasses,\nas we forgive those who trespass against us;\nand lead us not into temptation,\nbut deliver us from evil.\nAmen.' },
+    { name: 'Hail Mary', icon: '\u2727', text: 'Hail Mary, full of grace, the Lord is with thee.\nBlessed art thou among women,\nand blessed is the fruit of thy womb, Jesus.\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death.\nAmen.' },
+    { name: 'Glory Be', icon: '\u2731', text: 'Glory be to the Father,\nand to the Son,\nand to the Holy Spirit.\nAs it was in the beginning,\nis now, and ever shall be,\nworld without end.\nAmen.' },
+    { name: 'Apostles\u2019 Creed', icon: '\u2628', text: 'I believe in God, the Father almighty,\nCreator of heaven and earth,\nand in Jesus Christ, His only Son, our Lord,\nwho was conceived by the Holy Spirit,\nborn of the Virgin Mary,\nsuffered under Pontius Pilate,\nwas crucified, died and was buried;\nHe descended into hell;\non the third day He rose again from the dead;\nHe ascended into heaven,\nand is seated at the right hand of God the Father almighty;\nfrom there He will come to judge the living and the dead.\nI believe in the Holy Spirit,\nthe holy catholic Church,\nthe communion of saints,\nthe forgiveness of sins,\nthe resurrection of the body,\nand life everlasting.\nAmen.' },
+  ]},
+  { cat: 'Daily Devotions', prayers: [
+    { name: 'Morning Offering', icon: '\u2600', text: 'O Jesus, through the Immaculate Heart of Mary,\nI offer You my prayers, works, joys, and sufferings of this day\nin union with the Holy Sacrifice of the Mass throughout the world.\nI offer them for all the intentions of Your Sacred Heart:\nthe salvation of souls, the reparation for sin,\nand the reunion of all Christians.\nI offer them for the intentions of our bishops\nand of all Apostles of Prayer,\nand in particular for those recommended by our Holy Father this month.\nAmen.' },
+    { name: 'Act of Contrition', icon: '\u2764', text: 'O my God, I am heartily sorry\nfor having offended Thee,\nand I detest all my sins\nbecause of Thy just punishments,\nbut most of all because they offend Thee, my God,\nWho art all-good and deserving of all my love.\nI firmly resolve, with the help of Thy grace,\nto sin no more and to avoid the near occasions of sin.\nAmen.' },
+    { name: 'Angelus', icon: '\u2691', text: 'V. The Angel of the Lord declared unto Mary,\nR. And she conceived of the Holy Spirit.\nHail Mary...\n\nV. Behold the handmaid of the Lord,\nR. Be it done unto me according to Thy Word.\nHail Mary...\n\nV. And the Word was made flesh,\nR. And dwelt among us.\nHail Mary...\n\nV. Pray for us, O holy Mother of God,\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we, to whom the Incarnation of Christ Thy Son was made known by the message of an Angel, may by His Passion and Cross be brought to the glory of His Resurrection. Through the same Christ our Lord. Amen.' },
+    { name: 'Prayer to St. Michael', icon: '\u2694', text: 'Saint Michael the Archangel,\ndefend us in battle.\nBe our protection against the wickedness\nand snares of the devil;\nmay God rebuke him, we humbly pray;\nand do thou, O Prince of the heavenly host,\nby the power of God,\nthrust into hell Satan and all the evil spirits\nwho prowl about the world\nseeking the ruin of souls.\nAmen.' },
+  ]},
+  { cat: 'Marian Prayers', prayers: [
+    { name: 'Hail, Holy Queen', icon: '\u265B', text: 'Hail, holy Queen, Mother of Mercy,\nour life, our sweetness, and our hope!\nTo thee do we cry, poor banished children of Eve;\nto thee do we send up our sighs,\nmourning and weeping in this valley of tears.\nTurn, then, most gracious advocate,\nthine eyes of mercy toward us;\nand after this, our exile,\nshow unto us the blessed fruit of thy womb, Jesus.\nO clement, O loving, O sweet Virgin Mary.\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.\nAmen.' },
+    { name: 'Memorare', icon: '\u2740', text: 'Remember, O most gracious Virgin Mary,\nthat never was it known\nthat anyone who fled to thy protection,\nimplored thy help,\nor sought thy intercession was left unaided.\nInspired by this confidence,\nI fly unto thee, O Virgin of virgins, my Mother;\nto thee do I come, before thee I stand,\nsinful and sorrowful.\nO Mother of the Word Incarnate,\ndespise not my petitions,\nbut in thy mercy hear and answer me.\nAmen.' },
+    { name: 'The Magnificat', icon: '\u2606', text: 'My soul proclaims the greatness of the Lord,\nmy spirit rejoices in God my Savior,\nfor he has looked with favor on his lowly servant.\nFrom this day all generations will call me blessed:\nthe Almighty has done great things for me,\nand holy is his Name.\nHe has mercy on those who fear him\nin every generation.\nHe has shown the strength of his arm,\nhe has scattered the proud in their conceit.\nHe has cast down the mighty from their thrones,\nand has lifted up the lowly.\nHe has filled the hungry with good things,\nand the rich he has sent away empty.\nHe has come to the help of his servant Israel\nfor he has remembered his promise of mercy,\nthe promise he made to our fathers,\nto Abraham and his children for ever.\nAmen.' },
+  ]},
+  { cat: 'Confession', prayers: [
+    { name: 'Act of Contrition', icon: '\u2764', text: 'O my God, I am heartily sorry\nfor having offended Thee,\nand I detest all my sins\nbecause I dread the loss of Heaven\nand the pains of Hell;\nbut most of all because they offend Thee, my God,\nWho art all good and deserving of all my love.\nI firmly resolve, with the help of Thy grace,\nto confess my sins, to do penance,\nand to amend my life.\nAmen.' },
+    { name: 'Prayer Before Confession', icon: '\u{1F56F}\uFE0F', text: 'Come, Holy Spirit,\nenlighten my mind\nthat I may clearly know my sins.\nMove my heart that I may be sincerely sorry for them,\nhonestly confess them,\nand firmly resolve to amend my life.\nO Blessed Virgin Mary, Mother of mercy, pray for me.\nMy guardian angel, saints of God, intercede for me.\nAmen.' },
+    { name: 'Prayer After Confession', icon: '\u2728', text: 'Almighty and merciful God,\nI give You thanks for the grace of this sacrament.\nI praise You for Your boundless patience and compassion.\nHelp me now to begin again,\nstrengthened by Your love and grace,\nto live as a faithful disciple of Your Son.\nThrough Christ our Lord.\nAmen.' },
+    { name: 'The Confiteor', icon: '\u2627', text: 'I confess to almighty God\nand to you, my brothers and sisters,\nthat I have greatly sinned,\nin my thoughts and in my words,\nin what I have done\nand in what I have failed to do,\n\n(strike breast three times)\nthrough my fault, through my fault,\nthrough my most grievous fault;\n\ntherefore I ask blessed Mary ever-Virgin,\nall the Angels and Saints,\nand you, my brothers and sisters,\nto pray for me to the Lord our God.' },
+  ]},
+  { cat: 'Grace & Blessings', prayers: [
+    { name: 'Grace Before Meals', icon: '\u2615', text: 'Bless us, O Lord,\nand these Thy gifts,\nwhich we are about to receive\nfrom Thy bounty,\nthrough Christ our Lord.\nAmen.' },
+    { name: 'Grace After Meals', icon: '\u2615', text: 'We give Thee thanks, Almighty God,\nfor all Thy benefits,\nwhich we have received\nfrom Thy bounty,\nthrough Christ our Lord.\nAmen.\n\nMay the souls of the faithful departed,\nthrough the mercy of God,\nrest in peace.\nAmen.' },
+    { name: 'Prayer to Guardian Angel', icon: '\u2708', text: 'Angel of God, my guardian dear,\nto whom God\u2019s love commits me here,\never this day be at my side,\nto light and guard,\nto rule and guide.\nAmen.' },
+  ]},
+];
+
+function renderPrayers() {
+  const container = document.getElementById('prayers-list');
+  let html = '';
+  PRAYERS.forEach(cat => {
+    html += `<div class="prayer-category">`;
+    html += `<div class="prayer-category-title">${cat.cat}</div>`;
+    cat.prayers.forEach(p => {
+      const latinText = (typeof LATIN_PRAYERS !== 'undefined') ? (LATIN_PRAYERS[p.name] || '') : '';
+      html += `<div class="prayer-item">`;
+      html += `<div class="prayer-header" onclick="togglePrayer(this)">`;
+      html += `<div class="prayer-icon">${p.icon}</div>`;
+      html += `<div class="prayer-name">${p.name}</div>`;
+      html += `<div class="prayer-expand">\u25BE</div>`;
+      html += `</div>`;
+      html += `<div class="prayer-body"><div class="prayer-text">${p.text}`;
+      if (latinText) {
+        html += `<div class="prayer-latin">${latinText}</div>`;
+      }
+      html += `</div></div></div>`;
+    });
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+  if (document.getElementById('latin-toggle') && document.getElementById('latin-toggle').checked) {
+    container.classList.add('show-latin');
+  }
+}
+
+function togglePrayer(headerEl) {
+  const item = headerEl.parentElement;
+  const body = item.querySelector('.prayer-body');
+  if (item.classList.contains('expanded')) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    requestAnimationFrame(() => { body.style.maxHeight = '0px'; });
+    item.classList.remove('expanded');
+  } else {
+    item.classList.add('expanded');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    body.addEventListener('transitionend', function h() {
+      if (item.classList.contains('expanded')) body.style.maxHeight = 'none';
+      body.removeEventListener('transitionend', h);
+    });
+  }
+}
+
+// ─── Holy Days of Obligation (USA) ───
+function getHolyDays(year) {
+  return [
+    { date: `${year}-01-01`, name: 'Solemnity of Mary, Mother of God' },
+    { date: `${year}-08-15`, name: 'Assumption of the Blessed Virgin Mary' },
+    { date: `${year}-11-01`, name: 'All Saints\u2019 Day' },
+    { date: `${year}-12-08`, name: 'Immaculate Conception' },
+    { date: `${year}-12-25`, name: 'Nativity of the Lord (Christmas)' },
+    // Ascension varies by diocese - 40 days after Easter
+  ];
+}
+
+function renderHolyDays() {
+  const container = document.getElementById('holy-days-list');
+  const now = new Date();
+  const year = now.getFullYear();
+  const days = getHolyDays(year);
+  let html = '';
+  days.forEach(d => {
+    const parts = d.date.split('-');
+    const dt = new Date(parts[0], parts[1]-1, parts[2]);
+    const past = dt < new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    html += `<div class="holy-day-item ${past ? 'past' : ''}">`;
+    html += `<div class="holy-day-date">${months[dt.getMonth()]} ${dt.getDate()}</div>`;
+    html += `<div class="holy-day-name">${d.name}</div>`;
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+}
+
+// ─── Routines ───
+const ROUTINES = [
+  { id: 'morning', name: 'Morning Offering', desc: 'Start your day with prayer', icon: '\u2600\uFE0F' },
+  { id: 'rosary', name: 'Daily Rosary', desc: 'Meditate with Mary through the mysteries', icon: '\uD83D\uDCFF' },
+  { id: 'mass', name: 'Sunday Mass', desc: 'Weekly reminder for Holy Mass', icon: '\u26EA' },
+  { id: 'mercy', name: 'Divine Mercy Chaplet', desc: 'Pray at the Hour of Mercy (3 PM)', icon: '\u271F' },
+  { id: 'examen', name: 'Evening Examen', desc: 'Review your day with God', icon: '\uD83C\uDF19' },
+  { id: 'reading', name: 'Scripture Reading', desc: 'Daily lectio divina', icon: '\uD83D\uDCD6' },
+];
+
+function getRoutineChecks() { return getStore('routines', {}); }
+
+function renderRoutines() {
+  const container = document.getElementById('routines-list');
+  const checks = getRoutineChecks();
+  const tk = todayKey();
+  let html = '';
+  ROUTINES.forEach(r => {
+    const checkedToday = checks[r.id] === tk;
+    html += `<div class="routine-card ${checkedToday ? 'checked-today' : ''}" onclick="toggleRoutine('${r.id}')">`;
+    html += `<div class="routine-icon">${r.icon}</div>`;
+    html += `<div class="routine-info">`;
+    html += `<div class="routine-name">${r.name}</div>`;
+    html += `<div class="routine-desc">${r.desc}</div>`;
+    html += `</div>`;
+    html += `<div class="routine-check">${checkedToday ? '\u2713' : ''}</div>`;
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+}
+
+function toggleRoutine(id) {
+  const checks = getRoutineChecks();
+  const tk = todayKey();
+  if (checks[id] === tk) {
+    delete checks[id];
+  } else {
+    checks[id] = tk;
+  }
+  setStore('routines', checks);
+  renderRoutines();
+}
+
+// ─── Inline Saint on Readings Page ───
+async function renderSaintInline() {
+  const container = document.getElementById('saint-inline');
+  if (!container) return;
+  const calendar = await fetchCalendar(currentDate);
+  if (!calendar || !calendar.celebration) {
+    container.innerHTML = '';
+    return;
+  }
+  const cel = calendar.celebration;
+  let html = `<div style="margin-bottom:16px;">`;
+  html += `<div class="saint-card">`;
+  if (cel.image) {
+    html += `<img src="${cel.image}" alt="${cel.name}" onerror="this.style.display='none'">`;
+  }
+  html += `<div class="saint-name">${cel.name}</div>`;
+  if (cel.type) html += `<div class="saint-type">${cel.type}</div>`;
+  if (cel.description) html += `<div class="saint-desc">${cel.description}</div>`;
+  if (cel.quote) html += `<div class="saint-quote">${cel.quote}</div>`;
+  html += `</div></div>`;
+  container.innerHTML = html;
+}
+
+// ─── Render Calendar Page ───
+function renderCalendarPage() {
+  renderStreak();
+  renderHolyDays();
+  renderRoutines();
+}
+
+
+// ─── Confession Feature ───
+const CONFESS_KEY = 'missal_confess';
+const COMMANDMENTS = [
+  {title:"1st — I am the Lord your God", items:["Have I doubted or denied God?","Have I failed to pray daily?","Have I put anything before God?","Have I been involved in superstition or the occult?","Have I received Communion in mortal sin?"]},
+  {title:"2nd — Do not take God\u2019s name in vain", items:["Have I used God\u2019s name irreverently?","Have I cursed or used profanity?","Have I broken a solemn oath or vow?"]},
+  {title:"3rd — Keep holy the Lord\u2019s Day", items:["Have I missed Mass on Sundays or Holy Days?","Have I arrived late or left early without reason?","Have I been inattentive during Mass?","Have I done unnecessary work on Sundays?"]},
+  {title:"4th — Honor your father and mother", items:["Have I disobeyed or disrespected my parents?","Have I neglected duties to my spouse or children?","Have I failed to care for aging family members?","Have I been a source of family division?"]},
+  {title:"5th — You shall not kill", items:["Have I harbored hatred, anger, or revenge?","Have I refused to forgive someone?","Have I abused alcohol, drugs, or substances?","Have I neglected my own health?","Have I led others into sin?"]},
+  {title:"6th — You shall not commit adultery", items:["Have I been unfaithful in thought or action?","Have I viewed pornography or impure material?","Have I deliberately entertained impure thoughts?","Have I failed to respect the dignity of my body?"]},
+  {title:"7th — You shall not steal", items:["Have I stolen or kept what belongs to others?","Have I been dishonest in business?","Have I wasted time at work?","Have I failed to pay just wages or debts?","Have I been wasteful or failed to help the poor?"]},
+  {title:"8th — You shall not bear false witness", items:["Have I lied?","Have I gossiped or revealed secrets?","Have I judged others harshly or unfairly?","Have I damaged another\u2019s reputation?"]},
+  {title:"9th — You shall not covet your neighbor\u2019s spouse", items:["Have I entertained lustful desires?","Have I failed to guard my eyes and thoughts?","Have I consumed media that undermines purity?"]},
+  {title:"10th — You shall not covet your neighbor\u2019s goods", items:["Have I been envious or jealous?","Have I been greedy or materialistic?","Have I failed to be grateful for what I have?"]}
+];
+
+const MERCY_VERSES = [
+  {text:"If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",ref:"1 John 1:9"},
+  {text:"Come now, let us settle the matter. Though your sins are like scarlet, they shall be as white as snow.",ref:"Isaiah 1:18"},
+  {text:"Create in me a clean heart, O God, and renew a right spirit within me.",ref:"Psalm 51:10"},
+  {text:"The Lord is near to the brokenhearted and saves the crushed in spirit.",ref:"Psalm 34:18"},
+  {text:"There is therefore now no condemnation for those who are in Christ Jesus.",ref:"Romans 8:1"},
+  {text:"His mercy endures forever.",ref:"Psalm 136:1"},
+  {text:"I acknowledged my sin to you, and I did not cover my iniquity; I said, \u2018I will confess,\u2019 and you forgave the iniquity of my sin.",ref:"Psalm 32:5"},
+  {text:"Whoever conceals their sins does not prosper, but the one who confesses and renounces them finds mercy.",ref:"Proverbs 28:13"}
+];
+
+function loadConfessState() {
+  try { return JSON.parse(localStorage.getItem(CONFESS_KEY)) || {}; }
+  catch { return {}; }
+}
+function saveConfessState(s) { localStorage.setItem(CONFESS_KEY, JSON.stringify(s)); }
+
+let confState = loadConfessState();
+if (!confState.checkedItems) confState.checkedItems = {};
+if (!confState.history) confState.history = [];
+let cmdOpenSections = new Set();
+
+// Sub-tab navigation
+document.getElementById('confess-tabs').addEventListener('click', function(e) {
+  const tab = e.target.closest('.c-tab');
+  if (!tab) return;
+  document.querySelectorAll('.c-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.c-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('cpanel-' + tab.dataset.ctab).classList.add('active');
+});
+
+function renderConfessTracker() {
+  const daysEl = document.getElementById('conf-days');
+  const dateEl = document.getElementById('conf-last-date');
+  if (!confState.lastConfession) {
+    daysEl.innerHTML = '\u2014';
+    dateEl.textContent = 'No confession recorded';
+  } else {
+    const last = new Date(confState.lastConfession + 'T00:00:00');
+    const now = new Date(); now.setHours(0,0,0,0);
+    const diff = Math.floor((now - last) / 86400000);
+    daysEl.textContent = diff;
+    dateEl.textContent = 'Last: ' + last.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  }
+  // Mercy verse
+  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(),0,0)) / 86400000);
+  const v = MERCY_VERSES[dayOfYear % MERCY_VERSES.length];
+  document.getElementById('conf-verse-text').textContent = '\u201C' + v.text + '\u201D';
+  document.getElementById('conf-verse-ref').textContent = '\u2014 ' + v.ref;
+}
+
+function showConfModal() {
+  document.getElementById('conf-date-input').value = new Date().toISOString().split('T')[0];
+  document.getElementById('conf-penance-input').value = '';
+  document.getElementById('conf-modal').classList.add('active');
+}
+function closeConfModal() { document.getElementById('conf-modal').classList.remove('active'); }
+
+document.getElementById('conf-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeConfModal();
+});
+
+function saveConfession() {
+  const date = document.getElementById('conf-date-input').value;
+  if (!date) return;
+  const penance = document.getElementById('conf-penance-input').value.trim();
+  confState.history.unshift({ date, penance, penanceDone: false, timestamp: new Date().toISOString() });
+  confState.lastConfession = date;
+  confState.checkedItems = {};
+  saveConfessState(confState);
+  renderConfessTracker();
+  renderExamine();
+  renderConfHistory();
+  closeConfModal();
+}
+
+// Examination of Conscience
+function renderExamine() {
+  const container = document.getElementById('examine-list');
+  container.innerHTML = '';
+  COMMANDMENTS.forEach((cmd, ci) => {
+    const sec = document.createElement('div');
+    sec.className = 'cmd-section';
+    const checkedCount = cmd.items.filter((_,ii) => confState.checkedItems[ci+'-'+ii]).length;
+    const isOpen = cmdOpenSections.has(ci);
+
+    const title = document.createElement('div');
+    title.className = 'cmd-title';
+    title.innerHTML = `<span>${cmd.title}</span><span class="cmd-badge ${checkedCount>0?'visible':''}" id="cbadge-${ci}">${checkedCount}</span>`;
+
+    const items = document.createElement('div');
+    items.className = 'cmd-items' + (isOpen ? ' open' : '');
+
+    cmd.items.forEach((text, ii) => {
+      const key = ci+'-'+ii;
+      const item = document.createElement('div');
+      item.className = 'cmd-item' + (confState.checkedItems[key] ? ' checked' : '');
+      item.innerHTML = `<div class="cmd-check">\u2713</div><div class="cmd-item-text">${text}</div>`;
+      item.addEventListener('click', () => {
+        confState.checkedItems[key] = !confState.checkedItems[key];
+        if (!confState.checkedItems[key]) delete confState.checkedItems[key];
+        saveConfessState(confState);
+        item.classList.toggle('checked');
+        const cnt = cmd.items.filter((_,j) => confState.checkedItems[ci+'-'+j]).length;
+        const badge = document.getElementById('cbadge-'+ci);
+        if(badge){badge.textContent=cnt;badge.classList.toggle('visible',cnt>0);}
+        updateExamineTotal();
+      });
+      items.appendChild(item);
+    });
+
+    title.addEventListener('click', () => {
+      if(cmdOpenSections.has(ci)) cmdOpenSections.delete(ci); else cmdOpenSections.add(ci);
+      items.classList.toggle('open');
+    });
+
+    sec.appendChild(title);
+    sec.appendChild(items);
+    container.appendChild(sec);
+  });
+  updateExamineTotal();
+}
+
+function updateExamineTotal() {
+  document.getElementById('examine-total').textContent = Object.keys(confState.checkedItems).filter(k=>confState.checkedItems[k]).length;
+}
+
+function clearExamine() {
+  if (!Object.keys(confState.checkedItems).length) return;
+  confState.checkedItems = {};
+  saveConfessState(confState);
+  renderExamine();
+}
+
+function copyExamineToJournal() {
+  const checked = [];
+  COMMANDMENTS.forEach((cmd,ci)=>{
+    cmd.items.forEach((text,ii)=>{
+      if(confState.checkedItems[ci+'-'+ii]) checked.push(text);
+    });
+  });
+  if(!checked.length){ return; }
+  const noteText = checked.join('\n');
+  const key = 'journal_' + dateKey(new Date());
+  const existing = getStore(key, '');
+  const combined = existing ? existing + '\n\n--- Examination ---\n' + noteText : 'Examination of Conscience:\n' + noteText;
+  setStore(key, combined);
+  const dates = getStore('journal_dates', []);
+  const dk = dateKey(new Date());
+  if (!dates.includes(dk)) { dates.push(dk); setStore('journal_dates', dates); }
+}
+
+// Confession History
+function renderConfHistory() {
+  const container = document.getElementById('conf-history-list');
+  if (!confState.history.length) {
+    container.innerHTML = '<div class="no-entries">No confessions recorded yet.</div>';
+    return;
+  }
+  let html = '';
+  confState.history.forEach((h,i) => {
+    const d = new Date(h.date + 'T00:00:00');
+    html += `<div class="conf-history-item">`;
+    html += `<div class="conf-history-date">${d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</div>`;
+    if (h.penance) html += `<div class="conf-history-detail">\u{1F4FF} ${h.penance}</div>`;
+    html += `<div class="penance-toggle ${h.penanceDone?'done':'pending'}" onclick="togglePenanceDone(${i})">${h.penanceDone?'\u2713 Penance Complete':'Penance Pending'}</div>`;
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+}
+
+function togglePenanceDone(i) {
+  confState.history[i].penanceDone = !confState.history[i].penanceDone;
+  saveConfessState(confState);
+  renderConfHistory();
+}
+
+// Examen
+function saveExamenToJournal() {
+  const parts = [];
+  [1,3,4,5].forEach(n => {
+    const el = document.getElementById('examen-'+n);
+    if(el && el.value.trim()) {
+      const labels = {1:'Gratitude',3:'Review',4:'Response',5:'Resolve'};
+      parts.push(labels[n]+': '+el.value.trim());
+    }
+  });
+  if(!parts.length) return;
+  const key = 'journal_' + dateKey(new Date());
+  const existing = getStore(key, '');
+  const noteText = 'Nightly Examen:\n'+parts.join('\n');
+  const combined = existing ? existing + '\n\n' + noteText : noteText;
+  setStore(key, combined);
+  const dates = getStore('journal_dates', []);
+  const dk = dateKey(new Date());
+  if (!dates.includes(dk)) { dates.push(dk); setStore('journal_dates', dates); }
+  clearExamenFields();
+}
+
+function clearExamenFields() {
+  [1,3,4,5].forEach(n => {
+    const el = document.getElementById('examen-'+n);
+    if(el) el.value = '';
+  });
+}
+
+function initConfess() {
+  renderConfessTracker();
+  renderExamine();
+  renderConfHistory();
+}
+
+
+// ─── Interactive Rosary ───
+const ROSARY_MYSTERIES = {
+  Joyful: ['The Annunciation','The Visitation','The Nativity','The Presentation','The Finding in the Temple'],
+  Sorrowful: ['The Agony in the Garden','The Scourging at the Pillar','The Crowning with Thorns','The Carrying of the Cross','The Crucifixion'],
+  Glorious: ['The Resurrection','The Ascension','The Descent of the Holy Spirit','The Assumption of Mary','The Coronation of Mary'],
+  Luminous: ['The Baptism of Jesus','The Wedding at Cana','The Proclamation of the Kingdom','The Transfiguration','The Institution of the Eucharist']
+};
+
+const ROSARY_SCHEDULE = {0:'Glorious',1:'Joyful',2:'Sorrowful',3:'Glorious',4:'Luminous',5:'Sorrowful',6:'Joyful'};
+
+const RP = {
+  sign: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.',
+  creed: 'I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, His only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; He descended into hell; on the third day He rose again from the dead; He ascended into heaven, and is seated at the right hand of God the Father almighty; from there He will come to judge the living and the dead. I believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.',
+  our: 'Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.',
+  hail: 'Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.',
+  glory: 'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.',
+  fatima: 'O my Jesus, forgive us our sins, save us from the fires of hell, lead all souls to heaven, especially those in most need of Thy mercy.',
+  hail_holy: 'Hail, holy Queen, Mother of mercy, our life, our sweetness, and our hope! To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn, then, most gracious advocate, thine eyes of mercy toward us; and after this, our exile, show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary. Pray for us, O holy Mother of God, that we may be made worthy of the promises of Christ. Amen.',
+  final: 'Let us pray. O God, whose Only Begotten Son, by His life, Death, and Resurrection, has purchased for us the rewards of eternal life; grant, we beseech Thee, that by meditating upon these mysteries of the Most Holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord. Amen.'
+};
+
+let rosaryStep = 0;
+let rosaryMysterySet = 'Glorious';
+
+// Build the full rosary bead sequence (59 beads)
+function buildRosarySequence(mysterySet) {
+  const mysteries = ROSARY_MYSTERIES[mysterySet];
+  const seq = [];
+  seq.push({name:'Sign of the Cross', text:RP.sign, type:'intro'});
+  seq.push({name:"Apostles' Creed", text:RP.creed, type:'intro'});
+  seq.push({name:'Our Father', text:RP.our, type:'intro', note:'For faith, hope, and charity'});
+  seq.push({name:'Hail Mary', text:RP.hail, type:'intro', note:'For faith'});
+  seq.push({name:'Hail Mary', text:RP.hail, type:'intro', note:'For hope'});
+  seq.push({name:'Hail Mary', text:RP.hail, type:'intro', note:'For charity'});
+  seq.push({name:'Glory Be', text:RP.glory, type:'intro'});
+
+  for (let d = 0; d < 5; d++) {
+    seq.push({name:'Our Father', text:RP.our, type:'decade', mystery:mysteries[d], decade:d+1});
+    for (let h = 1; h <= 10; h++) {
+      seq.push({name:'Hail Mary ('+h+'/10)', text:RP.hail, type:'decade', mystery:mysteries[d], decade:d+1});
+    }
+    seq.push({name:'Glory Be', text:RP.glory, type:'decade', mystery:mysteries[d], decade:d+1});
+    seq.push({name:'Fatima Prayer', text:RP.fatima, type:'decade', mystery:mysteries[d], decade:d+1});
+  }
+
+  seq.push({name:'Hail Holy Queen', text:RP.hail_holy, type:'closing'});
+  seq.push({name:'Final Prayer', text:RP.final, type:'closing'});
+  seq.push({name:'Sign of the Cross', text:RP.sign, type:'closing'});
+  return seq;
+}
+
+function getTodayMystery() { return ROSARY_SCHEDULE[new Date().getDay()]; }
+
+function openRosary() {
+  rosaryMysterySet = getTodayMystery();
+  rosaryStep = 0;
+  rosarySequenceCache = null;
+  document.getElementById('rosary-overlay').classList.add('active');
+  renderRosaryStep();
+}
+
+function closeRosary() {
+  document.getElementById('rosary-overlay').classList.remove('active');
+}
+
+let rosarySequenceCache = null;
+
+function getRosarySequence() {
+  if (!rosarySequenceCache) rosarySequenceCache = buildRosarySequence(rosaryMysterySet);
+  return rosarySequenceCache;
+}
+
+function renderRosaryStep() {
+  const seq = getRosarySequence();
+  const bead = seq[rosaryStep];
+  // Scroll to top for long prayers like the Creed
+  const rosaryBody = document.querySelector('.rosary-body');
+  if (rosaryBody) rosaryBody.scrollTop = 0;
+  document.getElementById('rosary-mystery-label').textContent = rosaryMysterySet + ' Mysteries';
+  document.getElementById('rosary-progress').textContent = `Step ${rosaryStep + 1} of ${seq.length}`;
+  document.getElementById('rosary-prayer-name').textContent = bead.name;
+  document.getElementById('rosary-mystery-title').textContent = bead.mystery || bead.note || '';
+  document.getElementById('rosary-prayer-text').textContent = bead.text;
+  document.getElementById('rosary-prev').style.visibility = rosaryStep === 0 ? 'hidden' : 'visible';
+  document.getElementById('rosary-next').textContent = rosaryStep === seq.length - 1 ? 'Finish' : 'Next \u2192';
+
+  // Mini dots showing decade progress
+  const dots = document.getElementById('rosary-dots');
+  if (bead.decade) {
+    const decadeStart = 7 + (bead.decade - 1) * 13;
+    let html = '';
+    for (let i = 0; i < 13; i++) {
+      const idx = decadeStart + i;
+      let cls = 'rosary-dot';
+      if (i === 0) cls += ' big';
+      if (idx < rosaryStep) cls += ' done';
+      if (idx === rosaryStep) cls += ' active';
+      html += `<div class="${cls}"></div>`;
+    }
+    dots.innerHTML = html;
+  } else {
+    dots.innerHTML = '';
+  }
+}
+
+// Attach event listeners (not inline onclick)
+document.getElementById('rosary-prev').addEventListener('click', function() {
+  if (rosaryStep > 0) {
+    rosaryStep--;
+    renderRosaryStep();
+  }
+});
+
+document.getElementById('rosary-next').addEventListener('click', function() {
+  const seq = getRosarySequence();
+  if (rosaryStep >= seq.length - 1) {
+    closeRosary();
+  } else {
+    rosaryStep++;
+    renderRosaryStep();
+  }
+});
+
+// Also support swipe gestures on the rosary body
+(function() {
+  const body = document.querySelector('.rosary-body');
+  let startX = 0;
+  body.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+  body.addEventListener('touchend', function(e) {
+    const diff = e.changedTouches[0].clientX - startX;
+    if (Math.abs(diff) > 50) {
+      const seq = getRosarySequence();
+      if (diff < 0 && rosaryStep < seq.length - 1) { rosaryStep++; renderRosaryStep(); }
+      else if (diff > 0 && rosaryStep > 0) { rosaryStep--; renderRosaryStep(); }
+    }
+  }, {passive: true});
+})();
+
+// Set today's mystery label on prayers page
+function updateRosaryLabel() {
+  const el = document.getElementById('rosary-today-mystery');
+  if (el) el.textContent = "Today: " + getTodayMystery() + " Mysteries";
+}
+
+// ─── Latin Prayers Toggle ───
+const LATIN_PRAYERS = {
+  'Our Father': 'Pater noster, qui es in caelis,\nsanctificetur nomen tuum.\nAdveniat regnum tuum.\nFiat voluntas tua,\nsicut in caelo et in terra.\nPanem nostrum quotidianum da nobis hodie,\net dimitte nobis debita nostra\nsicut et nos dimittimus debitoribus nostris.\nEt ne nos inducas in tentationem,\nsed libera nos a malo.\nAmen.',
+  'Hail Mary': 'Ave Maria, gratia plena,\nDominus tecum.\nBenedicta tu in mulieribus,\net benedictus fructus ventris tui, Iesus.\nSancta Maria, Mater Dei,\nora pro nobis peccatoribus,\nnunc et in hora mortis nostrae.\nAmen.',
+  'Glory Be': 'Gloria Patri, et Filio,\net Spiritui Sancto.\nSicut erat in principio,\net nunc, et semper,\net in saecula saeculorum.\nAmen.',
+  'Hail, Holy Queen': 'Salve, Regina, Mater misericordiae,\nvita, dulcedo, et spes nostra, salve.\nAd te clamamus exsules filii Hevae,\nad te suspiramus, gementes et flentes\nin hac lacrimarum valle.\nEia, ergo, advocata nostra, illos tuos\nmisericordes oculos ad nos converte;\net Iesum, benedictum fructum ventris tui,\nnobis post hoc exsilium ostende.\nO clemens, O pia, O dulcis Virgo Maria.\nAmen.',
+  'Grace Before Meals': 'Benedic, Domine, nos et haec tua dona\nquae de tua largitate sumus sumpturi.\nPer Christum Dominum nostrum.\nAmen.',
+  'Prayer to St. Michael': 'Sancte Michael Archangele,\ndefende nos in proelio;\ncontra nequitiam et insidias diaboli\nesto praesidium.\nImperet illi Deus, supplices deprecamur:\ntuque, Princeps militiae caelestis,\nSatanam aliosque spiritus malignos\nqui ad perditionem animarum pervagantur in mundo,\ndivina virtute in infernum detrude.\nAmen.',
+  'Morning Offering': 'O Iesu, per Cor Immaculatum Mariae,\noffero Tibi preces, opera, gaudia et dolores\nhuius diei in unione cum Sancto Sacrificio Missae\nper totum orbem.\nAmen.',
+  'The Magnificat': 'Magnificat anima mea Dominum,\net exsultavit spiritus meus\nin Deo salvatore meo.\nAmen.',
+  'Memorare': 'Memorare, O piissima Virgo Maria,\nnon esse auditum a saeculo,\nquemquam ad tua currentem praesidia,\ntua implorantem auxilia,\ntua petentem suffragia,\nesse derelictum.\nEgo tali animatus confidentia,\nad te, Virgo Virginum, Mater, curro,\nad te venio, coram te gemens peccator assisto.\nNoli, Mater Verbi, verba mea despicere;\nsed audi propitia et exaudi.\nAmen.',
+  'Act of Contrition': 'Deus meus, ex toto corde paenitet me\nomnium meorum peccatorum,\neaque detestor,\nquia peccando,\nnon solum poenas a Te iuste statutas promeritus sum,\nsed praesertim quia offendi Te,\nsummum bonum, ac dignum\nqui super omnia diligaris.\nIdeo firmiter propono,\nadiuvante gratia Tua,\nde cetero me non peccaturum\npeccandique occasiones proximas fugiturum.\nAmen.',
+};
+
+function toggleLatin() {
+  const on = document.getElementById('latin-toggle').checked;
+  const container = document.getElementById('prayers-list');
+  container.classList.toggle('show-latin', on);
+
+  // Auto-expand/collapse prayers that have Latin text for instant feedback
+  container.querySelectorAll('.prayer-item').forEach(item => {
+    const hasLatin = item.querySelector('.prayer-latin');
+    if (!hasLatin) return;
+    const body = item.querySelector('.prayer-body');
+
+    if (on && !item.classList.contains('expanded')) {
+      // Expand to show Latin
+      item.classList.add('expanded');
+      body.style.maxHeight = 'none';
+    } else if (!on && item.classList.contains('expanded')) {
+      // Collapse when turning off
+      body.style.maxHeight = body.scrollHeight + 'px';
+      requestAnimationFrame(() => { body.style.maxHeight = '0px'; });
+      item.classList.remove('expanded');
+    }
+  });
+}
+
+// ─── Catechism Quick Reference ───
+const CATECHISM = [
+  {topic:'The Creed',num:'CCC 185-197',text:'The Creed is the summary of the principal truths of the faith. "I believe" \u2014 this is the faith of the Church professed personally by each believer, principally during Baptism.'},
+  {topic:'The Holy Trinity',num:'CCC 232-267',text:'The Trinity is the central mystery of Christian faith and life. God is one but not solitary. Father, Son, and Holy Spirit are not three Gods but one God in three Persons.'},
+  {topic:'The Sacraments',num:'CCC 1210-1211',text:'There are seven sacraments: Baptism, Confirmation, Eucharist, Penance, Anointing of the Sick, Holy Orders, and Matrimony. They are efficacious signs of grace, instituted by Christ.'},
+  {topic:'The Eucharist',num:'CCC 1322-1419',text:'The Eucharist is the source and summit of the Christian life. In it, Christ associates His Church and all her members with His sacrifice of praise and thanksgiving offered once for all on the Cross.'},
+  {topic:'Baptism',num:'CCC 1213-1284',text:'Baptism is the basis of the whole Christian life, the gateway to life in the Spirit. Through Baptism we are freed from sin and reborn as sons and daughters of God.'},
+  {topic:'Confession',num:'CCC 1422-1498',text:'Those who approach the sacrament of Penance obtain pardon from God\u2019s mercy for offenses committed against Him, and are reconciled with the Church.'},
+  {topic:'The Ten Commandments',num:'CCC 2052-2557',text:'The Ten Commandments are a privileged expression of the natural law, made known to us by divine revelation and by human reason. They state what is required in the love of God and love of neighbor.'},
+  {topic:'Prayer',num:'CCC 2558-2565',text:'Prayer is the raising of one\u2019s mind and heart to God or the requesting of good things from God. It is always a gift of God who comes to meet man.'},
+  {topic:'The Our Father',num:'CCC 2759-2865',text:'The Lord\u2019s Prayer is the most perfect of prayers. In it we ask for all that we can rightly desire, and in the order in which we ought to desire them.'},
+  {topic:'The Beatitudes',num:'CCC 1716-1729',text:'The Beatitudes are at the heart of Jesus\u2019 preaching. They depict the countenance of Jesus and portray His charity. They shed light on the actions and attitudes characteristic of the Christian life.'},
+  {topic:'Moral Life',num:'CCC 1691-1698',text:'Christians, recognize your dignity. You are made a partaker of the divine nature. You must never return to your former base condition by sinning.'},
+  {topic:'Grace',num:'CCC 1996-2005',text:'Grace is favor, the free and undeserved help that God gives us to respond to His call. Grace is a participation in the life of God.'},
+  {topic:'Mary',num:'CCC 484-511',text:'From all eternity God chose Mary to be the Mother of His Son. She is the most excellent fruit of redemption. The Church honors her as the Mother of God.'},
+  {topic:'The Last Things',num:'CCC 1020-1060',text:'Each person receives eternal retribution in his immortal soul at the very moment of death. Those who die in God\u2019s grace enter the happiness of heaven.'},
+  {topic:'The Church',num:'CCC 748-810',text:'The Church is at once visible and spiritual, a hierarchical society and the Mystical Body of Christ. She is one, yet formed of two components, human and divine.'},
+];
+
+function renderCatechism(filter) {
+  const container = document.getElementById('catechism-list');
+  const q = (filter || '').toLowerCase();
+  const filtered = q ? CATECHISM.filter(c => c.topic.toLowerCase().includes(q) || c.text.toLowerCase().includes(q)) : CATECHISM;
+  let html = '';
+  filtered.forEach(c => {
+    html += `<div class="prayer-item">`;
+    html += `<div class="prayer-header" onclick="togglePrayer(this)">`;
+    html += `<div class="prayer-name" style="flex:1;"><span style="font-size: 15px;">${c.topic}</span><br><span style="font-size: 12px;color:var(--ink-faded);font-family:Cinzel,serif;letter-spacing:0.5px;">${c.num}</span></div>`;
+    html += `<div class="prayer-expand">\u25BE</div>`;
+    html += `</div>`;
+    html += `<div class="prayer-body"><div class="prayer-text">${c.text}</div></div>`;
+    html += `</div>`;
+  });
+  if (!filtered.length) html = '<div class="no-entries">No results found.</div>';
+  container.innerHTML = html;
+}
+
+function filterCatechism() {
+  renderCatechism(document.getElementById('ccc-search').value);
+}
+
+// ─── Liturgical Countdown ───
+function computeEasterDate(year) {
+  const a=year%19, b=Math.floor(year/100), c=year%100;
+  const d=Math.floor(b/4), e=b%4, f=Math.floor((b+8)/25);
+  const g=Math.floor((b-f+1)/3), h=(19*a+b-d-g+15)%30;
+  const i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-h-k)%7;
+  const m=Math.floor((a+11*h+22*l)/451);
+  const month=Math.floor((h+l-7*m+114)/31);
+  const day=((h+l-7*m+114)%31)+1;
+  return new Date(year, month-1, day);
+}
+
+function renderCountdown() {
+  const el = document.getElementById('liturgical-countdown');
+  if (!el) return;
+  const now = new Date(); now.setHours(0,0,0,0);
+  const year = now.getFullYear();
+  const DAY = 86400000;
+
+  const events = [];
+  const easter = computeEasterDate(year);
+  const easterNext = computeEasterDate(year + 1);
+  const christmas = new Date(year, 11, 25);
+  const christmasNext = new Date(year + 1, 11, 25);
+  const ashWed = new Date(easter.getTime() - 46 * DAY);
+  const ashWedNext = new Date(easterNext.getTime() - 46 * DAY);
+  const pentecost = new Date(easter.getTime() + 49 * DAY);
+  const advent1 = new Date(christmas.getTime() - ((christmas.getDay() === 0 ? 7 : christmas.getDay()) + 21) * DAY);
+
+  const list = [
+    {d:ashWed, l:'Ash Wednesday'}, {d:ashWedNext, l:'Ash Wednesday'},
+    {d:easter, l:'Easter'}, {d:easterNext, l:'Easter'},
+    {d:pentecost, l:'Pentecost'},
+    {d:advent1, l:'Advent'},
+    {d:christmas, l:'Christmas'}, {d:christmasNext, l:'Christmas'},
+  ];
+
+  list.forEach(e => {
+    const diff = Math.ceil((e.d - now) / DAY);
+    if (diff > 0 && diff <= 365) events.push({days: diff, label: e.l});
+  });
+
+  events.sort((a,b) => a.days - b.days);
+  const top = events.slice(0, 4);
+  if (!top.length) { el.innerHTML = ''; return; }
+
+  let html = '<div class="countdown-row">';
+  top.forEach(e => {
+    html += `<div class="countdown-chip"><div class="countdown-days">${e.days}</div><div class="countdown-label">days to ${e.label}</div></div>`;
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ─── Pope's Monthly Intention ───
+const POPE_INTENTIONS = {
+  1: 'For the right to an education: that every person may have access to education, from birth onward.',
+  2: 'For consecrated men and women, and seminarians: that they grow in their vocational journey through human, pastoral, spiritual, and communal formation.',
+  3: 'For new martyrs: that the seed of faith, watered by the blood of new martyrs, may give rise to ever more communities and peoples.',
+  4: 'For the role of women: that the dignity and worth of women be recognized in every culture, with an end to the discrimination they face in various parts of the world.',
+  5: 'For faith movements and lay associations: that they may rediscover their creative mission and offer themselves more and more in service to the common good.',
+  6: 'For migrants who are forced to flee their lands: that the international community may work together to develop concrete solutions.',
+  7: 'For the pastoral care of the sick: that the Sacrament of the Anointing of the Sick may offer strength and comfort to all who need it.',
+  8: 'For political leaders: that they may govern with justice and serve the common good, giving priority to the most vulnerable members of society.',
+  9: 'For a shared mission: that we all share the mission of the Church, putting communion, participation, and our evangelizing mission first.',
+  10:'For a shared mission: that the Church continue to sustain a synodal lifestyle at every level.',
+  11:'For people who have lost a child: that they find comfort and peace in the support of their community and in their faith in the Risen Lord.',
+  12:'For pilgrims of hope: that this Jubilee Year strengthen our faith, helping us to recognize the Risen Christ in our daily lives.',
+};
+
+function renderPopeIntention() {
+  const el = document.getElementById('pope-intention');
+  if (!el) return;
+  const month = new Date().getMonth() + 1;
+  const intention = POPE_INTENTIONS[month];
+  if (!intention) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="pope-card"><div class="pope-label">Pope\u2019s Intention \u2014 ${['','January','February','March','April','May','June','July','August','September','October','November','December'][month]}</div><div class="pope-text">${intention}</div></div>`;
+}
+
+
+// ─── Init ───
+updateDateDisplay();
+renderReadings();
+renderSaintInline();
+loadJournal();
+renderStreak();
+renderHours();
+renderPrayers();
+initConfess();
+updateRosaryLabel();
+renderCatechism();
+renderCountdown();
+renderPopeIntention();
+</script>
+</body>
+</html>

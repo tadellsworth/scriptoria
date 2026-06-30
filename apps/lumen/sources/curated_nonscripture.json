@@ -1,0 +1,226 @@
+[
+ {
+  "id": "ccc-1",
+  "type": "catechism",
+  "body": "God, infinitely perfect and blessed in himself, in a plan of sheer goodness freely created man to make him share in his own blessed life. For this reason, at every time and in every place, God draws close to man.",
+  "ref": "CCC 1",
+  "source": "CCC",
+  "tags": [
+   "god",
+   "vocation"
+  ],
+  "verified": true
+ },
+ {
+  "id": "ccc-27",
+  "type": "catechism",
+  "body": "The desire for God is written in the human heart, because man is created by God and for God; and God never ceases to draw man to himself. Only in God will he find the truth and happiness he never stops searching for.",
+  "ref": "CCC 27",
+  "source": "CCC",
+  "tags": [
+   "desire",
+   "longing",
+   "god"
+  ],
+  "verified": false
+ },
+ {
+  "id": "ccc-1324",
+  "type": "catechism",
+  "body": "The Eucharist is the source and summit of the Christian life. The other sacraments, and indeed all ecclesiastical ministries and works of the apostolate, are bound up with the Eucharist and are oriented toward it.",
+  "ref": "CCC 1324",
+  "source": "CCC",
+  "tags": [
+   "eucharist"
+  ],
+  "verified": false
+ },
+ {
+  "id": "ccc-2559",
+  "type": "catechism",
+  "body": "Prayer is the raising of one's mind and heart to God or the requesting of good things from God. But when we pray, do we speak from the height of our pride and will, or out of the depths of a humble and contrite heart?",
+  "ref": "CCC 2559",
+  "source": "CCC",
+  "tags": [
+   "prayer",
+   "humility"
+  ],
+  "verified": false
+ },
+ {
+  "id": "father-augustine-restless",
+  "type": "father",
+  "body": "Thou hast made us for thyself, O Lord, and our heart is restless until it rests in thee.",
+  "ref": "St. Augustine, Confessions I.1",
+  "source": "NPNF (Pusey, PD)",
+  "tags": [
+   "restlessness",
+   "longing",
+   "god"
+  ],
+  "verified": false
+ },
+ {
+  "id": "father-irenaeus-glory",
+  "type": "father",
+  "body": "The glory of God is man fully alive; and the life of man is the vision of God.",
+  "ref": "St. Irenaeus, Against Heresies IV.20.7",
+  "source": "ANF (PD)",
+  "tags": [
+   "glory",
+   "life",
+   "vision"
+  ],
+  "verified": false
+ },
+ {
+  "id": "father-athanasius-incarnation",
+  "type": "father",
+  "body": "He became what we are, that he might make us what he is.",
+  "ref": "St. Athanasius, On the Incarnation 54",
+  "source": "NPNF (PD)",
+  "tags": [
+   "incarnation",
+   "divinization"
+  ],
+  "verified": false
+ },
+ {
+  "id": "father-augustine-love",
+  "type": "father",
+  "body": "Love, and do what you will.",
+  "ref": "St. Augustine, Homilies on 1 John 7.8",
+  "source": "NPNF (PD)",
+  "tags": [
+   "love",
+   "freedom"
+  ],
+  "verified": false
+ },
+ {
+  "id": "summa-grace-nature",
+  "type": "summa",
+  "body": "Grace does not destroy nature but perfects it.",
+  "ref": "ST I, q.1, a.8, ad 2",
+  "source": "Summa (Dominican trans., PD)",
+  "tags": [
+   "grace",
+   "nature"
+  ],
+  "verified": false
+ },
+ {
+  "id": "summa-love-willing-good",
+  "type": "summa",
+  "body": "To love is to will the good of another.",
+  "ref": "ST I-II, q.26, a.4",
+  "source": "Summa (Dominican trans., PD)",
+  "tags": [
+   "love",
+   "charity"
+  ],
+  "verified": false
+ },
+ {
+  "id": "saint-augustine",
+  "type": "saint",
+  "title": "St. Augustine of Hippo",
+  "body": "A restless intellect who chased pleasure and philosophy before his conversion in a Milan garden, Augustine became a bishop and one of the most influential theologians in the Church's history. His Confessions remains the West's great memoir of a soul finding its rest in God.",
+  "quote": "Late have I loved thee, beauty so ancient and so new.",
+  "ref": "Feast: August 28",
+  "source": "original bio",
+  "tags": [
+   "conversion",
+   "longing"
+  ],
+  "verified": false,
+  "feast": "08-28"
+ },
+ {
+  "id": "saint-teresa-avila",
+  "type": "saint",
+  "title": "St. Teresa of Ávila",
+  "body": "A Spanish Carmelite reformer and mystic, Teresa combined a soaring interior life with sharp practical sense, founding convents across Spain. A Doctor of the Church, she taught that the soul is an interior castle with God dwelling at its center.",
+  "quote": "Let nothing disturb you; all things are passing. God alone suffices.",
+  "ref": "Feast: October 15",
+  "source": "original bio",
+  "tags": [
+   "trust",
+   "peace",
+   "prayer"
+  ],
+  "verified": false,
+  "feast": "10-15"
+ },
+ {
+  "id": "saint-padre-pio",
+  "type": "saint",
+  "title": "St. Pio of Pietrelcina",
+  "body": "A Capuchin friar known for long hours in the confessional and a deep life of prayer and penance, Padre Pio drew crowds seeking counsel and healing. He urged souls toward confidence in God rather than anxiety.",
+  "quote": "Pray, hope, and don't worry.",
+  "ref": "Feast: September 23",
+  "source": "original bio",
+  "tags": [
+   "trust",
+   "prayer"
+  ],
+  "verified": false,
+  "feast": "09-23"
+ },
+ {
+  "id": "saint-therese",
+  "type": "saint",
+  "title": "St. Thérèse of Lisieux",
+  "body": "A Carmelite who died at twenty-four, Thérèse taught the 'little way' of doing small things with great love and trust, like a child in a father's arms. Her autobiography made her one of the most beloved modern saints and a Doctor of the Church.",
+  "quote": "I will spend my heaven doing good upon earth.",
+  "ref": "Feast: October 1",
+  "source": "original bio",
+  "tags": [
+   "little-way",
+   "trust",
+   "love"
+  ],
+  "verified": false,
+  "feast": "10-03"
+ },
+ {
+  "id": "prayer-st-michael",
+  "type": "prayer",
+  "title": "Prayer to St. Michael",
+  "body": "Saint Michael the Archangel, defend us in battle. Be our defense against the wickedness and snares of the devil. May God rebuke him, we humbly pray; and do thou, O Prince of the heavenly host, by the power of God, cast into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls. Amen.",
+  "ref": "Pope Leo XIII, 1886",
+  "source": "PD",
+  "tags": [
+   "protection",
+   "spiritual-warfare"
+  ],
+  "verified": true
+ },
+ {
+  "id": "prayer-anima-christi",
+  "type": "prayer",
+  "title": "Anima Christi",
+  "body": "Soul of Christ, sanctify me. Body of Christ, save me. Blood of Christ, inebriate me. Water from the side of Christ, wash me. Passion of Christ, strengthen me. O good Jesus, hear me. Within thy wounds hide me. Suffer me not to be separated from thee. From the malicious enemy defend me. In the hour of my death call me, and bid me come unto thee, that with thy saints I may praise thee for ever and ever. Amen.",
+  "ref": "14th c., attr. tradition",
+  "source": "PD",
+  "tags": [
+   "eucharist",
+   "devotion"
+  ],
+  "verified": true
+ },
+ {
+  "id": "prayer-memorare",
+  "type": "prayer",
+  "title": "The Memorare",
+  "body": "Remember, O most gracious Virgin Mary, that never was it known that anyone who fled to thy protection, implored thy help, or sought thy intercession was left unaided. Inspired by this confidence, I fly unto thee, O Virgin of virgins, my Mother; to thee do I come, before thee I stand, sinful and sorrowful. O Mother of the Word Incarnate, despise not my petitions, but in thy mercy hear and answer me. Amen.",
+  "ref": "attr. St. Bernard tradition",
+  "source": "PD",
+  "tags": [
+   "mary",
+   "intercession",
+   "trust"
+  ],
+  "verified": true
+ }
+]

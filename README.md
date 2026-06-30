@@ -1,25 +1,61 @@
-# CODING AGENTS: READ THIS FIRST
+# Scriptoria monorepo
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Two independent Catholic web apps, developed side by side in one repo and published to a
+single GitHub Pages site under separate paths.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+| App | Source | Live URL | Stack |
+|-----|--------|----------|-------|
+| **Scriptoria** | [`apps/scriptoria/`](apps/scriptoria/) | `https://tadellsworth.github.io/scriptoria/` | Vite + React PWA |
+| **Lumen** | [`apps/lumen/`](apps/lumen/) | `https://tadellsworth.github.io/scriptoria/lumen/` | Vanilla-JS PWA, Python build tooling |
 
-## What you should do — IMPORTANT
+Each app has its own toolchain, build, and service worker. They share nothing at runtime —
+editing one never touches the other.
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+## Layout
 
-**Read `project/Scriptoria Super App.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+```
+.
+├── apps/
+│   ├── scriptoria/        Vite + React PWA (its own package.json, vite.config.ts)
+│   └── lumen/             single-file PWA + Python corpus/build tooling (formato)
+└── .github/workflows/
+    └── deploy.yml         builds both apps → publishes to GitHub Pages
+```
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+## Develop
 
-## About the design files
+**Scriptoria** (Node 20):
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+```bash
+cd apps/scriptoria
+npm install
+npm run dev          # local dev server
+npm run build        # production build → apps/scriptoria/dist
+```
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+**Lumen** (Python 3 + Node for the syntax gate):
 
-## Bundle contents
+```bash
+cd apps/lumen/app
+python3 test_engine.py   # 42 engine tests
+python3 build.py         # assemble → apps/lumen/dist (index.html, content.json, depth.json, sw.js)
+```
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Super App Integration Design` project files (HTML prototypes, assets, components)
+`build.py` writes to `apps/lumen/dist` by default; override with `LUMEN_OUT=/path` or
+`--out /path`. See [`apps/lumen/CLAUDE.md`](apps/lumen/CLAUDE.md) for the full corpus/build
+loop and golden rules.
+
+## Deploy
+
+Pushing to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which
+builds both apps and publishes them to GitHub Pages — Scriptoria at the site root, Lumen at
+`/lumen/`.
+
+**One-time setup:** in the repo's **Settings → Pages → Build and deployment**, set
+**Source** to **GitHub Actions**. After that every push to `main` deploys automatically (or
+run the workflow manually from the **Actions** tab).
+
+> Scriptoria's Vite `base` is `/scriptoria/` to match the Pages project URL. If the repo is
+> ever renamed or moved to a custom domain, update `base` (and the PWA `scope`/`start_url`)
+> in `apps/scriptoria/vite.config.ts`. Lumen uses only relative paths, so it needs no such
+> change.

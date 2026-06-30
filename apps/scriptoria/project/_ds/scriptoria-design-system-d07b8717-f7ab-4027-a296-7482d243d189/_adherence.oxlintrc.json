@@ -1,0 +1,372 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "ui_kits/lingua-latina/**",
+              "ui_kits/little-missal/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Cinzel|Cormorant Garamond|Outfit))/i]",
+        "message": "Font not provided by the design system. Available: Cinzel, Cormorant Garamond, Outfit."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|soft|style|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, tone, soft, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:neutral|beginner|intermediate|advanced|feast|season|lent|lapis)$/]",
+        "message": "<Badge> tone must be one of 'neutral' | 'beginner' | 'intermediate' | 'advanced' | 'feast' | 'season' | 'lent' | 'lapis'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|block|disabled|type|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, block, disabled, type, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|gilt|secondary|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'gilt' | 'secondary' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|label|title|interactive|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: children, variant, label, title, interactive, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:vellum|app|ink)$/]",
+        "message": "<Card> variant must be one of 'vellum' | 'app' | 'ink'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Divider'] > JSXAttribute > JSXIdentifier[name!=/^(?:ornament|flush|style|key|ref|className|style|children)$/]",
+        "message": "<Divider> doesn't accept that prop. Declared props: ornament, flush, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Emblem'] > JSXAttribute > JSXIdentifier[name!=/^(?:glyph|size|state|style|key|ref|className|style|children)$/]",
+        "message": "<Emblem> doesn't accept that prop. Declared props: glyph, size, state, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Emblem'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:available|completed|next|locked|plain)$/]",
+        "message": "<Emblem> state must be one of 'available' | 'completed' | 'next' | 'locked' | 'plain'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NavPill'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|active|tone|disabled|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<NavPill> doesn't accept that prop. Declared props: children, active, tone, disabled, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NavPill'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:lapis|gold)$/]",
+        "message": "<NavPill> tone must be one of 'lapis' | 'gold'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|max|height|label|style|key|ref|className|style|children)$/]",
+        "message": "<ProgressBar> doesn't accept that prop. Declared props: value, max, height, label, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionHeading'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|title|lead|ornament|align|style|key|ref|className|style|children)$/]",
+        "message": "<SectionHeading> doesn't accept that prop. Declared props: eyebrow, title, lead, ornament, align, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionHeading'] > JSXAttribute[name.name='align'] > Literal[value!=/^(?:center|left)$/]",
+        "message": "<SectionHeading> align must be one of 'center' | 'left'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WordChip'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|active|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<WordChip> doesn't accept that prop. Declared props: children, active, onClick, style."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "Divider": {
+        "replaces": []
+      },
+      "Emblem": {
+        "replaces": []
+      },
+      "NavPill": {
+        "replaces": []
+      },
+      "ProgressBar": {
+        "replaces": []
+      },
+      "SectionHeading": {
+        "replaces": []
+      },
+      "WordChip": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-press",
+      "--amethyst",
+      "--bg-page",
+      "--bg-page-2",
+      "--danger",
+      "--dur",
+      "--dur-fast",
+      "--dur-slow",
+      "--ease",
+      "--ease-out",
+      "--emerald",
+      "--feast",
+      "--focus-ring",
+      "--font-body",
+      "--font-display",
+      "--font-ui",
+      "--fs-body",
+      "--fs-caption",
+      "--fs-display",
+      "--fs-h1",
+      "--fs-h2",
+      "--fs-h3",
+      "--fs-label",
+      "--fs-lead",
+      "--fs-title",
+      "--fs-ui",
+      "--fw-bold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--gold",
+      "--gold-04",
+      "--gold-08",
+      "--gold-12",
+      "--gold-20",
+      "--gold-30",
+      "--gold-40",
+      "--gold-dark",
+      "--gold-light",
+      "--ink",
+      "--ink-faint",
+      "--ink-soft",
+      "--lapis",
+      "--lapis-deep",
+      "--lapis-soft",
+      "--leaf-50",
+      "--leaf-60",
+      "--leaf-70",
+      "--leaf-95",
+      "--lh-body",
+      "--lh-loose",
+      "--lh-snug",
+      "--lh-tight",
+      "--line",
+      "--line-hair",
+      "--line-strong",
+      "--overlay",
+      "--parchment",
+      "--parchment-2",
+      "--parchment-3",
+      "--r-circle",
+      "--r-leaf",
+      "--r-lg",
+      "--r-md",
+      "--r-pill",
+      "--r-sm",
+      "--rule-gold",
+      "--sh-card",
+      "--sh-deep",
+      "--sh-emboss",
+      "--sh-gold",
+      "--sh-soft",
+      "--sh-vellum",
+      "--sp-1",
+      "--sp-2",
+      "--sp-3",
+      "--sp-4",
+      "--sp-5",
+      "--sp-6",
+      "--sp-7",
+      "--sp-8",
+      "--success",
+      "--surface-card",
+      "--surface-card-hover",
+      "--surface-ink",
+      "--surface-input",
+      "--surface-sunk",
+      "--tex-parchment",
+      "--tex-vellum",
+      "--text-body",
+      "--text-display",
+      "--text-faint",
+      "--text-gilt",
+      "--text-muted",
+      "--text-on-ink",
+      "--text-title",
+      "--tr-display",
+      "--tr-label",
+      "--tr-tight",
+      "--tr-title",
+      "--tr-ui",
+      "--vellum",
+      "--vermillion",
+      "--vermillion-deep"
+    ],
+    "tokenKinds": {
+      "--parchment": "color",
+      "--vellum": "color",
+      "--parchment-2": "color",
+      "--parchment-3": "color",
+      "--ink": "color",
+      "--ink-soft": "color",
+      "--ink-faint": "color",
+      "--lapis": "color",
+      "--lapis-deep": "color",
+      "--lapis-soft": "color",
+      "--gold": "color",
+      "--gold-light": "color",
+      "--gold-dark": "color",
+      "--vermillion": "color",
+      "--vermillion-deep": "color",
+      "--emerald": "color",
+      "--amethyst": "color",
+      "--gold-04": "color",
+      "--gold-08": "color",
+      "--gold-12": "color",
+      "--gold-20": "color",
+      "--gold-30": "color",
+      "--gold-40": "color",
+      "--leaf-50": "color",
+      "--leaf-60": "color",
+      "--leaf-70": "color",
+      "--leaf-95": "color",
+      "--bg-page": "color",
+      "--bg-page-2": "color",
+      "--surface-card": "color",
+      "--surface-card-hover": "color",
+      "--surface-sunk": "color",
+      "--surface-input": "color",
+      "--surface-ink": "color",
+      "--overlay": "color",
+      "--text-display": "font",
+      "--text-title": "font",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--text-faint": "font",
+      "--text-on-ink": "font",
+      "--text-gilt": "font",
+      "--line-hair": "color",
+      "--line": "color",
+      "--line-strong": "color",
+      "--rule-gold": "color",
+      "--accent": "color",
+      "--accent-press": "color",
+      "--focus-ring": "color",
+      "--success": "color",
+      "--danger": "color",
+      "--feast": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-ui": "font",
+      "--fs-display": "font",
+      "--fs-h1": "spacing",
+      "--fs-h2": "spacing",
+      "--fs-h3": "spacing",
+      "--fs-title": "spacing",
+      "--fs-lead": "spacing",
+      "--fs-body": "spacing",
+      "--fs-ui": "spacing",
+      "--fs-label": "spacing",
+      "--fs-caption": "spacing",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--lh-tight": "other",
+      "--lh-snug": "other",
+      "--lh-body": "other",
+      "--lh-loose": "other",
+      "--tr-tight": "other",
+      "--tr-display": "other",
+      "--tr-title": "other",
+      "--tr-label": "other",
+      "--tr-ui": "other",
+      "--sp-1": "spacing",
+      "--sp-2": "spacing",
+      "--sp-3": "spacing",
+      "--sp-4": "spacing",
+      "--sp-5": "spacing",
+      "--sp-6": "spacing",
+      "--sp-7": "spacing",
+      "--sp-8": "spacing",
+      "--r-leaf": "spacing",
+      "--r-sm": "spacing",
+      "--r-md": "spacing",
+      "--r-lg": "spacing",
+      "--r-pill": "spacing",
+      "--r-circle": "spacing",
+      "--sh-soft": "shadow",
+      "--sh-card": "shadow",
+      "--sh-deep": "shadow",
+      "--sh-gold": "shadow",
+      "--sh-emboss": "shadow",
+      "--sh-vellum": "shadow",
+      "--ease": "other",
+      "--ease-out": "other",
+      "--dur-fast": "other",
+      "--dur": "other",
+      "--dur-slow": "other",
+      "--tex-parchment": "other",
+      "--tex-vellum": "other"
+    },
+    "fontFamilies": [
+      "Cinzel",
+      "Cormorant Garamond",
+      "Outfit"
+    ]
+  }
+}
