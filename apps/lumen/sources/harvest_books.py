@@ -88,6 +88,9 @@ def clean(s, cfg):
     if cfg.get("strip_para_num"):
         s = re.sub(r"^\d{1,3}\.\s+", "", s)
     s = fix_leadin(s)          # safe no-op unless body opens with small-caps
+    # literal underscores used as italic markup in the source texts (e.g.
+    # "_Fiat mihi secundum verbum tuum_") -- drop the markup, keep the text.
+    s = s.replace("_", "")
     return s.strip()
 
 
@@ -156,10 +159,34 @@ def _wrap(p):
     return out
 
 
+# Common abbreviations whose trailing period must NOT be treated as a sentence
+# boundary, even when followed by whitespace and a capitalized word (e.g. a
+# title before a proper name: "St. Bernard", "Dr. Smith"). Matched as a whole
+# word so e.g. "cost." doesn't accidentally match "ct" or similar.
+ABBREVIATIONS = ["St", "Mr", "Mrs", "Dr", "Fr", "Rev", "Msgr", "Hon", "Prof",
+                 "vol", "no", "pp", "ch", "Ps", "vs", "etc", "viz", "cf",
+                 "ed", "trans"]
+_ABBR_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(a) for a in ABBREVIATIONS) + r")\.")
+_ABBR_SENTINEL = ""   # Unicode Private Use Area sentinel; never occurs in source text
+
+
+def _protect_abbrev_periods(s):
+    """Swap the period in a recognised abbreviation for a sentinel char so the
+    sentence-boundary split in split_long() doesn't fire on it."""
+    return _ABBR_RE.sub(lambda m: m.group(0)[:-1] + _ABBR_SENTINEL, s)
+
+
+def _restore_abbrev_periods(s):
+    return s.replace(_ABBR_SENTINEL, ".")
+
+
 def split_long(s):
     if len(s) <= MAX_LEN:
         return [s]
-    parts = re.split(r"(?<=[.!?\u201d\"])\s+(?=[A-Z\u201c\"])", s)
+    protected = _protect_abbrev_periods(s)
+    parts = re.split(r"(?<=[.!?\u201d\"])\s+(?=[A-Z\u201c\"])", protected)
+    parts = [_restore_abbrev_periods(p) for p in parts]
     chunks, cur = [], ""
     for part in parts:
         for piece in _wrap(part):
@@ -174,7 +201,8 @@ def split_long(s):
     # fold a too-short trailing chunk back only if it stays within MAX
     if (len(chunks) >= 2 and len(chunks[-1]) < MIN_LEN
             and len(chunks[-2]) + 1 + len(chunks[-1]) <= MAX_LEN):
-        chunks[-2] = (chunks[-2] + " " + chunks.pop()).strip()
+        last = chunks.pop()
+        chunks[-1] = (chunks[-1] + " " + last).strip()
     return chunks
 
 

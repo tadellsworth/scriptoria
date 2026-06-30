@@ -3,7 +3,7 @@
    - navigations: network-first (so new Pages deploys reach installed devices)
    - content.json: stale-while-revalidate (instant from cache, refresh in background)
    - Firebase sync calls pass straight through, never cached */
-var CACHE = 'lumen-v18';
+var CACHE = 'lumen-v19';
 var SHELL = ['./', './index.html', './content.json'];
 
 self.addEventListener('install', function (e) {
