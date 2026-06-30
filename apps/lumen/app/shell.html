@@ -221,6 +221,12 @@
   }
   .tab .ic{display:flex; align-items:center; justify-content:center; height:24px; transition:color .2s ease, transform .2s ease;}
   .tab .ic svg{width:24px; height:24px; display:block;}
+  /* Optical balance: all three icons share a 24px box, but the bookmark glyph fills
+     more of its box than the book/dots and the dots fill less, so they read as
+     uneven. Trim the bookmark and lift the dots a touch so the three tabs match.
+     Scoped to the tab bar — the card "Save" ribbon (shared IC_RIBBON) is untouched. */
+  #tab-saved .ic svg{transform:scale(.84); transform-origin:center;}
+  #tab-more  .ic svg{transform:scale(1.08); transform-origin:center;}
   .tab.active{color:var(--ink);}
   .tab.active .ic{color:var(--gold);}
   .tab:active .ic{transform:scale(.9);}
