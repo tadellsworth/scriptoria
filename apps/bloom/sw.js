@@ -1,6 +1,39 @@
-/* BLOOM service worker — offline-first shell cache */
-const CACHE = "bloom-v6";
-const CORE = ["./", "./index.html"];
+/* BLOOM service worker — offline-first shell + recorded-audio cache */
+const CACHE = "bloom-v7";
+const CORE = [
+  "./",
+  "./index.html",
+  "./audio/cues_on.mp3",
+  "./audio/ex_bicyclecrunch.mp3",
+  "./audio/ex_birddog.mp3",
+  "./audio/ex_breathing.mp3",
+  "./audio/ex_bridgemarch.mp3",
+  "./audio/ex_burpees.mp3",
+  "./audio/ex_calfraise.mp3",
+  "./audio/ex_catcow.mp3",
+  "./audio/ex_childpose.mp3",
+  "./audio/ex_deadbug.mp3",
+  "./audio/ex_glutebridge.mp3",
+  "./audio/ex_highknees.mp3",
+  "./audio/ex_jumplunge.mp3",
+  "./audio/ex_kneehug.mp3",
+  "./audio/ex_march.mp3",
+  "./audio/ex_mountainclimbers.mp3",
+  "./audio/ex_plankfull.mp3",
+  "./audio/ex_plankjacks.mp3",
+  "./audio/ex_plyopushup.mp3",
+  "./audio/ex_pushup.mp3",
+  "./audio/ex_singlebridge.mp3",
+  "./audio/ex_skater.mp3",
+  "./audio/ex_splitsquat.mp3",
+  "./audio/ex_squat.mp3",
+  "./audio/ex_squatjump.mp3",
+  "./audio/ex_standoblique.mp3",
+  "./audio/finish.mp3",
+  "./audio/preview.mp3",
+  "./audio/rest.mp3",
+  "./audio/switch.mp3"
+];
 
 self.addEventListener("install", function (e) {
   self.skipWaiting();

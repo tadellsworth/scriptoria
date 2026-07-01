@@ -56,6 +56,20 @@ assert APP_SENT not in final_html, "placeholder still present after inline"
 (OUT / "index.html").write_text(final_html, encoding="utf-8")
 print(f"[ok] wrote {OUT/'index.html'} ({len(final_html):,} bytes)")
 
+# --- copy recorded-audio clips (folder route) into the deploy dir ---
+# audio_b64.json holds relative URLs like "audio/ex_squat.m4a"; the clips live in
+# ROOT/audio and must sit next to index.html so those URLs resolve (and so the
+# service worker can precache them). Mirrors how sw.js is placed alongside.
+import shutil
+audio_dir = ROOT / "audio"
+if audio_dir.is_dir():
+    dest = OUT / "audio"
+    if dest.exists():
+        shutil.rmtree(dest)
+    shutil.copytree(audio_dir, dest)
+    n = len([p for p in dest.iterdir() if p.suffix in (".mp3", ".m4a", ".aac")])
+    print(f"[ok] copied {n} audio clips -> {dest}")
+
 # --- extract inlined JS back out and re-validate ---
 # Grab the last <script>...</script> block (the app script).
 import re
