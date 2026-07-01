@@ -1,5 +1,5 @@
 /* BLOOM service worker — offline-first shell cache */
-const CACHE = "bloom-v4";
+const CACHE = "bloom-v5";
 const CORE = ["./", "./index.html"];
 
 self.addEventListener("install", function (e) {
