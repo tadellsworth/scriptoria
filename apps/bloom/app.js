@@ -1,7 +1,8 @@
-/* BLOOM — daily movement that grows with you
-   Gentle by default, but it climbs: each move has harder steps to earn,
-   intervals stretch as you stay consistent, and you can level up when ready.
-   Single-file PWA logic. No frameworks. localStorage key: bloom.v1 */
+/* BLOOM — real bodyweight strength and HIIT, in short sessions
+   No equipment, no gym, no wasted time. Real intensity from the first session:
+   full push-ups, jump squats, burpees, plank variations — each move still has
+   harder steps to earn as you get stronger, and intervals tighten as you stay
+   consistent. Single-file PWA logic. No frameworks. localStorage key: bloom.v1 */
 (function () {
   "use strict";
 
@@ -11,7 +12,7 @@
 
   /* ---------- state ---------- */
   var DEFAULT = {
-    tier: "restore",
+    tier: "strength",
     minutes: 15,
     voice: true,
     voiceURI: null,
@@ -28,8 +29,7 @@
     tierCounts: {},      // tier -> sessions completed at that tier
     tierNudged: {},      // tier -> already offered the step-up
     pr: { longestHold: 0, longestSession: 0 },
-    milestones: {},      // milestoneId -> date earned
-    okImpact: false      // unlocked the light-impact tier
+    milestones: {}       // milestoneId -> date earned
   };
   var state = load();
 
@@ -77,81 +77,82 @@
      type: 'timed' (do for duration) | 'hold' (still hold) ; perSide:true => "switch halfway"
      demo: key into SVG_DEMOS ; cue: spoken/short coaching */
   var EX = {
+    /* ---- warm-up / cool-down ---- */
     breathing:   { name: "Core breaths",        demo: "breathing", type: "hold",
-      cue: "Inhale wide, then exhale and gently draw your belly toward your spine." },
+      cue: "Inhale wide through the nose, exhale hard through the mouth. Get your breath ready to work." },
     catcow:      { name: "Cat–cow",             demo: "catcow", type: "timed",
-      cue: "Round and arch slowly, following your breath." },
+      cue: "Round and arch through your spine — wake up your core before you load it." },
     march:       { name: "Standing marches",    demo: "march", type: "timed",
-      cue: "Lift each knee with control. Stay tall and easy." },
-    pelvictilt:  { name: "Pelvic tilts",        demo: "pelvictilt", type: "timed",
-      cue: "Tip your pelvis, flattening your low back, then release." },
-    glutebridge: { name: "Glute bridges",       demo: "bridge", type: "timed",
-      cue: "Press through your heels, lift the hips, squeeze, lower slowly." },
-    bridgemarch: { name: "Bridge marches",      demo: "bridge", type: "timed",
-      cue: "Hold the bridge tall and lift one foot, then the other." },
-    birddog:     { name: "Bird dog",            demo: "birddog", type: "timed", perSide: true,
-      cue: "Reach opposite arm and leg long. Keep your hips level." },
-    glutekick:   { name: "Glute kickbacks",     demo: "kickback", type: "timed", perSide: true,
-      cue: "On all fours, press one heel toward the ceiling." },
-    clamshell:   { name: "Clamshells",          demo: "sidelying", type: "timed", perSide: true,
-      cue: "Side-lying, open the top knee like a clam. Keep feet together." },
-    sideleg:     { name: "Side leg lifts",      demo: "side-leg", type: "timed", perSide: true,
-      cue: "Lift the top leg with control, then lower without dropping." },
-    wallpush:    { name: "Wall push-ups",       demo: "wallpush", type: "timed",
-      cue: "Hands on the wall, bend the elbows, press back tall." },
-    kneepush:    { name: "Knee push-ups",       demo: "pushup", type: "timed",
-      cue: "From your knees, lower with control and press up." },
-    squat:       { name: "Bodyweight squats",   demo: "squat", type: "timed",
-      cue: "Sit back like reaching for a chair. Stand tall and breathe out." },
-    supportsquat:{ name: "Supported squats",    demo: "squat", type: "timed",
-      cue: "Hold a counter for balance and sit back gently." },
-    reverselunge:{ name: "Reverse lunges",      demo: "lunge", type: "timed", perSide: true,
-      cue: "Step back and lower, then drive through the front heel." },
-    stepback:    { name: "Step-back reach",     demo: "lunge", type: "timed", perSide: true,
-      cue: "Step back into a gentle lunge and reach tall." },
-    deadbug:     { name: "Dead bug",            demo: "deadbug", type: "timed",
-      cue: "Lower opposite arm and leg slowly. Keep your back quiet." },
-    calfraise:   { name: "Calf raises",         demo: "calf", type: "timed",
-      cue: "Rise onto your toes, pause, lower slowly." },
-    standoblique:{ name: "Standing side reach", demo: "oblique", type: "timed", perSide: true,
-      cue: "Reach overhead and bend gently to the side." },
-    forearmhold: { name: "Forearm hold",        demo: "plank", type: "hold",
-      cue: "Hold a steady line from your knees. Breathe — don't bear down." },
+      cue: "Quick, controlled knee drives. Get your heart rate moving." },
     kneehug:     { name: "Knee hugs",           demo: "kneehug", type: "hold", perSide: true,
-      cue: "Draw one knee toward your chest and soften." },
+      cue: "Draw one knee to your chest, control the release. Let your legs recover." },
     childpose:   { name: "Child's pose",        demo: "childpose", type: "hold",
-      cue: "Sink your hips back and let everything settle." },
+      cue: "Sink your hips back, breathe deep, let your heart rate settle." },
 
-    /* ---- harder rungs the ladders climb toward ---- */
+    /* ---- legs (squat → split squat → jump lunge) ---- */
+    squat:       { name: "Bodyweight squats",   demo: "squat", type: "timed",
+      cue: "Sit back and down, chest up, drive through your heels to stand. Full range, every rep." },
     splitsquat:  { name: "Split squats",        demo: "lunge", type: "timed", perSide: true,
-      cue: "Front foot forward, back knee dips toward the floor. Drive up through the front heel." },
-    pushup:      { name: "Full push-ups",       demo: "pushup-full", type: "timed",
-      cue: "On your toes now. Lower with control and press the floor away. Drop to knees anytime." },
-    singlebridge:{ name: "Single-leg bridges",  demo: "bridge-single", type: "timed", perSide: true,
-      cue: "One foot planted, the other leg long. Lift the hips level and lower slow." },
-    plankfull:   { name: "Forearm plank",       demo: "plank-full", type: "hold",
-      cue: "Full plank on your toes — long line from head to heels, ribs down, keep breathing." },
+      cue: "Front foot planted, back knee taps the floor, drive up through the front heel. Fast and controlled." },
+    jumplunge:   { name: "Jump lunges",         demo: "lunge", type: "timed", perSide: true, impact: true,
+      cue: "Explode up and switch legs in the air. Land soft, absorb through the hips, go again." },
 
-    /* ---- light-impact (Lift tier only) ---- */
+    /* ---- push (full push-up → explosive push-up) ---- */
+    pushup:      { name: "Full push-ups",       demo: "pushup-full", type: "timed",
+      cue: "Full range — chest to the floor, press away hard. Keep your core tight the whole time." },
+    plyopushup:  { name: "Explosive push-ups",  demo: "pushup-full", type: "timed", impact: true,
+      cue: "Lower with control, then press explosively — hands leave the floor if you've got it. Reset and go again." },
+
+    /* ---- plank (forearm plank → plank jacks) ---- */
+    plankfull:   { name: "Forearm plank",       demo: "plank-full", type: "hold",
+      cue: "Long line from head to heels. Brace your core like you're about to get punched." },
+    plankjacks:  { name: "Plank jacks",         demo: "plank-full", type: "timed", impact: true,
+      cue: "Hold the plank, jump your feet wide and back. Keep your hips still — don't let them bounce." },
+
+    /* ---- bridge (glute bridge → bridge march → single-leg bridge) ---- */
+    glutebridge: { name: "Glute bridges",       demo: "bridge", type: "timed",
+      cue: "Squeeze at the top like you're cracking a walnut with your glutes. Full lockout, every rep." },
+    bridgemarch: { name: "Bridge marches",      demo: "bridge", type: "timed",
+      cue: "Hold the bridge, drive one knee up, then the other — don't let your hips drop." },
+    singlebridge:{ name: "Single-leg bridges",  demo: "bridge-single", type: "timed", perSide: true,
+      cue: "One foot planted, one leg long. Drive the hips up and hold the squeeze at the top." },
+
+    /* ---- cardio (high knees → squat jumps → burpees) ---- */
+    highknees:   { name: "High knees",          demo: "march", type: "timed", impact: true,
+      cue: "Drive your knees up fast, pump your arms. Stay light on your feet — this is your engine builder." },
     squatjump:   { name: "Squat jumps",         demo: "squat-jump", type: "timed", impact: true,
-      cue: "Sit back, then spring up and land soft and quiet through the whole foot." },
-    highknees:   { name: "High-knee jog",       demo: "march", type: "timed", impact: true,
-      cue: "Light, quick feet in place. Stay tall and land softly." },
-    skater:      { name: "Skater steps",        demo: "skater", type: "timed", perSide: true, impact: true,
-      cue: "Glide side to side like a skater, soft knees, control the landing." }
+      cue: "Load deep, then explode straight up. Land soft and go right back down — no resting at the top." },
+    burpees:     { name: "Burpees",             demo: "squat-jump", type: "timed", impact: true,
+      cue: "Drop to a plank, chest to the floor, jump your feet in, explode up. All-out, full body." },
+
+    /* ---- standalone core / conditioning ---- */
+    deadbug:     { name: "Dead bug",            demo: "deadbug", type: "timed",
+      cue: "Lower opposite arm and leg without letting your back arch off the floor. Slow and controlled." },
+    calfraise:   { name: "Calf raises",         demo: "calf", type: "timed",
+      cue: "Drive up onto your toes fast, control the lower. Feel it burn by the last few reps." },
+    standoblique:{ name: "Standing oblique twists", demo: "oblique", type: "timed", perSide: true,
+      cue: "Reach and crunch to the side hard — drive through your obliques, not your arms." },
+    birddog:     { name: "Bird dog",            demo: "birddog", type: "timed", perSide: true,
+      cue: "Reach opposite arm and leg long, pause, squeeze your core, then switch. Control beats speed." },
+    mountainclimbers: { name: "Mountain climbers", demo: "plank-full", type: "timed", impact: true,
+      cue: "Drive your knees to your chest fast, keep your hips low and core braced. Sprint it." },
+    bicyclecrunch: { name: "Bicycle crunches",  demo: "deadbug", type: "timed",
+      cue: "Elbow to opposite knee, full rotation, no momentum from your neck. Make your abs do the work." },
+    skater:      { name: "Skater jumps",        demo: "skater", type: "timed", perSide: true, impact: true,
+      cue: "Push off hard side to side, land soft on one leg, control the balance. Feel it in your outer hips." }
   };
 
   /* ---------- move ladders (easiest → hardest) ----------
      A pool slot named by a ladder id resolves to the rung she's unlocked.
      Anything not listed here is a single-rung move used as-is. */
   var LADDERS = {
-    legs:   ["supportsquat", "squat", "splitsquat"],
-    push:   ["wallpush", "kneepush", "pushup"],
+    legs:   ["squat", "splitsquat", "jumplunge"],
+    push:   ["pushup", "plyopushup"],
+    plank:  ["plankfull", "plankjacks"],
     bridge: ["glutebridge", "bridgemarch", "singlebridge"],
-    lunge:  ["stepback", "reverselunge"],
-    plank:  ["forearmhold", "plankfull"]
+    cardio: ["highknees", "squatjump", "burpees"]
   };
-  var LADDER_TITLES = { legs: "Squats", push: "Push-ups", bridge: "Bridges", lunge: "Lunges", plank: "Planks" };
+  var LADDER_TITLES = { legs: "Squats & Lunges", push: "Push-ups", plank: "Planks", bridge: "Bridges", cardio: "Cardio" };
   var LADDER_OF = {};
   Object.keys(LADDERS).forEach(function (id) {
     LADDERS[id].forEach(function (ex, i) { LADDER_OF[ex] = { id: id, idx: i }; });
@@ -206,12 +207,14 @@
       test: function () { return (state.week || 1) >= 4; } },
     { id: "plank45",  name: "Steady plank",       desc: "Held a plank 45 seconds or more.",
       test: function () { return (state.pr.longestHold || 0) >= 45; } },
-    { id: "pushup",   name: "First full push-up", desc: "Earned full push-ups.",
-      test: function () { return (state.levels.push || 0) >= 2; } },
+    { id: "plyopush", name: "Explosive power",    desc: "Earned explosive push-ups.",
+      test: function () { return (state.levels.push || 0) >= 1; } },
     { id: "single",   name: "Single-leg strong",  desc: "Earned single-leg bridges or split squats.",
-      test: function () { return (state.levels.bridge || 0) >= 2 || (state.levels.legs || 0) >= 2; } },
+      test: function () { return (state.levels.bridge || 0) >= 2 || (state.levels.legs || 0) >= 1; } },
     { id: "s20",      name: "Twenty sessions",    desc: "Twenty sessions in the books.",
-      test: function () { return state.totalSessions >= 20; } }
+      test: function () { return state.totalSessions >= 20; } },
+    { id: "burpee",   name: "All-out",            desc: "Earned burpees — the hardest move in the circuit.",
+      test: function () { return (state.levels.cardio || 0) >= 2; } }
   ];
   function leveledCount() {
     var n = 0; Object.keys(LADDERS).forEach(function (id) { if ((state.levels[id] || 0) >= 1) n++; });
@@ -230,36 +233,36 @@
     return gained;
   }
 
-  /* ---------- tiers (set the floor + the pace; ladders climb on top) ----------
-     pool entries are ladder ids (legs/push/bridge/lunge/plank) or plain moves.
-     order: gentlest → strongest. 'lift' adds light impact and is opt-in. */
+  /* ---------- tiers (set the flavor + the pace; ladders climb on top) ----------
+     pool entries are ladder ids (legs/push/plank/bridge/cardio) or plain moves.
+     Four training styles, all real intensity — no gentle on-ramp, no gating. */
   var TIERS = {
-    restore: {
-      label: "Restore", tag: "Easing in",
-      blurb: "Breath, glutes, and gentle strength. A calm place to start or to land on a tired day.",
-      work: 30, rest: 22,
-      pool: ["pelvictilt", "bridge", "birddog", "clamshell", "legs", "push", "sideleg", "march"]
+    strength: {
+      label: "Strength", tag: "Build real power",
+      blurb: "Squats, push-ups, planks, and bridges — bodyweight strength with real intensity. Short rest, full effort.",
+      work: 35, rest: 12,
+      pool: ["legs", "push", "plank", "bridge", "deadbug", "standoblique", "calfraise"]
     },
-    rebuild: {
-      label: "Rebuild", tag: "Building steady strength",
-      blurb: "The everyday session. Squats, lunges, push-ups and standing core, with room to get harder as you do.",
-      work: 35, rest: 18,
-      pool: ["legs", "bridge", "lunge", "push", "deadbug", "sideleg", "standoblique", "calfraise", "birddog"]
+    hiit: {
+      label: "HIIT", tag: "Cardio meets strength",
+      blurb: "Jump squats, burpees, mountain climbers, and high knees, mixed with strength work. Your heart rate stays up the whole time.",
+      work: 35, rest: 10,
+      pool: ["cardio", "legs", "push", "mountainclimbers", "skater", "plank"]
     },
-    strengthen: {
-      label: "Strengthen", tag: "Stronger days",
-      blurb: "Fuller range, longer work intervals, and a real plank. For when you're feeling capable.",
-      work: 40, rest: 15,
-      pool: ["legs", "lunge", "push", "bridge", "plank", "deadbug", "standoblique", "calfraise", "march"]
+    core: {
+      label: "Core Burn", tag: "Deep core, no mercy",
+      blurb: "Planks, bicycle crunches, mountain climbers, and bird dogs — a real core finisher.",
+      work: 30, rest: 8,
+      pool: ["plank", "bicyclecrunch", "deadbug", "birddog", "mountainclimbers", "standoblique"]
     },
-    lift: {
-      label: "Lift", tag: "Strong, with a little spring", impact: true,
-      blurb: "Adds light, soft-landing impact — squat jumps and quick feet — on top of your strength work. Opt in when your pelvic floor feels ready.",
-      work: 40, rest: 16,
-      pool: ["legs", "squatjump", "lunge", "push", "highknees", "plank", "skater", "standoblique", "calfraise"]
+    allout: {
+      label: "All Out", tag: "Everything, max effort",
+      blurb: "The whole circuit — strength, cardio, and core — at your hardest pace. Leave it all on the floor.",
+      work: 40, rest: 8,
+      pool: ["cardio", "legs", "push", "plank", "bicyclecrunch", "mountainclimbers", "skater"]
     }
   };
-  var TIER_ORDER = ["restore", "rebuild", "strengthen", "lift"];
+  var TIER_ORDER = ["strength", "hiit", "core", "allout"];
 
   var WARMUP = [ ["breathing", 40], ["catcow", 30], ["march", 30] ];
   var COOLDOWN = [ ["kneehug", 36], ["childpose", 34], ["breathing", 44] ];
@@ -657,16 +660,16 @@
     card.appendChild(btn);
     c.appendChild(card);
 
-    // step-up nudge: consistent enough to try the next tier (up to Strengthen)
+    // mix-it-up nudge: consistent enough to rotate to a new training style
     var ti = TIER_ORDER.indexOf(state.tier);
-    var nextTier = (ti >= 0 && ti < 2) ? TIER_ORDER[ti + 1] : null;
+    var nextTier = (ti >= 0 && ti < TIER_ORDER.length - 1) ? TIER_ORDER[ti + 1] : null;
     if (nextTier && (state.tierCounts[state.tier] || 0) >= 6 && (state.week || 1) >= 2 && !state.tierNudged[state.tier]) {
       var cur = state.tier;
       var nu = el("div", "nudge");
-      nu.innerHTML = '<div class="nudge-k">YOU\'RE READY FOR MORE</div>' +
-        '<div class="nudge-t">You\'ve been steady on ' + t.label + '. Want to step up to <b>' + TIERS[nextTier].label + '</b>?</div>';
+      nu.innerHTML = '<div class="nudge-k">MIX IT UP</div>' +
+        '<div class="nudge-t">You\'ve been steady on ' + t.label + '. Want to try <b>' + TIERS[nextTier].label + '</b>?</div>';
       var nrow = el("div", "nudge-row");
-      var yes = el("button", "btn-soft", "Step up");
+      var yes = el("button", "btn-soft", "Try it");
       yes.addEventListener("click", function () { state.tierNudged[cur] = true; state.tier = nextTier; save(); renderToday(); });
       var no = el("button", "link-quiet", "Not yet");
       no.addEventListener("click", function () { state.tierNudged[cur] = true; save(); renderToday(); });
@@ -860,22 +863,7 @@
   }
 
   function selectTier(tk) {
-    if (TIERS[tk].impact && !state.okImpact) { showImpactGate(tk); return; }
     state.tier = tk; save(); renderAbout();
-  }
-  function showImpactGate(tk) {
-    var sheet = el("div", "sheet");
-    sheet.innerHTML =
-      '<div class="sheet-grip"></div>' +
-      '<h3 class="sheet-name">Before you add impact</h3>' +
-      '<p class="sheet-cue">Lift adds light, soft-landing jumps and quick feet on top of your strength work. It\'s a great next gear once your core and pelvic floor feel ready.</p>' +
-      '<p class="sheet-cue">Hold off — or check in with a pelvic-floor physio first — if you feel any heaviness, pressure, or leaking when you jump, cough, or sneeze. You can switch it on here anytime.</p>';
-    var ok = el("button", "btn-primary", "I'm ready — turn on Lift");
-    ok.addEventListener("click", function () { state.okImpact = true; state.tier = tk; save(); closeSheet(); renderAbout(); });
-    var no = el("button", "btn-soft", "Not now");
-    no.addEventListener("click", closeSheet);
-    sheet.appendChild(ok); sheet.appendChild(no);
-    showSheet(sheet);
   }
 
   function renderAbout() {
@@ -884,13 +872,12 @@
     c.appendChild(el("h2", "scr-h", "Set it up your way"));
 
     // tier cards
-    c.appendChild(el("div", "mini-h", "Intensity"));
+    c.appendChild(el("div", "mini-h", "Style"));
     var tg = el("div", "tier-group");
     TIER_ORDER.forEach(function (tk) {
       var t = TIERS[tk];
-      var b = el("button", "tier-card" + (state.tier === tk ? " sel" : "") + (t.impact ? " impact" : ""));
-      b.innerHTML = '<div class="tier-top"><span class="tier-name">' + t.label +
-        (t.impact ? ' <span class="impact-badge">light impact</span>' : '') + '</span>' +
+      var b = el("button", "tier-card" + (state.tier === tk ? " sel" : ""));
+      b.innerHTML = '<div class="tier-top"><span class="tier-name">' + t.label + '</span>' +
         '<span class="tier-tag">' + t.tag + '</span></div>' +
         '<div class="tier-blurb">' + t.blurb + '</div>';
       b.addEventListener("click", function () { selectTier(tk); });
@@ -1054,13 +1041,12 @@
 
   function safetyBlock() {
     var wrap = el("div", "safety");
-    var head = el("button", "safety-head", '<span>A note on building back strength</span><span class="chev">›</span>');
+    var head = el("button", "safety-head", '<span>A note on training hard</span><span class="chev">›</span>');
     var body = el("div", "safety-body");
     body.innerHTML =
-      '<p>If you\'re recently postpartum or had a C-section, get your provider\'s OK before ramping up. Otherwise, listen to your body and build gradually.</p>' +
-      '<p>Ease off and check in with a provider if you notice pain, dizziness, or any heaviness, pressure, or leaking in your pelvic floor — a pelvic-floor physio is worth it and can clear you for the harder work.</p>' +
-      '<p>While you\'re still nursing, keep water close and eat enough. This is about getting <b>stronger</b>, not eating less — under-fueling can dent your energy and your supply. Strength first; the rest follows.</p>' +
-      '<p>Some days a Quick 5, a stretch, or a nap is the right call. That still counts.</p>';
+      '<p>Warm up before you go all-out, and stop if you feel sharp pain, dizziness, or anything that feels wrong — push hard, but push smart.</p>' +
+      '<p>Keep water close and eat enough. This is about getting <b>stronger</b>, not eating less — under-fueling will tank your energy and your recovery.</p>' +
+      '<p>Some days a Quick 5 is the right call instead of skipping entirely. That still counts.</p>';
     body.style.display = "none";
     head.addEventListener("click", function () {
       var open = body.style.display === "none";
@@ -1403,8 +1389,8 @@
       '<div class="intro-card">' +
       '<div class="intro-bloom">' + bloomSVG() + '</div>' +
       '<h1 class="intro-h">Welcome to BLOOM</h1>' +
-      '<p class="intro-p">Short daily sessions, no equipment, built to help you get your strength back on your terms. It starts gentle and climbs as you do — harder moves to earn, longer intervals each week.</p>' +
-      '<div class="intro-note">If you\'re recently postpartum or had a C-section, get your provider\'s okay first. Move at your own pace, fuel well while you\'re nursing, and stop if anything hurts.</div>' +
+      '<p class="intro-p">Real bodyweight strength and HIIT, no equipment, no gym, no wasted time. Squeeze in a full session or a Quick 5 whenever you\'ve got a window — it still counts, and it climbs with you as you get stronger.</p>' +
+      '<div class="intro-note">Warm up first, push hard, and stop if anything feels wrong. Otherwise — go all-out.</div>' +
       '</div>';
     var b = el("button", "btn-primary big", "Let's begin");
     b.addEventListener("click", function () {

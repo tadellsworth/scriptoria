@@ -1,104 +1,92 @@
 {
-  "ex_breathing": {
-    "text": "Core breaths. Inhale wide, then exhale and gently draw your belly toward your spine."
-  },
-  "ex_catcow": {
-    "text": "Cat–cow. Round and arch slowly, following your breath."
-  },
-  "ex_march": {
-    "text": "Standing marches. Lift each knee with control. Stay tall and easy."
-  },
-  "ex_pelvictilt": {
-    "text": "Pelvic tilts. Tip your pelvis, flattening your low back, then release."
-  },
-  "ex_glutebridge": {
-    "text": "Glute bridges. Press through your heels, lift the hips, squeeze, lower slowly."
-  },
-  "ex_bridgemarch": {
-    "text": "Bridge marches. Hold the bridge tall and lift one foot, then the other."
-  },
-  "ex_birddog": {
-    "text": "Bird dog. Reach opposite arm and leg long. Keep your hips level."
-  },
-  "ex_glutekick": {
-    "text": "Glute kickbacks. On all fours, press one heel toward the ceiling."
-  },
-  "ex_clamshell": {
-    "text": "Clamshells. Side-lying, open the top knee like a clam. Keep feet together."
-  },
-  "ex_sideleg": {
-    "text": "Side leg lifts. Lift the top leg with control, then lower without dropping."
-  },
-  "ex_wallpush": {
-    "text": "Wall push-ups. Hands on the wall, bend the elbows, press back tall."
-  },
-  "ex_kneepush": {
-    "text": "Knee push-ups. From your knees, lower with control and press up."
-  },
-  "ex_squat": {
-    "text": "Bodyweight squats. Sit back like reaching for a chair. Stand tall and breathe out."
-  },
-  "ex_supportsquat": {
-    "text": "Supported squats. Hold a counter for balance and sit back gently."
-  },
-  "ex_reverselunge": {
-    "text": "Reverse lunges. Step back and lower, then drive through the front heel."
-  },
-  "ex_stepback": {
-    "text": "Step-back reach. Step back into a gentle lunge and reach tall."
-  },
-  "ex_deadbug": {
-    "text": "Dead bug. Lower opposite arm and leg slowly. Keep your back quiet."
-  },
-  "ex_calfraise": {
-    "text": "Calf raises. Rise onto your toes, pause, lower slowly."
-  },
-  "ex_standoblique": {
-    "text": "Standing side reach. Reach overhead and bend gently to the side."
-  },
-  "ex_forearmhold": {
-    "text": "Forearm hold. Hold a steady line from your knees. Breathe — don't bear down."
-  },
-  "ex_kneehug": {
-    "text": "Knee hugs. Draw one knee toward your chest and soften."
-  },
-  "ex_childpose": {
-    "text": "Child's pose. Sink your hips back and let everything settle."
-  },
-  "ex_splitsquat": {
-    "text": "Split squats. Front foot forward, back knee dips toward the floor. Drive up through the front heel."
-  },
-  "ex_pushup": {
-    "text": "Full push-ups. On your toes now. Lower with control and press the floor away. Drop to knees anytime."
-  },
-  "ex_singlebridge": {
-    "text": "Single-leg bridges. One foot planted, the other leg long. Lift the hips level and lower slow."
-  },
-  "ex_plankfull": {
-    "text": "Forearm plank. Full plank on your toes — long line from head to heels, ribs down, keep breathing."
-  },
-  "ex_squatjump": {
-    "text": "Squat jumps. Sit back, then spring up and land soft and quiet through the whole foot."
-  },
-  "ex_highknees": {
-    "text": "High-knee jog. Light, quick feet in place. Stay tall and land softly."
-  },
-  "ex_skater": {
-    "text": "Skater steps. Glide side to side like a skater, soft knees, control the landing."
-  },
-  "rest": {
-    "text": "Rest. Take a breath — the next move is coming up."
-  },
-  "switch": {
-    "text": "Switch sides."
-  },
-  "finish": {
-    "text": "Beautiful. You got stronger today."
-  },
-  "cues_on": {
-    "text": "Spoken cues on."
-  },
-  "preview": {
-    "text": "Nice and steady. Let's get a little stronger today."
-  }
+ "ex_breathing": {
+  "text": "Core breaths. Inhale wide through the nose, exhale hard through the mouth. Get your breath ready to work."
+ },
+ "ex_catcow": {
+  "text": "Cat–cow. Round and arch through your spine — wake up your core before you load it."
+ },
+ "ex_march": {
+  "text": "Standing marches. Quick, controlled knee drives. Get your heart rate moving."
+ },
+ "ex_kneehug": {
+  "text": "Knee hugs. Draw one knee to your chest, control the release. Let your legs recover."
+ },
+ "ex_childpose": {
+  "text": "Child's pose. Sink your hips back, breathe deep, let your heart rate settle."
+ },
+ "ex_squat": {
+  "text": "Bodyweight squats. Sit back and down, chest up, drive through your heels to stand. Full range, every rep."
+ },
+ "ex_splitsquat": {
+  "text": "Split squats. Front foot planted, back knee taps the floor, drive up through the front heel. Fast and controlled."
+ },
+ "ex_jumplunge": {
+  "text": "Jump lunges. Explode up and switch legs in the air. Land soft, absorb through the hips, go again."
+ },
+ "ex_pushup": {
+  "text": "Full push-ups. Full range — chest to the floor, press away hard. Keep your core tight the whole time."
+ },
+ "ex_plyopushup": {
+  "text": "Explosive push-ups. Lower with control, then press explosively — hands leave the floor if you've got it. Reset and go again."
+ },
+ "ex_plankfull": {
+  "text": "Forearm plank. Long line from head to heels. Brace your core like you're about to get punched."
+ },
+ "ex_plankjacks": {
+  "text": "Plank jacks. Hold the plank, jump your feet wide and back. Keep your hips still — don't let them bounce."
+ },
+ "ex_glutebridge": {
+  "text": "Glute bridges. Squeeze at the top like you're cracking a walnut with your glutes. Full lockout, every rep."
+ },
+ "ex_bridgemarch": {
+  "text": "Bridge marches. Hold the bridge, drive one knee up, then the other — don't let your hips drop."
+ },
+ "ex_singlebridge": {
+  "text": "Single-leg bridges. One foot planted, one leg long. Drive the hips up and hold the squeeze at the top."
+ },
+ "ex_highknees": {
+  "text": "High knees. Drive your knees up fast, pump your arms. Stay light on your feet — this is your engine builder."
+ },
+ "ex_squatjump": {
+  "text": "Squat jumps. Load deep, then explode straight up. Land soft and go right back down — no resting at the top."
+ },
+ "ex_burpees": {
+  "text": "Burpees. Drop to a plank, chest to the floor, jump your feet in, explode up. All-out, full body."
+ },
+ "ex_deadbug": {
+  "text": "Dead bug. Lower opposite arm and leg without letting your back arch off the floor. Slow and controlled."
+ },
+ "ex_calfraise": {
+  "text": "Calf raises. Drive up onto your toes fast, control the lower. Feel it burn by the last few reps."
+ },
+ "ex_standoblique": {
+  "text": "Standing oblique twists. Reach and crunch to the side hard — drive through your obliques, not your arms."
+ },
+ "ex_birddog": {
+  "text": "Bird dog. Reach opposite arm and leg long, pause, squeeze your core, then switch. Control beats speed."
+ },
+ "ex_mountainclimbers": {
+  "text": "Mountain climbers. Drive your knees to your chest fast, keep your hips low and core braced. Sprint it."
+ },
+ "ex_bicyclecrunch": {
+  "text": "Bicycle crunches. Elbow to opposite knee, full rotation, no momentum from your neck. Make your abs do the work."
+ },
+ "ex_skater": {
+  "text": "Skater jumps. Push off hard side to side, land soft on one leg, control the balance. Feel it in your outer hips."
+ },
+ "rest": {
+  "text": "Rest. Next, <next exercise name>"
+ },
+ "switch": {
+  "text": "Switch sides"
+ },
+ "finish": {
+  "text": "Beautiful. You got stronger today."
+ },
+ "cues_on": {
+  "text": "Spoken cues on."
+ },
+ "preview": {
+  "text": "This is what a recorded cue sounds like."
+ }
 }
