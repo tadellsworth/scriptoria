@@ -1,12 +1,13 @@
 # Scriptoria monorepo
 
-Two independent Catholic web apps, developed side by side in one repo and published to a
-single GitHub Pages site under separate paths.
+Independent personal PWAs, developed side by side in one repo and published to a single
+GitHub Pages site under separate paths.
 
 | App | Source | Live URL | Stack |
 |-----|--------|----------|-------|
 | **Scriptoria** | [`apps/scriptoria/`](apps/scriptoria/) | `https://tadellsworth.github.io/scriptoria/` | Vite + React PWA |
 | **Lumen** | [`apps/lumen/`](apps/lumen/) | `https://tadellsworth.github.io/scriptoria/lumen/` | Vanilla-JS PWA, Python build tooling |
+| **Bloom** | [`apps/bloom/`](apps/bloom/) | `https://tadellsworth.github.io/scriptoria/bloom/` | Vanilla-JS PWA, Python build tooling |
 
 Each app has its own toolchain, build, and service worker. They share nothing at runtime —
 editing one never touches the other.
@@ -16,10 +17,11 @@ editing one never touches the other.
 ```
 .
 ├── apps/
-│   ├── scriptoria/        Vite + React PWA (its own package.json, vite.config.ts)
-│   └── lumen/             single-file PWA + Python corpus/build tooling (formato)
+│   ├── scriptoria/  Vite + React PWA (its own package.json, vite.config.ts)
+│   ├── lumen/       single-file PWA + Python corpus/build tooling (formato)
+│   └── bloom/       single-file PWA + Python build tooling (strength-progression workouts)
 └── .github/workflows/
-    └── deploy.yml         builds both apps → publishes to GitHub Pages
+    └── deploy.yml         builds every app → publishes to GitHub Pages
 ```
 
 ## Develop
@@ -45,11 +47,22 @@ python3 build.py         # assemble → apps/lumen/dist (index.html, content.jso
 `--out /path`. See [`apps/lumen/CLAUDE.md`](apps/lumen/CLAUDE.md) for the full corpus/build
 loop and golden rules.
 
+**Bloom** (Python 3 + Node for the syntax gate):
+
+```bash
+cd apps/bloom
+python3 build.py       # assemble → apps/bloom/dist/index.html; sw.js is hand-maintained, copy it in alongside
+```
+
+`build.py` writes to `apps/bloom/dist` by default; override with `BLOOM_OUT=/path`. See
+[`apps/bloom/BLOOM-HANDOFF.md`](apps/bloom/BLOOM-HANDOFF.md) for the recorded-voice-cue
+feature status.
+
 ## Deploy
 
 Pushing to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which
-builds both apps and publishes them to GitHub Pages — Scriptoria at the site root, Lumen at
-`/lumen/`.
+builds every app and publishes them to GitHub Pages — Scriptoria at the site root, Lumen at
+`/lumen/`, Bloom at `/bloom/`.
 
 **One-time setup:** in the repo's **Settings → Pages → Build and deployment**, set
 **Source** to **GitHub Actions**. After that every push to `main` deploys automatically (or
@@ -57,5 +70,5 @@ run the workflow manually from the **Actions** tab).
 
 > Scriptoria's Vite `base` is `/scriptoria/` to match the Pages project URL. If the repo is
 > ever renamed or moved to a custom domain, update `base` (and the PWA `scope`/`start_url`)
-> in `apps/scriptoria/vite.config.ts`. Lumen uses only relative paths, so it needs no such
-> change.
+> in `apps/scriptoria/vite.config.ts`. Lumen and Bloom use only relative paths, so they need
+> no such change.

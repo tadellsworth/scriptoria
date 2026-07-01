@@ -37,10 +37,10 @@ export default defineConfig({
       workbox: {
         // Keep the SPA navigation fallback (which serves the React index.html) away
         // from sibling sub-apps. Scriptoria's SW scope (/scriptoria/) also covers the
-        // embedded Latin course (/scriptoria/lingua/) and the separate Lumen app
-        // (/scriptoria/lumen/); without these denials a first visit to either could be
-        // served Scriptoria's app shell instead of its own page.
-        navigateFallbackDenylist: [/^\/scriptoria\/lingua\//, /^\/scriptoria\/lumen\//],
+        // embedded Latin course (/scriptoria/lingua/) and the separate Lumen and Bloom
+        // apps; without these denials a first visit to any of them could be served
+        // Scriptoria's app shell instead of its own page.
+        navigateFallbackDenylist: [/^\/scriptoria\/lingua\//, /^\/scriptoria\/lumen\//, /^\/scriptoria\/bloom\//],
         // Cache the app shell; readings/parish data are runtime-cached so the
         // app stays useful offline (with the bundled fallbacks).
         globPatterns: ['**/*.{js,css,html,svg,woff,woff2}'],
