@@ -1,8 +1,9 @@
 name: Deploy apps to GitHub Pages
 
-# Builds both apps in the monorepo and publishes them to one GitHub Pages site:
+# Builds every app in the monorepo and publishes them to one GitHub Pages site:
 #   Scriptoria → https://<user>.github.io/scriptoria/
 #   Lumen      → https://<user>.github.io/scriptoria/lumen/
+#   Bloom      → https://<user>.github.io/scriptoria/bloom/
 #
 # One-time setup: repo Settings → Pages → "Build and deployment" → Source =
 # "GitHub Actions". After that, every push to main deploys.
@@ -58,10 +59,23 @@ jobs:
           LUMEN_OUT: ${{ github.workspace }}/_site/lumen
         run: python3 build.py
 
+      # --- Bloom (vanilla PWA assembled by build.py) → /bloom ------------------
+      # build.py inlines app.js + injects the icon/exercise tiles/audio cues (audio
+      # is optional — build.py injects {} if audio_b64.json is absent, and the app
+      # falls back to the live on-device voice for any missing cue). sw.js is
+      # hand-maintained, not produced by build.py, so it's copied alongside.
+      - name: Build Bloom
+        working-directory: apps/bloom
+        env:
+          BLOOM_OUT: ${{ github.workspace }}/_site/bloom
+        run: |
+          python3 build.py
+          cp sw.js "$BLOOM_OUT/sw.js"
+
       # --- Assemble the published site -----------------------------------------
       - name: Assemble site
         run: |
-          # Scriptoria at the root; Lumen already written to _site/lumen above.
+          # Scriptoria at the root; Lumen and Bloom already written to _site/* above.
           cp -r apps/scriptoria/dist/. _site/
           # Disable Jekyll so files/folders beginning with _ are served verbatim.
           touch _site/.nojekyll
