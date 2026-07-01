@@ -4,6 +4,7 @@ name: Deploy apps to GitHub Pages
 #   Scriptoria → https://<user>.github.io/scriptoria/
 #   Lumen      → https://<user>.github.io/scriptoria/lumen/
 #   Bloom      → https://<user>.github.io/scriptoria/bloom/
+#   Vigor      → https://<user>.github.io/scriptoria/vigor/
 #
 # One-time setup: repo Settings → Pages → "Build and deployment" → Source =
 # "GitHub Actions". After that, every push to main deploys.
@@ -71,6 +72,15 @@ jobs:
         run: |
           python3 build.py
           cp sw.js "$BLOOM_OUT/sw.js"
+
+      # --- Vigor (vanilla PWA assembled by build.py) → /vigor ------------------
+      # build.py extracts the inline <script>, runs `node --check`, injects the
+      # base64 icons into src/app_template.html, and writes index.html + sw.js.
+      - name: Build Vigor
+        working-directory: apps/vigor
+        env:
+          VIGOR_OUT: ${{ github.workspace }}/_site/vigor
+        run: python3 build.py
 
       # --- Assemble the published site -----------------------------------------
       - name: Assemble site
