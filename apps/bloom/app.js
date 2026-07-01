@@ -94,19 +94,19 @@
       cue: "Sit back and down, chest up, drive through your heels to stand. Full range, every rep." },
     splitsquat:  { name: "Split squats",        demo: "lunge", type: "timed", perSide: true,
       cue: "Front foot planted, back knee taps the floor, drive up through the front heel. Fast and controlled." },
-    jumplunge:   { name: "Jump lunges",         demo: "lunge", type: "timed", perSide: true, impact: true,
+    jumplunge:   { name: "Jump lunges",         demo: "jump-lunge", type: "timed", perSide: true, impact: true,
       cue: "Explode up and switch legs in the air. Land soft, absorb through the hips, go again." },
 
     /* ---- push (full push-up → explosive push-up) ---- */
     pushup:      { name: "Full push-ups",       demo: "pushup-full", type: "timed",
       cue: "Full range — chest to the floor, press away hard. Keep your core tight the whole time." },
-    plyopushup:  { name: "Explosive push-ups",  demo: "pushup-full", type: "timed", impact: true,
+    plyopushup:  { name: "Explosive push-ups",  demo: "plyo-pushup", type: "timed", impact: true,
       cue: "Lower with control, then press explosively — hands leave the floor if you've got it. Reset and go again." },
 
     /* ---- plank (forearm plank → plank jacks) ---- */
     plankfull:   { name: "Forearm plank",       demo: "plank-full", type: "hold",
       cue: "Long line from head to heels. Brace your core like you're about to get punched." },
-    plankjacks:  { name: "Plank jacks",         demo: "plank-full", type: "timed", impact: true,
+    plankjacks:  { name: "Plank jacks",         demo: "plank-jacks", type: "timed", impact: true,
       cue: "Hold the plank, jump your feet wide and back. Keep your hips still — don't let them bounce." },
 
     /* ---- bridge (glute bridge → bridge march → single-leg bridge) ---- */
@@ -122,7 +122,7 @@
       cue: "Drive your knees up fast, pump your arms. Stay light on your feet — this is your engine builder." },
     squatjump:   { name: "Squat jumps",         demo: "squat-jump", type: "timed", impact: true,
       cue: "Load deep, then explode straight up. Land soft and go right back down — no resting at the top." },
-    burpees:     { name: "Burpees",             demo: "squat-jump", type: "timed", impact: true,
+    burpees:     { name: "Burpees",             demo: "burpee", type: "timed", impact: true,
       cue: "Drop to a plank, chest to the floor, jump your feet in, explode up. All-out, full body." },
 
     /* ---- standalone core / conditioning ---- */
@@ -134,9 +134,9 @@
       cue: "Reach and crunch to the side hard — drive through your obliques, not your arms." },
     birddog:     { name: "Bird dog",            demo: "birddog", type: "timed", perSide: true,
       cue: "Reach opposite arm and leg long, pause, squeeze your core, then switch. Control beats speed." },
-    mountainclimbers: { name: "Mountain climbers", demo: "plank-full", type: "timed", impact: true,
+    mountainclimbers: { name: "Mountain climbers", demo: "mountain-climbers", type: "timed", impact: true,
       cue: "Drive your knees to your chest fast, keep your hips low and core braced. Sprint it." },
-    bicyclecrunch: { name: "Bicycle crunches",  demo: "deadbug", type: "timed",
+    bicyclecrunch: { name: "Bicycle crunches",  demo: "bicycle-crunch", type: "timed",
       cue: "Elbow to opposite knee, full rotation, no momentum from your neck. Make your abs do the work." },
     skater:      { name: "Skater jumps",        demo: "skater", type: "timed", perSide: true, impact: true,
       cue: "Push off hard side to side, land soft on one leg, control the balance. Feel it in your outer hips." }
