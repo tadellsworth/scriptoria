@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4A0F1A">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Line of Authority — the apostolic succession from Jesus Christ, through the Bishops of Rome and the chain of consecrating hands, to the baptism of Tad Ellsworth at the Easter Vigil, 2026.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="Line of Authority — Tad Ellsworth">
+<meta property="og:description" content="Apostolic succession from Jesus Christ to the Easter Vigil, 2026.">
+<meta property="og:type" content="website">
+<title>Line of Authority — Tad Ellsworth</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2014%2014'%3E%3Crect%20width='14'%20height='14'%20fill='%234A0F1A'/%3E%3Cpath%20d='M6%201h2v4h4v2H8v6H6V7H2V5h4z'%20fill='%23C5A55A'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2014%2014'%3E%3Crect%20width='14'%20height='14'%20fill='%234A0F1A'/%3E%3Cpath%20d='M6%201h2v4h4v2H8v6H6V7H2V5h4z'%20fill='%23C5A55A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* ══════════════════════════════════════════════════════
+   LINE OF AUTHORITY  ·  One Faith Delivered
+   A crimson + gold ecclesiastical palette on warm parchment.
+   Flattened to a single static, offline-graceful, mobile-first page.
+   ══════════════════════════════════════════════════════ */
+:root {
+  --crimson:      #8B0000;
+  --gold:         #C5A55A;
+  --dark-gold:    #8B7335;
+  --parchment:    #F5F0E8;
+  --ink:          #2A2A2A;
+  --muted:        #666666;
+  --surface-page: var(--parchment);
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    'Source Serif 4', Georgia, serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+
+  --grad-hero:  linear-gradient(135deg, #4A0F1A 0%, #6B1D2A 40%, #3D1520 100%);
+  --grad-panel: linear-gradient(135deg, #4A0F1A, #6B1D2A);
+  --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
+  --shadow-md:  0 2px 12px rgba(0,0,0,0.06);
+  --radius-md:  4px;
+  --radius-lg:  6px;
+  --texture-scanline: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+
+  --rail-bg: repeating-linear-gradient(to bottom, var(--crimson) 0 3px, transparent 3px 9px);
+  --row-gap: 22px;
+
+  /* geometry of the timeline rail */
+  --rail-x: 19px;      /* centre line of the dots */
+  --rail-indent: 46px; /* text inset from the rail */
+}
+
+* { box-sizing: border-box; }
+html { background: var(--surface-page); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Hero ── */
+.hero {
+  background: var(--grad-hero);
+  color: var(--parchment);
+  padding: 76px 40px 60px;
+  padding-left: max(40px, env(safe-area-inset-left));
+  padding-right: max(40px, env(safe-area-inset-right));
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero__scan { position: absolute; inset: 0; background: var(--texture-scanline); pointer-events: none; }
+.hero__inner { position: relative; z-index: 1; }
+.hero__eyebrow {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  opacity: 0.85; margin-bottom: 22px;
+}
+.ornament { color: var(--gold); font-size: 1rem; letter-spacing: 12px; opacity: 0.7; margin-bottom: 18px; }
+.hero__title {
+  font-family: var(--font-display); font-size: clamp(2.2rem, 8vw, 3.4rem);
+  font-weight: 900; letter-spacing: -0.5px; color: var(--parchment);
+  margin: 0 0 12px; line-height: 1.15;
+}
+.hero__title span { color: var(--gold); }
+.hero__name {
+  font-family: var(--font-body); font-size: clamp(1.15rem, 4vw, 1.35rem);
+  font-weight: 300; font-style: italic; color: rgba(245,240,232,0.82); margin: 0;
+}
+.hero__meta {
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase; color: rgba(197,165,90,0.7);
+  margin-top: 24px; line-height: 1.8;
+}
+
+/* ── Chain / timeline ── */
+.chain { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+.rail { position: relative; }
+.rail::before {
+  content: ""; position: absolute; left: var(--rail-x); top: 15px; bottom: 6px;
+  width: 2px; background: var(--rail-bg); opacity: 0.85;
+}
+
+.node { position: relative; padding: 0 0 var(--row-gap) var(--rail-indent); }
+.node__dot {
+  position: absolute; left: 12px; top: 5px; width: 15px; height: 15px;
+  border-radius: 50%; border: 2px solid var(--crimson); background: var(--parchment);
+  box-shadow: 0 0 0 5px var(--parchment);
+}
+.node__name { font-weight: 600; font-size: 1.04rem; color: var(--ink); line-height: 1.35; }
+.node__role { font-style: italic; font-size: 0.92rem; color: var(--muted); margin-top: 2px; }
+.node__date {
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark-gold); margin-top: 5px;
+}
+
+/* Christ — the source (larger badge + crimson display name) */
+.node--source { padding-bottom: 26px; }
+.node__badge {
+  position: absolute; left: 5px; top: 0; width: 29px; height: 29px; border-radius: 50%;
+  background: var(--grad-panel); box-shadow: 0 0 0 5px var(--parchment), var(--shadow-sm);
+  display: flex; align-items: center; justify-content: center;
+}
+.node__badge-ring { position: absolute; inset: 4px; border: 1px solid rgba(197,165,90,0.45); border-radius: 50%; }
+.node__source-name { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem; color: var(--crimson); line-height: 1.2; }
+.node__source-role {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--dark-gold); margin-top: 6px;
+}
+
+/* phase divider */
+.phase { position: relative; padding: 8px 0 16px var(--rail-indent); margin-top: 6px; }
+.phase__mark {
+  position: absolute; left: 12px; top: 5px; color: var(--gold); font-size: 0.95rem;
+  line-height: 1; background: var(--parchment); padding: 4px 0;
+}
+.phase__label {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson);
+}
+
+/* connector into the terminus */
+.connector { width: 2px; height: 30px; margin-left: var(--rail-x); background: var(--rail-bg); opacity: 0.85; }
+
+/* Tad — the arrival */
+.terminus {
+  position: relative; background: var(--grad-hero); border-radius: var(--radius-lg);
+  padding: 38px 40px; overflow: hidden; box-shadow: var(--shadow-md); text-align: center;
+}
+.terminus__frame { position: absolute; inset: 8px; border: 1px solid rgba(197,165,90,0.28); border-radius: var(--radius-md); pointer-events: none; }
+.terminus__inner { position: relative; z-index: 1; }
+.terminus__eyebrow {
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); opacity: 0.85; margin-bottom: 14px;
+}
+.terminus__name { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 6vw, 2rem); color: var(--gold); line-height: 1.1; margin-bottom: 12px; }
+.terminus__sub { font-style: italic; font-size: clamp(0.95rem, 3.6vw, 1.05rem); color: rgba(245,240,232,0.9); }
+.terminus__orn { color: var(--gold); font-size: 0.85rem; letter-spacing: 10px; opacity: 0.7; margin-top: 20px; }
+
+/* ── Small screens ── */
+@media (max-width: 480px) {
+  .hero { padding: 56px 22px 44px; padding-left: max(22px, env(safe-area-inset-left)); padding-right: max(22px, env(safe-area-inset-right)); }
+  .hero__eyebrow { margin-bottom: 16px; }
+  .ornament { letter-spacing: 9px; }
+  .chain { padding: 40px 18px 64px; }
+  .terminus { padding: 32px 22px; }
+  :root { --rail-indent: 42px; }
+}
+
+/* ── Print (a keepsake worth printing) ── */
+@media print {
+  html, body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .node, .phase, .terminus { break-inside: avoid; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<article>
+  <header class="hero">
+    <div class="hero__scan"></div>
+    <div class="hero__inner">
+      <div class="hero__eyebrow">Apostolic Succession</div>
+      <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+      <h1 class="hero__title">Line of <span>Authority</span></h1>
+      <p class="hero__name">Tad Ellsworth</p>
+      <p class="hero__meta">From Jesus Christ · Through the Hands of His Bishops · To the Easter Vigil, 2026</p>
+    </div>
+  </header>
+
+  <main class="chain">
+    <div class="rail">
+      <div class="node node--source">
+        <span class="node__badge" aria-hidden="true">
+          <span class="node__badge-ring"></span>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M6 1h2v4h4v2H8v6H6V7H2V5h4z" fill="var(--gold)"/></svg>
+        </span>
+        <div class="node__source-name">Jesus Christ</div>
+        <div class="node__source-role">The Source of All Authority</div>
+      </div>
+      <div class="phase" role="separator">
+        <span class="phase__mark" aria-hidden="true">✦</span>
+        <div class="phase__label">The Bishops of Rome — St. Peter to Benedict XIII</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Peter</div>
+        <div class="node__role">1st Bishop of Rome</div>
+        <div class="node__date">Reigned c. 30–64</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Linus</div>
+        <div class="node__role">2nd Bishop of Rome</div>
+        <div class="node__date">Reigned c. 64–76</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Anacletus</div>
+        <div class="node__role">3rd Bishop of Rome</div>
+        <div class="node__date">Reigned c. 76–88</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Clement I</div>
+        <div class="node__role">4th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 88–97</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Evaristus</div>
+        <div class="node__role">5th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 97–105</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Alexander I</div>
+        <div class="node__role">6th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 105–115</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Sixtus I</div>
+        <div class="node__role">7th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 115–125</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Telesphorus</div>
+        <div class="node__role">8th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 125–136</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Hyginus</div>
+        <div class="node__role">9th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 136–140</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Pius I</div>
+        <div class="node__role">10th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 140–155</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Anicetus</div>
+        <div class="node__role">11th Bishop of Rome</div>
+        <div class="node__date">Reigned c. 155–167</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Soter</div>
+        <div class="node__role">12th Bishop of Rome</div>
+        <div class="node__date">Reigned 167–175</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Eleutherius</div>
+        <div class="node__role">13th Bishop of Rome</div>
+        <div class="node__date">Reigned 175–189</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Victor I</div>
+        <div class="node__role">14th Bishop of Rome</div>
+        <div class="node__date">Reigned 189–199</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Zephyrinus</div>
+        <div class="node__role">15th Bishop of Rome</div>
+        <div class="node__date">Reigned 199–217</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Callixtus I</div>
+        <div class="node__role">16th Bishop of Rome</div>
+        <div class="node__date">Reigned 218–222</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Urban I</div>
+        <div class="node__role">17th Bishop of Rome</div>
+        <div class="node__date">Reigned 222–230</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Pontian</div>
+        <div class="node__role">18th Bishop of Rome</div>
+        <div class="node__date">Reigned 230–235</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Anterus</div>
+        <div class="node__role">19th Bishop of Rome</div>
+        <div class="node__date">Reigned 235–236</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Fabian</div>
+        <div class="node__role">20th Bishop of Rome</div>
+        <div class="node__date">Reigned 236–250</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Cornelius</div>
+        <div class="node__role">21st Bishop of Rome</div>
+        <div class="node__date">Reigned 251–253</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Lucius I</div>
+        <div class="node__role">22nd Bishop of Rome</div>
+        <div class="node__date">Reigned 253–254</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Stephen I</div>
+        <div class="node__role">23rd Bishop of Rome</div>
+        <div class="node__date">Reigned 254–257</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Sixtus II</div>
+        <div class="node__role">24th Bishop of Rome</div>
+        <div class="node__date">Reigned 257–258</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Dionysius</div>
+        <div class="node__role">25th Bishop of Rome</div>
+        <div class="node__date">Reigned 259–268</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Felix I</div>
+        <div class="node__role">26th Bishop of Rome</div>
+        <div class="node__date">Reigned 269–274</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Eutychian</div>
+        <div class="node__role">27th Bishop of Rome</div>
+        <div class="node__date">Reigned 275–283</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Caius</div>
+        <div class="node__role">28th Bishop of Rome</div>
+        <div class="node__date">Reigned 283–296</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Marcellinus</div>
+        <div class="node__role">29th Bishop of Rome</div>
+        <div class="node__date">Reigned 296–304</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Marcellus I</div>
+        <div class="node__role">30th Bishop of Rome</div>
+        <div class="node__date">Reigned 308–309</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Eusebius</div>
+        <div class="node__role">31st Bishop of Rome</div>
+        <div class="node__date">Reigned 309–310</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Miltiades</div>
+        <div class="node__role">32nd Bishop of Rome</div>
+        <div class="node__date">Reigned 311–314</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Sylvester I</div>
+        <div class="node__role">33rd Bishop of Rome</div>
+        <div class="node__date">Reigned 314–335</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Mark</div>
+        <div class="node__role">34th Bishop of Rome</div>
+        <div class="node__date">Reigned 336</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Julius I</div>
+        <div class="node__role">35th Bishop of Rome</div>
+        <div class="node__date">Reigned 337–352</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Liberius</div>
+        <div class="node__role">36th Bishop of Rome</div>
+        <div class="node__date">Reigned 352–366</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Damasus I</div>
+        <div class="node__role">37th Bishop of Rome</div>
+        <div class="node__date">Reigned 366–384</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Siricius</div>
+        <div class="node__role">38th Bishop of Rome</div>
+        <div class="node__date">Reigned 384–399</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Anastasius I</div>
+        <div class="node__role">39th Bishop of Rome</div>
+        <div class="node__date">Reigned 399–401</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Innocent I</div>
+        <div class="node__role">40th Bishop of Rome</div>
+        <div class="node__date">Reigned 401–417</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Zosimus</div>
+        <div class="node__role">41st Bishop of Rome</div>
+        <div class="node__date">Reigned 417–418</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Boniface I</div>
+        <div class="node__role">42nd Bishop of Rome</div>
+        <div class="node__date">Reigned 418–422</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Celestine I</div>
+        <div class="node__role">43rd Bishop of Rome</div>
+        <div class="node__date">Reigned 422–432</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Sixtus III</div>
+        <div class="node__role">44th Bishop of Rome</div>
+        <div class="node__date">Reigned 432–440</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Leo I (the Great)</div>
+        <div class="node__role">45th Bishop of Rome</div>
+        <div class="node__date">Reigned 440–461</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Hilarius</div>
+        <div class="node__role">46th Bishop of Rome</div>
+        <div class="node__date">Reigned 461–468</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Simplicius</div>
+        <div class="node__role">47th Bishop of Rome</div>
+        <div class="node__date">Reigned 468–483</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Felix III</div>
+        <div class="node__role">48th Bishop of Rome</div>
+        <div class="node__date">Reigned 483–492</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Gelasius I</div>
+        <div class="node__role">49th Bishop of Rome</div>
+        <div class="node__date">Reigned 492–496</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Anastasius II</div>
+        <div class="node__role">50th Bishop of Rome</div>
+        <div class="node__date">Reigned 496–498</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Symmachus</div>
+        <div class="node__role">51st Bishop of Rome</div>
+        <div class="node__date">Reigned 498–514</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Hormisdas</div>
+        <div class="node__role">52nd Bishop of Rome</div>
+        <div class="node__date">Reigned 514–523</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. John I</div>
+        <div class="node__role">53rd Bishop of Rome</div>
+        <div class="node__date">Reigned 523–526</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Felix IV</div>
+        <div class="node__role">54th Bishop of Rome</div>
+        <div class="node__date">Reigned 526–530</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Boniface II</div>
+        <div class="node__role">55th Bishop of Rome</div>
+        <div class="node__date">Reigned 530–532</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John II</div>
+        <div class="node__role">56th Bishop of Rome</div>
+        <div class="node__date">Reigned 533–535</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Agapetus I</div>
+        <div class="node__role">57th Bishop of Rome</div>
+        <div class="node__date">Reigned 535–536</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Silverius</div>
+        <div class="node__role">58th Bishop of Rome</div>
+        <div class="node__date">Reigned 536–537</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Vigilius</div>
+        <div class="node__role">59th Bishop of Rome</div>
+        <div class="node__date">Reigned 537–555</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pelagius I</div>
+        <div class="node__role">60th Bishop of Rome</div>
+        <div class="node__date">Reigned 556–561</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John III</div>
+        <div class="node__role">61st Bishop of Rome</div>
+        <div class="node__date">Reigned 561–574</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict I</div>
+        <div class="node__role">62nd Bishop of Rome</div>
+        <div class="node__date">Reigned 575–579</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pelagius II</div>
+        <div class="node__role">63rd Bishop of Rome</div>
+        <div class="node__date">Reigned 579–590</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Gregory I (the Great)</div>
+        <div class="node__role">64th Bishop of Rome</div>
+        <div class="node__date">Reigned 590–604</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sabinian</div>
+        <div class="node__role">65th Bishop of Rome</div>
+        <div class="node__date">Reigned 604–606</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Boniface III</div>
+        <div class="node__role">66th Bishop of Rome</div>
+        <div class="node__date">Reigned 607</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Boniface IV</div>
+        <div class="node__role">67th Bishop of Rome</div>
+        <div class="node__date">Reigned 608–615</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Adeodatus I</div>
+        <div class="node__role">68th Bishop of Rome</div>
+        <div class="node__date">Reigned 615–618</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Boniface V</div>
+        <div class="node__role">69th Bishop of Rome</div>
+        <div class="node__date">Reigned 619–625</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Honorius I</div>
+        <div class="node__role">70th Bishop of Rome</div>
+        <div class="node__date">Reigned 625–638</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Severinus</div>
+        <div class="node__role">71st Bishop of Rome</div>
+        <div class="node__date">Reigned 640</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John IV</div>
+        <div class="node__role">72nd Bishop of Rome</div>
+        <div class="node__date">Reigned 640–642</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Theodore I</div>
+        <div class="node__role">73rd Bishop of Rome</div>
+        <div class="node__date">Reigned 642–649</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Martin I</div>
+        <div class="node__role">74th Bishop of Rome</div>
+        <div class="node__date">Reigned 649–653</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Eugene I</div>
+        <div class="node__role">75th Bishop of Rome</div>
+        <div class="node__date">Reigned 654–657</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Vitalian</div>
+        <div class="node__role">76th Bishop of Rome</div>
+        <div class="node__date">Reigned 657–672</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Adeodatus II</div>
+        <div class="node__role">77th Bishop of Rome</div>
+        <div class="node__date">Reigned 672–676</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Donus</div>
+        <div class="node__role">78th Bishop of Rome</div>
+        <div class="node__date">Reigned 676–678</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Agatho</div>
+        <div class="node__role">79th Bishop of Rome</div>
+        <div class="node__date">Reigned 678–681</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Leo II</div>
+        <div class="node__role">80th Bishop of Rome</div>
+        <div class="node__date">Reigned 682–683</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Benedict II</div>
+        <div class="node__role">81st Bishop of Rome</div>
+        <div class="node__date">Reigned 684–685</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John V</div>
+        <div class="node__role">82nd Bishop of Rome</div>
+        <div class="node__date">Reigned 685–686</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Conon</div>
+        <div class="node__role">83rd Bishop of Rome</div>
+        <div class="node__date">Reigned 686–687</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Sergius I</div>
+        <div class="node__role">84th Bishop of Rome</div>
+        <div class="node__date">Reigned 687–701</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John VI</div>
+        <div class="node__role">85th Bishop of Rome</div>
+        <div class="node__date">Reigned 701–705</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John VII</div>
+        <div class="node__role">86th Bishop of Rome</div>
+        <div class="node__date">Reigned 705–707</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sisinnius</div>
+        <div class="node__role">87th Bishop of Rome</div>
+        <div class="node__date">Reigned 708</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Constantine</div>
+        <div class="node__role">88th Bishop of Rome</div>
+        <div class="node__date">Reigned 708–715</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Gregory II</div>
+        <div class="node__role">89th Bishop of Rome</div>
+        <div class="node__date">Reigned 715–731</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Gregory III</div>
+        <div class="node__role">90th Bishop of Rome</div>
+        <div class="node__date">Reigned 731–741</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Zachary</div>
+        <div class="node__role">91st Bishop of Rome</div>
+        <div class="node__date">Reigned 741–752</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen II</div>
+        <div class="node__role">92nd Bishop of Rome</div>
+        <div class="node__date">Reigned 752–757</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Paul I</div>
+        <div class="node__role">93rd Bishop of Rome</div>
+        <div class="node__date">Reigned 757–767</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen III</div>
+        <div class="node__role">94th Bishop of Rome</div>
+        <div class="node__date">Reigned 768–772</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Adrian I</div>
+        <div class="node__role">95th Bishop of Rome</div>
+        <div class="node__date">Reigned 772–795</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Leo III</div>
+        <div class="node__role">96th Bishop of Rome</div>
+        <div class="node__date">Reigned 795–816</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen IV</div>
+        <div class="node__role">97th Bishop of Rome</div>
+        <div class="node__date">Reigned 816–817</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Paschal I</div>
+        <div class="node__role">98th Bishop of Rome</div>
+        <div class="node__date">Reigned 817–824</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Eugene II</div>
+        <div class="node__role">99th Bishop of Rome</div>
+        <div class="node__date">Reigned 824–827</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Valentine</div>
+        <div class="node__role">100th Bishop of Rome</div>
+        <div class="node__date">Reigned 827</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory IV</div>
+        <div class="node__role">101st Bishop of Rome</div>
+        <div class="node__date">Reigned 827–844</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sergius II</div>
+        <div class="node__role">102nd Bishop of Rome</div>
+        <div class="node__date">Reigned 844–847</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Leo IV</div>
+        <div class="node__role">103rd Bishop of Rome</div>
+        <div class="node__date">Reigned 847–855</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict III</div>
+        <div class="node__role">104th Bishop of Rome</div>
+        <div class="node__date">Reigned 855–858</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Nicholas I (the Great)</div>
+        <div class="node__role">105th Bishop of Rome</div>
+        <div class="node__date">Reigned 858–867</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Adrian II</div>
+        <div class="node__role">106th Bishop of Rome</div>
+        <div class="node__date">Reigned 867–872</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John VIII</div>
+        <div class="node__role">107th Bishop of Rome</div>
+        <div class="node__date">Reigned 872–882</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Marinus I</div>
+        <div class="node__role">108th Bishop of Rome</div>
+        <div class="node__date">Reigned 882–884</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Adrian III</div>
+        <div class="node__role">109th Bishop of Rome</div>
+        <div class="node__date">Reigned 884–885</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen V</div>
+        <div class="node__role">110th Bishop of Rome</div>
+        <div class="node__date">Reigned 885–891</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Formosus</div>
+        <div class="node__role">111th Bishop of Rome</div>
+        <div class="node__date">Reigned 891–896</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Boniface VI</div>
+        <div class="node__role">112th Bishop of Rome</div>
+        <div class="node__date">Reigned 896</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen VI</div>
+        <div class="node__role">113th Bishop of Rome</div>
+        <div class="node__date">Reigned 896–897</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Romanus</div>
+        <div class="node__role">114th Bishop of Rome</div>
+        <div class="node__date">Reigned 897</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Theodore II</div>
+        <div class="node__role">115th Bishop of Rome</div>
+        <div class="node__date">Reigned 897</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John IX</div>
+        <div class="node__role">116th Bishop of Rome</div>
+        <div class="node__date">Reigned 898–900</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict IV</div>
+        <div class="node__role">117th Bishop of Rome</div>
+        <div class="node__date">Reigned 900–903</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Leo V</div>
+        <div class="node__role">118th Bishop of Rome</div>
+        <div class="node__date">Reigned 903</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sergius III</div>
+        <div class="node__role">119th Bishop of Rome</div>
+        <div class="node__date">Reigned 904–911</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Anastasius III</div>
+        <div class="node__role">120th Bishop of Rome</div>
+        <div class="node__date">Reigned 911–913</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Lando</div>
+        <div class="node__role">121st Bishop of Rome</div>
+        <div class="node__date">Reigned 913–914</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John X</div>
+        <div class="node__role">122nd Bishop of Rome</div>
+        <div class="node__date">Reigned 914–928</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Leo VI</div>
+        <div class="node__role">123rd Bishop of Rome</div>
+        <div class="node__date">Reigned 928</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen VII</div>
+        <div class="node__role">124th Bishop of Rome</div>
+        <div class="node__date">Reigned 929–931</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XI</div>
+        <div class="node__role">125th Bishop of Rome</div>
+        <div class="node__date">Reigned 931–935</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Leo VII</div>
+        <div class="node__role">126th Bishop of Rome</div>
+        <div class="node__date">Reigned 936–939</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen VIII</div>
+        <div class="node__role">127th Bishop of Rome</div>
+        <div class="node__date">Reigned 939–942</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Marinus II</div>
+        <div class="node__role">128th Bishop of Rome</div>
+        <div class="node__date">Reigned 942–946</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Agapetus II</div>
+        <div class="node__role">129th Bishop of Rome</div>
+        <div class="node__date">Reigned 946–955</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XII</div>
+        <div class="node__role">130th Bishop of Rome</div>
+        <div class="node__date">Reigned 955–964</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict V</div>
+        <div class="node__role">131st Bishop of Rome</div>
+        <div class="node__date">Reigned 964</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Leo VIII</div>
+        <div class="node__role">132nd Bishop of Rome</div>
+        <div class="node__date">Reigned 964–965</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XIII</div>
+        <div class="node__role">133rd Bishop of Rome</div>
+        <div class="node__date">Reigned 965–972</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict VI</div>
+        <div class="node__role">134th Bishop of Rome</div>
+        <div class="node__date">Reigned 973–974</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict VII</div>
+        <div class="node__role">135th Bishop of Rome</div>
+        <div class="node__date">Reigned 974–983</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XIV</div>
+        <div class="node__role">136th Bishop of Rome</div>
+        <div class="node__date">Reigned 983–984</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XV</div>
+        <div class="node__role">137th Bishop of Rome</div>
+        <div class="node__date">Reigned 985–996</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory V</div>
+        <div class="node__role">138th Bishop of Rome</div>
+        <div class="node__date">Reigned 996–999</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sylvester II</div>
+        <div class="node__role">139th Bishop of Rome</div>
+        <div class="node__date">Reigned 999–1003</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XVII</div>
+        <div class="node__role">140th Bishop of Rome</div>
+        <div class="node__date">Reigned 1003</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XVIII</div>
+        <div class="node__role">141st Bishop of Rome</div>
+        <div class="node__date">Reigned 1003–1009</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sergius IV</div>
+        <div class="node__role">142nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1009–1012</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict VIII</div>
+        <div class="node__role">143rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1012–1024</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XIX</div>
+        <div class="node__role">144th Bishop of Rome</div>
+        <div class="node__date">Reigned 1024–1032</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict IX</div>
+        <div class="node__role">145th Bishop of Rome</div>
+        <div class="node__date">Reigned 1032–1044</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sylvester III</div>
+        <div class="node__role">146th Bishop of Rome</div>
+        <div class="node__date">Reigned 1045</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict IX (2nd time)</div>
+        <div class="node__role">147th Bishop of Rome</div>
+        <div class="node__date">Reigned 1045</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory VI</div>
+        <div class="node__role">148th Bishop of Rome</div>
+        <div class="node__date">Reigned 1045–1046</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement II</div>
+        <div class="node__role">149th Bishop of Rome</div>
+        <div class="node__date">Reigned 1046–1047</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict IX (3rd time)</div>
+        <div class="node__role">150th Bishop of Rome</div>
+        <div class="node__date">Reigned 1047–1048</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Damasus II</div>
+        <div class="node__role">151st Bishop of Rome</div>
+        <div class="node__date">Reigned 1048</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Leo IX</div>
+        <div class="node__role">152nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1049–1054</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Victor II</div>
+        <div class="node__role">153rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1055–1057</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Stephen IX</div>
+        <div class="node__role">154th Bishop of Rome</div>
+        <div class="node__date">Reigned 1057–1058</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Nicholas II</div>
+        <div class="node__role">155th Bishop of Rome</div>
+        <div class="node__date">Reigned 1058–1061</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Alexander II</div>
+        <div class="node__role">156th Bishop of Rome</div>
+        <div class="node__date">Reigned 1061–1073</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Gregory VII</div>
+        <div class="node__role">157th Bishop of Rome</div>
+        <div class="node__date">Reigned 1073–1085</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Victor III</div>
+        <div class="node__role">158th Bishop of Rome</div>
+        <div class="node__date">Reigned 1086–1087</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Urban II</div>
+        <div class="node__role">159th Bishop of Rome</div>
+        <div class="node__date">Reigned 1088–1099</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Paschal II</div>
+        <div class="node__role">160th Bishop of Rome</div>
+        <div class="node__date">Reigned 1099–1118</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gelasius II</div>
+        <div class="node__role">161st Bishop of Rome</div>
+        <div class="node__date">Reigned 1118–1119</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Callixtus II</div>
+        <div class="node__role">162nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1119–1124</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Honorius II</div>
+        <div class="node__role">163rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1124–1130</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent II</div>
+        <div class="node__role">164th Bishop of Rome</div>
+        <div class="node__date">Reigned 1130–1143</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Celestine II</div>
+        <div class="node__role">165th Bishop of Rome</div>
+        <div class="node__date">Reigned 1143–1144</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Lucius II</div>
+        <div class="node__role">166th Bishop of Rome</div>
+        <div class="node__date">Reigned 1144–1145</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Eugene III</div>
+        <div class="node__role">167th Bishop of Rome</div>
+        <div class="node__date">Reigned 1145–1153</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Anastasius IV</div>
+        <div class="node__role">168th Bishop of Rome</div>
+        <div class="node__date">Reigned 1153–1154</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Adrian IV</div>
+        <div class="node__role">169th Bishop of Rome</div>
+        <div class="node__date">Reigned 1154–1159</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Alexander III</div>
+        <div class="node__role">170th Bishop of Rome</div>
+        <div class="node__date">Reigned 1159–1181</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Lucius III</div>
+        <div class="node__role">171st Bishop of Rome</div>
+        <div class="node__date">Reigned 1181–1185</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Urban III</div>
+        <div class="node__role">172nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1185–1187</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory VIII</div>
+        <div class="node__role">173rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1187</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement III</div>
+        <div class="node__role">174th Bishop of Rome</div>
+        <div class="node__date">Reigned 1187–1191</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Celestine III</div>
+        <div class="node__role">175th Bishop of Rome</div>
+        <div class="node__date">Reigned 1191–1198</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent III</div>
+        <div class="node__role">176th Bishop of Rome</div>
+        <div class="node__date">Reigned 1198–1216</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Honorius III</div>
+        <div class="node__role">177th Bishop of Rome</div>
+        <div class="node__date">Reigned 1216–1227</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory IX</div>
+        <div class="node__role">178th Bishop of Rome</div>
+        <div class="node__date">Reigned 1227–1241</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Celestine IV</div>
+        <div class="node__role">179th Bishop of Rome</div>
+        <div class="node__date">Reigned 1241</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent IV</div>
+        <div class="node__role">180th Bishop of Rome</div>
+        <div class="node__date">Reigned 1243–1254</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Alexander IV</div>
+        <div class="node__role">181st Bishop of Rome</div>
+        <div class="node__date">Reigned 1254–1261</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Urban IV</div>
+        <div class="node__role">182nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1261–1264</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement IV</div>
+        <div class="node__role">183rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1265–1268</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Gregory X</div>
+        <div class="node__role">184th Bishop of Rome</div>
+        <div class="node__date">Reigned 1271–1276</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Innocent V</div>
+        <div class="node__role">185th Bishop of Rome</div>
+        <div class="node__date">Reigned 1276</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Adrian V</div>
+        <div class="node__role">186th Bishop of Rome</div>
+        <div class="node__date">Reigned 1276</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XXI</div>
+        <div class="node__role">187th Bishop of Rome</div>
+        <div class="node__date">Reigned 1276–1277</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Nicholas III</div>
+        <div class="node__role">188th Bishop of Rome</div>
+        <div class="node__date">Reigned 1277–1280</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Martin IV</div>
+        <div class="node__role">189th Bishop of Rome</div>
+        <div class="node__date">Reigned 1281–1285</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Honorius IV</div>
+        <div class="node__role">190th Bishop of Rome</div>
+        <div class="node__date">Reigned 1285–1287</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Nicholas IV</div>
+        <div class="node__role">191st Bishop of Rome</div>
+        <div class="node__date">Reigned 1288–1292</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Celestine V</div>
+        <div class="node__role">192nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1294</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Boniface VIII</div>
+        <div class="node__role">193rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1294–1303</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Benedict XI</div>
+        <div class="node__role">194th Bishop of Rome</div>
+        <div class="node__date">Reigned 1303–1304</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement V</div>
+        <div class="node__role">195th Bishop of Rome</div>
+        <div class="node__date">Reigned 1305–1314</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">John XXII</div>
+        <div class="node__role">196th Bishop of Rome</div>
+        <div class="node__date">Reigned 1316–1334</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict XII</div>
+        <div class="node__role">197th Bishop of Rome</div>
+        <div class="node__date">Reigned 1334–1342</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement VI</div>
+        <div class="node__role">198th Bishop of Rome</div>
+        <div class="node__date">Reigned 1342–1352</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent VI</div>
+        <div class="node__role">199th Bishop of Rome</div>
+        <div class="node__date">Reigned 1352–1362</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Urban V</div>
+        <div class="node__role">200th Bishop of Rome</div>
+        <div class="node__date">Reigned 1362–1370</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory XI</div>
+        <div class="node__role">201st Bishop of Rome</div>
+        <div class="node__date">Reigned 1370–1378</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Urban VI</div>
+        <div class="node__role">202nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1378–1389</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Boniface IX</div>
+        <div class="node__role">203rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1389–1404</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent VII</div>
+        <div class="node__role">204th Bishop of Rome</div>
+        <div class="node__date">Reigned 1404–1406</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory XII</div>
+        <div class="node__role">205th Bishop of Rome</div>
+        <div class="node__date">Reigned 1406–1415</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Martin V</div>
+        <div class="node__role">206th Bishop of Rome</div>
+        <div class="node__date">Reigned 1417–1431</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Eugene IV</div>
+        <div class="node__role">207th Bishop of Rome</div>
+        <div class="node__date">Reigned 1431–1447</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Nicholas V</div>
+        <div class="node__role">208th Bishop of Rome</div>
+        <div class="node__date">Reigned 1447–1455</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Callixtus III</div>
+        <div class="node__role">209th Bishop of Rome</div>
+        <div class="node__date">Reigned 1455–1458</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pius II</div>
+        <div class="node__role">210th Bishop of Rome</div>
+        <div class="node__date">Reigned 1458–1464</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Paul II</div>
+        <div class="node__role">211th Bishop of Rome</div>
+        <div class="node__date">Reigned 1464–1471</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sixtus IV</div>
+        <div class="node__role">212th Bishop of Rome</div>
+        <div class="node__date">Reigned 1471–1484</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent VIII</div>
+        <div class="node__role">213th Bishop of Rome</div>
+        <div class="node__date">Reigned 1484–1492</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Alexander VI</div>
+        <div class="node__role">214th Bishop of Rome</div>
+        <div class="node__date">Reigned 1492–1503</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pius III</div>
+        <div class="node__role">215th Bishop of Rome</div>
+        <div class="node__date">Reigned 1503</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Julius II</div>
+        <div class="node__role">216th Bishop of Rome</div>
+        <div class="node__date">Reigned 1503–1513</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Leo X</div>
+        <div class="node__role">217th Bishop of Rome</div>
+        <div class="node__date">Reigned 1513–1521</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Adrian VI</div>
+        <div class="node__role">218th Bishop of Rome</div>
+        <div class="node__date">Reigned 1522–1523</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement VII</div>
+        <div class="node__role">219th Bishop of Rome</div>
+        <div class="node__date">Reigned 1523–1534</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Paul III</div>
+        <div class="node__role">220th Bishop of Rome</div>
+        <div class="node__date">Reigned 1534–1549</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Julius III</div>
+        <div class="node__role">221st Bishop of Rome</div>
+        <div class="node__date">Reigned 1550–1555</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Marcellus II</div>
+        <div class="node__role">222nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1555</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Paul IV</div>
+        <div class="node__role">223rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1555–1559</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pius IV</div>
+        <div class="node__role">224th Bishop of Rome</div>
+        <div class="node__date">Reigned 1559–1565</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">St. Pius V</div>
+        <div class="node__role">225th Bishop of Rome</div>
+        <div class="node__date">Reigned 1566–1572</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory XIII</div>
+        <div class="node__role">226th Bishop of Rome</div>
+        <div class="node__date">Reigned 1572–1585</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Sixtus V</div>
+        <div class="node__role">227th Bishop of Rome</div>
+        <div class="node__date">Reigned 1585–1590</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Urban VII</div>
+        <div class="node__role">228th Bishop of Rome</div>
+        <div class="node__date">Reigned 1590</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory XIV</div>
+        <div class="node__role">229th Bishop of Rome</div>
+        <div class="node__date">Reigned 1590–1591</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent IX</div>
+        <div class="node__role">230th Bishop of Rome</div>
+        <div class="node__date">Reigned 1591</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement VIII</div>
+        <div class="node__role">231st Bishop of Rome</div>
+        <div class="node__date">Reigned 1592–1605</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Leo XI</div>
+        <div class="node__role">232nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1605</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Paul V</div>
+        <div class="node__role">233rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1605–1621</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gregory XV</div>
+        <div class="node__role">234th Bishop of Rome</div>
+        <div class="node__date">Reigned 1621–1623</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Urban VIII</div>
+        <div class="node__role">235th Bishop of Rome</div>
+        <div class="node__date">Reigned 1623–1644</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent X</div>
+        <div class="node__role">236th Bishop of Rome</div>
+        <div class="node__date">Reigned 1644–1655</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Alexander VII</div>
+        <div class="node__role">237th Bishop of Rome</div>
+        <div class="node__date">Reigned 1655–1667</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement IX</div>
+        <div class="node__role">238th Bishop of Rome</div>
+        <div class="node__date">Reigned 1667–1669</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement X</div>
+        <div class="node__role">239th Bishop of Rome</div>
+        <div class="node__date">Reigned 1670–1676</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Bl. Innocent XI</div>
+        <div class="node__role">240th Bishop of Rome</div>
+        <div class="node__date">Reigned 1676–1689</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Alexander VIII</div>
+        <div class="node__role">241st Bishop of Rome</div>
+        <div class="node__date">Reigned 1689–1691</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent XII</div>
+        <div class="node__role">242nd Bishop of Rome</div>
+        <div class="node__date">Reigned 1691–1700</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Clement XI</div>
+        <div class="node__role">243rd Bishop of Rome</div>
+        <div class="node__date">Reigned 1700–1721</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Innocent XIII</div>
+        <div class="node__role">244th Bishop of Rome</div>
+        <div class="node__date">Reigned 1721–1724</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Benedict XIII</div>
+        <div class="node__role">245th Bishop of Rome</div>
+        <div class="node__date">Reigned 1724–1730</div>
+      </div>
+      <div class="phase" role="separator">
+        <span class="phase__mark" aria-hidden="true">✦</span>
+        <div class="phase__label">The Consecration Chain — Hands upon Hands</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pope Benedict XIV — Prospero Lambertini</div>
+        <div class="node__role">Pope</div>
+        <div class="node__date">Consecrated a bishop 1724</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pope Clement XIII — Carlo Rezzonico</div>
+        <div class="node__role">Pope</div>
+        <div class="node__date">Consecrated a bishop 1743</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Marcantonio Colonna</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1762</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Hyacinthe-Sigismond Gerdil, C.R.S.P.</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1777</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Giulio Maria della Somaglia</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1788</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Carlo Odescalchi, S.J.</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1823</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Costantino Patrizi Naro</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1828</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Lucido Maria Parocchi</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1871</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Pope St. Pius X — Giuseppe Sarto</div>
+        <div class="node__role">Pope</div>
+        <div class="node__date">Consecrated a bishop 1884</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Gaetano De Lai</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1911</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Raffaele Carlo Rossi, O.C.D.</div>
+        <div class="node__role">Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1920</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Amleto Giovanni Cicognani</div>
+        <div class="node__role">Archbishop, later Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1933</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Paul J. Hallinan</div>
+        <div class="node__role">Archbishop of Atlanta</div>
+        <div class="node__date">Consecrated a bishop 1958</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Joseph L. Bernardin</div>
+        <div class="node__role">Archbishop, later Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1966</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Wilton D. Gregory</div>
+        <div class="node__role">Archbishop of Atlanta, later Cardinal</div>
+        <div class="node__date">Consecrated a bishop 1983</div>
+      </div>
+      <div class="node">
+        <span class="node__dot" aria-hidden="true"></span>
+        <div class="node__name">Fr. Tri John-Bosco Nguyen</div>
+        <div class="node__role">Priest · Archdiocese of Atlanta</div>
+        <div class="node__date">Ordained by Archbishop Wilton Gregory</div>
+      </div>
+    </div>
+
+    <div class="connector" aria-hidden="true"></div>
+
+    <section class="terminus">
+      <div class="terminus__frame" aria-hidden="true"></div>
+      <div class="terminus__inner">
+        <div class="terminus__eyebrow">Received into the Church</div>
+        <div class="terminus__name">Tad Ellsworth</div>
+        <div class="terminus__sub">Baptized — Easter Vigil, 2026 · Jasper, Georgia</div>
+        <div class="terminus__orn">✦ &nbsp; ✦ &nbsp; ✦</div>
+      </div>
+    </section>
+  </main>
+</article>
+</body>
+</html>

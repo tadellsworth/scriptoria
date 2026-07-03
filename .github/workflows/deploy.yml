@@ -1,10 +1,11 @@
 name: Deploy apps to GitHub Pages
 
 # Builds every app in the monorepo and publishes them to one GitHub Pages site:
-#   Scriptoria → https://<user>.github.io/scriptoria/
-#   Lumen      → https://<user>.github.io/scriptoria/lumen/
-#   Bloom      → https://<user>.github.io/scriptoria/bloom/
-#   Vigor      → https://<user>.github.io/scriptoria/vigor/
+#   Scriptoria        → https://<user>.github.io/scriptoria/
+#   Lumen             → https://<user>.github.io/scriptoria/lumen/
+#   Bloom             → https://<user>.github.io/scriptoria/bloom/
+#   Vigor             → https://<user>.github.io/scriptoria/vigor/
+#   Line of Authority → https://<user>.github.io/scriptoria/line-of-authority/
 #
 # One-time setup: repo Settings → Pages → "Build and deployment" → Source =
 # "GitHub Actions". After that, every push to main deploys.
@@ -82,10 +83,21 @@ jobs:
           VIGOR_OUT: ${{ github.workspace }}/_site/vigor
         run: python3 build.py
 
+      # --- Line of Authority (single static keepsake page) → /line-of-authority -
+      # build.py pre-renders data.json into one self-contained index.html (no
+      # framework, no runtime unpacking). Building here (rather than copying the
+      # committed file) guarantees the deployed page always matches data.json.
+      - name: Build Line of Authority
+        working-directory: apps/line-of-authority
+        env:
+          LOA_OUT: ${{ github.workspace }}/_site/line-of-authority
+        run: python3 build.py
+
       # --- Assemble the published site -----------------------------------------
       - name: Assemble site
         run: |
-          # Scriptoria at the root; Lumen and Bloom already written to _site/* above.
+          # Lumen, Bloom, Vigor and Line of Authority were written to _site/* above;
+          # Scriptoria goes at the root.
           cp -r apps/scriptoria/dist/. _site/
           # Disable Jekyll so files/folders beginning with _ are served verbatim.
           touch _site/.nojekyll
