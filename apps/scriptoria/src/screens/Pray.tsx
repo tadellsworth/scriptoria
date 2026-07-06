@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useStore } from '../state/store';
+import { useStore, novenaDoneCount, novenaCurrentDay } from '../state/store';
 import { useNav } from '../state/nav';
-import { GiltRule, Eyebrow, BackHeader, Button } from '../components/ui';
+import { GiltRule, Eyebrow, BackHeader, Button, ProgressBar } from '../components/ui';
 import { PRAYERS, PRAYER_LIBRARY } from '../lib/prayers';
 import { MYSTERIES, mysteryForDay, buildRosary, beadNumber, ROSARY_BEAD_COUNT } from '../lib/rosary';
 import { HOURS, hourStatus, EXAMEN_STEPS } from '../lib/hours';
-import { isoDate } from '../lib/dates';
+import { NOVENAS, NOVENA_LIBRARY, novenaById } from '../data/novenas';
+import { isoDate, softDate } from '../lib/dates';
 
 export function PrayScreen() {
   const nav = useNav();
@@ -14,6 +15,8 @@ export function PrayScreen() {
     case 'hours': return <HoursView />;
     case 'examen': return <ExamenView />;
     case 'prayer': return <PrayerTextView />;
+    case 'novenas': return <NovenaListView />;
+    case 'novena': return <NovenaDetailView />;
     default: return <PrayHome />;
   }
 }
@@ -21,8 +24,16 @@ export function PrayScreen() {
 /* ---------- C1 · Pray home ---------- */
 function PrayHome() {
   const nav = useNav();
+  const { state } = useStore();
   const mk = mysteryForDay(new Date());
   const myst = MYSTERIES[mk];
+
+  // Surface the most recently begun novena that isn't finished yet.
+  const active = NOVENAS
+    .map((n) => ({ n, p: state.novenas[n.id] }))
+    .filter((x) => x.p && novenaDoneCount(x.p) < 9)
+    .sort((a, b) => (b.p!.startedAt).localeCompare(a.p!.startedAt))[0];
+
   return (
     <div className="screen-pad anim-rise">
       <div style={{ textAlign: 'center', marginBottom: 4 }}>
@@ -54,6 +65,24 @@ function PrayHome() {
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14.5, color: 'var(--lapis)', letterSpacing: '0.04em', marginTop: 8 }}>Daily Examen</div>
           <div style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 13.5, color: 'var(--ink-soft)' }}>Five steps · this evening</div>
         </div>
+      </div>
+
+      <div className="vellum pressable" style={{ marginBottom: 14 }} onClick={() => nav.open('novenas')}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+          <div>
+            <div style={{ fontFamily: 'var(--font-display)', color: 'var(--gold)', fontSize: 20, lineHeight: 1 }}>✦</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14.5, color: 'var(--lapis)', letterSpacing: '0.04em', marginTop: 8 }}>Novenas</div>
+            <div style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 13.5, color: 'var(--ink-soft)' }}>
+              {active ? `${active.n.title} · Day ${Math.min(novenaCurrentDay(active.p), 9)} of 9` : 'Nine days of prayer'}
+            </div>
+          </div>
+          <span style={{ color: 'var(--ink-faint)', alignSelf: 'center' }}>›</span>
+        </div>
+        {active && (
+          <div style={{ marginTop: 10 }}>
+            <ProgressBar pct={(novenaDoneCount(active.p) / 9) * 100} />
+          </div>
+        )}
       </div>
 
       <Eyebrow style={{ margin: '4px 2px 8px' }}>The Prayer Library</Eyebrow>
@@ -202,6 +231,158 @@ function ExamenView() {
         ))}
       </div>
       <Button variant="gold" block style={{ marginTop: 14 }} onClick={save}>Save to journal</Button>
+    </div>
+  );
+}
+
+/* ---------- Novenas · list ---------- */
+function NovenaListView() {
+  const nav = useNav();
+  const { state } = useStore();
+  return (
+    <div className="screen-pad anim-rise">
+      <BackHeader onBack={() => nav.home()} eyebrow="Nine days of prayer" title="Novenas" />
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.6, color: 'var(--ink-soft)', margin: '2px 0 15px' }}>
+        A novena is nine days of prayer for a particular grace — after the nine days Our Lady and the Apostles kept before Pentecost. Choose one to begin, and mark each day as you pray it.
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {NOVENA_LIBRARY.map((id) => {
+          const n = novenaById(id)!;
+          const p = state.novenas[id];
+          const done = novenaDoneCount(p);
+          const complete = done >= 9;
+          return (
+            <div key={id} className="vellum pressable" onClick={() => nav.open('novena', { id })}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10 }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 17, color: 'var(--lapis)', letterSpacing: '0.02em' }}>{n.title}</span>
+                {p && (
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10.5, letterSpacing: '0.08em', color: complete ? 'var(--emerald)' : 'var(--gold-dark)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+                    {complete ? '✓ Complete' : `Day ${done} of 9`}
+                  </span>
+                )}
+              </div>
+              <div style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 14, color: 'var(--ink-soft)', marginTop: 3 }}>{n.intention}</div>
+              <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10.5, letterSpacing: '0.06em', color: 'var(--ink-faint)', textTransform: 'uppercase', marginTop: 6 }}>{n.patron}</div>
+              {p && !complete && <div style={{ marginTop: 9 }}><ProgressBar pct={(done / 9) * 100} /></div>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Novenas · detail (nine-day tracker) ---------- */
+function NovenaDetailView() {
+  const nav = useNav();
+  const { state, dispatch } = useStore();
+  const novena = novenaById(nav.params.id) ?? NOVENAS[0];
+  const progress = state.novenas[novena.id];
+  const done = novenaDoneCount(progress);
+  const complete = done >= 9;
+  const current = Math.min(novenaCurrentDay(progress), 9);
+  const [open, setOpen] = useState<number>(current);
+
+  return (
+    <div className="screen-pad anim-rise">
+      <BackHeader onBack={() => nav.open('novenas')} eyebrow={novena.patron} title={novena.title} />
+
+      <div className="vellum" style={{ margin: '4px 0 12px' }}>
+        <div style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.55 }}>{novena.intention}</div>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14.5, color: 'var(--ink-soft)', lineHeight: 1.6, margin: '9px 0 0' }}>{novena.about}</p>
+        <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10.5, letterSpacing: '0.06em', color: 'var(--gold-dark)', textTransform: 'uppercase', marginTop: 10 }}>When · {novena.occasion}</div>
+      </div>
+
+      {!progress ? (
+        <Button variant="gold" block style={{ marginBottom: 8 }} onClick={() => dispatch({ type: 'startNovena', id: novena.id })}>
+          Begin this novena ✠
+        </Button>
+      ) : (
+        <div style={{ margin: '2px 2px 12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 7 }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, color: 'var(--lapis)', letterSpacing: '0.03em' }}>
+              {complete ? 'Novena complete ✦' : `Day ${current} of 9`}
+            </span>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10.5, letterSpacing: '0.06em', color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Begun {softDate(new Date(progress.startedAt))}</span>
+          </div>
+          <ProgressBar pct={(done / 9) * 100} />
+        </div>
+      )}
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {novena.days.map((day, idx) => {
+          const n = idx + 1;
+          const isDone = !!progress?.completedDays[n];
+          const isOpen = open === n;
+          const isCurrent = !!progress && !complete && n === current;
+          return (
+            <div key={n} className="vellum" style={{ padding: 0, overflow: 'hidden', borderColor: isCurrent ? 'var(--gold)' : undefined }}>
+              <div
+                className="pressable"
+                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', background: 'transparent', boxShadow: 'none' }}
+                onClick={() => setOpen(isOpen ? -1 : n)}
+              >
+                <span
+                  aria-hidden
+                  style={{
+                    flex: 'none', width: 26, height: 26, borderRadius: '50%',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    background: isDone ? 'var(--emerald)' : 'var(--gold-08)',
+                    color: isDone ? 'var(--vellum)' : 'var(--gold-dark)',
+                    border: isDone ? '2px solid var(--parchment)' : '1px solid var(--gold-30)',
+                    fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 12,
+                  }}
+                >
+                  {isDone ? '✓' : n}
+                </span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 9.5, letterSpacing: '0.12em', color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Day {n}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: isDone ? 'var(--ink-soft)' : 'var(--lapis)', letterSpacing: '0.02em' }}>{day.theme}</div>
+                </div>
+                <span style={{ color: 'var(--ink-faint)', flex: 'none', transform: isOpen ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s var(--ease)' }}>›</span>
+              </div>
+
+              {isOpen && (
+                <div style={{ padding: '0 16px 15px', borderTop: '1px solid var(--gold-12)' }}>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.6, color: 'var(--ink)', margin: '12px 0 0' }}>{day.meditation}</p>
+
+                  <Eyebrow tone="vermillion" style={{ margin: '14px 0 6px' }}>The prayer for this day</Eyebrow>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 15.5, lineHeight: 1.7, color: 'var(--ink)', margin: 0 }}>{day.prayer ?? novena.prayer}</p>
+                  {novena.closing && (
+                    <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 15, lineHeight: 1.6, color: 'var(--vermillion)', margin: '10px 0 0' }}>{novena.closing}</p>
+                  )}
+
+                  <Button
+                    variant={isDone ? 'outline' : 'gold'}
+                    block
+                    style={{ marginTop: 14 }}
+                    onClick={() => dispatch({ type: 'toggleNovenaDay', id: novena.id, day: n })}
+                  >
+                    {isDone ? `Prayed ${softDate(new Date(progress!.completedDays[n]))} · undo` : 'Mark this day as prayed ✓'}
+                  </Button>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {complete && (
+        <div style={{ textAlign: 'center', margin: '16px 0 4px' }}>
+          <GiltRule ornament="✦" style={{ margin: '0 0 10px' }} />
+          <div style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 15, color: 'var(--ink-soft)' }}>Nine days kept. May the grace you asked be granted.</div>
+        </div>
+      )}
+
+      {progress && (
+        <button
+          className="back-btn"
+          style={{ display: 'block', margin: '14px auto 0', fontFamily: 'var(--font-ui)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-faint)' }}
+          onClick={() => { dispatch({ type: 'resetNovena', id: novena.id }); setOpen(1); }}
+        >
+          Start this novena over
+        </button>
+      )}
     </div>
   );
 }

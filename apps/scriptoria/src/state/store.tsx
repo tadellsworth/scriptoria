@@ -17,6 +17,10 @@ export interface ConfessionRecord {
   penance?: string;
   recordedAt: string;  // ISO timestamp
 }
+export interface NovenaProgress {
+  startedAt: string;                       // ISO date the novena was begun
+  completedDays: Record<number, string>;   // day (1–9) → ISO date it was marked
+}
 
 export interface AppState {
   onboarded: boolean;
@@ -28,6 +32,8 @@ export interface AppState {
   confessions: ConfessionRecord[];
   /** Credo lesson ids the user has completed. */
   credoCompleted: string[];
+  /** Novena progress keyed by novena id; absent = never begun. */
+  novenas: Record<string, NovenaProgress>;
   /** Leitner box (0–4) per Lingua card id; absent = not yet started. */
   linguaBoxes: Record<string, number>;
   profile: { name: string; initials: string; since: string };
@@ -73,6 +79,7 @@ function seedState(): AppState {
     ],
     // A believable head start: the Prologue done and into Part Two (7 lessons).
     credoCompleted: CURRICULUM.flatMap((u) => u.lessons).slice(0, 7).map((l) => l.id),
+    novenas: {},
     linguaBoxes: boxes,
     profile: { name: 'John Mary', initials: 'JM', since: 'Walking with Scriptoria since Lent' },
     location: null,
@@ -103,6 +110,9 @@ type Action =
   | { type: 'saveJournal'; date: string; text: string; gospel?: string }
   | { type: 'recordConfession'; date: string; penance?: string }
   | { type: 'completeCredoLesson'; id: string }
+  | { type: 'startNovena'; id: string }
+  | { type: 'toggleNovenaDay'; id: string; day: number }
+  | { type: 'resetNovena'; id: string }
   | { type: 'reviewCard'; id: string; knewIt: boolean };
 
 function reducer(state: AppState, action: Action): AppState {
@@ -142,6 +152,27 @@ function reducer(state: AppState, action: Action): AppState {
       return state.credoCompleted.includes(action.id)
         ? state
         : { ...state, credoCompleted: [...state.credoCompleted, action.id] };
+
+    case 'startNovena': {
+      if (state.novenas[action.id]) return state;
+      const progress: NovenaProgress = { startedAt: isoDate(new Date()), completedDays: {} };
+      return { ...state, novenas: { ...state.novenas, [action.id]: progress } };
+    }
+
+    case 'toggleNovenaDay': {
+      const prev = state.novenas[action.id] ?? { startedAt: isoDate(new Date()), completedDays: {} };
+      const completedDays = { ...prev.completedDays };
+      if (completedDays[action.day]) delete completedDays[action.day];
+      else completedDays[action.day] = isoDate(new Date());
+      return { ...state, novenas: { ...state.novenas, [action.id]: { ...prev, completedDays } } };
+    }
+
+    case 'resetNovena': {
+      if (!state.novenas[action.id]) return state;
+      const novenas = { ...state.novenas };
+      delete novenas[action.id];
+      return { ...state, novenas };
+    }
 
     case 'reviewCard': {
       const box = state.linguaBoxes[action.id] ?? 0;
@@ -217,4 +248,14 @@ export function daysSinceConfession(state: AppState): number | null {
     .sort()
     .reverse()[0];
   return daysBetween(new Date(last), new Date());
+}
+/** How many of a novena's nine days are marked complete. */
+export function novenaDoneCount(progress?: NovenaProgress): number {
+  return progress ? Object.keys(progress.completedDays).length : 0;
+}
+/** The first day (1–9) not yet marked, i.e. "today's" day; 10 once all nine are done. */
+export function novenaCurrentDay(progress?: NovenaProgress): number {
+  if (!progress) return 1;
+  for (let d = 1; d <= 9; d++) if (!progress.completedDays[d]) return d;
+  return 10;
 }
