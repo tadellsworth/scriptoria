@@ -8,7 +8,7 @@ the owner's 58-year-old father (male, 5'9", ~190 lb). It is **not** connected to
 professional/work project — keep it entirely separate and free of any business branding.
 
 The program is a weekday (Mon–Fri) routine built from six blocks per day —
-warm-up mobility, lymph activation, day-specific strength, kegels, a core finisher,
+warm-up mobility, lymph activation, day-specific strength, Pilates & Yoga, a core finisher,
 and a cooldown — with an optional lighter weekend mobility session. The aesthetic is a
 deliberately calm "well-made instrument": warm stone canvas, brass + deep-pine accents,
 large legible type, big tap targets. Not a neon gym-bro app.
@@ -71,7 +71,7 @@ One file, three regions:
    - **Data/util:** `KEY`, `DEFAULT`, `load`/`save`, date helpers (`todayKey`, `dowKey`,
      `isWeekday`, `activeDayKey`, `DAY_KEYS`, `DAY_FULL`).
    - **Program builders:** `hold`/`reps`/`flow` exercise factories; block builders
-     (`warmupBlock`, `lymphBlock`, `kegelBlock`, `cooldownBlock`, per-day strength, core
+     (`warmupBlock`, `lymphBlock`, `pilatesBlock`, `cooldownBlock`, per-day strength, core
      map); `buildDay` → `WEEK`; weekend blocks → `WEEKEND`.
    - **Durations:** `DURATIONS` (10/30/45/60), `TRIM` presets, `scaleDay`, `blockLabel`,
      `curDuration`.

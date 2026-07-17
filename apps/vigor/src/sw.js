@@ -3,7 +3,7 @@
    The folder it lives in becomes its scope, so keep Vigor in its own
    directory (e.g. /vigor/vigor.html + /vigor/sw.js) to avoid caching
    other pages that share a parent folder. */
-const CACHE = 'vigor-v1';
+const CACHE = 'vigor-v2';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
