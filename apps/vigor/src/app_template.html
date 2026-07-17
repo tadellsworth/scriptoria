@@ -166,7 +166,7 @@ button:active,.cta:active,.iconbtn:active{transform:scale(.965)}
 .t-dumbbell{background:#f0e3d2;color:#9a6f20}
 .t-kettlebell{background:#efd9d2;color:#9e3b26}
 .t-bodyweight{background:#e2ecde;color:#3c6b46}
-.t-kegel{background:#e7e6df;color:#5d5b53}
+.t-pilates{background:#e7e6df;color:#5d5b53}
 .t-core{background:#dde6ef;color:#3a5a7d}
 
 /* ---------- week ---------- */
@@ -530,7 +530,7 @@ html.hc .block .body small,html.hc .move li,html.hc .stat .k{color:#46453b}
     <div id="week-list"></div>
     <div class="section-label"><h2>How the hour works</h2></div>
     <div class="disclaimer">
-      Every weekday follows the same six-block frame: <b>warm-up mobility</b>, <b>lymph activation</b>, the day's <b>strength work</b>, a <b>kegel set</b>, a <b>core finisher</b>, and a <b>cooldown stretch</b>. The strength focus rotates so the whole body gets worked across the week.
+      Every weekday follows the same six-block frame: <b>warm-up mobility</b>, <b>lymph activation</b>, the day's <b>strength work</b>, a <b>Pilates &amp; Yoga set</b>, a <b>core finisher</b>, and a <b>cooldown stretch</b>. The strength focus rotates so the whole body gets worked across the week.
     </div>
   </section>
 
@@ -619,7 +619,7 @@ html.hc .block .body small,html.hc .move li,html.hc .stat .k{color:#46453b}
       <div class="setrow"><button class="danger" onclick="resetAll()">Reset all progress</button></div>
     </div>
     <div class="disclaimer">
-      <b>Before you begin.</b> This is a general fitness routine, not medical advice. Check with your doctor before starting if you have heart, joint, blood-pressure, or other health concerns. Warm up, move within a comfortable range, breathe steadily (never hold your breath during kegels or lifts), and stop if anything causes sharp pain or dizziness. Start lighter than you think — you can always add weight later.
+      <b>Before you begin.</b> This is a general fitness routine, not medical advice. Check with your doctor before starting if you have heart, joint, blood-pressure, or other health concerns. Warm up, move within a comfortable range, breathe steadily (never hold your breath during holds or lifts), and stop if anything causes sharp pain or dizziness. Start lighter than you think — you can always add weight later.
     </div>
     <p style="text-align:center;color:var(--ink-soft);font-size:.78em;margin-top:8px">Vigor · made for Dad · v1</p>
   </section>
@@ -703,10 +703,10 @@ const TYPE_ICON = {
   dumbbell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6M7 7v10M17 7v10M20 9v6M7 12h10"/></svg>',
   kettlebell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6a3 3 0 0 1 6 0"/><path d="M8.5 7C6 8.5 5 11 5 14a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4c0-3-1-5.5-3.5-7"/></svg>',
   bodyweight:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M12 7v5M5 9h14M12 12l-4 8M12 12l4 8"/></svg>',
-  kegel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 12a7 7 0 0 0 14 0"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>',
+  pilates:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 8c-3 2-7 2-9 1 1 4 5 6 9 6s8-2 9-6c-2 1-6 1-9-1z"/></svg>',
   core:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="8" rx="4"/><path d="M9 8v8M15 8v8"/></svg>'
 };
-const TYPE_NAME = {stretch:'Stretch',lymph:'Lymph',dumbbell:'Dumbbell',kettlebell:'Kettlebell',bodyweight:'Bodyweight',kegel:'Kegel',core:'Core'};
+const TYPE_NAME = {stretch:'Stretch',lymph:'Lymph',dumbbell:'Dumbbell',kettlebell:'Kettlebell',bodyweight:'Bodyweight',pilates:'Pilates & Yoga',core:'Core'};
 
 /* ---- helpers to build exercises ---- */
 function reps(name,type,sets,rep,rest,cues){return {name,type,mode:'reps',sets,rep,rest,cues};}
@@ -726,21 +726,27 @@ function warmupBlock(){return {name:'Warm-up mobility',type:'stretch',exercises:
 ]};}
 
 function lymphBlock(){return {name:'Lymph activation',type:'lymph',exercises:[
-  flow('Diaphragm breathing','lymph',60,['Hand on belly, breathe in slowly through the nose','Long exhale through the mouth — drives lymph flow']),
-  flow('Neck & collarbone strokes','lymph',45,['Gently sweep fingertips down the neck toward the collarbone','Light pressure — you are nudging fluid, not massaging muscle']),
-  flow('Shoulder shrugs & arm pumps','lymph',45,['Shrug up and release, then pump fists open/closed','Keep a steady rhythm']),
-  flow('Gentle bounce (rebounding)','lymph',60,['Soft bounces on the balls of your feet, heels barely lifting','Light and springy — no jumping needed']),
-  flow('Cross-crawl march','lymph',45,['March in place, touch opposite hand to knee','Easy pace, full breaths']),
-  flow('Arm sweeps toward the heart','lymph',45,['Stroke each arm from hand to shoulder, toward the chest','Then big slow overhead reaches']),
-  flow('Ankle pumps & calf squeezes','lymph',40,['Pump the ankles up and down','The calves are a pump for the legs'])
+  flow('Bouncing body bounces','lymph',60,['Soft, springy bounces on the balls of the feet, heels barely lifting','Let the whole body loosen — light and easy']),
+  flow('Hip bounces with hip splits','lymph',45,['Keep bouncing, stepping the feet a little wider and back in','Loose knees — let the hips open and close']),
+  flow('Body waves','lymph',45,['Ripple slowly from the hips up through the spine to the head','Fluid and relaxed, like a wave moving through you']),
+  flow('Gentle squat with overhead reach','lymph',45,['Sit into a shallow squat, then stand and sweep both arms overhead','Breathe in on the reach, out on the squat']),
+  flow('Chest opener','lymph',40,['Open both arms wide and lift the chest, squeezing the shoulder blades','Then wrap them across in a gentle hug — repeat']),
+  flow('Both arms up and down','lymph',40,['Sweep both arms up overhead, then float them back down','Steady, easy rhythm with the breath']),
+  flow('Alternating arms up and down','lymph',40,['One arm reaches up as the other lowers, then switch','Keep it flowing, tall through the spine']),
+  flow('Torso twists','lymph',45,['Feet planted, rotate gently side to side','Let the arms swing loose and follow the turn']),
+  flow('Knee claps','lymph',40,['March in place, clapping the hands as each knee lifts','Easy pace, full breaths']),
+  flow('Arm swings','lymph',40,['Swing both arms freely forward and back','Let the shoulders and ribs move with them']),
+  flow('Golf swings','lymph',45,['Rotate through the torso like an easy golf swing, both sides','Loose arms — let the hips turn with you']),
+  flow('Dead arms','lymph',40,['Let both arms hang completely heavy and loose','Gently swing and shake them out — release all tension'])
 ]};}
 
-function kegelBlock(){return {name:'Kegel set',type:'kegel',exercises:[
-  flow('Find the muscles','kegel',30,['Imagine stopping the flow of urine and gently lifting','That lift is the pelvic floor — keep glutes &amp; belly relaxed']),
-  reps('Slow lifts','kegel',2,10,15,['Lift and hold for 5 seconds, then fully relax for 5','About 10 lifts per set — keep breathing the whole time','A full lift and a full release on every rep']),
-  reps('Endurance holds','kegel',1,5,20,['Lift and hold for 10 seconds, then relax for 10','5 holds in the set — never hold your breath']),
-  flow('Quick flicks','kegel',45,['Fast lift-and-release, like flicking a switch','Keep a steady rhythm for the whole set']),
-  flow('Relax &amp; reset','kegel',30,['Let everything soften completely','A relaxed floor matters as much as a strong one'])
+function pilatesBlock(){return {name:'Pilates & Yoga',type:'pilates',exercises:[
+  hold('The Hundred','pilates',1,50,20,['On your back, curl head and shoulders up, legs raised','Pump straight arms at your sides — breathe in for 5, out for 5']),
+  reps('Roll-up','pilates',2,8,25,['Lie back, arms overhead; slowly peel up and reach toward the toes','Roll back down one bone at a time — control, no momentum']),
+  reps('Single-leg stretch','pilates',2,10,25,['Curl up; hug one knee in as the other leg extends long','Switch legs smoothly, keep the low back pressed down']),
+  hold('Downward-facing dog','pilates',2,40,20,['Hands and feet down, hips high into an inverted V','Long spine — gently press the heels toward the floor']),
+  hold('Cobra pose','pilates',2,30,20,['Face down, hands under the shoulders, lift the chest','Elbows soft and close, shoulders down away from the ears']),
+  hold('Seated spinal twist','pilates',1,40,15,['Sit tall, cross one knee over, twist toward it','Lengthen up on the inhale, twist a little more on the exhale — both sides'])
 ]};}
 
 /* core variants by day */
@@ -823,7 +829,7 @@ function buildDay(key){
   return {
     key, day:DAY_FULL[key], n:DAY_KEYS.indexOf(key)+1,
     focus:s.name,
-    blocks:[warmupBlock(),lymphBlock(),s,kegelBlock(),CORE[COREMAP[key]],cooldownBlock()]
+    blocks:[warmupBlock(),lymphBlock(),s,pilatesBlock(),CORE[COREMAP[key]],cooldownBlock()]
   };
 }
 const WEEK={}; DAY_KEYS.forEach(k=>WEEK[k]=buildDay(k));
@@ -841,19 +847,19 @@ function weekendCoreBlock(){return {name:'Gentle core',type:'core',exercises:[
 ]};}
 function buildWeekend(){
   return {key:'wknd',day:'Weekend',n:0,focus:'Mobility · recovery',
-    blocks:[warmupBlock(),lymphBlock(),weekendMobilityBlock(),kegelBlock(),weekendCoreBlock(),cooldownBlock()]};
+    blocks:[warmupBlock(),lymphBlock(),weekendMobilityBlock(),pilatesBlock(),weekendCoreBlock(),cooldownBlock()]};
 }
 const WEEKEND=buildWeekend();
 WEEKEND.blocks.forEach((b,i)=>b.role=i);
-const WKND_MIN=[7,6,8,5,6,7];
+const WKND_MIN=[7,8,8,7,6,7];
 
 /* ---- session-length options (weekday hour can be shortened) ---- */
 const DURATIONS=[10,30,45,60];
-const ROLE_LABEL={0:'Warm-up',1:'Lymph',3:'Kegel',4:'Core',5:'Cooldown'};
+const ROLE_LABEL={0:'Warm-up',1:'Lymph',3:'Pilates & Yoga',4:'Core',5:'Cooldown'};
 // per duration, per block-role: cap on moves, cap on sets, and an est. minute size.
-// skip:true drops the block entirely. role order = [warmup,lymph,strength,kegel,core,cooldown]
+// skip:true drops the block entirely. role order = [warmup,lymph,strength,pilates,core,cooldown]
 const TRIM={
-  60:[{moves:99,sets:99,min:8},{moves:99,sets:99,min:7},{moves:99,sets:99,min:25},{moves:99,sets:99,min:5},{moves:99,sets:99,min:8},{moves:99,sets:99,min:7}],
+  60:[{moves:99,sets:99,min:8},{moves:99,sets:99,min:9},{moves:99,sets:99,min:25},{moves:99,sets:99,min:7},{moves:99,sets:99,min:8},{moves:99,sets:99,min:7}],
   45:[{moves:6,sets:99,min:6},{moves:5,sets:99,min:5},{moves:99,sets:2,min:17},{moves:99,sets:99,min:5},{moves:99,sets:2,min:5},{moves:5,sets:99,min:7}],
   30:[{moves:4,sets:99,min:4},{moves:3,sets:99,min:3},{moves:4,sets:2,min:11},{moves:99,sets:99,min:5},{moves:1,sets:2,min:3},{moves:4,sets:99,min:4}],
   10:[{moves:2,sets:99,min:2},{skip:true},{moves:2,sets:1,min:4},{moves:2,sets:1,min:2},{skip:true},{moves:2,sets:99,min:2}]
@@ -891,7 +897,7 @@ const ICO_SWAP='<svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentC
 const ICO_RESET='<svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg>';
 
 /* block est. minutes (for the gauge segments) */
-const BLOCK_MIN=[8,7,25,5,8,7]; // warmup, lymph, strength, kegel, core, cooldown
+const BLOCK_MIN=[8,9,25,7,8,7]; // warmup, lymph, strength, pilates, core, cooldown
 const SEG_COLOR=['#7a68a8','#2f8278','var(--brass)','#8a877d','#3a5a7d','#9a6f20'];
 
 /* =========================================================
@@ -1074,7 +1080,6 @@ function renderBlocks(D,minArr){
 }
 function blockSummary(b){
   const names=b.exercises.map(e=>e.name);
-  if(b.type==='kegel')return 'Slow lifts · endurance holds · quick flicks';
   if(names.length<=3)return names.join(' · ');
   return names.slice(0,3).join(' · ')+` · +${names.length-3} more`;
 }
@@ -1195,7 +1200,7 @@ function closePicker(){document.getElementById('picker-modal').classList.remove(
 /* =========================================================
    RENDER: MOVES LIBRARY
    ========================================================= */
-const MOVE_ORDER=['stretch','lymph','dumbbell','kettlebell','bodyweight','kegel','core'];
+const MOVE_ORDER=['stretch','lymph','dumbbell','kettlebell','bodyweight','pilates','core'];
 let moveFilter='stretch';
 function buildLibrary(){
   const seen={};const lib={};MOVE_ORDER.forEach(t=>lib[t]=[]);
@@ -1221,7 +1226,6 @@ function renderMoves(){
 }
 function setMoveFilter(t){moveFilter=t;renderMoves();}
 function rxText(e){
-  if(e.type==='kegel')return 'pelvic floor';
   if(e.mode==='reps')return `${e.sets}×${e.rep}`;
   if(e.mode==='time'&&e.sets>1)return `${e.sets}×${e.sec}s`;
   return `${e.sec}s`;
@@ -1454,14 +1458,12 @@ function effReps(e){
 function announce(name,e,kind){
   if(!S.settings.voice)return;
   let t=name+'. ';
-  if(e.type==='kegel'){speak(name);return;}
   if(kind==='reps')t+=effReps(e)+' reps.';
   else t+=(e.sec>=60?Math.round(e.sec/60)+' minute':e.sec+' seconds')+'.';
   speak(t);
 }
 function rxLine(e,st){
   const w=S.settings;
-  if(e.type==='kegel')return e.mode==='time'?`${e.sec}s`:'follow the cues';
   if(e.mode==='reps'){
     let extra='';
     if(e.type==='dumbbell')extra=` · ~${w.dumbbell} lb`;
