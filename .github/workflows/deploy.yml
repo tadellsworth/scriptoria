@@ -6,6 +6,7 @@ name: Deploy apps to GitHub Pages
 #   Bloom             → https://<user>.github.io/scriptoria/bloom/
 #   Vigor             → https://<user>.github.io/scriptoria/vigor/
 #   Line of Authority → https://<user>.github.io/scriptoria/line-of-authority/
+#   Learn Thai        → https://<user>.github.io/scriptoria/learn-thai/
 #
 # One-time setup: repo Settings → Pages → "Build and deployment" → Source =
 # "GitHub Actions". After that, every push to main deploys.
@@ -93,11 +94,20 @@ jobs:
           LOA_OUT: ${{ github.workspace }}/_site/line-of-authority
         run: python3 build.py
 
+      # --- Learn Thai (single-file PWA, no build) → /learn-thai ----------------
+      # Just the static files: index.html + manifest + service worker + icons.
+      - name: Assemble Learn Thai
+        run: |
+          mkdir -p _site/learn-thai
+          cp apps/learn-thai/index.html apps/learn-thai/manifest.webmanifest \
+             apps/learn-thai/sw.js apps/learn-thai/icon-192.png apps/learn-thai/icon-512.png \
+             _site/learn-thai/
+
       # --- Assemble the published site -----------------------------------------
       - name: Assemble site
         run: |
-          # Lumen, Bloom, Vigor and Line of Authority were written to _site/* above;
-          # Scriptoria goes at the root.
+          # Lumen, Bloom, Vigor, Line of Authority and Learn Thai were written to
+          # _site/* above; Scriptoria goes at the root.
           cp -r apps/scriptoria/dist/. _site/
           # Disable Jekyll so files/folders beginning with _ are served verbatim.
           touch _site/.nojekyll
