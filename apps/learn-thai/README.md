@@ -9,9 +9,22 @@ Live: `https://tadellsworth.github.io/scriptoria/learn-thai/`
 
 `index.html` is the whole app — all CSS, JavaScript, and the Apple touch icon are
 inlined (the icon is an embedded base64 PNG). There is **no build step**; the page
-is served as-is. It has no local file dependencies and no runtime state
-(no `localStorage`); the only external requirement is **Google Fonts** (Fraunces /
-Plus Jakarta Sans / Noto Sans Thai) over the network.
+is served as-is. It has no local file dependencies; the only external requirement is
+**Google Fonts** (Fraunces / Plus Jakarta Sans / Noto Sans Thai) over the network.
+
+### Learning features
+
+Vocabulary lessons, phrase book, grammar, a listening hub, flashcards, and games
+(quiz / reverse quiz / listening quiz / sentence builder / memory match), all with
+Thai text-to-speech. Added in this repo:
+
+- **Progress + spaced repetition.** A `localStorage` store (`learnthai.v1`) holds a
+  Leitner-box schedule per word, a daily streak, and your listening-view preferences.
+  The Home screen shows a streak / "words mastered" panel and a **Daily Review** queue
+  (due cards first, then new ones).
+- **Tone Trainer** (in Games) — hear a syllable, name its tone. Uses mid-class
+  consonants where the tone mark maps 1:1 to the tone, so every prompt is correct.
+- **Writing practice** — each alphabet letter's detail view has a trace-over canvas.
 
 ## PWA layer (added when it was brought into this repo)
 

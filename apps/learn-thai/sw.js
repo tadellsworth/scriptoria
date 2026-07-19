@@ -2,7 +2,7 @@
    Lives in the same folder as index.html, so its scope is this folder only
    (/scriptoria/learn-thai/) and it never touches sibling apps on the site.
    Bump CACHE to force-refresh installed clients. */
-const CACHE = 'learn-thai-v1';
+const CACHE = 'learn-thai-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {

@@ -318,6 +318,7 @@ box-shadow:0 -8px 32px rgba(0,0,0,0.4)}
 
 <!-- HOME -->
 <div class="page active" id="page-home">
+  <div id="home-stats"></div>
   <div class="section-title">Vocabulary Lessons</div>
   <div id="home-lessons"></div>
   <div class="section-title">Conversations</div>
@@ -382,6 +383,7 @@ box-shadow:0 -8px 32px rgba(0,0,0,0.4)}
   <div class="card" onclick="openListenQuiz()"><div class="card-row"><div class="card-icon red">🎧</div><div><div class="card-label">Listening Quiz</div><div class="card-sub">Hear Thai, identify the meaning</div></div></div></div>
   <div class="card" onclick="openSentenceBuilder()"><div class="card-row"><div class="card-icon green">🧩</div><div><div class="card-label">Sentence Builder</div><div class="card-sub">Arrange words in Thai order</div></div></div></div>
   <div class="card" onclick="openMemoryMatch()"><div class="card-row"><div class="card-icon gold">🃏</div><div><div class="card-label">Memory Match</div><div class="card-sub">Flip & match Thai-English pairs</div></div></div></div>
+  <div class="card" onclick="openToneTrainer()"><div class="card-row"><div class="card-icon blue">🎵</div><div><div class="card-label">Tone Trainer</div><div class="card-sub">Hear a syllable, name its tone — master Thai's 5 tones</div></div></div></div>
   <div class="lotus">🪷</div>
 </div>
 
@@ -461,6 +463,7 @@ box-shadow:0 -8px 32px rgba(0,0,0,0.4)}
     <div class="tone-row"><div class="tone-mark">ก๊า</div><div class="tone-info"><div class="tone-name">High Tone (ตรี)</div><div class="tone-desc">Pitch rises high — like an excited question</div></div></div>
     <div class="tone-row"><div class="tone-mark">ก๋า</div><div class="tone-info"><div class="tone-name">Rising Tone (จัตวา)</div><div class="tone-desc">Dips low then rises — like a surprised "Really?"</div></div></div>
   </div>
+  <div style="text-align:center;margin-top:16px"><button class="restart-btn" onclick="openToneTrainer()">🎧 Practice the tones →</button></div>
   <div class="lotus">🪷</div>
 </div>
 
@@ -474,6 +477,47 @@ box-shadow:0 -8px 32px rgba(0,0,0,0.4)}
   <div class="grammar-card"><h3>🔢 555 = LOL</h3><p>5 = ห้า (hâa). So 555 = "hahaha." Thai texting shorthand!</p></div>
   <div class="grammar-card"><h3>🙏 The Wai</h3><p>Palms together at chest with slight bow. Higher hands = more respect. Don't wai children or service staff first.</p></div>
   <div class="lotus">🪷</div>
+</div>
+
+<!-- DAILY REVIEW (spaced repetition) -->
+<div class="page" id="page-review">
+  <div class="lesson-header"><button class="back-btn" onclick="showPage('page-home')">←</button><div class="lesson-title">Daily Review</div></div>
+  <div id="rv-area">
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="rv-bar"></div></div>
+    <div class="flashcard-container"><div class="flashcard" id="rv-card" onclick="rvFlip()">
+      <div class="flashcard-face flashcard-front"><div class="fc-thai" id="rv-thai"></div><div class="fc-romanized" id="rv-roman"></div><div class="fc-hint">Tap to reveal</div></div>
+      <div class="flashcard-face flashcard-back"><div class="fc-english" id="rv-eng"></div><div class="fc-example" id="rv-example"></div>
+        <button class="speak-btn" onclick="event.stopPropagation();rvSpeak()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14"/></svg>Listen</button>
+      </div>
+    </div></div>
+    <div id="rv-grade" style="display:none;gap:10px;justify-content:center;margin-top:6px">
+      <button class="restart-btn secondary" style="flex:1;max-width:150px" onclick="rvGrade(false)">✗ Again</button>
+      <button class="restart-btn" style="flex:1;max-width:150px" onclick="rvGrade(true)">✓ Got it</button>
+    </div>
+    <div id="rv-hint" style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:12px">Tap the card to see the meaning</div>
+  </div>
+  <div class="quiz-score" id="rv-score" style="display:none">
+    <div class="score-number" id="rv-score-num"></div><div class="score-label">cards reviewed</div>
+    <div class="score-msg" id="rv-score-msg"></div>
+    <button class="restart-btn" onclick="showPage('page-home')">Done</button>
+  </div>
+</div>
+
+<!-- TONE TRAINER -->
+<div class="page" id="page-tone-trainer">
+  <div class="lesson-header"><button class="back-btn" onclick="showPage('page-games')">←</button><div class="lesson-title">Tone Trainer</div></div>
+  <div id="tt-area">
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="tt-bar"></div></div>
+    <button class="listen-play" id="tt-play" onclick="ttPlay()"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+    <div class="listen-hint">Hear the syllable, then pick its tone <span id="tt-count" style="opacity:0.7"></span></div>
+    <div class="quiz-options" id="tt-options"></div>
+  </div>
+  <div class="quiz-score" id="tt-score" style="display:none">
+    <div class="score-number" id="tt-score-num"></div><div class="score-label">correct answers</div>
+    <div class="score-msg" id="tt-score-msg"></div>
+    <button class="restart-btn" onclick="openToneTrainer()">Try Again</button><br>
+    <button class="restart-btn secondary" style="margin-top:8px" onclick="showPage('page-games')">Back to Games</button>
+  </div>
 </div>
 
 </div>
@@ -897,9 +941,9 @@ function showPage(id){
   void pg.offsetWidth;
   Array.from(pg.children).forEach(ch=>{ch.style.animation='none';void ch.offsetWidth;ch.style.animation=''});
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const m={'page-home':'nav-home','page-lesson':'nav-home','page-tones':'nav-home','page-tips':'nav-home','page-dialogue':'nav-home','page-listen-hub':'nav-home','page-listen-player':'nav-home',
+  const m={'page-home':'nav-home','page-lesson':'nav-home','page-tones':'nav-home','page-tips':'nav-home','page-dialogue':'nav-home','page-listen-hub':'nav-home','page-listen-player':'nav-home','page-review':'nav-home',
     'page-alpha':'nav-alpha','page-phrases':'nav-phrases','page-grammar':'nav-grammar',
-    'page-games':'nav-games','page-quiz':'nav-games','page-listen':'nav-games','page-sentence':'nav-games','page-match':'nav-games'};
+    'page-games':'nav-games','page-quiz':'nav-games','page-listen':'nav-games','page-sentence':'nav-games','page-match':'nav-games','page-tone-trainer':'nav-games'};
   if(m[id])document.getElementById(m[id]).classList.add('active');
   window.scrollTo(0,0);
 }
@@ -1484,6 +1528,221 @@ function toggleListenSpeed() {
 }
 
 buildListenHub();
+</script>
+<script>
+/* ===================================================================
+   PROGRESS + SPACED REPETITION · TONE TRAINER · WRITING PRACTICE
+   Added when Learn Thai joined the Scriptoria monorepo. Self-contained;
+   wraps a few existing functions rather than editing them inline.
+   =================================================================== */
+(function(){
+  const KEY='learnthai.v1';
+  const MS_DAY=86400000;
+  const today=()=>Math.floor(Date.now()/MS_DAY);          // integer day number
+  const INTERVAL=[0,1,3,7,16,30];                          // days by Leitner box (0..5)
+  const GOAL=15;                                           // daily review target
+  const DEF={settings:{roman:true,eng:true,slow:false},srs:{},streak:0,lastDay:null,dayCount:0};
+
+  let LT;
+  try{ const r=localStorage.getItem(KEY); LT=r?Object.assign(JSON.parse(JSON.stringify(DEF)),JSON.parse(r)):JSON.parse(JSON.stringify(DEF)); }
+  catch(e){ LT=JSON.parse(JSON.stringify(DEF)); }
+  if(!LT.settings)LT.settings=Object.assign({},DEF.settings);
+  if(!LT.srs)LT.srs={};
+  const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(LT)); }catch(e){} };
+
+  /* ---- shared helpers ---- */
+  function uniqCards(){ const seen={},out=[]; getAllCards().forEach(c=>{ if(!seen[c.thai]){seen[c.thai]=1;out.push(c);} }); return out; }
+  function grade(id,known){
+    const s=LT.srs[id]||{box:0,due:0};
+    s.box = known ? Math.min(5,(s.box||0)+1) : 0;
+    s.due = today() + INTERVAL[Math.min(s.box,INTERVAL.length-1)];
+    LT.srs[id]=s; save();
+  }
+  function buildReviewQueue(){
+    const t=today(), due=[], neu=[];
+    uniqCards().forEach(c=>{ const s=LT.srs[c.thai]; if(!s)neu.push(c); else if(s.due<=t)due.push(c); });
+    let q=shuffle(due).slice(0,20);
+    if(q.length<20) q=q.concat(shuffle(neu).slice(0,20-q.length));
+    return q;
+  }
+  function noteStudied(){
+    const t=today();
+    if(LT.lastDay!==t){ LT.streak = (LT.lastDay===t-1)?((LT.streak||0)+1):1; LT.lastDay=t; LT.dayCount=0; }
+    LT.dayCount=(LT.dayCount||0)+1; save(); renderHomeStats();
+  }
+
+  /* ---- home stats panel ---- */
+  function renderHomeStats(){
+    const host=document.getElementById('home-stats'); if(!host)return;
+    const t=today(), cards=uniqCards(), total=cards.length;
+    let mastered=0; cards.forEach(c=>{ const s=LT.srs[c.thai]; if(s&&s.box>=4)mastered++; });
+    const ready=buildReviewQueue().length;
+    const done=(LT.lastDay===t)?(LT.dayCount||0):0;
+    const streak=LT.streak||0;
+    host.innerHTML =
+      '<div class="card" style="background:linear-gradient(135deg,rgba(224,181,82,0.15),rgba(224,181,82,0.04))">'+
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">'+
+          '<div><div class="card-label">🔥 '+streak+'-day streak</div>'+
+          '<div class="card-sub">'+done+'/'+GOAL+' reviewed today · '+mastered+'/'+total+' words mastered</div></div>'+
+          '<button class="restart-btn" style="margin:0;font-size:12px;padding:9px 16px;white-space:nowrap" onclick="startReview()">Review'+(ready?' · '+ready:'')+'</button>'+
+        '</div>'+
+        '<div class="quiz-progress" style="margin-top:12px"><div class="quiz-progress-bar" style="width:'+Math.min(100,(done/GOAL)*100)+'%"></div></div>'+
+      '</div>';
+  }
+  window.renderHomeStats=renderHomeStats;
+
+  /* ---- daily review (SRS) ---- */
+  let rvQueue=[], rvIdx=0, rvDone=0;
+  window.startReview=function(){
+    rvQueue=buildReviewQueue();
+    if(!rvQueue.length) rvQueue=shuffle(uniqCards()).slice(0,15);
+    rvIdx=0; rvDone=0;
+    document.getElementById('rv-area').style.display='block';
+    document.getElementById('rv-score').style.display='none';
+    rvRender(); showPage('page-review');
+  };
+  function rvRender(){
+    if(rvIdx>=rvQueue.length){ rvDoneScreen(); return; }
+    const c=rvQueue[rvIdx];
+    document.getElementById('rv-bar').style.width=((rvIdx/rvQueue.length)*100)+'%';
+    document.getElementById('rv-thai').textContent=c.thai;
+    document.getElementById('rv-roman').textContent=c.roman;
+    document.getElementById('rv-eng').textContent=c.eng;
+    document.getElementById('rv-example').textContent=c.example||'';
+    document.getElementById('rv-card').classList.remove('flipped');
+    document.getElementById('rv-grade').style.display='none';
+    document.getElementById('rv-hint').style.display='block';
+  }
+  window.rvFlip=function(){
+    const card=document.getElementById('rv-card');
+    card.classList.toggle('flipped');
+    const flipped=card.classList.contains('flipped');
+    document.getElementById('rv-grade').style.display=flipped?'flex':'none';
+    document.getElementById('rv-hint').style.display=flipped?'none':'block';
+    try{const x=getAudioCtx(),n=x.currentTime,o=x.createOscillator(),g=x.createGain();o.type='sine';o.frequency.setValueAtTime(1200,n);g.gain.setValueAtTime(0.06,n);g.gain.exponentialRampToValueAtTime(0.001,n+0.06);o.connect(g);g.connect(x.destination);o.start(n);o.stop(n+0.06)}catch(e){}
+    if(flipped) window.rvSpeak();
+  };
+  window.rvSpeak=function(){ const c=rvQueue[rvIdx]; if(c)speakThai(c.thai); };
+  window.rvGrade=function(known){
+    const c=rvQueue[rvIdx];
+    if(c) grade(c.thai,known);
+    noteStudied();
+    rvDone++; rvIdx++;
+    rvRender();
+  };
+  function rvDoneScreen(){
+    document.getElementById('rv-bar').style.width='100%';
+    document.getElementById('rv-area').style.display='none';
+    document.getElementById('rv-score').style.display='block';
+    document.getElementById('rv-score-num').textContent=rvDone;
+    document.getElementById('rv-score-msg').textContent='เก่งมาก! — Great work. Come back tomorrow to keep your streak going.';
+    try{playPerfectSound();}catch(e){}
+    renderHomeStats();
+  }
+
+  /* ---- tone trainer ---- */
+  const TT_BASES=['ก','จ','ด','ต','บ','ป'];               // mid-class consonants: tone mark maps 1:1 to tone
+  const TT_TONES=[                                          // syllable = base + mark + 'า'
+    {mark:'',   en:'Mid',     th:'สามัญ'},
+    {mark:'่', en:'Low',     th:'เอก'},
+    {mark:'้', en:'Falling', th:'โท'},
+    {mark:'๊', en:'High',    th:'ตรี'},
+    {mark:'๋', en:'Rising',  th:'จัตวา'}
+  ];
+  let ttQ=[], ttIdx=0, ttScore=0, ttCur=null;
+  window.openToneTrainer=function(){
+    ttQ=[];
+    for(let i=0;i<10;i++){
+      const base=TT_BASES[Math.floor(Math.random()*TT_BASES.length)];
+      const tone=Math.floor(Math.random()*5);
+      ttQ.push({syll:base+TT_TONES[tone].mark+'า', tone});
+    }
+    ttIdx=0; ttScore=0;
+    document.getElementById('tt-area').style.display='block';
+    document.getElementById('tt-score').style.display='none';
+    ttRender(); showPage('page-tone-trainer');
+  };
+  function ttRender(){
+    if(ttIdx>=ttQ.length){ ttScoreScreen(); return; }
+    ttCur=ttQ[ttIdx];
+    document.getElementById('tt-bar').style.width=((ttIdx/ttQ.length)*100)+'%';
+    document.getElementById('tt-count').textContent='('+(ttIdx+1)+'/'+ttQ.length+')';
+    const oe=document.getElementById('tt-options'); oe.innerHTML='';
+    TT_TONES.forEach((tn,idx)=>{
+      const b=document.createElement('button'); b.className='quiz-option';
+      b.innerHTML=tn.en+' <span style="font-size:11px;color:var(--text-dim);font-style:italic;margin-left:6px">'+tn.th+'</span>';
+      b.onclick=()=>ttAnswer(b,idx);
+      oe.appendChild(b);
+    });
+    setTimeout(window.ttPlay,350);
+  }
+  window.ttPlay=function(){ if(ttCur)speakThai(ttCur.syll); };
+  function ttAnswer(btn,idx){
+    const correct=ttCur.tone;
+    document.querySelectorAll('#tt-options .quiz-option').forEach((b,i)=>{ b.classList.add('disabled'); if(i===correct)b.classList.add('correct'); });
+    if(idx!==correct){ btn.classList.add('wrong'); try{playWrongSound();}catch(e){} }
+    else { ttScore++; try{playCorrectSound();}catch(e){} }
+    noteStudied();
+    setTimeout(()=>{ ttIdx++; ttRender(); },1200);
+  }
+  function ttScoreScreen(){
+    document.getElementById('tt-bar').style.width='100%';
+    document.getElementById('tt-area').style.display='none';
+    document.getElementById('tt-score').style.display='block';
+    document.getElementById('tt-score-num').textContent=ttScore+'/'+ttQ.length;
+    const p=ttScore/ttQ.length;
+    document.getElementById('tt-score-msg').textContent = p===1?'เก่งมาก! — Perfect ear!':p>=0.8?'ดีมาก! — Great tone sense!':p>=0.6?'ดี! — Getting there!':'ไม่เป็นไร — Tones take practice!';
+    if(p===1){try{playPerfectSound();}catch(e){}} else if(p>=0.7){try{playCorrectSound();}catch(e){}}
+  }
+
+  /* ---- writing practice: trace canvas inside the alphabet detail ---- */
+  function addTraceCanvas(c){
+    const host=document.getElementById('alpha-detail'); if(!host)return;
+    const glyph=(c.char||'').replace(/–/g,'อ');            // give combining vowels a base to sit on
+    const wrap=document.createElement('div'); wrap.style.cssText='margin-top:18px';
+    wrap.innerHTML='<div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;line-height:1.55">✍️ <strong style="color:var(--gold)">Practice writing.</strong> Trace over the guide with your finger. Most Thai letters begin at the small loop/head (หัว) and are drawn in one continuous stroke, generally left-to-right.</div>';
+    const cv=document.createElement('canvas'); const S=260; cv.width=S; cv.height=S;
+    cv.style.cssText='width:100%;max-width:260px;display:block;margin:0 auto;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;touch-action:none;cursor:crosshair';
+    wrap.appendChild(cv);
+    const row=document.createElement('div'); row.style.cssText='text-align:center;margin-top:10px';
+    row.innerHTML='<button class="restart-btn secondary" style="font-size:12px;padding:6px 20px">Clear</button>';
+    wrap.appendChild(row);
+    host.appendChild(wrap);
+    const ctx=cv.getContext('2d');
+    function guide(){ ctx.clearRect(0,0,S,S); ctx.save(); ctx.globalAlpha=0.16; ctx.fillStyle='#f6dd9a'; ctx.font='190px "Noto Sans Thai",sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(glyph,S/2,S/2+8); ctx.restore(); }
+    guide();
+    ctx.lineWidth=6; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#e0b552';
+    let drawing=false,lx=0,ly=0;
+    const pos=e=>{ const r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e; return {x:(t.clientX-r.left)*(S/r.width),y:(t.clientY-r.top)*(S/r.height)}; };
+    const down=e=>{ drawing=true; const p=pos(e); lx=p.x; ly=p.y; e.preventDefault(); };
+    const move=e=>{ if(!drawing)return; const p=pos(e); ctx.beginPath(); ctx.moveTo(lx,ly); ctx.lineTo(p.x,p.y); ctx.stroke(); lx=p.x; ly=p.y; e.preventDefault(); };
+    const up=()=>{ drawing=false; };
+    cv.addEventListener('mousedown',down); cv.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+    cv.addEventListener('touchstart',down,{passive:false}); cv.addEventListener('touchmove',move,{passive:false}); cv.addEventListener('touchend',up);
+    row.querySelector('button').onclick=guide;
+  }
+
+  /* ---- wrap existing functions (minimal, non-destructive) ---- */
+  const _buildHome=window.buildHome;
+  window.buildHome=function(){ _buildHome(); renderHomeStats(); };
+  const _showAlphaDetail=window.showAlphaDetail;
+  window.showAlphaDetail=function(c){ _showAlphaDetail(c); addTraceCanvas(c); };
+  const _tRoman=window.toggleListenRoman, _tEng=window.toggleListenEng, _tSpeed=window.toggleListenSpeed;
+  window.toggleListenRoman=function(){ _tRoman(); LT.settings.roman=listenShowRoman; save(); };
+  window.toggleListenEng =function(){ _tEng();  LT.settings.eng  =listenShowEng;  save(); };
+  window.toggleListenSpeed=function(){ _tSpeed(); LT.settings.slow=listenSlow;    save(); };
+
+  /* ---- init ---- */
+  try{
+    listenShowRoman=LT.settings.roman!==false;
+    listenShowEng  =LT.settings.eng!==false;
+    listenSlow     =!!LT.settings.slow;
+    const tr=document.getElementById('toggle-roman'); if(tr)tr.className='listen-toggle'+(listenShowRoman?' on':'');
+    const te=document.getElementById('toggle-eng');   if(te)te.className='listen-toggle'+(listenShowEng?' on':'');
+    const tsb=document.getElementById('toggle-slow'); if(tsb)tsb.className='listen-toggle'+(listenSlow?' on':'');
+  }catch(e){}
+  renderHomeStats();
+})();
 </script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
