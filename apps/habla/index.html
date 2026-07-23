@@ -189,8 +189,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
   <!-- ============ VERBOS ============ -->
   <section class="screen" id="s-verbs">
     <div class="h1">Verbs</div>
-    <div class="sub">Present tense is ~80% of everyday speech. Drill the endings until they're automatic.</div>
-    <button class="btn block gold" style="margin-top:14px" onclick="startConj('all')">⚡ Quick conjugation drill</button>
+    <div class="sub">Pick a tense, then drill the endings until they're automatic.</div>
+    <div class="row-tabs" id="tense-tabs" style="margin-top:10px"></div>
+    <button class="btn block gold" style="margin-top:10px" id="conj-btn" onclick="startConj('all')">⚡ Quick drill</button>
     <div class="h2">Browse &amp; hear</div>
     <div class="row-tabs" id="verb-tabs"></div>
     <div id="verb-list"></div>
@@ -289,12 +290,73 @@ function noteStudied(){ const t=today(); if(S.lastDay!==t){ S.streak=(S.lastDay=
 const PERSONS=['yo','tú','él/ella/Ud.','nosotros','vosotros','ellos/Uds.'];
 const PERSON_SHORT=['yo','tú','él/ella','nosotros','vosotros','ellos'];
 const END={ar:['o','as','a','amos','áis','an'],er:['o','es','e','emos','éis','en'],ir:['o','es','e','imos','ís','en']};
-function applyStem(st,type){const m={ie:['e','ie'],ue:['o','ue'],i:['e','i'],uue:['u','ue']}[type];const idx=st.lastIndexOf(m[0]);return idx<0?st:st.slice(0,idx)+m[1]+st.slice(idx+1);}
-function conjugate(v){
+function applyStem(st,type){const m={ie:['e','ie'],ue:['o','ue'],i:['e','i'],uue:['u','ue'],u:['o','u']}[type];const idx=st.lastIndexOf(m[0]);return idx<0?st:st.slice(0,idx)+m[1]+st.slice(idx+1);}
+
+/* ---- irregular / orthographic tables (hand-verified) ---- */
+const PRET_REG={ar:['é','aste','ó','amos','asteis','aron'],er:['í','iste','ió','imos','isteis','ieron'],ir:['í','iste','ió','imos','isteis','ieron']};
+const PRET_IRR={
+  ser:['fui','fuiste','fue','fuimos','fuisteis','fueron'], ir:['fui','fuiste','fue','fuimos','fuisteis','fueron'],
+  estar:['estuve','estuviste','estuvo','estuvimos','estuvisteis','estuvieron'],
+  tener:['tuve','tuviste','tuvo','tuvimos','tuvisteis','tuvieron'],
+  hacer:['hice','hiciste','hizo','hicimos','hicisteis','hicieron'],
+  poder:['pude','pudiste','pudo','pudimos','pudisteis','pudieron'],
+  poner:['puse','pusiste','puso','pusimos','pusisteis','pusieron'],
+  querer:['quise','quisiste','quiso','quisimos','quisisteis','quisieron'],
+  venir:['vine','viniste','vino','vinimos','vinisteis','vinieron'],
+  decir:['dije','dijiste','dijo','dijimos','dijisteis','dijeron'],
+  saber:['supe','supiste','supo','supimos','supisteis','supieron'],
+  dar:['di','diste','dio','dimos','disteis','dieron'],
+  ver:['vi','viste','vio','vimos','visteis','vieron'],
+  haber:['hube','hubiste','hubo','hubimos','hubisteis','hubieron'],
+  llegar:['llegué','llegaste','llegó','llegamos','llegasteis','llegaron'],
+  jugar:['jugué','jugaste','jugó','jugamos','jugasteis','jugaron'],
+  empezar:['empecé','empezaste','empezó','empezamos','empezasteis','empezaron'],
+  leer:['leí','leíste','leyó','leímos','leísteis','leyeron']
+};
+const IMP_IRR={ser:['era','eras','era','éramos','erais','eran'],ir:['iba','ibas','iba','íbamos','ibais','iban'],ver:['veía','veías','veía','veíamos','veíais','veían']};
+const FUT_STEM={tener:'tendr',poner:'pondr',salir:'saldr',venir:'vendr',poder:'podr',saber:'sabr',hacer:'har',decir:'dir',querer:'querr',haber:'habr'};
+const PART_IRR={hacer:'hecho',decir:'dicho',ver:'visto',escribir:'escrito',poner:'puesto',volver:'vuelto',abrir:'abierto',morir:'muerto',romper:'roto',leer:'leído',creer:'creído'};
+const GER_IRR={leer:'leyendo',oír:'oyendo',ir:'yendo',decir:'diciendo',dormir:'durmiendo',pedir:'pidiendo',servir:'sirviendo',venir:'viniendo',poder:'pudiendo',creer:'creyendo'};
+const HABER=['he','has','ha','hemos','habéis','han'];
+const ESTAR_PR=['estoy','estás','está','estamos','estáis','están'];
+
+function participle(v){ if(PART_IRR[v.inf])return PART_IRR[v.inf]; const st=v.inf.slice(0,-2); return v.inf.slice(-2)==='ar'?st+'ado':st+'ido'; }
+function gerund(v){ if(GER_IRR[v.inf])return GER_IRR[v.inf]; const st=v.inf.slice(0,-2); return v.inf.slice(-2)==='ar'?st+'ando':st+'iendo'; }
+function conjPresent(v){
   if(v.irreg)return v.irreg.slice();
   const type=v.type,st=v.inf.slice(0,-2),en=END[type];
   return en.map((e,i)=>{ let s=st; if(v.stem&&i!==3&&i!==4)s=applyStem(st,v.stem); return s+e; });
 }
+function conjPret(v){
+  if(PRET_IRR[v.inf])return PRET_IRR[v.inf].slice();
+  const type=v.inf.slice(-2),st=v.inf.slice(0,-2),en=PRET_REG[type];
+  return en.map((e,i)=>{ let s=st; if(type==='ir'&&v.stem&&(i===2||i===5))s=applyStem(st,v.stem==='ue'?'u':'i'); return s+e; });
+}
+function conjImp(v){
+  if(IMP_IRR[v.inf])return IMP_IRR[v.inf].slice();
+  const type=v.inf.slice(-2),st=v.inf.slice(0,-2);
+  const en=type==='ar'?['aba','abas','aba','ábamos','abais','aban']:['ía','ías','ía','íamos','íais','ían'];
+  return en.map(e=>st+e);
+}
+function conjFV(v,mode){
+  const stem=FUT_STEM[v.inf]||v.inf;
+  const en=mode==='future'?['é','ás','á','emos','éis','án']:['ía','ías','ía','íamos','íais','ían'];
+  return en.map(e=>stem+e);
+}
+function conjugate(v,tense){
+  switch(tense||'present'){
+    case 'preterite':return conjPret(v);
+    case 'imperfect':return conjImp(v);
+    case 'future':return conjFV(v,'future');
+    case 'conditional':return conjFV(v,'conditional');
+    case 'perfect':return HABER.map(h=>h+' '+participle(v));
+    case 'progressive':return ESTAR_PR.map(e=>e+' '+gerund(v));
+    default:return conjPresent(v);
+  }
+}
+const TENSES=[['present','Present'],['preterite','Preterite'],['imperfect','Imperfect'],['future','Future'],['conditional','Conditional'],['perfect','Perfect'],['progressive','Progressive']];
+const TENSE_NAME=Object.fromEntries(TENSES);
+let curTense='present';
 const VERBS=[
   {inf:'hablar',en:'to speak',type:'ar'},{inf:'estudiar',en:'to study',type:'ar'},
   {inf:'trabajar',en:'to work',type:'ar'},{inf:'necesitar',en:'to need',type:'ar'},
@@ -374,7 +436,64 @@ const DECKS=[
   {id:'describe',name:'Describing',icon:'🎨',words:[
     ['bueno','good'],['malo','bad'],['grande','big'],['pequeño','small'],['nuevo','new'],['viejo','old'],
     ['bonito','pretty'],['feo','ugly'],['fácil','easy'],['difícil','hard'],['mismo','same'],['otro','other'],
-    ['todo','all / every'],['feliz','happy'],['cansado','tired'],['listo','ready / clever'],['caro','expensive'],['barato','cheap']]}
+    ['todo','all / every'],['feliz','happy'],['cansado','tired'],['listo','ready / clever'],['caro','expensive'],['barato','cheap']]},
+  {id:'verbs_common',name:'Common verbs',icon:'🏃',words:[
+    ['gustar','to like'],['parecer','to seem'],['creer','to believe'],['dejar','to leave / let'],['seguir','to follow / continue'],
+    ['esperar','to wait / hope'],['buscar','to look for'],['llamar','to call'],['sentir','to feel'],['mirar','to watch / look'],
+    ['pagar','to pay'],['ayudar','to help'],['comprar','to buy'],['vender','to sell'],['ganar','to win / earn'],
+    ['perder','to lose'],['cambiar','to change'],['entrar','to enter'],['viajar','to travel'],['caminar','to walk'],
+    ['correr','to run'],['cantar','to sing'],['bailar','to dance'],['llegar','to arrive'],['llevar','to carry / wear'],
+    ['pasar','to pass / happen'],['deber','to owe / should'],['quedar','to stay / remain']]},
+  {id:'family',name:'Family',icon:'👨‍👩‍👧',words:[
+    ['la madre','mother'],['el padre','father'],['la mamá','mom'],['el papá','dad'],['el hermano','brother'],
+    ['la hermana','sister'],['el hijo','son'],['la hija','daughter'],['el abuelo','grandfather'],['la abuela','grandmother'],
+    ['el tío','uncle'],['la tía','aunt'],['el primo','cousin (m)'],['la esposa','wife'],['el esposo','husband'],
+    ['el novio','boyfriend'],['la novia','girlfriend'],['el bebé','baby'],['los padres','parents']]},
+  {id:'food',name:'Food & drink',icon:'🍽️',words:[
+    ['el pan','bread'],['la carne','meat'],['el pollo','chicken'],['el pescado','fish'],['el arroz','rice'],
+    ['el huevo','egg'],['la leche','milk'],['el queso','cheese'],['la fruta','fruit'],['la verdura','vegetable'],
+    ['la manzana','apple'],['el café','coffee'],['el té','tea'],['el jugo','juice'],['la cerveza','beer'],
+    ['el vino','wine'],['el agua','water'],['el desayuno','breakfast'],['el almuerzo','lunch'],['la cena','dinner'],
+    ['el restaurante','restaurant'],['la cuenta','the bill'],['el azúcar','sugar'],['la sal','salt'],['rico','delicious']]},
+  {id:'body',name:'The body',icon:'💪',words:[
+    ['la cabeza','head'],['la cara','face'],['el ojo','eye'],['la nariz','nose'],['la boca','mouth'],
+    ['el diente','tooth'],['la oreja','ear'],['el pelo','hair'],['el cuello','neck'],['el brazo','arm'],
+    ['la mano','hand'],['el dedo','finger'],['la pierna','leg'],['el pie','foot'],['el corazón','heart'],
+    ['el estómago','stomach'],['la espalda','back']]},
+  {id:'home',name:'The house',icon:'🛋️',words:[
+    ['el cuarto','room'],['la cocina','kitchen'],['el baño','bathroom'],['la sala','living room'],['la cama','bed'],
+    ['la puerta','door'],['la ventana','window'],['la mesa','table'],['la silla','chair'],['la luz','light'],
+    ['la llave','key'],['el teléfono','phone'],['la ropa','clothes'],['el libro','book'],['el papel','paper']]},
+  {id:'places',name:'Places',icon:'🏙️',words:[
+    ['la tienda','store'],['el mercado','market'],['la escuela','school'],['el hospital','hospital'],['el banco','bank'],
+    ['la iglesia','church'],['el parque','park'],['la playa','beach'],['la montaña','mountain'],['la oficina','office'],
+    ['el aeropuerto','airport'],['el hotel','hotel'],['el pueblo','town'],['el campo','countryside']]},
+  {id:'travel',name:'Getting around',icon:'✈️',words:[
+    ['el coche','car'],['el autobús','bus'],['el tren','train'],['el avión','airplane'],['el taxi','taxi'],
+    ['la bicicleta','bicycle'],['el boleto','ticket'],['la maleta','suitcase'],['el pasaporte','passport'],['izquierda','left'],
+    ['derecha','right'],['recto','straight ahead'],['cerca','near'],['lejos','far'],['el mapa','map'],['el viaje','trip']]},
+  {id:'calendar',name:'Days & months',icon:'📅',words:[
+    ['lunes','Monday'],['martes','Tuesday'],['miércoles','Wednesday'],['jueves','Thursday'],['viernes','Friday'],
+    ['sábado','Saturday'],['domingo','Sunday'],['la semana','week'],['el mes','month'],['enero','January'],
+    ['febrero','February'],['marzo','March'],['abril','April'],['mayo','May'],['junio','June'],['julio','July'],
+    ['agosto','August'],['septiembre','September'],['octubre','October'],['noviembre','November'],['diciembre','December']]},
+  {id:'colors',name:'Colors',icon:'🌈',words:[
+    ['rojo','red'],['azul','blue'],['verde','green'],['amarillo','yellow'],['negro','black'],['blanco','white'],
+    ['gris','gray'],['rosa','pink'],['naranja','orange'],['morado','purple'],['marrón','brown']]},
+  {id:'nature',name:'Nature & weather',icon:'🌤️',words:[
+    ['el sol','sun'],['la lluvia','rain'],['la nieve','snow'],['el viento','wind'],['el cielo','sky'],
+    ['el calor','heat'],['el frío','cold'],['el fuego','fire'],['la tierra','earth / land'],['el mar','sea'],
+    ['el río','river'],['el árbol','tree'],['la flor','flower'],['el animal','animal'],['el perro','dog'],
+    ['el gato','cat'],['el pájaro','bird']]},
+  {id:'feelings',name:'Feelings',icon:'😊',words:[
+    ['triste','sad'],['enojado','angry'],['contento','glad'],['aburrido','bored'],['nervioso','nervous'],
+    ['enfermo','sick'],['ocupado','busy'],['preocupado','worried'],['asustado','scared'],
+    ['tener hambre','to be hungry'],['tener sed','to be thirsty'],['tener miedo','to be afraid'],['tener razón','to be right']]},
+  {id:'adjectives2',name:'More adjectives',icon:'📐',words:[
+    ['alto','tall'],['bajo','short (height)'],['largo','long'],['corto','short (length)'],['joven','young'],
+    ['fuerte','strong'],['rápido','fast'],['lento','slow'],['limpio','clean'],['sucio','dirty'],
+    ['caliente','hot'],['lleno','full'],['vacío','empty'],['abierto','open'],['cerrado','closed'],
+    ['importante','important'],['verdadero','true'],['libre','free'],['próximo','next'],['claro','clear']]}
 ];
 function allWords(){const o=[];DECKS.forEach(d=>d.words.forEach(w=>o.push({es:w[0],en:w[1],deck:d.id})));return o;}
 function wordId(w){return w.es;}
@@ -428,7 +547,52 @@ const GRAMMAR={
     '<div class="sub">Negate by putting <b>no</b> right before the verb. Ask by wrapping in <b>¿ … ?</b> — the voice rises.</div>'+
     '<div class="ex"><div class="e-es">No hablo francés.</div><div class="e-en">I don’t speak French.</div></div>'+
     '<div class="ex"><div class="e-es">¿Hablas español?</div><div class="e-en">Do you speak Spanish?</div></div>'+
-    '<div class="gnote">Spanish drops “do/does.” The question is just the statement with question marks and rising tone.</div>'}
+    '<div class="gnote">Spanish drops “do/does.” The question is just the statement with question marks and rising tone.</div>'},
+  reflexives:{title:'Reflexive verbs',html:
+    '<div class="sub">When the subject acts on <b>itself</b>. Put a reflexive pronoun before the verb: <b>me, te, se, nos, (os), se</b>.</div>'+
+    '<div class="ex"><div class="e-es">Me llamo Tad.</div><div class="e-en">My name is Tad. (lit. I call myself)</div></div>'+
+    '<div class="ex"><div class="e-es">Ella se levanta temprano.</div><div class="e-en">She gets up early.</div></div>'+
+    '<div class="gnote">Everyday reflexives: <b>llamarse</b> (to be called), <b>levantarse</b> (to get up), <b>ducharse</b> (to shower), <b>sentirse</b> (to feel), <b>acostarse</b> (to go to bed), <b>vestirse</b> (to get dressed).</div>'},
+  preterite:{title:'The preterite (past)',html:
+    '<div class="sub">For actions that <b>started and finished</b> — one moment in the past.</div>'+
+    '<table class="conj"><tr><td class="p">-ar (hablar)</td><td class="f">hablé, hablaste, habló…</td></tr><tr class="es"><td class="p">-er/-ir (comer)</td><td class="f">comí, comiste, comió…</td></tr></table>'+
+    '<div class="ex"><div class="e-es">Ayer comí en un restaurante.</div><div class="e-en">Yesterday I ate at a restaurant.</div></div>'+
+    '<div class="gnote">Many top verbs are irregular here: <b>ser/ir → fui</b>, <b>tener → tuve</b>, <b>hacer → hice</b>, <b>decir → dije</b>, <b>estar → estuve</b>. Drill them in the Verbs tab (Preterite).</div>'},
+  imperfect:{title:'The imperfect (past)',html:
+    '<div class="sub">For the past with <b>no clear start or end</b> — habits, descriptions, “used to” and “was …-ing”.</div>'+
+    '<table class="conj"><tr><td class="p">-ar</td><td class="f">-aba, -abas, -aba…</td></tr><tr class="es"><td class="p">-er/-ir</td><td class="f">-ía, -ías, -ía…</td></tr></table>'+
+    '<div class="ex"><div class="e-es">Cuando era niño, jugaba fútbol.</div><div class="e-en">When I was a kid, I used to play soccer.</div></div>'+
+    '<div class="gnote">Only <b>three</b> verbs are irregular: <b>ser (era)</b>, <b>ir (iba)</b>, <b>ver (veía)</b>. Everything else is perfectly regular.</div>'},
+  pretimp:{title:'Preterite vs. imperfect',html:
+    '<div class="sub">The trickiest choice in the past tense — but the idea is simple.</div>'+
+    '<div class="ex"><div class="e-es"><b>Preterite</b> — a completed event.</div><div class="e-en">Comí a las ocho. — I ate at eight.</div></div>'+
+    '<div class="ex"><div class="e-es"><b>Imperfect</b> — the ongoing background.</div><div class="e-en">Comía cuando llamaste. — I was eating when you called.</div></div>'+
+    '<div class="gnote">Classic combo: the <b>imperfect</b> sets the scene, the <b>preterite</b> interrupts it. “Yo <b>iba</b> a la tienda cuando <b>vi</b> a María.”</div>'},
+  irafuture:{title:'ir + a  (going to)',html:
+    '<div class="sub">The easiest future — and the one people use most when speaking. Just <b>ir</b> (present) + <b>a</b> + infinitive.</div>'+
+    '<div class="ex"><div class="e-es">Voy a comer.</div><div class="e-en">I’m going to eat.</div></div>'+
+    '<div class="ex"><div class="e-es">Vamos a viajar mañana.</div><div class="e-en">We’re going to travel tomorrow.</div></div>'+
+    '<div class="gnote">Forms of ir: <b>voy, vas, va, vamos, van</b>. Learn these and you can talk about the future today.</div>'},
+  future:{title:'The future tense',html:
+    '<div class="sub">“Will …”. Add one set of endings to the <b>whole infinitive</b> — same for -ar, -er and -ir.</div>'+
+    '<table class="conj"><tr class="es"><td class="p">hablar</td><td class="f">hablaré, hablarás, hablará…</td></tr></table>'+
+    '<div class="ex"><div class="e-es">Mañana hablaré con ella.</div><div class="e-en">Tomorrow I will speak with her.</div></div>'+
+    '<div class="gnote">A few use an irregular stem (shared with the conditional): <b>tener → tendré</b>, <b>hacer → haré</b>, <b>decir → diré</b>, <b>poder → podré</b>, <b>salir → saldré</b>.</div>'},
+  condit:{title:'The conditional',html:
+    '<div class="sub">“Would …”. The same stems as the future, but with -ía endings.</div>'+
+    '<div class="ex"><div class="e-es">Yo hablaría con él.</div><div class="e-en">I would speak with him.</div></div>'+
+    '<div class="ex"><div class="e-es">¿Podrías ayudarme?</div><div class="e-en">Could you help me? (polite)</div></div>'+
+    '<div class="gnote">Perfect for being polite: <b>Me gustaría…</b> (I would like…), <b>¿Podría…?</b> (Could you…?).</div>'},
+  progressive:{title:'Right now (progressive)',html:
+    '<div class="sub">“I am …-ing”. Use <b>estar</b> + the gerund (-ando / -iendo).</div>'+
+    '<div class="ex"><div class="e-es">Estoy hablando español.</div><div class="e-en">I am speaking Spanish.</div></div>'+
+    '<div class="ex"><div class="e-es">¿Qué estás haciendo?</div><div class="e-en">What are you doing?</div></div>'+
+    '<div class="gnote">-ar → -ando, -er/-ir → -iendo. A few shift: <b>leer → leyendo</b>, <b>decir → diciendo</b>, <b>dormir → durmiendo</b>.</div>'},
+  perfect:{title:'Present perfect',html:
+    '<div class="sub">“I have …-ed”. Use <b>haber</b> (he, has, ha, hemos, han) + the past participle.</div>'+
+    '<div class="ex"><div class="e-es">He comido.</div><div class="e-en">I have eaten.</div></div>'+
+    '<div class="ex"><div class="e-es">¿Has estado en México?</div><div class="e-en">Have you been to Mexico?</div></div>'+
+    '<div class="gnote">Participle: -ar → -ado, -er/-ir → -ido. Know these irregulars: <b>hacer → hecho</b>, <b>decir → dicho</b>, <b>ver → visto</b>, <b>escribir → escrito</b>, <b>poner → puesto</b>, <b>volver → vuelto</b>, <b>abrir → abierto</b>.</div>'}
 };
 
 /* ---------------- DATA: sentence-builder ---------------- */
@@ -483,7 +647,28 @@ const PATH=[
     {id:'g_neg',t:'Negatives & questions',d:'No + verb; ¿…?',ic:'❓',go:()=>openGrammar('negquest')},
     {id:'w_connect',t:'Connectors deck',d:'y, pero, porque…',ic:'🔗',go:()=>openDeck('connectors')},
     {id:'speak1',t:'Speaking practice',d:'Say it out loud',ic:'🎙️',go:()=>startSpeak()},
+    {id:'g_reflex',t:'Reflexive verbs',d:'me llamo, se levanta',ic:'🔁',go:()=>openGrammar('reflexives')},
     {id:'sent2',t:'Build sentences II',d:'Longer, real phrases',ic:'🧩',go:()=>startSentences()}
+  ]},
+  {unit:'Unit 5 · Talk about the past',nodes:[
+    {id:'g_pret',t:'The preterite',d:'Completed past actions',ic:'⏮️',go:()=>openGrammar('preterite')},
+    {id:'d_pret',t:'Preterite drill',d:'Conjugate in the past',ic:'⚡',go:()=>startConj('all',null,'preterite')},
+    {id:'g_imp',t:'The imperfect',d:'“Used to” / ongoing past',ic:'🎞️',go:()=>openGrammar('imperfect')},
+    {id:'g_pretimp',t:'Preterite vs. imperfect',d:'Which past to use',ic:'⚖️',go:()=>openGrammar('pretimp')},
+    {id:'d_imp',t:'Imperfect drill',d:'Conjugate in the imperfect',ic:'⚡',go:()=>startConj('all',null,'imperfect')}
+  ]},
+  {unit:'Unit 6 · The future',nodes:[
+    {id:'g_ira',t:'ir + a (going to)',d:'The easy, spoken future',ic:'🔜',go:()=>openGrammar('irafuture')},
+    {id:'g_fut',t:'The future tense',d:'hablaré, tendré…',ic:'🚀',go:()=>openGrammar('future')},
+    {id:'d_fut',t:'Future drill',d:'Conjugate in the future',ic:'⚡',go:()=>startConj('all',null,'future')},
+    {id:'g_cond',t:'The conditional',d:'“would…”, polite requests',ic:'💭',go:()=>openGrammar('condit')},
+    {id:'d_cond',t:'Conditional drill',d:'Conjugate the conditional',ic:'⚡',go:()=>startConj('all',null,'conditional')}
+  ]},
+  {unit:'Unit 7 · Compound tenses',nodes:[
+    {id:'g_prog',t:'Right now (progressive)',d:'estar + -ando/-iendo',ic:'⏳',go:()=>openGrammar('progressive')},
+    {id:'d_prog',t:'Progressive drill',d:'estoy hablando…',ic:'⚡',go:()=>startConj('all',null,'progressive')},
+    {id:'g_perf',t:'Present perfect',d:'he hablado — “I have…”',ic:'✅',go:()=>openGrammar('perfect')},
+    {id:'d_perf',t:'Perfect drill',d:'haber + participle',ic:'⚡',go:()=>startConj('all',null,'perfect')}
   ]}
 ];
 
@@ -535,37 +720,48 @@ function markDone(){ if(curNode){ S.done[curNode]=true; save(); } }
    ===================================================================== */
 let verbTab='core';
 function renderVerbs(){
+  const tt=document.getElementById('tense-tabs'); tt.innerHTML='';
+  TENSES.forEach(([k,l])=>{const b=document.createElement('button');b.className='pill'+(curTense===k?' on':'');b.textContent=l;b.onclick=()=>{curTense=k;renderVerbs();};tt.appendChild(b);});
+  document.getElementById('conj-btn').textContent='⚡ Quick drill · '+TENSE_NAME[curTense];
   const tb=document.getElementById('verb-tabs'); tb.innerHTML='';
   VERB_TABS.forEach(([k,l])=>{const b=document.createElement('button');b.className='pill'+(verbTab===k?' on':'');b.textContent=l;b.onclick=()=>{verbTab=k;renderVerbs();};tb.appendChild(b);});
   const el=document.getElementById('verb-list'); el.innerHTML='';
   verbsIn(verbTab).forEach(v=>{
-    const forms=conjugate(v);
+    const forms=conjugate(v,curTense);
     const d=document.createElement('div'); d.className='node'; d.style.marginTop='10px';
     d.innerHTML=`<div class="ic">${v.irreg?'★':v.stem?'🥾':'•'}</div><div><div class="t">${v.inf}</div><div class="d">${v.en} · yo ${forms[0]}</div></div><div class="chev">›</div>`;
     d.onclick=()=>openVerb(v);
     el.appendChild(d);
   });
 }
-function openVerb(v){
-  backTo='verbs';
-  const forms=conjugate(v);
+function openVerb(v,tense){
+  backTo='verbs'; const t=tense||curTense, forms=conjugate(v,t);
+  const tabs=TENSES.map(([k,l])=>`<button class="pill${t===k?' on':''}" onclick="openVerb(VERBS.find(x=>x.inf==='${v.inf}'),'${k}')">${l}</button>`).join('');
   const rows=PERSONS.map((p,i)=>(!S.settings.vos&&i===4)?'':`<tr class="${i===0?'es':''}"><td class="p">${p}</td><td class="f">${forms[i]}</td></tr>`).join('');
+  const note = t==='present'?(v.irreg?'Irregular — memorize these.':v.stem?'Stem-changing ('+({ie:'e→ie',ue:'o→ue',i:'e→i',uue:'u→ue'}[v.stem])+') — the “boot”.':'Regular '+v.type+' verb.')
+    : t==='preterite'?(PRET_IRR[v.inf]?'Irregular preterite.':'Regular preterite — a completed action.')
+    : t==='imperfect'?(IMP_IRR[v.inf]?'One of only three irregular imperfects.':'Imperfect — ongoing / used-to.')
+    : t==='future'?(FUT_STEM[v.inf]?'Irregular future stem ('+FUT_STEM[v.inf]+'-).':'Future — infinitive + endings.')
+    : t==='conditional'?(FUT_STEM[v.inf]?'Irregular stem ('+FUT_STEM[v.inf]+'-).':'Conditional — “would”.')
+    : t==='perfect'?'Present perfect: haber + '+participle(v)+'.'
+    : 'Progressive: estar + '+gerund(v)+'.';
   document.getElementById('detail-body').innerHTML=
     `<div class="h1">${v.inf} <span style="color:var(--ink-faint);font-size:16px;font-weight:600">${v.en}</span></div>`+
-    `<div class="sub">${v.irreg?'Irregular — memorize these.':v.stem?'Stem-changing ('+({ie:'e→ie',ue:'o→ue',i:'e→i',uue:'u→ue'}[v.stem])+') — the “boot”.':'Regular '+v.type+' verb.'}</div>`+
-    `<div style="text-align:center;margin:10px 0"><button class="speakbtn" onclick="speakES('${forms.join(', ')}')">🔊 Hear all forms</button></div>`+
+    `<div class="row-tabs" style="margin:8px 0">${tabs}</div>`+
+    `<div class="sub">${note}</div>`+
+    `<div style="text-align:center;margin:10px 0"><button class="speakbtn" onclick="speakES('${forms.join(', ').replace(/'/g,"\\'")}')">🔊 Hear all forms</button></div>`+
     `<table class="conj">${rows}</table>`+
-    `<button class="btn block gold" style="margin-top:18px" onclick="startConj('one','${v.inf}')">⚡ Drill this verb</button>`;
+    `<button class="btn block gold" style="margin-top:18px" onclick="startConj('one','${v.inf}','${t}')">⚡ Drill ${v.inf} · ${TENSE_NAME[t]}</button>`;
   go('detail');
 }
 
 /* =====================================================================
    CONJUGATION DRILL  (the core feature)
    ===================================================================== */
-let dq=[],di=0,dscore=0,dmode='';
+let dq=[],di=0,dscore=0,dmode='',drillTense='present';
 function personPool(){ const p=[0,1,2,3,5]; if(S.settings.vos)p.splice(4,0,4); return p; }
-function startConj(scope,inf){
-  dmode='conj';
+function startConj(scope,inf,tense){
+  dmode='conj'; drillTense=tense||curTense;
   let pool = scope==='reg' ? VERBS.filter(v=>!v.irreg&&!v.stem)
            : scope==='one' ? VERBS.filter(v=>v.inf===inf)
            : VERBS;
@@ -581,18 +777,18 @@ function startConj(scope,inf){
 }
 function renderConj(){
   if(di>=dq.length)return drillDone('conj');
-  const {v,pi}=dq[di], forms=conjugate(v), correct=forms[pi];
+  const {v,pi}=dq[di], forms=conjugate(v,drillTense), correct=forms[pi];
   document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
-  // distractors: other persons' forms of same verb
-  let others=forms.filter((f,i)=>f!==correct); others=shuffle([...new Set(others)]).slice(0,3);
+  // distractors: other persons' forms of same verb (same tense)
+  let others=forms.filter((f)=>f!==correct); others=shuffle([...new Set(others)]).slice(0,3);
   const opts=shuffle([correct,...others]);
   document.getElementById('d-body').innerHTML=
-    `<div class="qwrap"><div class="qcue">Conjugate for <b>${PERSON_SHORT[pi]}</b></div>`+
+    `<div class="qwrap"><div class="qcue"><b>${TENSE_NAME[drillTense]}</b> · conjugate for <b>${PERSON_SHORT[pi]}</b></div>`+
     `<div class="qbig"><span class="accentword">${v.inf}</span></div><div class="qsmall">${v.en}</div>`+
     `<div class="opts" id="opts"></div></div>`;
   const oe=document.getElementById('opts');
   opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>answer(b,o,correct,()=>{
-    const key=v.inf+':'+pi; S.vmaster[key]=(S.vmaster[key]||0)+1; save();
+    const key=v.inf+':'+drillTense+':'+pi; S.vmaster[key]=(S.vmaster[key]||0)+1; save();
   });oe.appendChild(b);});
 }
 
