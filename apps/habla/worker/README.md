@@ -53,6 +53,29 @@ npx wrangler deploy
 - **Cap spend** on the Anthropic key. Cost stays in the low single-dollars/month
   even with daily use, but a hard cap means zero risk.
 
+## Optional: cloud progress backup
+
+The same Worker can also back up a user's Habla progress so it survives deleting
+the app or switching phones. It stores one small JSON blob per user in
+**Cloudflare KV**, keyed by a private *backup code* (no accounts, no email).
+
+Enable it once:
+
+```bash
+cd apps/habla/worker
+npx wrangler kv namespace create HABLA_SYNC   # prints an id
+```
+
+Paste that id into `wrangler.toml` under the `[[kv_namespaces]]` block (uncomment
+it), then `npx wrangler deploy` again. In the app, go to **You → Backup & sync →
+Turn on cloud backup**; you'll get a code — keep it safe (anyone with it can load
+your progress). To restore on another device, install Habla, open **You → Backup
+& sync → Restore from a code**, and enter it.
+
+KV's free tier is far more than enough (each backup is a few KB). If you skip
+this, backup simply stays off and the app still works — plus there's always the
+no-server **Export/Import file** option in the same screen.
+
 ## Cost & privacy
 
 Each turn sends only the recent conversation (capped at 16 messages, 800 chars

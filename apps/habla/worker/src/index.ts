@@ -15,6 +15,8 @@ export interface Env {
   ALLOWED_ORIGIN?: string;
   /** Optional shared secret the app must send (x-habla-token). Set as a secret. */
   ACCESS_TOKEN?: string;
+  /** Optional KV namespace for cloud progress backup (see README). */
+  HABLA_SYNC?: KVNamespace;
 }
 
 // The tutor persona. Speaking-first, beginner-friendly, present-tense leaning.
@@ -60,6 +62,11 @@ export default {
       return json({ error: 'Unauthorized' }, 401, headers);
     }
 
+    // Cloud backup lives under /sync; everything else is the chat tutor.
+    if (new URL(request.url).pathname.replace(/\/+$/, '').endsWith('/sync')) {
+      return handleSync(request, env, headers);
+    }
+
     let body: any;
     try {
       body = await request.json();
@@ -101,3 +108,53 @@ export default {
     }
   },
 };
+
+// --- Cloud progress backup (Cloudflare KV) ---------------------------------
+// Stores one JSON blob per user, keyed by a hash of their private backup code.
+// No accounts, no PII — the code is the only credential.
+async function handleSync(
+  request: Request,
+  env: Env,
+  headers: Record<string, string>
+): Promise<Response> {
+  if (!env.HABLA_SYNC) return json({ error: 'Backup not enabled on this Worker' }, 501, headers);
+
+  let body: any;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'Bad JSON' }, 400, headers);
+  }
+
+  const action = body?.action;
+  const code = String(body?.code ?? '');
+  if (code.length < 8) return json({ error: 'Invalid code' }, 400, headers);
+  const key = 'st_' + (await sha256hex(code));
+
+  if (action === 'load') {
+    const raw = await env.HABLA_SYNC.get(key);
+    if (!raw) return json({ ok: false, notFound: true }, 200, headers);
+    try {
+      const rec = JSON.parse(raw);
+      return json({ ok: true, savedAt: rec.savedAt, data: rec.data }, 200, headers);
+    } catch {
+      return json({ ok: false, notFound: true }, 200, headers);
+    }
+  }
+
+  if (action === 'save') {
+    const data = body?.data;
+    if (data == null || typeof data !== 'object') return json({ error: 'data required' }, 400, headers);
+    const payload = JSON.stringify({ v: 1, savedAt: Date.now(), data });
+    if (payload.length > 512 * 1024) return json({ error: 'Backup too large' }, 413, headers);
+    await env.HABLA_SYNC.put(key, payload);
+    return json({ ok: true, savedAt: Date.now() }, 200, headers);
+  }
+
+  return json({ error: 'Unknown action' }, 400, headers);
+}
+
+async function sha256hex(s: string): Promise<string> {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}

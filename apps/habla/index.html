@@ -265,6 +265,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
       <div class="tog"><div><div style="font-family:var(--fdisp);font-weight:700">Include vosotros</div><div class="sub" style="font-size:13px">Spain plural form. Off = Latin American.</div></div><div class="switch" id="sw-vos" onclick="toggleVos()"><i></i></div></div>
       <div class="tog" style="border-bottom:none"><div><div style="font-family:var(--fdisp);font-weight:700">Sound effects</div></div><div class="switch on" id="sw-snd" onclick="toggleSnd()"><i></i></div></div>
     </div>
+    <div class="h2">Backup &amp; sync</div>
+    <div class="card" id="backup-card" style="padding:16px"></div>
     <div class="h2">About</div>
     <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: verb conjugation across every tense and mood — indicative, <b>commands</b>, and the <b>subjunctive</b> — the <b>ser-vs-estar</b> decision, sentence structure, and the core vocabulary real conversation is built from. Your streak, XP, learned words, and finished lessons are saved on <b>this device</b>, so you can pick up right where you left off. New: <b>Converse</b> (in the Speak tab) is a free-form AI tutor — connect your own tutor proxy to chat and get gentle corrections.</div>
   </section>
@@ -325,11 +327,11 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 /* ---------------- STORE ---------------- */
 const KEY='habla.v1';
 const MS_DAY=86400000, today=()=>Math.floor(Date.now()/MS_DAY);
-const DEF={xp:0,streak:0,lastDay:null,dayCount:0,goal:30,srs:{},vmaster:{},done:{},settings:{vos:false,snd:true,aiUrl:'',aiToken:''}};
+const DEF={xp:0,streak:0,lastDay:null,dayCount:0,goal:30,srs:{},vmaster:{},done:{},settings:{vos:false,snd:true,aiUrl:'',aiToken:'',syncCode:'',syncOn:false}};
 let S;
 try{const r=localStorage.getItem(KEY);S=r?Object.assign(JSON.parse(JSON.stringify(DEF)),JSON.parse(r)):JSON.parse(JSON.stringify(DEF));}catch(e){S=JSON.parse(JSON.stringify(DEF));}
 if(!S.settings)S.settings=Object.assign({},DEF.settings);
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} cloudSaveSoon();}
 function addXP(n){ S.xp+=n; noteStudied(); }
 function noteStudied(){ const t=today(); if(S.lastDay!==t){ S.streak=(S.lastDay===t-1)?(S.streak||0)+1:1; S.lastDay=t; S.dayCount=0; } S.dayCount=(S.dayCount||0)+1; save(); paintTop(); }
 
@@ -1525,9 +1527,109 @@ function renderYou(){
   document.getElementById('st-verbs').textContent=Object.keys(S.vmaster).length;
   document.getElementById('sw-vos').className='switch'+(S.settings.vos?' on':'');
   document.getElementById('sw-snd').className='switch'+(S.settings.snd?' on':'');
+  renderBackup();
 }
 function toggleVos(){ S.settings.vos=!S.settings.vos; save(); renderYou(); }
 function toggleSnd(){ S.settings.snd=!S.settings.snd; save(); renderYou(); }
+
+/* =====================================================================
+   BACKUP & SYNC — resilient progress (cloud via your Worker + KV, or file)
+   ===================================================================== */
+let lastSyncAt=0, syncTimer=null;
+function workerBase(){ return (S.settings.aiUrl||'').replace(/\/+$/,''); }
+function syncUrl(){ return workerBase()+'/sync'; }
+function syncConfigured(){ return !!(workerBase() && S.settings.syncCode); }
+function genCode(){ const a=new Uint8Array(10); crypto.getRandomValues(a); const B='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s=''; for(const x of a)s+=B[x%32]; return 'habla-'+s.slice(0,5)+'-'+s.slice(5,10); }
+// A sanitized copy for backup — never ship the Worker URL/token/code to storage.
+function exportState(){ const c=JSON.parse(JSON.stringify(S)); if(c.settings){ delete c.settings.aiUrl; delete c.settings.aiToken; delete c.settings.syncCode; c.settings.syncOn=false; } return c; }
+function applyState(data){
+  if(!data||typeof data!=='object')return false;
+  const cur=S.settings||{};
+  const merged=Object.assign(JSON.parse(JSON.stringify(DEF)),data);
+  merged.settings=Object.assign({},DEF.settings,data.settings||{},{aiUrl:cur.aiUrl||'',aiToken:cur.aiToken||'',syncCode:cur.syncCode||'',syncOn:cur.syncOn||false});
+  S=merged; save(); paintTop(); return true;
+}
+function cloudSaveSoon(){ if(!(S.settings&&S.settings.syncOn&&syncConfigured()))return; if(syncTimer)clearTimeout(syncTimer); syncTimer=setTimeout(()=>cloudSave(false),4000); }
+async function cloudSave(manual,keepalive){
+  if(!syncConfigured())return false;
+  const headers={'Content-Type':'application/json'}; if(S.settings.aiToken)headers['x-habla-token']=S.settings.aiToken;
+  try{
+    const res=await fetch(syncUrl(),{method:'POST',headers,body:JSON.stringify({action:'save',code:S.settings.syncCode,data:exportState()}),keepalive:!!keepalive});
+    if(res.ok){ const d=await res.json().catch(()=>({})); lastSyncAt=d.savedAt||Date.now(); }
+    else if(manual){ const d=await res.json().catch(()=>({})); alert('Backup failed: '+(d.error||('HTTP '+res.status))); return false; }
+  }catch(e){ if(manual)alert('Backup failed — check your Worker URL.'); return false; }
+  if(document.getElementById('s-you').classList.contains('active'))renderBackup();
+  return true;
+}
+async function cloudLoad(code){
+  const headers={'Content-Type':'application/json'}; if(S.settings.aiToken)headers['x-habla-token']=S.settings.aiToken;
+  const res=await fetch(syncUrl(),{method:'POST',headers,body:JSON.stringify({action:'load',code})});
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  const d=await res.json(); return d.ok?d.data:null;
+}
+function enableBackup(){
+  if(!workerBase()){ alert('Add your Worker URL first.'); return; }
+  S.settings.syncCode=genCode(); S.settings.syncOn=true; save();
+  cloudSave(true).then(ok=>{ renderYou(); if(ok)alert('Cloud backup is ON. Your code:\n\n'+S.settings.syncCode+'\n\nWrite it down — you need it to restore on another device.'); });
+}
+function turnOffBackup(){ S.settings.syncOn=false; save(); renderBackup(); }
+function backupNow(){ cloudSave(true).then(ok=>{ if(ok)renderBackup(); }); }
+function copyCode(){ try{ navigator.clipboard.writeText(S.settings.syncCode); alert('Code copied.'); }catch(e){ alert(S.settings.syncCode); } }
+function saveBackupUrl(){ const v=(document.getElementById('bk-url').value||'').trim(); if(!/^https?:\/\//.test(v)){alert('Enter a valid https:// URL.');return;} S.settings.aiUrl=v; save(); renderBackup(); }
+function restorePrompt(){ const el=document.getElementById('bk-restore'); if(!el)return;
+  el.innerHTML=`<div style="margin-top:10px"><input id="bk-code" placeholder="habla-XXXXX-XXXXX" autocomplete="off" style="width:100%;font-size:15px;border:2px solid var(--line);border-radius:11px;padding:10px 12px;background:var(--paper);color:var(--ink)"><button class="btn block teal" style="margin-top:8px" onclick="restoreCode()">Load my progress</button></div>`;
+}
+function restoreCode(){
+  const code=(document.getElementById('bk-code').value||'').trim();
+  if(code.length<8){ alert('Enter your backup code.'); return; }
+  cloudLoad(code).then(data=>{
+    if(!data){ alert('No backup found for that code.'); return; }
+    if(!confirm('Replace the progress on THIS device with the backup?'))return;
+    applyState(data); S.settings.syncCode=code; S.settings.syncOn=true; save();
+    renderYou(); alert('Progress restored ✓');
+  }).catch(()=>alert('Restore failed — check your Worker URL.'));
+}
+function exportFile(){
+  try{ const blob=new Blob([JSON.stringify(exportState())],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='habla-backup.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }catch(e){ alert('Export failed.'); }
+}
+function importFile(input){
+  const f=input.files&&input.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ const data=JSON.parse(r.result); if(!confirm('Replace this device’s progress with the imported backup?')){input.value='';return;} applyState(data); renderYou(); alert('Backup imported ✓'); }catch(e){ alert('That file isn’t a valid Habla backup.'); } input.value=''; };
+  r.readAsText(f);
+}
+function renderBackup(){
+  const card=document.getElementById('backup-card'); if(!card)return;
+  const local=`<div style="height:1px;background:var(--line);margin:14px 0"></div>`+
+    `<div style="font-family:var(--fdisp);font-weight:700;font-size:13px;color:var(--ink-soft);margin-bottom:6px">No-server backup</div>`+
+    `<div class="sub" style="font-size:13px">Download a backup file you can re-import anytime — works even without a Worker.</div>`+
+    `<div style="display:flex;gap:8px;margin-top:10px"><button class="btn gold" style="flex:1" onclick="exportFile()">⬇︎ Export file</button><button class="btn ghost" style="flex:1" onclick="document.getElementById('bk-file').click()">⬆︎ Import file</button></div>`+
+    `<input type="file" id="bk-file" accept="application/json,.json" style="display:none" onchange="importFile(this)">`;
+  const base=workerBase();
+  if(!base){
+    card.innerHTML=`<div class="sub" style="font-size:14px">Cloud backup uses the same proxy as Converse. Add your Worker URL (from <b>Speak → Converse → ⚙️</b>) to save progress to the cloud:</div>`+
+      `<input id="bk-url" inputmode="url" placeholder="https://habla-tutor.you.workers.dev" style="width:100%;margin-top:8px;font-size:15px;border:2px solid var(--line);border-radius:11px;padding:10px 12px;background:var(--paper);color:var(--ink)">`+
+      `<button class="btn block teal" style="margin-top:10px" onclick="saveBackupUrl()">Save URL</button>`+local;
+    return;
+  }
+  if(S.settings.syncOn && S.settings.syncCode){
+    card.innerHTML=
+      `<div style="font-family:var(--fdisp);font-weight:800">Cloud backup is ON ☁️</div>`+
+      `<div class="sub" style="font-size:13.5px;margin-top:4px">Progress auto-saves to your Worker. To restore elsewhere, install Habla there and enter this code:</div>`+
+      `<div style="display:flex;align-items:center;gap:8px;margin-top:10px">`+
+        `<code style="flex:1;background:var(--paper-2);border:1px dashed var(--line);border-radius:9px;padding:9px 12px;font-family:var(--fdisp);font-weight:800;letter-spacing:1px;color:var(--red);overflow:auto">${esc(S.settings.syncCode)}</code>`+
+        `<button class="pill" onclick="copyCode()">Copy</button></div>`+
+      `<div class="sub" style="font-size:12.5px;margin-top:6px">${lastSyncAt?('Last backup: '+new Date(lastSyncAt).toLocaleString()):'Auto-saves as you learn.'}</div>`+
+      `<div style="display:flex;gap:8px;margin-top:12px"><button class="btn teal" style="flex:1" onclick="backupNow()">Back up now</button><button class="btn ghost" style="flex:1" onclick="turnOffBackup()">Turn off</button></div>`+local;
+  }else{
+    card.innerHTML=
+      `<div class="sub" style="font-size:14px">Save your progress to the cloud so it survives deleting the app or switching phones. You’ll get a private <b>backup code</b> — keep it safe; anyone with it can load your progress.</div>`+
+      `<div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">`+
+        `<button class="btn block teal" onclick="enableBackup()">☁️ Turn on cloud backup</button>`+
+        `<button class="btn block ghost" onclick="restorePrompt()">Restore from a code</button></div>`+
+      `<div id="bk-restore"></div>`+local;
+  }
+}
 
 /* =====================================================================
    TTS + SOUND FX + UTIL
@@ -1545,6 +1647,10 @@ function playWin(){ tone([523,659,784,1046],0.3); }
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 
 /* ---------------- INIT ---------------- */
+// Ask the browser to keep our data (reduces the chance the OS evicts localStorage).
+try{ if(navigator.storage&&navigator.storage.persist)navigator.storage.persist(); }catch(e){}
+// Best-effort final cloud backup when the app is closed/backgrounded.
+window.addEventListener('pagehide',()=>{ if(S.settings&&S.settings.syncOn&&syncConfigured())cloudSave(false,true); });
 paintTop(); renderPath();
 setTimeout(()=>{const s=document.getElementById('splash');if(s){s.classList.add('hide');setTimeout(()=>s.remove(),700);}},1900);
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
