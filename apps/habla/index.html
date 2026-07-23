@@ -643,7 +643,28 @@ const DECKS=[
     ['de acuerdo','agreed / okay'],['por supuesto','of course'],['a veces','sometimes'],['otra vez','again'],['ahora mismo','right now'],
     ['de repente','suddenly'],['sin embargo','however'],['por eso','that’s why'],['por ejemplo','for example'],['sobre todo','above all'],
     ['por fin','finally'],['menos mal','thank goodness'],['en seguida','right away'],['lo siento','I’m sorry'],['con permiso','excuse me'],
-    ['¿verdad?','right?'],['tal vez','maybe'],['a lo mejor','maybe / perhaps'],['de nuevo','again'],['por cierto','by the way']]}
+    ['¿verdad?','right?'],['tal vez','maybe'],['a lo mejor','maybe / perhaps'],['de nuevo','again'],['por cierto','by the way']]},
+  {id:'verbs3',name:'Even more verbs',icon:'🎯',words:[
+    ['aceptar','to accept'],['apagar','to turn off'],['encender','to turn on'],['arreglar','to fix'],['cuidar','to take care of'],
+    ['costar','to cost'],['cruzar','to cross'],['doler','to hurt'],['durar','to last'],['elegir','to choose'],
+    ['esconder','to hide'],['faltar','to be missing'],['funcionar','to work (function)'],['guardar','to keep'],['imaginar','to imagine'],
+    ['llenar','to fill'],['llorar','to cry'],['reír','to laugh'],['mover','to move'],['nadar','to swim'],
+    ['odiar','to hate'],['ofrecer','to offer'],['oír','to hear'],['preparar','to prepare'],['regresar','to go back'],
+    ['repetir','to repeat'],['saludar','to greet'],['soñar','to dream'],['sonreír','to smile'],['visitar','to visit']]},
+  {id:'adjectives3',name:'More describing',icon:'📏',words:[
+    ['guapo','handsome'],['hermoso','beautiful'],['agradable','pleasant'],['terrible','terrible'],['increíble','incredible'],
+    ['maravilloso','wonderful'],['perfecto','perfect'],['normal','normal'],['especial','special'],['principal','main'],
+    ['único','unique / only'],['entero','whole'],['propio','own'],['ligero','light (weight)'],['pesado','heavy'],
+    ['profundo','deep'],['ancho','wide'],['estrecho','narrow'],['redondo','round'],['suave','soft / smooth'],
+    ['duro','hard'],['dulce','sweet'],['seco','dry'],['oscuro','dark']]},
+  {id:'time2',name:'Time & dates',icon:'🗓️',words:[
+    ['el minuto','minute'],['el rato','a while'],['el fin de semana','weekend'],['el cumpleaños','birthday'],['la fecha','date'],
+    ['el siglo','century'],['la época','era'],['el pasado','the past'],['el futuro','the future'],['el presente','the present'],
+    ['anoche','last night'],['pasado mañana','day after tomorrow']]},
+  {id:'body2',name:'More body parts',icon:'🦴',words:[
+    ['la piel','skin'],['el hueso','bone'],['el músculo','muscle'],['la rodilla','knee'],['el hombro','shoulder'],
+    ['el codo','elbow'],['la muñeca','wrist'],['el tobillo','ankle'],['la lengua','tongue'],['el labio','lip'],
+    ['la mejilla','cheek'],['la uña','nail'],['el pecho','chest'],['el cerebro','brain']]}
 ];
 function allWords(){const o=[];DECKS.forEach(d=>d.words.forEach(w=>o.push({es:w[0],en:w[1],deck:d.id})));return o;}
 function wordId(w){return w.es;}
