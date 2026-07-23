@@ -79,6 +79,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .node:active{transform:scale(.99)}
 .node .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none;background:var(--paper-2)}
 .node.done .ic{background:var(--teal);color:#fff}
+.node.next{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-soft),var(--shadow-sm)}
 .node.locked{opacity:.55}
 .node .t{font-family:var(--fdisp);font-weight:700;font-size:16px}
 .node .d{font-size:13px;color:var(--ink-soft)}
@@ -229,7 +230,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
       <div class="tog" style="border-bottom:none"><div><div style="font-family:var(--fdisp);font-weight:700">Sound effects</div></div><div class="switch on" id="sw-snd" onclick="toggleSnd()"><i></i></div></div>
     </div>
     <div class="h2">About</div>
-    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: present-tense conjugation, sentence structure, and the core vocabulary that real conversation is built from. More tenses, decks, and an AI conversation partner are on the way.</div>
+    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: verb conjugation across every tense — now including <b>commands</b> — the <b>ser-vs-estar</b> decision, sentence structure, and the core vocabulary real conversation is built from. Your streak, XP, learned words, and finished lessons are saved on <b>this device</b>, so you can pick up right where you left off. Subjunctive and an AI conversation partner are on the way.</div>
   </section>
 
   <!-- ============ DRILL OVERLAY ============ -->
@@ -343,6 +344,50 @@ function conjFV(v,mode){
   const en=mode==='future'?['é','ás','á','emos','éis','án']:['ía','ías','ía','íamos','íais','ían'];
   return en.map(e=>stem+e);
 }
+/* ---- present subjunctive (also powers the commands / imperative) ---- */
+const SUBJ_IRR={
+  ser:['sea','seas','sea','seamos','seáis','sean'],
+  estar:['esté','estés','esté','estemos','estéis','estén'],
+  ir:['vaya','vayas','vaya','vayamos','vayáis','vayan'],
+  dar:['dé','des','dé','demos','deis','den'],
+  saber:['sepa','sepas','sepa','sepamos','sepáis','sepan'],
+  haber:['haya','hayas','haya','hayamos','hayáis','hayan']
+};
+const IMP_TU_IRR={decir:'di',hacer:'haz',ir:'ve',poner:'pon',salir:'sal',ser:'sé',tener:'ten',venir:'ven'};
+function subjFix(stem,raw,type){ // -car/-gar/-zar spelling shift before the subjunctive vowel (-ar verbs)
+  if(type!=='ar')return stem;
+  if(raw.endsWith('c'))return stem.replace(/c$/,'qu');
+  if(raw.endsWith('g'))return stem.replace(/g$/,'gu');
+  if(raw.endsWith('z'))return stem.replace(/z$/,'c');
+  return stem;
+}
+function conjSubj(v){
+  if(SUBJ_IRR[v.inf])return SUBJ_IRR[v.inf].slice();
+  const type=v.inf.slice(-2), raw=v.inf.slice(0,-2);
+  const en=type==='ar'?['e','es','e','emos','éis','en']:['a','as','a','amos','áis','an'];
+  // base = the yo-form stem (carries an irregular yo and any boot stem-change)
+  let base = v.irreg ? v.irreg[0].replace(/o$/,'') : conjPresent(v)[0].slice(0,-1);
+  base = subjFix(base,raw,type);
+  const forms = en.map(e=>base+e);
+  // nosotros / vosotros of stem-changers drop the boot vowel (-ir verbs weaken it)
+  if(v.stem){
+    let nstem = type==='ir' ? applyStem(raw, v.stem==='ue'?'u':'i') : raw;
+    nstem = subjFix(nstem,raw,type);
+    forms[3]=nstem+en[3]; forms[4]=nstem+en[4];
+  }
+  return forms;
+}
+function commandForms(v){
+  const subj=conjSubj(v), pres=conjPresent(v);
+  return {
+    tu:{aff:IMP_TU_IRR[v.inf]||pres[2], neg:subj[1]},
+    ud:{aff:subj[2], neg:subj[2]},
+    nos:{aff:subj[3], neg:subj[3]},
+    vos:{aff:v.inf.slice(0,-1)+'d', neg:subj[4]},
+    uds:{aff:subj[5], neg:subj[5]}
+  };
+}
+function commandArray(v){ const c=commandForms(v); return ['—',c.tu.aff,c.ud.aff,c.nos.aff,c.vos.aff,c.uds.aff]; }
 function conjugate(v,tense){
   switch(tense||'present'){
     case 'preterite':return conjPret(v);
@@ -351,10 +396,11 @@ function conjugate(v,tense){
     case 'conditional':return conjFV(v,'conditional');
     case 'perfect':return HABER.map(h=>h+' '+participle(v));
     case 'progressive':return ESTAR_PR.map(e=>e+' '+gerund(v));
+    case 'imperative':return commandArray(v);
     default:return conjPresent(v);
   }
 }
-const TENSES=[['present','Present'],['preterite','Preterite'],['imperfect','Imperfect'],['future','Future'],['conditional','Conditional'],['perfect','Perfect'],['progressive','Progressive']];
+const TENSES=[['present','Present'],['preterite','Preterite'],['imperfect','Imperfect'],['future','Future'],['conditional','Conditional'],['perfect','Perfect'],['progressive','Progressive'],['imperative','Commands']];
 const TENSE_NAME=Object.fromEntries(TENSES);
 let curTense='present';
 const VERBS=[
@@ -529,10 +575,13 @@ const GRAMMAR={
     '<div class="ex"><div class="e-es">el libro · la mesa</div><div class="e-en">the book · the table</div></div>'+
     '<div class="gnote">Watch-outs: <b>el día</b>, <b>el mapa</b>, <b>el problema</b> are masculine; <b>la mano</b> is feminine. And <b>el agua</b>, <b>el águila</b> take “el” for sound but are feminine (agua fría).</div>'},
   serestar:{title:'Ser vs. Estar',html:
-    '<div class="sub">Both mean “to be.” <b>Ser</b> = identity &amp; essence. <b>Estar</b> = state &amp; location.</div>'+
-    '<div class="ex"><div class="e-es">Soy de México.</div><div class="e-en">I am from Mexico. (origin → ser)</div></div>'+
-    '<div class="ex"><div class="e-es">Estoy en la tienda.</div><div class="e-en">I am at the store. (location → estar)</div></div>'+
-    '<div class="ex"><div class="e-es">Ella es bonita. / Ella está bonita.</div><div class="e-en">She is pretty (always) / She looks pretty (right now).</div></div>'},
+    '<div class="sub">Both mean “to be,” but they are <b>not</b> interchangeable. Two mnemonics decide it.</div>'+
+    '<div class="gnote"><b>SER = DOCTOR</b> — identity &amp; essence (permanent).<br><b>D</b>escription · <b>O</b>ccupation · <b>C</b>haracteristic · <b>T</b>ime/date · <b>O</b>rigin · <b>R</b>elationship. Also material, possession, and where an event takes place.</div>'+
+    '<div class="gnote"><b>ESTAR = PLACE</b> — state &amp; position (temporary).<br><b>P</b>osition · <b>L</b>ocation · <b>A</b>ction (progressive) · <b>C</b>ondition · <b>E</b>motion. Also health &amp; results.</div>'+
+    '<div class="ex"><div class="e-es">Soy de México. · Estoy en México.</div><div class="e-en">I’m from Mexico (origin → ser). · I’m in Mexico (location → estar).</div></div>'+
+    '<div class="ex"><div class="e-es">Ella es lista. · Ella está lista.</div><div class="e-en">She’s clever (trait → ser). · She’s ready (state → estar).</div></div>'+
+    '<div class="ex"><div class="e-es">El café es rico. · El café está rico.</div><div class="e-en">Coffee is good (always → ser). · This coffee tastes great right now (→ estar).</div></div>'+
+    '<div style="text-align:center;margin-top:14px"><button class="btn gold" onclick="startSerEstar()">🎯 Practice ser o estar</button></div>'},
   stem:{title:'Stem-changing verbs',html:
     '<div class="sub">The stressed vowel changes in every form except <b>nosotros/vosotros</b> (the “boot”).</div>'+
     '<div class="ex"><div class="e-es">e → ie: querer → quiero</div><div class="e-en">to want → I want</div></div>'+
@@ -592,8 +641,44 @@ const GRAMMAR={
     '<div class="sub">“I have …-ed”. Use <b>haber</b> (he, has, ha, hemos, han) + the past participle.</div>'+
     '<div class="ex"><div class="e-es">He comido.</div><div class="e-en">I have eaten.</div></div>'+
     '<div class="ex"><div class="e-es">¿Has estado en México?</div><div class="e-en">Have you been to Mexico?</div></div>'+
-    '<div class="gnote">Participle: -ar → -ado, -er/-ir → -ido. Know these irregulars: <b>hacer → hecho</b>, <b>decir → dicho</b>, <b>ver → visto</b>, <b>escribir → escrito</b>, <b>poner → puesto</b>, <b>volver → vuelto</b>, <b>abrir → abierto</b>.</div>'}
+    '<div class="gnote">Participle: -ar → -ado, -er/-ir → -ido. Know these irregulars: <b>hacer → hecho</b>, <b>decir → dicho</b>, <b>ver → visto</b>, <b>escribir → escrito</b>, <b>poner → puesto</b>, <b>volver → vuelto</b>, <b>abrir → abierto</b>.</div>'},
+  commands:{title:'Commands (imperative)',html:
+    '<div class="sub">Telling people what to do. The form depends on <b>who</b> you address and whether it’s <b>affirmative</b> or <b>negative</b>.</div>'+
+    '<div class="gnote"><b>Affirmative tú</b> = the <b>él/ella</b> present form.<br>hablar → ¡habla! · comer → ¡come! · pedir → ¡pide!</div>'+
+    '<div class="gnote"><b>Everything else</b> — negative tú, plus every usted / nosotros / ustedes command — uses the <b>subjunctive</b>.<br>no hables · hable (Ud.) · hablemos (let’s) · hablen (Uds.)</div>'+
+    '<div class="ex"><div class="e-es">¡Habla! → ¡No hables!</div><div class="e-en">Speak! → Don’t speak! (watch the form switch)</div></div>'+
+    '<div class="gnote"><b>8 irregular affirmative tú</b> commands to memorize:<br>decir → <b>di</b> · hacer → <b>haz</b> · ir → <b>ve</b> · poner → <b>pon</b> · salir → <b>sal</b> · ser → <b>sé</b> · tener → <b>ten</b> · venir → <b>ven</b></div>'+
+    '<div class="ex"><div class="e-es">Hazlo. · Dime. · Ponte los zapatos.</div><div class="e-en">Do it. · Tell me. · Put your shoes on. (pronouns attach to affirmative commands)</div></div>'+
+    '<div style="text-align:center;margin-top:14px"><button class="btn gold" onclick="startCommands(\'all\')">🫡 Command drill</button></div>'}
 };
+
+/* ---------------- DATA: ser vs estar decision bank ---------------- */
+const SERESTAR=[
+  {s:'Eduardo ___ en la oficina.',ser:'es',estar:'está',a:'estar',why:'Location → estar (PLACE)'},
+  {s:'¿De dónde ___ tú?',ser:'eres',estar:'estás',a:'ser',why:'Origin → ser (DOCTOR: Origin)'},
+  {s:'Hoy ___ la fiesta.',ser:'es',estar:'está',a:'ser',why:'Where/when an event happens → ser'},
+  {s:'Nada aquí ___ tuyo.',ser:'es',estar:'está',a:'ser',why:'Possession → ser'},
+  {s:'___ de los Estados Unidos.',ser:'Soy',estar:'Estoy',a:'ser',why:'Origin → ser'},
+  {s:'Mis amigos ___ jugando al fútbol.',ser:'son',estar:'están',a:'estar',why:'Progressive action (-ando/-iendo) → estar'},
+  {s:'La fiesta ___ cancelada.',ser:'es',estar:'está',a:'estar',why:'Condition / result (cancelled) → estar'},
+  {s:'___ de buen humor.',ser:'Soy',estar:'Estoy',a:'estar',why:'Mood / emotion → estar (PLACE: Emotion)'},
+  {s:'Eduardo ___ muy honesto.',ser:'es',estar:'está',a:'ser',why:'Personality trait → ser (DOCTOR: Characteristic)'},
+  {s:'Buenos Aires ___ la capital de Argentina.',ser:'es',estar:'está',a:'ser',why:'Definition / identity → ser'},
+  {s:'María y Carmen ___ en la tienda.',ser:'son',estar:'están',a:'estar',why:'Location → estar'},
+  {s:'Mañana ___ mi cumpleaños.',ser:'es',estar:'está',a:'ser',why:'Dates & time → ser (DOCTOR: Time)'},
+  {s:'Enrique y José no ___ muy inteligentes.',ser:'son',estar:'están',a:'ser',why:'Characteristic → ser'},
+  {s:'Ellos ___ cansados.',ser:'son',estar:'están',a:'estar',why:'Condition (tired) → estar'},
+  {s:'Los libros ___ en la mesa.',ser:'son',estar:'están',a:'estar',why:'Location → estar'},
+  {s:'La señora López ___ abogada.',ser:'es',estar:'está',a:'ser',why:'Occupation → ser (DOCTOR: Occupation)'},
+  {s:'La sopa ___ caliente.',ser:'es',estar:'está',a:'estar',why:'Temperature right now → estar'},
+  {s:'Nosotros ___ listos.',ser:'somos',estar:'estamos',a:'estar',why:'estar listo = ready; ser listo = clever'},
+  {s:'¿Cómo ___ tú?',ser:'eres',estar:'estás',a:'estar',why:'Health / feeling → estar'},
+  {s:'La camisa ___ de algodón.',ser:'es',estar:'está',a:'ser',why:'Material → ser'},
+  {s:'Madrid ___ en España.',ser:'es',estar:'está',a:'estar',why:'Location (even permanent) → estar'},
+  {s:'___ las tres de la tarde.',ser:'Son',estar:'Están',a:'ser',why:'Telling time → ser'},
+  {s:'Mi hermano ___ alto.',ser:'es',estar:'está',a:'ser',why:'Physical description → ser (DOCTOR: Description)'},
+  {s:'El café ___ muy rico hoy.',ser:'es',estar:'está',a:'estar',why:'Tastes great right now → estar (vs. es rico = generally good)'}
+];
 
 /* ---------------- DATA: sentence-builder ---------------- */
 const SENTENCES=[
@@ -635,7 +720,8 @@ const PATH=[
     {id:'g_gender',t:'Masculine & feminine',d:'el vs la',ic:'⚖️',go:()=>openGrammar('gender')},
     {id:'w_people',t:'People & pronouns',d:'Who’s doing what',ic:'🧑',go:()=>openDeck('people')},
     {id:'sent1',t:'Build a sentence',d:'Put the words in order',ic:'🧩',go:()=>startSentences()},
-    {id:'g_serestar',t:'Ser vs. Estar',d:'The two “to be”s',ic:'🔀',go:()=>openGrammar('serestar')}
+    {id:'g_serestar',t:'Ser vs. Estar',d:'The two “to be”s',ic:'🔀',go:()=>openGrammar('serestar')},
+    {id:'p_serestar',t:'Ser o Estar',d:'Choose the right “to be”',ic:'🎯',go:()=>startSerEstar()}
   ]},
   {unit:'Unit 3 · Level up the verbs',nodes:[
     {id:'g_stem',t:'Stem-changing verbs',d:'quiero, puedo, pido',ic:'🥾',go:()=>openGrammar('stem')},
@@ -669,6 +755,11 @@ const PATH=[
     {id:'d_prog',t:'Progressive drill',d:'estoy hablando…',ic:'⚡',go:()=>startConj('all',null,'progressive')},
     {id:'g_perf',t:'Present perfect',d:'he hablado — “I have…”',ic:'✅',go:()=>openGrammar('perfect')},
     {id:'d_perf',t:'Perfect drill',d:'haber + participle',ic:'⚡',go:()=>startConj('all',null,'perfect')}
+  ]},
+  {unit:'Unit 8 · Give commands',nodes:[
+    {id:'g_commands',t:'Commands',d:'Tell people what to do',ic:'🫡',go:()=>openGrammar('commands')},
+    {id:'d_commands',t:'Command drill',d:'Affirmative & negative orders',ic:'⚡',go:()=>startCommands('all')},
+    {id:'p_serestar2',t:'Ser o Estar review',d:'Lock in the two “to be”s',ic:'🎯',go:()=>startSerEstar()}
   ]}
 ];
 
@@ -681,7 +772,7 @@ function go(name){
   document.getElementById('s-'+name).classList.add('active');
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
   const nav={learn:'nav-learn',verbs:'nav-verbs',words:'nav-words',speak:'nav-speak',you:'nav-you'}[name];
-  if(nav)document.getElementById(nav).classList.add('on');
+  if(nav){document.getElementById(nav).classList.add('on'); curNode=null;} // landing on a main tab clears the active lesson so only path-launched lessons check off
   window.scrollTo(0,0);
   if(name==='learn')renderPath();
   if(name==='verbs')renderVerbs();
@@ -701,12 +792,15 @@ function paintTop(){
 function renderPath(){
   paintTop();
   const el=document.getElementById('path'); el.innerHTML='';
+  let nextId=null;
+  for(const u of PATH){ for(const n of u.nodes){ if(!S.done[n.id]){nextId=n.id;break;} } if(nextId)break; }
   PATH.forEach(u=>{
     const h=document.createElement('div'); h.className='unit-h'; h.innerHTML=`<span class="dot"></span>${u.unit}`; el.appendChild(h);
     u.nodes.forEach(n=>{
-      const d=document.createElement('div'); d.className='node'+(S.done[n.id]?' done':'');
-      d.innerHTML=`<div class="ic">${S.done[n.id]?'✓':n.ic}</div><div><div class="t">${n.t}</div><div class="d">${n.d}</div></div>`+
-        (S.done[n.id]?'<div class="badge">Done</div>':'<div class="chev">›</div>');
+      const done=!!S.done[n.id], isNext=n.id===nextId;
+      const d=document.createElement('div'); d.className='node'+(done?' done':'')+(isNext?' next':'');
+      d.innerHTML=`<div class="ic">${done?'✓':n.ic}</div><div><div class="t">${n.t}</div><div class="d">${n.d}</div></div>`+
+        (done?'<div class="badge">Done</div>':isNext?'<div class="badge" style="color:var(--sun)">▶ Next</div>':'<div class="chev">›</div>');
       d.onclick=()=>{ backTo='learn'; curNode=n.id; n.go(); };
       el.appendChild(d);
     });
@@ -722,21 +816,25 @@ let verbTab='core';
 function renderVerbs(){
   const tt=document.getElementById('tense-tabs'); tt.innerHTML='';
   TENSES.forEach(([k,l])=>{const b=document.createElement('button');b.className='pill'+(curTense===k?' on':'');b.textContent=l;b.onclick=()=>{curTense=k;renderVerbs();};tt.appendChild(b);});
-  document.getElementById('conj-btn').textContent='⚡ Quick drill · '+TENSE_NAME[curTense];
+  const cb=document.getElementById('conj-btn');
+  cb.textContent='⚡ Quick drill · '+TENSE_NAME[curTense];
+  cb.onclick=curTense==='imperative'?function(){startCommands('all');}:function(){startConj('all');};
   const tb=document.getElementById('verb-tabs'); tb.innerHTML='';
   VERB_TABS.forEach(([k,l])=>{const b=document.createElement('button');b.className='pill'+(verbTab===k?' on':'');b.textContent=l;b.onclick=()=>{verbTab=k;renderVerbs();};tb.appendChild(b);});
   const el=document.getElementById('verb-list'); el.innerHTML='';
   verbsIn(verbTab).forEach(v=>{
-    const forms=conjugate(v,curTense);
+    const preview=curTense==='imperative'?('tú '+commandForms(v).tu.aff):('yo '+conjugate(v,curTense)[0]);
     const d=document.createElement('div'); d.className='node'; d.style.marginTop='10px';
-    d.innerHTML=`<div class="ic">${v.irreg?'★':v.stem?'🥾':'•'}</div><div><div class="t">${v.inf}</div><div class="d">${v.en} · yo ${forms[0]}</div></div><div class="chev">›</div>`;
+    d.innerHTML=`<div class="ic">${v.irreg?'★':v.stem?'🥾':'•'}</div><div><div class="t">${v.inf}</div><div class="d">${v.en} · ${preview}</div></div><div class="chev">›</div>`;
     d.onclick=()=>openVerb(v);
     el.appendChild(d);
   });
 }
 function openVerb(v,tense){
-  backTo='verbs'; const t=tense||curTense, forms=conjugate(v,t);
+  backTo='verbs'; const t=tense||curTense;
   const tabs=TENSES.map(([k,l])=>`<button class="pill${t===k?' on':''}" onclick="openVerb(VERBS.find(x=>x.inf==='${v.inf}'),'${k}')">${l}</button>`).join('');
+  if(t==='imperative')return openVerbImperative(v,tabs);
+  const forms=conjugate(v,t);
   const rows=PERSONS.map((p,i)=>(!S.settings.vos&&i===4)?'':`<tr class="${i===0?'es':''}"><td class="p">${p}</td><td class="f">${forms[i]}</td></tr>`).join('');
   const note = t==='present'?(v.irreg?'Irregular — memorize these.':v.stem?'Stem-changing ('+({ie:'e→ie',ue:'o→ue',i:'e→i',uue:'u→ue'}[v.stem])+') — the “boot”.':'Regular '+v.type+' verb.')
     : t==='preterite'?(PRET_IRR[v.inf]?'Irregular preterite.':'Regular preterite — a completed action.')
@@ -754,6 +852,26 @@ function openVerb(v,tense){
     `<button class="btn block gold" style="margin-top:18px" onclick="startConj('one','${v.inf}','${t}')">⚡ Drill ${v.inf} · ${TENSE_NAME[t]}</button>`;
   go('detail');
 }
+function openVerbImperative(v,tabs){
+  const c=commandForms(v), showVos=S.settings.vos;
+  const rows=[['tú',c.tu.aff,'no '+c.tu.neg],['usted',c.ud.aff,'no '+c.ud.neg],['nosotros',c.nos.aff,'no '+c.nos.neg]];
+  if(showVos)rows.push(['vosotros',c.vos.aff,'no '+c.vos.neg]);
+  rows.push(['ustedes',c.uds.aff,'no '+c.uds.neg]);
+  const irr=IMP_TU_IRR[v.inf];
+  const note=irr?`Irregular affirmative tú: <b>${irr}</b>. The negative and all formal forms use the subjunctive.`
+    :'Affirmative tú = the él/ella present form. Negative tú and every usted/nosotros/ustedes command use the subjunctive.';
+  const say=rows.map(r=>r[1]).join(', ').replace(/'/g,"\\'");
+  const tbl=`<table class="conj"><tr><td class="p"></td><td class="f" style="color:var(--teal-deep)">¡Sí!</td><td class="f">¡No!</td></tr>`+
+    rows.map((r,i)=>`<tr class="${i===0?'es':''}"><td class="p">${r[0]}</td><td class="f" style="color:var(--teal-deep)">${r[1]}</td><td class="f">${r[2]}</td></tr>`).join('')+`</table>`;
+  document.getElementById('detail-body').innerHTML=
+    `<div class="h1">${v.inf} <span style="color:var(--ink-faint);font-size:16px;font-weight:600">${v.en}</span></div>`+
+    `<div class="row-tabs" style="margin:8px 0">${tabs}</div>`+
+    `<div class="sub">${note}</div>`+
+    `<div style="text-align:center;margin:10px 0"><button class="speakbtn" onclick="speakES('${say}')">🔊 Hear commands</button></div>`+
+    tbl+
+    `<button class="btn block gold" style="margin-top:18px" onclick="startCommands('one','${v.inf}')">🫡 Drill ${v.inf} commands</button>`;
+  go('detail');
+}
 
 /* =====================================================================
    CONJUGATION DRILL  (the core feature)
@@ -761,6 +879,7 @@ function openVerb(v,tense){
 let dq=[],di=0,dscore=0,dmode='',drillTense='present';
 function personPool(){ const p=[0,1,2,3,5]; if(S.settings.vos)p.splice(4,0,4); return p; }
 function startConj(scope,inf,tense){
+  if((tense||curTense)==='imperative')return startCommands(scope==='one'?'one':'all',inf);
   dmode='conj'; drillTense=tense||curTense;
   let pool = scope==='reg' ? VERBS.filter(v=>!v.irreg&&!v.stem)
            : scope==='one' ? VERBS.filter(v=>v.inf===inf)
@@ -790,6 +909,66 @@ function renderConj(){
   opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>answer(b,o,correct,()=>{
     const key=v.inf+':'+drillTense+':'+pi; S.vmaster[key]=(S.vmaster[key]||0)+1; save();
   });oe.appendChild(b);});
+}
+
+/* =====================================================================
+   COMMAND DRILL  (imperative — affirmative & negative)
+   ===================================================================== */
+const CMD_Q=[
+  {k:'tu+',lab:'a friend to do it — <b>affirmative tú</b>',get:c=>c.tu.aff,pool:c=>[c.ud.aff,'no '+c.tu.neg,c.nos.aff]},
+  {k:'tu-',lab:'a friend <b>not</b> to — <b>negative tú</b>',get:c=>'no '+c.tu.neg,pool:c=>[c.tu.aff,'no '+c.ud.neg,c.ud.aff]},
+  {k:'ud+',lab:'your boss to do it — <b>usted (formal)</b>',get:c=>c.ud.aff,pool:c=>[c.tu.aff,c.uds.aff,'no '+c.tu.neg]},
+  {k:'nos',lab:'the group — <b>“let’s…” (nosotros)</b>',get:c=>c.nos.aff,pool:c=>[c.ud.aff,c.uds.aff,c.tu.aff]}
+];
+function startCommands(scope,inf){
+  dmode='cmd';
+  const pool = scope==='one'?VERBS.filter(v=>v.inf===inf):VERBS;
+  const N = scope==='one'?4:10;
+  dq=[];
+  for(let i=0;i<N;i++){ const v=pool[Math.floor(Math.random()*pool.length)]; const q=CMD_Q[Math.floor(Math.random()*CMD_Q.length)]; dq.push({v,q}); }
+  di=0;dscore=0; go('drill'); renderCommands();
+}
+function renderCommands(){
+  if(di>=dq.length)return drillDone('cmd');
+  const {v,q}=dq[di], c=commandForms(v), correct=q.get(c);
+  document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
+  let distr=q.pool(c).filter(x=>x&&x!==correct); distr=[...new Set(distr)].slice(0,3);
+  const opts=shuffle([correct,...distr]);
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap"><div class="qcue"><b>Command</b> · tell ${q.lab}</div>`+
+    `<div class="qbig"><span class="accentword">${v.inf}</span></div><div class="qsmall">${v.en}</div>`+
+    `<div class="opts" id="opts"></div></div>`;
+  const oe=document.getElementById('opts');
+  opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>answer(b,o,correct,()=>{
+    const key=v.inf+':imperative:'+q.k; S.vmaster[key]=(S.vmaster[key]||0)+1; save();
+  });oe.appendChild(b);});
+}
+
+/* =====================================================================
+   SER vs ESTAR DRILL  (choose the right “to be”, learn the rule)
+   ===================================================================== */
+function startSerEstar(){ dmode='serestar'; dq=shuffle(SERESTAR).slice(0,12); di=0;dscore=0; go('drill'); renderSerEstar(); }
+function renderSerEstar(){
+  if(di>=dq.length)return drillDone('serestar');
+  const q=dq[di], correct=q.a==='ser'?q.ser:q.estar;
+  document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
+  const sentence=q.s.replace('___','<span style="color:var(--ink-faint);letter-spacing:1px">____</span>');
+  const opts=shuffle([q.ser,q.estar]);
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap"><div class="qcue"><b>Ser o Estar</b> · pick the correct “to be”</div>`+
+    `<div class="qbig" style="font-size:25px;line-height:1.3">${sentence}</div>`+
+    `<div class="opts" id="opts"></div><div id="se-why" style="margin-top:14px"></div></div>`;
+  const oe=document.getElementById('opts');
+  opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>seAnswer(b,o,correct,q);oe.appendChild(b);});
+}
+function seAnswer(btn,chosen,correct,q){
+  document.querySelectorAll('#opts .opt').forEach(b=>{b.classList.add('disabled');if(b.textContent===correct)b.classList.add('correct');});
+  const ok=chosen===correct;
+  if(ok){dscore++;playGood();addXP(2);}else{btn.classList.add('wrong');playBad();}
+  const full=q.s.replace('___',correct);
+  document.getElementById('se-why').innerHTML=`<div class="gnote" style="text-align:left"><b>${correct}</b> — ${q.why}<br><span style="color:var(--ink-soft)">${full}</span></div>`;
+  speakES(full);
+  setTimeout(()=>{di++;renderSerEstar();},ok?1600:2600);
 }
 
 /* =====================================================================
@@ -887,11 +1066,11 @@ function answer(btn,chosen,correct,onRight){
   document.querySelectorAll('#opts .opt').forEach(b=>{b.classList.add('disabled');if(b.textContent===correct)b.classList.add('correct');});
   if(chosen!==correct){btn.classList.add('wrong');playBad();}
   else{dscore++;playGood();addXP(2);if(onRight)onRight();}
-  setTimeout(()=>{di++; dmode==='conj'?renderConj():dmode==='listen'?renderListen():null;},1000);
+  setTimeout(()=>{di++; dmode==='conj'?renderConj():dmode==='listen'?renderListen():dmode==='cmd'?renderCommands():null;},1000);
 }
 function drillDone(kind){
   markDone();
-  const total = kind==='conj'||kind==='listen' ? dq.length : (kind==='sent'?dq.length:spList.length);
+  const total = (kind==='conj'||kind==='listen'||kind==='cmd'||kind==='serestar') ? dq.length : (kind==='sent'?dq.length:spList.length);
   const sc = kind==='speak'? '⭐' : `${dscore}/${total}`;
   const p = total? dscore/total : 1;
   const gained = kind==='speak'? '' : `+${dscore*2} XP`;
@@ -966,7 +1145,9 @@ function renderPractice(){
     ['🎧','Listening quiz','Hear Spanish, choose the meaning',()=>{backTo='speak';startListen();}],
     ['🎙️','Speaking practice','Say prompts out loud'+(SR?' (with mic check)':''),()=>{backTo='speak';startSpeak();}],
     ['🧩','Sentence builder','Arrange words in Spanish order',()=>{backTo='speak';startSentences();}],
-    ['⚡','Conjugation drill','Present-tense forms, fast',()=>{backTo='speak';startConj('all');}]
+    ['🎯','Ser o Estar','Pick the right “to be”, learn the rule',()=>{backTo='speak';startSerEstar();}],
+    ['🫡','Command drill','Give orders: affirmative & negative',()=>{backTo='speak';startCommands('all');}],
+    ['⚡','Conjugation drill','Any tense, fast',()=>{backTo='speak';startConj('all');}]
   ];
   const el=document.getElementById('practice-list'); el.innerHTML='';
   items.forEach(([ic,t,d,fn])=>{const n=document.createElement('div');n.className='node';n.style.marginTop='10px';n.innerHTML=`<div class="ic">${ic}</div><div><div class="t">${t}</div><div class="d">${d}</div></div><div class="chev">›</div>`;n.onclick=fn;el.appendChild(n);});
