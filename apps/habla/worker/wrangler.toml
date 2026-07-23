@@ -1,0 +1,13 @@
+name = "habla-tutor"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# --- Secrets (set these, don't commit them) --------------------------------
+#   npx wrangler secret put ANTHROPIC_API_KEY     # required
+#   npx wrangler secret put ACCESS_TOKEN          # optional shared password
+#
+# --- Plain vars (safe to keep here) ----------------------------------------
+# Lock the API to your site so other pages can't call it from a browser.
+# [vars]
+# ALLOWED_ORIGIN = "https://tadellsworth.github.io"

@@ -158,6 +158,37 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .switch i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s var(--spring);box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .switch.on i{left:23px}
 
+/* ---- Converse (AI tutor) ---- */
+.ai-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#fff;border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--shadow);cursor:pointer;margin-top:14px}
+.ai-card:active{transform:scale(.99)}
+.ai-card .ai-ic{font-size:30px;flex:none}
+.ai-card .t{font-family:var(--fdisp);font-weight:800;font-size:18px}
+.ai-card .d{font-size:13px;opacity:.92;font-weight:600;margin-top:1px}
+.ai-card .go{margin-left:auto;font-size:24px;font-weight:800;opacity:.9}
+.chat-head{display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:5;background:linear-gradient(180deg,var(--paper) 78%,transparent);padding:calc(env(safe-area-inset-top,0px) + 6px) 0 8px}
+.chat-title{font-family:var(--fdisp);font-weight:800;font-size:18px;color:var(--ink)}
+.chat-title span{color:var(--teal-deep)}
+.chat-gear{margin-left:auto;background:none;border:none;font-size:20px;cursor:pointer;padding:6px}
+.chat-log{display:flex;flex-direction:column;gap:10px;padding:8px 0 14px;min-height:46vh}
+.bub{max-width:84%;padding:11px 14px;border-radius:16px;font-size:15.5px;line-height:1.46;box-shadow:var(--shadow-sm);white-space:pre-wrap;word-wrap:break-word}
+.bub.me{align-self:flex-end;background:var(--red);color:#fff;border-bottom-right-radius:5px}
+.bub.ai{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;cursor:pointer}
+.bub.ai .fix{color:var(--teal-deep);font-weight:700}
+.bub.sys{align-self:center;background:var(--paper-2);color:var(--ink-soft);font-size:12.5px;text-align:center;border:1px dashed var(--line);max-width:92%}
+.bub .hear{font-size:11px;color:var(--ink-faint);font-weight:700;margin-top:5px;letter-spacing:.03em}
+.typing{align-self:flex-start;color:var(--ink-faint);font-size:14px;font-style:italic;padding:4px 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.chat-input{position:sticky;bottom:0;display:flex;gap:8px;align-items:center;padding:10px 0 calc(env(safe-area-inset-bottom,10px) + 8px);background:linear-gradient(0deg,var(--paper) 82%,transparent)}
+.chat-input input{flex:1;font-family:var(--fbody);font-size:16px;border:2px solid var(--line);border-radius:999px;padding:11px 16px;background:var(--card);color:var(--ink)}
+.chat-input input:focus{outline:none;border-color:var(--teal)}
+.chat-mic,.chat-send{flex:none;width:44px;height:44px;border-radius:50%;border:none;display:grid;place-items:center;font-size:18px;cursor:pointer;color:#fff}
+.chat-mic{background:var(--gold);color:var(--ink)}.chat-mic.rec{background:var(--red);color:#fff;animation:pulse 1s infinite}
+.chat-send{background:var(--teal)}.chat-send:disabled{opacity:.5}
+@keyframes pulse{50%{opacity:.5}}
+.setup{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;box-shadow:var(--shadow-sm);margin-top:8px}
+.setup input{width:100%;font-size:15px;border:2px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;margin:6px 0;background:var(--paper);color:var(--ink)}
+.setup label{font-family:var(--fdisp);font-weight:700;font-size:13px;color:var(--ink-soft)}
+
 /* splash */
 #splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--red),var(--sun));transition:opacity .6s,transform .6s}
 #splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
@@ -211,6 +242,11 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
   <section class="screen" id="s-speak">
     <div class="h1">Speak &amp; Listen</div>
     <div class="sub">Understand real speech and train your mouth to move.</div>
+    <div class="ai-card" onclick="openChat()">
+      <div class="ai-ic">💬</div>
+      <div><div class="t">Converse with a tutor</div><div class="d">Free-form Spanish chat, powered by AI</div></div>
+      <div class="go">›</div>
+    </div>
     <div class="h2">Practice</div>
     <div id="practice-list"></div>
   </section>
@@ -230,7 +266,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
       <div class="tog" style="border-bottom:none"><div><div style="font-family:var(--fdisp);font-weight:700">Sound effects</div></div><div class="switch on" id="sw-snd" onclick="toggleSnd()"><i></i></div></div>
     </div>
     <div class="h2">About</div>
-    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: verb conjugation across every tense and mood — indicative, <b>commands</b>, and the <b>subjunctive</b> — the <b>ser-vs-estar</b> decision, sentence structure, and the core vocabulary real conversation is built from. Your streak, XP, learned words, and finished lessons are saved on <b>this device</b>, so you can pick up right where you left off. An AI conversation partner is on the way.</div>
+    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: verb conjugation across every tense and mood — indicative, <b>commands</b>, and the <b>subjunctive</b> — the <b>ser-vs-estar</b> decision, sentence structure, and the core vocabulary real conversation is built from. Your streak, XP, learned words, and finished lessons are saved on <b>this device</b>, so you can pick up right where you left off. New: <b>Converse</b> (in the Speak tab) is a free-form AI tutor — connect your own tutor proxy to chat and get gentle corrections.</div>
   </section>
 
   <!-- ============ DRILL OVERLAY ============ -->
@@ -261,6 +297,16 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
     </div>
     <div class="cardnav"><button class="btn ghost" onclick="fcPrev()">← Prev</button><div style="font-family:var(--fdisp);font-weight:700;color:var(--ink-soft)" id="fc-count"></div><button class="btn ghost" onclick="fcNext()">Next →</button></div>
   </section>
+
+  <!-- ============ CONVERSE (AI tutor chat) ============ -->
+  <section class="screen" id="s-chat">
+    <div class="chat-head">
+      <button class="back" style="margin:0" onclick="go('speak')">← Back</button>
+      <div class="chat-title">Converse · <span>Profe</span></div>
+      <button class="chat-gear" onclick="openChatSettings()" aria-label="Settings">⚙️</button>
+    </div>
+    <div id="chat-body"></div>
+  </section>
 </div>
 
 <nav class="nav">
@@ -279,7 +325,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 /* ---------------- STORE ---------------- */
 const KEY='habla.v1';
 const MS_DAY=86400000, today=()=>Math.floor(Date.now()/MS_DAY);
-const DEF={xp:0,streak:0,lastDay:null,dayCount:0,goal:30,srs:{},vmaster:{},done:{},settings:{vos:false,snd:true}};
+const DEF={xp:0,streak:0,lastDay:null,dayCount:0,goal:30,srs:{},vmaster:{},done:{},settings:{vos:false,snd:true,aiUrl:'',aiToken:''}};
 let S;
 try{const r=localStorage.getItem(KEY);S=r?Object.assign(JSON.parse(JSON.stringify(DEF)),JSON.parse(r)):JSON.parse(JSON.stringify(DEF));}catch(e){S=JSON.parse(JSON.stringify(DEF));}
 if(!S.settings)S.settings=Object.assign({},DEF.settings);
@@ -958,6 +1004,7 @@ function go(name){
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
   const nav={learn:'nav-learn',verbs:'nav-verbs',words:'nav-words',speak:'nav-speak',you:'nav-you'}[name];
   if(nav){document.getElementById(nav).classList.add('on'); curNode=null;} // landing on a main tab clears the active lesson so only path-launched lessons check off
+  document.querySelector('.nav').style.display=(name==='chat')?'none':'flex'; // chat is full-screen
   window.scrollTo(0,0);
   if(name==='learn')renderPath();
   if(name==='verbs')renderVerbs();
@@ -1279,6 +1326,104 @@ function spRecognize(){
 }
 function spNext(){ addXP(1); spI++; renderSpeak(); }
 function levSim(a,b){ const m=a.length,n=b.length; if(!m||!n)return 0; const d=Array.from({length:m+1},(_,i)=>[i,...Array(n).fill(0)]); for(let j=0;j<=n;j++)d[0][j]=j; for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1)); return 1-d[m][n]/Math.max(m,n); }
+
+/* =====================================================================
+   CONVERSE — free-form AI Spanish tutor (via your own Cloudflare Worker)
+   ===================================================================== */
+let chatMsgs=[], chatBusy=false, chatRec=null;
+const CHAT_SCENARIOS=[
+  ['👋','Preséntate','Hola, me llamo Tad. ¿Y tú?'],
+  ['☕','En el café','Quiero pedir un café, por favor.'],
+  ['🧭','Direcciones','Perdón, ¿dónde está el baño?'],
+  ['🛒','De compras','Busco una camisa azul.'],
+  ['🍽️','Restaurante','Una mesa para dos, por favor.']
+];
+function esc(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function stripFix(t){ return String(t).replace(/^✏️.*$/gm,'').replace(/\s+/g,' ').trim(); }
+function aiConfigured(){ return !!(S.settings.aiUrl && /^https?:\/\//.test(S.settings.aiUrl)); }
+function openChat(){
+  backTo='speak'; go('chat');
+  if(!aiConfigured()){ renderChatSetup(); return; }
+  if(!chatMsgs.length) chatMsgs.push({role:'assistant',content:'¡Hola! Soy Profe. 😊 ¿Cómo estás hoy?'});
+  renderChat();
+}
+function renderChatSetup(){
+  document.getElementById('chat-body').innerHTML=
+    `<div class="setup">`+
+    `<div style="font-family:var(--fdisp);font-weight:800;font-size:18px;margin-bottom:4px">Connect your tutor 🔌</div>`+
+    `<div class="sub" style="font-size:14px">Habla chats through a tiny proxy you host — it keeps your API key safe (a static site can’t). Follow <b>apps/habla/worker/README.md</b> to deploy it in ~5 minutes, then paste its URL here.</div>`+
+    `<label>Worker URL</label><input id="cfg-url" inputmode="url" placeholder="https://habla-tutor.you.workers.dev" value="${esc(S.settings.aiUrl||'')}">`+
+    `<label>Access token (optional)</label><input id="cfg-token" placeholder="only if you set ACCESS_TOKEN" value="${esc(S.settings.aiToken||'')}">`+
+    `<button class="btn block teal" style="margin-top:12px" onclick="saveChatSettings()">Save &amp; start</button>`+
+    (aiConfigured()?`<button class="btn block ghost" style="margin-top:8px" onclick="renderChat()">Cancel</button>`:``)+
+    `</div>`;
+}
+function openChatSettings(){ renderChatSetup(); }
+function saveChatSettings(){
+  S.settings.aiUrl=(document.getElementById('cfg-url').value||'').trim();
+  S.settings.aiToken=(document.getElementById('cfg-token').value||'').trim();
+  save();
+  if(aiConfigured()){ chatMsgs=[]; openChat(); } else { alert('Please paste a valid https:// Worker URL.'); }
+}
+function renderChat(){
+  if(!aiConfigured())return renderChatSetup();
+  if(!chatMsgs.length) chatMsgs.push({role:'assistant',content:'¡Hola! Soy Profe. 😊 ¿Cómo estás hoy?'});
+  const chips = chatMsgs.length<=1 ? `<div class="chips">`+CHAT_SCENARIOS.map((s,i)=>`<button class="pill" onclick="chatChip(${i})">${s[0]} ${s[1]}</button>`).join('')+`</div>` : '';
+  document.getElementById('chat-body').innerHTML=
+    `<div class="chat-log" id="chat-log"></div>`+chips+
+    `<div class="chat-input">`+
+      (SR?`<button class="chat-mic" id="chat-mic" onclick="chatMic()" aria-label="Speak">🎙️</button>`:'')+
+      `<input id="chat-text" placeholder="Escribe en español…" enterkeyhint="send" autocomplete="off">`+
+      `<button class="chat-send" id="chat-send" onclick="chatSend()" aria-label="Send">➤</button>`+
+    `</div>`;
+  paintChatLog();
+  const inp=document.getElementById('chat-text');
+  if(inp) inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();chatSend();} });
+}
+function paintChatLog(){
+  const log=document.getElementById('chat-log'); if(!log)return;
+  log.innerHTML=chatMsgs.map((m,i)=>{
+    if(m.role==='user') return `<div class="bub me">${esc(m.content)}</div>`;
+    const html=esc(m.content).replace(/^✏️(.*)$/gm,'<span class="fix">✏️$1</span>');
+    return `<div class="bub ai" onclick="speakES(stripFix(chatMsgs[${i}].content))">${html}<div class="hear">🔊 tap to hear</div></div>`;
+  }).join('') + (chatBusy?`<div class="typing">Profe está escribiendo…</div>`:'');
+  log.scrollTop=log.scrollHeight;
+}
+function chatChip(i){ const inp=document.getElementById('chat-text'); if(inp){ inp.value=CHAT_SCENARIOS[i][2]; chatSend(); } }
+function chatSend(){
+  const inp=document.getElementById('chat-text'); if(!inp||chatBusy)return;
+  const text=(inp.value||'').trim(); if(!text)return;
+  inp.value='';
+  chatMsgs.push({role:'user',content:text});
+  chatBusy=true; renderChat();
+  postChat().then(reply=>{
+    chatBusy=false; chatMsgs.push({role:'assistant',content:reply}); paintChatLog();
+    addXP(2); speakES(stripFix(reply));
+  }).catch(err=>{
+    chatBusy=false;
+    chatMsgs.push({role:'assistant',content:'⚠️ '+((err&&err.message)||'No pude conectar con el tutor.')+'\n(Revisa la URL en ⚙️.)'});
+    paintChatLog();
+  });
+}
+async function postChat(){
+  const url=S.settings.aiUrl, headers={'Content-Type':'application/json'};
+  if(S.settings.aiToken) headers['x-habla-token']=S.settings.aiToken;
+  const payload={messages:chatMsgs.map(m=>({role:m.role,content:m.content}))};
+  let res;
+  try{ res=await fetch(url,{method:'POST',headers,body:JSON.stringify(payload)}); }
+  catch(e){ throw new Error('Network error — is the URL right?'); }
+  if(!res.ok){ let d=''; try{d=(await res.json()).error||'';}catch(e){} throw new Error('Server '+res.status+(d?' · '+d:'')); }
+  const data=await res.json();
+  return data.reply||'…';
+}
+function chatMic(){
+  if(!SR)return; const mic=document.getElementById('chat-mic');
+  if(chatRec){ try{chatRec.stop();}catch(e){} chatRec=null; if(mic)mic.classList.remove('rec'); return; }
+  const rec=new SR(); rec.lang='es-ES'; rec.interimResults=false; chatRec=rec; if(mic)mic.classList.add('rec');
+  rec.onresult=e=>{ const said=e.results[0][0].transcript; const inp=document.getElementById('chat-text'); if(inp)inp.value=said; };
+  rec.onerror=()=>{}; rec.onend=()=>{ chatRec=null; const m=document.getElementById('chat-mic'); if(m)m.classList.remove('rec'); };
+  rec.start();
+}
 
 /* ---- shared answer handler (multiple choice) ---- */
 function answer(btn,chosen,correct,onRight){
