@@ -7,6 +7,7 @@ name: Deploy apps to GitHub Pages
 #   Vigor             → https://<user>.github.io/scriptoria/vigor/
 #   Line of Authority → https://<user>.github.io/scriptoria/line-of-authority/
 #   Learn Thai        → https://<user>.github.io/scriptoria/learn-thai/
+#   Habla (Spanish)   → https://<user>.github.io/scriptoria/habla/
 #
 # One-time setup: repo Settings → Pages → "Build and deployment" → Source =
 # "GitHub Actions". After that, every push to main deploys.
@@ -102,6 +103,14 @@ jobs:
           cp apps/learn-thai/index.html apps/learn-thai/manifest.webmanifest \
              apps/learn-thai/sw.js apps/learn-thai/icon-192.png apps/learn-thai/icon-512.png \
              _site/learn-thai/
+
+      # --- Habla (single-file Spanish PWA, no build) → /habla ------------------
+      - name: Assemble Habla
+        run: |
+          mkdir -p _site/habla
+          cp apps/habla/index.html apps/habla/manifest.webmanifest \
+             apps/habla/sw.js apps/habla/icon-192.png apps/habla/icon-512.png \
+             _site/habla/
 
       # --- Assemble the published site -----------------------------------------
       - name: Assemble site

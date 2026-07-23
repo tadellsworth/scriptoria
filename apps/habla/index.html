@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#7a1220">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Habla">
+<meta name="description" content="Habla — speak Spanish fast. A speaking-first course built on present-tense conjugation, sentence structure, and the ~800 most-used words.">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Habla — Speak Spanish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#c1121f; --red-deep:#7a1220; --red-soft:#e05263;
+  --sun:#f77f00; --gold:#fcbf49; --gold-soft:#ffe1a8;
+  --teal:#2a9d8f; --teal-deep:#1f7a6f;
+  --ink:#2b1a1d; --ink-soft:#6b5a5d; --ink-faint:#9b8b8e;
+  --paper:#fff9f0; --paper-2:#fff3e2; --card:#ffffff; --line:#f0e3d2;
+  --good:#2a9d8f; --bad:#e04a3f;
+  --shadow:0 6px 20px rgba(122,18,32,0.10); --shadow-sm:0 2px 8px rgba(122,18,32,0.08);
+  --r-lg:22px; --r-md:16px; --r-sm:11px;
+  --ease:cubic-bezier(0.22,1,0.36,1); --spring:cubic-bezier(0.34,1.56,0.64,1);
+  --fdisp:'Baloo 2',system-ui,sans-serif; --fbody:'Nunito',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--fbody);background:var(--paper);color:var(--ink);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(120% 60% at 50% -10%,rgba(252,191,73,0.18),transparent 60%),
+  radial-gradient(90% 50% at 100% 100%,rgba(42,157,143,0.08),transparent 55%)}
+.app{position:relative;z-index:1;max-width:540px;margin:0 auto;padding:0 16px 120px}
+.screen{display:none;animation:rise .45s var(--ease)}
+.screen.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ---- top bar (xp/streak) ---- */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 12px) 4px 12px;background:linear-gradient(180deg,var(--paper) 70%,transparent)}
+.brand{font-family:var(--fdisp);font-weight:800;font-size:20px;color:var(--red);letter-spacing:-.5px;margin-right:auto}
+.brand span{color:var(--sun)}
+.chip{display:flex;align-items:center;gap:5px;font-family:var(--fdisp);font-weight:700;font-size:15px;padding:5px 11px;border-radius:var(--r-sm);background:var(--card);box-shadow:var(--shadow-sm)}
+.chip.streak{color:var(--sun)} .chip.xp{color:var(--teal)}
+
+/* ---- generic ---- */
+.h1{font-family:var(--fdisp);font-weight:800;font-size:26px;letter-spacing:-.5px;color:var(--ink)}
+.h2{font-family:var(--fdisp);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:22px 4px 12px}
+.sub{color:var(--ink-soft);font-size:15px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--r-md);padding:16px;box-shadow:var(--shadow-sm);border:1px solid var(--line)}
+.btn{font-family:var(--fdisp);font-weight:700;font-size:16px;border:none;border-radius:var(--r-md);padding:14px 20px;cursor:pointer;transition:transform .12s var(--ease),filter .2s;color:#fff;background:var(--red);box-shadow:0 4px 0 var(--red-deep)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--red-deep)}
+.btn.block{display:block;width:100%}
+.btn.gold{background:var(--gold);color:var(--ink);box-shadow:0 4px 0 var(--sun)}
+.btn.teal{background:var(--teal);box-shadow:0 4px 0 var(--teal-deep)}
+.btn.ghost{background:var(--card);color:var(--red);box-shadow:0 4px 0 var(--line);border:1px solid var(--line)}
+.btn:disabled{opacity:.5}
+.pill{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line);cursor:pointer;white-space:nowrap}
+.pill.on{background:var(--red);color:#fff;border-color:var(--red)}
+.row-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;-ms-overflow-style:none;scrollbar-width:none}
+.row-tabs::-webkit-scrollbar{display:none}
+
+/* ---- hero / progress ---- */
+.hero{background:linear-gradient(135deg,var(--red),var(--sun));color:#fff;border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-top:4px}
+.hero h1{font-family:var(--fdisp);font-weight:800;font-size:22px;margin-bottom:3px}
+.hero p{opacity:.92;font-size:14px;font-weight:600}
+.hero .goalbar{height:10px;background:rgba(255,255,255,.28);border-radius:999px;margin-top:14px;overflow:hidden}
+.hero .goalbar i{display:block;height:100%;background:#fff;border-radius:999px;transition:width .5s var(--ease)}
+
+/* ---- lesson path ---- */
+.unit{margin-top:10px}
+.unit-h{display:flex;align-items:center;gap:10px;font-family:var(--fdisp);font-weight:700;color:var(--ink);font-size:16px;margin:18px 2px 6px}
+.unit-h .dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.node{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 15px;margin-bottom:10px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .12s var(--ease)}
+.node:active{transform:scale(.99)}
+.node .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none;background:var(--paper-2)}
+.node.done .ic{background:var(--teal);color:#fff}
+.node.locked{opacity:.55}
+.node .t{font-family:var(--fdisp);font-weight:700;font-size:16px}
+.node .d{font-size:13px;color:var(--ink-soft)}
+.node .chev{margin-left:auto;color:var(--ink-faint);font-weight:800}
+.node .badge{margin-left:auto;font-family:var(--fdisp);font-weight:700;font-size:12px;color:var(--teal)}
+
+/* ---- bottom nav ---- */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;max-width:540px;margin:0 auto;
+  background:rgba(255,249,240,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);padding-bottom:calc(env(safe-area-inset-bottom,10px));box-shadow:0 -4px 20px rgba(122,18,32,.06)}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;padding:10px 2px 8px;color:var(--ink-faint);font-family:var(--fdisp);font-weight:700;font-size:10px;letter-spacing:.3px;cursor:pointer}
+.nav button.on{color:var(--red)}
+.nav button .ni{font-size:21px;line-height:1}
+
+/* ---- drill / quiz ---- */
+.drill{min-height:70vh;display:flex;flex-direction:column}
+.prog{height:12px;background:var(--paper-2);border-radius:999px;overflow:hidden;margin:8px 0 4px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--sun));border-radius:999px;transition:width .4s var(--ease)}
+.qwrap{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:12px 0}
+.qcue{font-size:15px;color:var(--ink-soft);font-weight:600;margin-bottom:10px}
+.qbig{font-family:var(--fdisp);font-weight:800;font-size:34px;color:var(--ink);line-height:1.15;margin:4px 0}
+.qbig .accentword{color:var(--red)}
+.qsmall{font-size:15px;color:var(--ink-faint);font-style:italic;margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.opt{font-family:var(--fdisp);font-weight:700;font-size:18px;background:var(--card);border:2px solid var(--line);border-radius:var(--r-md);padding:15px;cursor:pointer;transition:transform .1s,border-color .2s;box-shadow:var(--shadow-sm);text-align:center}
+.opt:active{transform:scale(.98)}
+.opt.correct{border-color:var(--good);background:#e8f6f3;color:var(--teal-deep)}
+.opt.wrong{border-color:var(--bad);background:#fdeceb;color:var(--bad)}
+.opt.disabled{pointer-events:none}
+.playbtn{width:96px;height:96px;border-radius:50%;border:none;margin:6px auto;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--sun));color:#fff;cursor:pointer;box-shadow:0 8px 22px rgba(247,127,0,.4)}
+.playbtn:active{transform:scale(.95)} .playbtn svg{width:40px;height:40px}
+.speakbtn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fdisp);font-weight:700;font-size:14px;color:var(--teal-deep);background:#e8f6f3;border:1px solid #bfe6df;border-radius:999px;padding:8px 16px;cursor:pointer;margin-top:12px}
+.speakbtn svg{width:17px;height:17px}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:56px;border-bottom:2px dashed var(--line);padding:10px 0 16px;margin-bottom:14px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.tile{font-family:var(--fdisp);font-weight:700;font-size:16px;background:var(--card);border:2px solid var(--line);border-radius:var(--r-sm);padding:9px 13px;cursor:pointer;box-shadow:var(--shadow-sm)}
+.tile.used{opacity:.25;pointer-events:none}
+.result{text-align:center;padding:30px 10px}
+.result .em{font-size:56px}
+.result .big{font-family:var(--fdisp);font-weight:800;font-size:30px;color:var(--red);margin:6px 0}
+
+/* ---- conjugation table ---- */
+.conj{width:100%;border-collapse:collapse;margin-top:10px}
+.conj td{padding:9px 10px;border-bottom:1px solid var(--line);font-size:16px}
+.conj td.p{color:var(--ink-soft);font-weight:700;font-family:var(--fdisp);white-space:nowrap}
+.conj td.f{text-align:right;font-family:var(--fdisp);font-weight:700;color:var(--red)}
+.conj tr.es td{border-bottom:2px solid var(--gold-soft)}
+
+/* ---- flashcard ---- */
+.fc{perspective:1200px;height:210px;margin:14px 0}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .5s var(--spring);transform-style:preserve-3d;cursor:pointer}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px;text-align:center}
+.fc-back{transform:rotateY(180deg)}
+.fc-es{font-family:var(--fdisp);font-weight:800;font-size:36px;color:var(--ink)}
+.fc-en{font-family:var(--fdisp);font-weight:800;font-size:30px;color:var(--red)}
+.fc-hint{position:absolute;bottom:12px;font-size:11px;color:var(--ink-faint);font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.fc-note{font-size:13px;color:var(--ink-soft);margin-top:6px}
+.cardnav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cardnav .btn{flex:1}
+
+/* ---- misc ---- */
+.back{display:inline-flex;align-items:center;gap:6px;font-family:var(--fdisp);font-weight:700;color:var(--ink-soft);background:none;border:none;font-size:15px;cursor:pointer;padding:8px 0;margin-top:6px}
+.gnote{background:var(--paper-2);border-left:4px solid var(--gold);border-radius:var(--r-sm);padding:12px 14px;margin:12px 0;font-size:14.5px;line-height:1.55}
+.gnote b{color:var(--red)}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:11px 13px;margin:8px 0}
+.ex .e-es{font-family:var(--fdisp);font-weight:700;font-size:17px;color:var(--ink)}
+.ex .e-en{font-size:13.5px;color:var(--ink-soft)}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;text-align:center;box-shadow:var(--shadow-sm)}
+.stat .n{font-family:var(--fdisp);font-weight:800;font-size:30px;color:var(--red)}
+.stat .l{font-size:12px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.tog{display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid var(--line)}
+.switch{width:48px;height:28px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;transition:background .2s;flex:none}
+.switch.on{background:var(--teal)}
+.switch i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s var(--spring);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch.on i{left:23px}
+
+/* splash */
+#splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--red),var(--sun));transition:opacity .6s,transform .6s}
+#splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
+#splash .bub{width:120px;height:100px;background:var(--paper);border-radius:28px;display:grid;place-items:center;font-family:var(--fdisp);font-weight:800;font-size:56px;color:var(--red);box-shadow:0 12px 40px rgba(0,0,0,.25);animation:pop .6s var(--spring)}
+#splash .wm{font-family:var(--fdisp);font-weight:800;color:#fff;font-size:30px;letter-spacing:1px;margin-top:22px}
+#splash .tg{color:rgba(255,255,255,.85);font-weight:700;font-size:14px;margin-top:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="splash"><div class="bub">¡!</div><div class="wm">Habla</div><div class="tg">Speak Spanish, now.</div></div>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand">¡Habla<span>!</span></div>
+    <div class="chip streak">🔥 <span id="tb-streak">0</span></div>
+    <div class="chip xp">⭐ <span id="tb-xp">0</span></div>
+  </div>
+
+  <!-- ============ APRENDE (path) ============ -->
+  <section class="screen active" id="s-learn">
+    <div class="hero">
+      <h1 id="hero-title">¡Hola! Let's talk.</h1>
+      <p id="hero-sub">Reach your daily goal to keep the streak.</p>
+      <div class="goalbar"><i id="hero-goal" style="width:0%"></i></div>
+    </div>
+    <div id="path"></div>
+  </section>
+
+  <!-- ============ VERBOS ============ -->
+  <section class="screen" id="s-verbs">
+    <div class="h1">Verbs</div>
+    <div class="sub">Present tense is ~80% of everyday speech. Drill the endings until they're automatic.</div>
+    <button class="btn block gold" style="margin-top:14px" onclick="startConj('all')">⚡ Quick conjugation drill</button>
+    <div class="h2">Browse &amp; hear</div>
+    <div class="row-tabs" id="verb-tabs"></div>
+    <div id="verb-list"></div>
+  </section>
+
+  <!-- ============ PALABRAS ============ -->
+  <section class="screen" id="s-words">
+    <div class="h1">Words</div>
+    <div class="sub">The ~800 most-used words carry most conversations. Learn them with spaced repetition.</div>
+    <button class="btn block teal" style="margin-top:14px" onclick="startReview()">🔁 Daily review (<span id="due-count">0</span>)</button>
+    <div class="h2">Decks</div>
+    <div id="deck-list"></div>
+  </section>
+
+  <!-- ============ HABLAR (speak/listen) ============ -->
+  <section class="screen" id="s-speak">
+    <div class="h1">Speak &amp; Listen</div>
+    <div class="sub">Understand real speech and train your mouth to move.</div>
+    <div class="h2">Practice</div>
+    <div id="practice-list"></div>
+  </section>
+
+  <!-- ============ TÚ (progress) ============ -->
+  <section class="screen" id="s-you">
+    <div class="h1">You</div>
+    <div class="statgrid">
+      <div class="stat"><div class="n" id="st-streak">0</div><div class="l">Day streak</div></div>
+      <div class="stat"><div class="n" id="st-xp">0</div><div class="l">Total XP</div></div>
+      <div class="stat"><div class="n" id="st-words">0</div><div class="l">Words learned</div></div>
+      <div class="stat"><div class="n" id="st-verbs">0</div><div class="l">Verb forms mastered</div></div>
+    </div>
+    <div class="h2">Settings</div>
+    <div class="card" style="padding:4px 16px">
+      <div class="tog"><div><div style="font-family:var(--fdisp);font-weight:700">Include vosotros</div><div class="sub" style="font-size:13px">Spain plural form. Off = Latin American.</div></div><div class="switch" id="sw-vos" onclick="toggleVos()"><i></i></div></div>
+      <div class="tog" style="border-bottom:none"><div><div style="font-family:var(--fdisp);font-weight:700">Sound effects</div></div><div class="switch on" id="sw-snd" onclick="toggleSnd()"><i></i></div></div>
+    </div>
+    <div class="h2">About</div>
+    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: present-tense conjugation, sentence structure, and the core vocabulary that real conversation is built from. More tenses, decks, and an AI conversation partner are on the way.</div>
+  </section>
+
+  <!-- ============ DRILL OVERLAY ============ -->
+  <section class="screen" id="s-drill">
+    <button class="back" onclick="quitDrill()">✕ End</button>
+    <div class="drill">
+      <div class="prog"><i id="d-prog" style="width:0%"></i></div>
+      <div id="d-body"></div>
+    </div>
+  </section>
+
+  <!-- ============ DETAIL OVERLAY (verb table / lesson) ============ -->
+  <section class="screen" id="s-detail">
+    <button class="back" onclick="go(backTo||'learn')">← Back</button>
+    <div id="detail-body"></div>
+  </section>
+
+  <!-- ============ WORDS: flashcards ============ -->
+  <section class="screen" id="s-cards">
+    <button class="back" onclick="go('words')">← Back</button>
+    <div class="h1" id="cards-title" style="font-size:22px"></div>
+    <div class="fc" id="fc" onclick="fcFlip()">
+      <div class="fc-in">
+        <div class="fc-face"><div class="fc-es" id="fc-es"></div><div class="fc-note" id="fc-pos"></div><div class="fc-hint">tap to flip</div></div>
+        <div class="fc-face fc-back"><div class="fc-en" id="fc-en"></div><div class="fc-note" id="fc-ex"></div>
+          <button class="speakbtn" onclick="event.stopPropagation();fcSpeak()">🔊 Hear it</button></div>
+      </div>
+    </div>
+    <div class="cardnav"><button class="btn ghost" onclick="fcPrev()">← Prev</button><div style="font-family:var(--fdisp);font-weight:700;color:var(--ink-soft)" id="fc-count"></div><button class="btn ghost" onclick="fcNext()">Next →</button></div>
+  </section>
+</div>
+
+<nav class="nav">
+  <button class="on" id="nav-learn" onclick="go('learn')"><span class="ni">🏠</span>Learn</button>
+  <button id="nav-verbs" onclick="go('verbs')"><span class="ni">⚡</span>Verbs</button>
+  <button id="nav-words" onclick="go('words')"><span class="ni">📇</span>Words</button>
+  <button id="nav-speak" onclick="go('speak')"><span class="ni">🎙️</span>Speak</button>
+  <button id="nav-you" onclick="go('you')"><span class="ni">🏆</span>You</button>
+</nav>
+
+<script>
+/* =====================================================================
+   HABLA · speaking-first Spanish. Single-file PWA, no dependencies.
+   ===================================================================== */
+
+/* ---------------- STORE ---------------- */
+const KEY='habla.v1';
+const MS_DAY=86400000, today=()=>Math.floor(Date.now()/MS_DAY);
+const DEF={xp:0,streak:0,lastDay:null,dayCount:0,goal:30,srs:{},vmaster:{},done:{},settings:{vos:false,snd:true}};
+let S;
+try{const r=localStorage.getItem(KEY);S=r?Object.assign(JSON.parse(JSON.stringify(DEF)),JSON.parse(r)):JSON.parse(JSON.stringify(DEF));}catch(e){S=JSON.parse(JSON.stringify(DEF));}
+if(!S.settings)S.settings=Object.assign({},DEF.settings);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function addXP(n){ S.xp+=n; noteStudied(); }
+function noteStudied(){ const t=today(); if(S.lastDay!==t){ S.streak=(S.lastDay===t-1)?(S.streak||0)+1:1; S.lastDay=t; S.dayCount=0; } S.dayCount=(S.dayCount||0)+1; save(); paintTop(); }
+
+/* ---------------- DATA: verbs + present-tense engine ---------------- */
+const PERSONS=['yo','tú','él/ella/Ud.','nosotros','vosotros','ellos/Uds.'];
+const PERSON_SHORT=['yo','tú','él/ella','nosotros','vosotros','ellos'];
+const END={ar:['o','as','a','amos','áis','an'],er:['o','es','e','emos','éis','en'],ir:['o','es','e','imos','ís','en']};
+function applyStem(st,type){const m={ie:['e','ie'],ue:['o','ue'],i:['e','i'],uue:['u','ue']}[type];const idx=st.lastIndexOf(m[0]);return idx<0?st:st.slice(0,idx)+m[1]+st.slice(idx+1);}
+function conjugate(v){
+  if(v.irreg)return v.irreg.slice();
+  const type=v.type,st=v.inf.slice(0,-2),en=END[type];
+  return en.map((e,i)=>{ let s=st; if(v.stem&&i!==3&&i!==4)s=applyStem(st,v.stem); return s+e; });
+}
+const VERBS=[
+  {inf:'hablar',en:'to speak',type:'ar'},{inf:'estudiar',en:'to study',type:'ar'},
+  {inf:'trabajar',en:'to work',type:'ar'},{inf:'necesitar',en:'to need',type:'ar'},
+  {inf:'tomar',en:'to take / drink',type:'ar'},{inf:'usar',en:'to use',type:'ar'},
+  {inf:'llegar',en:'to arrive',type:'ar'},{inf:'llevar',en:'to carry / wear',type:'ar'},
+  {inf:'comer',en:'to eat',type:'er'},{inf:'aprender',en:'to learn',type:'er'},
+  {inf:'comprender',en:'to understand',type:'er'},{inf:'beber',en:'to drink',type:'er'},
+  {inf:'leer',en:'to read',type:'er'},{inf:'vivir',en:'to live',type:'ir'},
+  {inf:'escribir',en:'to write',type:'ir'},{inf:'abrir',en:'to open',type:'ir'},
+  {inf:'recibir',en:'to receive',type:'ir'},
+  // stem-changers (computed)
+  {inf:'pensar',en:'to think',type:'ar',stem:'ie'},{inf:'empezar',en:'to begin',type:'ar',stem:'ie'},
+  {inf:'entender',en:'to understand',type:'er',stem:'ie'},{inf:'querer',en:'to want / love',type:'er',stem:'ie'},
+  {inf:'poder',en:'to be able (can)',type:'er',stem:'ue'},{inf:'contar',en:'to count / tell',type:'ar',stem:'ue'},
+  {inf:'volver',en:'to return',type:'er',stem:'ue'},{inf:'dormir',en:'to sleep',type:'ir',stem:'ue'},
+  {inf:'encontrar',en:'to find',type:'ar',stem:'ue'},{inf:'pedir',en:'to ask for',type:'ir',stem:'i'},
+  {inf:'servir',en:'to serve',type:'ir',stem:'i'},{inf:'jugar',en:'to play',type:'ar',stem:'uue'},
+  // full irregulars
+  {inf:'ser',en:'to be (essence)',irreg:['soy','eres','es','somos','sois','son']},
+  {inf:'estar',en:'to be (state)',irreg:['estoy','estás','está','estamos','estáis','están']},
+  {inf:'ir',en:'to go',irreg:['voy','vas','va','vamos','vais','van']},
+  {inf:'tener',en:'to have',irreg:['tengo','tienes','tiene','tenemos','tenéis','tienen']},
+  {inf:'hacer',en:'to do / make',irreg:['hago','haces','hace','hacemos','hacéis','hacen']},
+  {inf:'decir',en:'to say / tell',irreg:['digo','dices','dice','decimos','decís','dicen']},
+  {inf:'venir',en:'to come',irreg:['vengo','vienes','viene','venimos','venís','vienen']},
+  {inf:'poner',en:'to put',irreg:['pongo','pones','pone','ponemos','ponéis','ponen']},
+  {inf:'salir',en:'to leave / go out',irreg:['salgo','sales','sale','salimos','salís','salen']},
+  {inf:'ver',en:'to see',irreg:['veo','ves','ve','vemos','veis','ven']},
+  {inf:'dar',en:'to give',irreg:['doy','das','da','damos','dais','dan']},
+  {inf:'saber',en:'to know (facts)',irreg:['sé','sabes','sabe','sabemos','sabéis','saben']},
+  {inf:'conocer',en:'to know (people)',irreg:['conozco','conoces','conoce','conocemos','conocéis','conocen']},
+  {inf:'haber',en:'to have (auxiliary)',irreg:['he','has','ha','hemos','habéis','han']}
+];
+const VERB_TABS=[['core','Core'],['ar','-ar'],['er','-er'],['ir','-ir'],['stem','Stem-changing'],['irreg','Irregular']];
+const CORE_VERBS=['ser','estar','tener','hacer','ir','poder','querer','decir','ver','dar','saber','hablar','comer','vivir'];
+function verbsIn(tab){
+  if(tab==='core')return VERBS.filter(v=>CORE_VERBS.includes(v.inf));
+  if(tab==='stem')return VERBS.filter(v=>v.stem);
+  if(tab==='irreg')return VERBS.filter(v=>v.irreg);
+  return VERBS.filter(v=>v.type===tab&&!v.stem);
+}
+
+/* ---------------- DATA: vocab decks (core of the ~800) ---------------- */
+const DECKS=[
+  {id:'basics',name:'Essentials',icon:'👋',words:[
+    ['hola','hello'],['adiós','goodbye'],['gracias','thank you'],['por favor','please'],['sí','yes'],['no','no'],
+    ['perdón','sorry / excuse me'],['de nada',"you're welcome"],['buenos días','good morning'],['buenas noches','good night'],
+    ['¿cómo estás?','how are you?'],['bien','well / fine'],['mal','badly'],['más o menos','so-so']]},
+  {id:'people',name:'People & pronouns',icon:'🧑',words:[
+    ['yo','I'],['tú','you'],['él','he'],['ella','she'],['usted','you (formal)'],['nosotros','we'],['ellos','they'],
+    ['ustedes','you all'],['hombre','man'],['mujer','woman'],['niño','boy / child'],['niña','girl'],
+    ['amigo','friend (m)'],['amiga','friend (f)'],['familia','family'],['gente','people'],['persona','person']]},
+  {id:'questions',name:'Question words',icon:'❓',words:[
+    ['qué','what'],['quién','who'],['cuál','which'],['cuándo','when'],['dónde','where'],['cómo','how'],
+    ['por qué','why'],['cuánto','how much / many']]},
+  {id:'connectors',name:'Connectors',icon:'🔗',words:[
+    ['y','and'],['o','or'],['pero','but'],['sino','but rather'],['porque','because'],['que','that'],['si','if'],
+    ['aunque','although'],['cuando','when'],['mientras','while'],['como','like / as'],['también','also'],
+    ['tampoco','neither'],['entonces','then / so']]},
+  {id:'prepositions',name:'Prepositions',icon:'📍',words:[
+    ['a','to'],['de','of / from'],['en','in / on'],['con','with'],['sin','without'],['por','for / by'],
+    ['para','for / in order to'],['sobre','on / about'],['entre','between'],['hasta','until'],['desde','since / from'],
+    ['hacia','toward'],['según','according to'],['contra','against']]},
+  {id:'time',name:'Time & adverbs',icon:'⏰',words:[
+    ['ahora','now'],['hoy','today'],['mañana','tomorrow / morning'],['ayer','yesterday'],['siempre','always'],
+    ['nunca','never'],['ya','already'],['todavía','still / yet'],['muy','very'],['más','more'],['menos','less'],
+    ['mucho','a lot'],['poco','a little'],['casi','almost'],['aquí','here'],['allí','there'],['tarde','late / afternoon'],
+    ['temprano','early']]},
+  {id:'numbers',name:'Numbers',icon:'🔢',words:[
+    ['cero','zero'],['uno','one'],['dos','two'],['tres','three'],['cuatro','four'],['cinco','five'],['seis','six'],
+    ['siete','seven'],['ocho','eight'],['nueve','nine'],['diez','ten'],['veinte','twenty'],['cien','one hundred'],['mil','one thousand']]},
+  {id:'things',name:'Everyday nouns',icon:'🏠',words:[
+    ['la casa','house'],['el agua','water'],['la comida','food'],['el tiempo','time / weather'],['el día','day'],
+    ['el año','year'],['la cosa','thing'],['la vida','life'],['la mano','hand'],['el trabajo','work'],
+    ['el mundo','world'],['la ciudad','city'],['el dinero','money'],['el nombre','name'],['la palabra','word'],
+    ['la hora','hour'],['la noche','night'],['el lugar','place'],['el coche','car'],['la calle','street']]},
+  {id:'describe',name:'Describing',icon:'🎨',words:[
+    ['bueno','good'],['malo','bad'],['grande','big'],['pequeño','small'],['nuevo','new'],['viejo','old'],
+    ['bonito','pretty'],['feo','ugly'],['fácil','easy'],['difícil','hard'],['mismo','same'],['otro','other'],
+    ['todo','all / every'],['feliz','happy'],['cansado','tired'],['listo','ready / clever'],['caro','expensive'],['barato','cheap']]}
+];
+function allWords(){const o=[];DECKS.forEach(d=>d.words.forEach(w=>o.push({es:w[0],en:w[1],deck:d.id})));return o;}
+function wordId(w){return w.es;}
+
+/* ---------------- DATA: pronunciation ---------------- */
+const SOUNDS=[
+  ['ñ','“enye” — like the ny in canyon','España, mañana, niño'],
+  ['ll','sounds like English y','llamar, calle, pollo'],
+  ['r','a single r is a quick tongue tap','pero, caro, hora'],
+  ['rr','double r is rolled / trilled','perro, carro, correr'],
+  ['h','always silent','hola, hombre, hasta'],
+  ['j / g','raspy h sound (before e/i for g)','jugar, gente, mujer'],
+  ['z / c','both an “s” sound (Latin America)','zapato, cinco, gracias'],
+  ['b / v','identical — a soft b','bueno, vivir, trabajar'],
+  ['d','soft, near “th”, between vowels','lado, nada, ciudad'],
+  ['ü','the u IS pronounced here','vergüenza, pingüino']
+];
+const STRESS=[
+  ['Ends in vowel, -n or -s','stress the second-to-last syllable','escucha, hablan, casas'],
+  ['Ends in any other consonant','stress the last syllable','llamar, ciudad, feliz'],
+  ['Has a written accent (tilde)','stress that syllable — it overrides the rules','rápido, también, adiós']
+];
+
+/* ---------------- DATA: grammar lessons ---------------- */
+const GRAMMAR={
+  present:{title:'Present tense endings',html:
+    '<div class="sub">Drop the -ar/-er/-ir and add the ending for the person. This one pattern unlocks most of Spanish.</div>'+
+    '<table class="conj"><tr><td class="p"></td><td class="f">-ar (hablar)</td></tr>'+
+    ['yo → -o (hablo)','tú → -as (hablas)','él → -a (habla)','nosotros → -amos (hablamos)','ellos → -an (hablan)'].map(x=>`<tr><td class="p">${x}</td><td class="f"></td></tr>`).join('')+'</table>'+
+    '<div class="gnote"><b>-er</b> uses -o,-es,-e,-emos,-en · <b>-ir</b> uses -o,-es,-e,-imos,-en. Only nosotros differs between them.</div>'},
+  gender:{title:'Masculine & feminine',html:
+    '<div class="sub">Every noun has a gender. Usually <b>-o</b> = masculine (el), <b>-a</b> = feminine (la).</div>'+
+    '<div class="ex"><div class="e-es">el libro · la mesa</div><div class="e-en">the book · the table</div></div>'+
+    '<div class="gnote">Watch-outs: <b>el día</b>, <b>el mapa</b>, <b>el problema</b> are masculine; <b>la mano</b> is feminine. And <b>el agua</b>, <b>el águila</b> take “el” for sound but are feminine (agua fría).</div>'},
+  serestar:{title:'Ser vs. Estar',html:
+    '<div class="sub">Both mean “to be.” <b>Ser</b> = identity &amp; essence. <b>Estar</b> = state &amp; location.</div>'+
+    '<div class="ex"><div class="e-es">Soy de México.</div><div class="e-en">I am from Mexico. (origin → ser)</div></div>'+
+    '<div class="ex"><div class="e-es">Estoy en la tienda.</div><div class="e-en">I am at the store. (location → estar)</div></div>'+
+    '<div class="ex"><div class="e-es">Ella es bonita. / Ella está bonita.</div><div class="e-en">She is pretty (always) / She looks pretty (right now).</div></div>'},
+  stem:{title:'Stem-changing verbs',html:
+    '<div class="sub">The stressed vowel changes in every form except <b>nosotros/vosotros</b> (the “boot”).</div>'+
+    '<div class="ex"><div class="e-es">e → ie: querer → quiero</div><div class="e-en">to want → I want</div></div>'+
+    '<div class="ex"><div class="e-es">o → ue: poder → puedo</div><div class="e-en">to be able → I can</div></div>'+
+    '<div class="ex"><div class="e-es">e → i: pedir → pido</div><div class="e-en">to ask for → I ask for</div></div>'+
+    '<div class="gnote">Special: <b>jugar → juego</b> (u→ue).</div>'},
+  personal_a:{title:'The personal “a”',html:
+    '<div class="sub">When the direct object is a specific <b>person</b> (or a pet), add <b>a</b> before it. It isn’t translated.</div>'+
+    '<div class="ex"><div class="e-es">Veo <b>a</b> María.</div><div class="e-en">I see María.</div></div>'+
+    '<div class="ex"><div class="e-es">Veo la casa.</div><div class="e-en">I see the house. (no “a” — not a person)</div></div>'},
+  negquest:{title:'Negatives & questions',html:
+    '<div class="sub">Negate by putting <b>no</b> right before the verb. Ask by wrapping in <b>¿ … ?</b> — the voice rises.</div>'+
+    '<div class="ex"><div class="e-es">No hablo francés.</div><div class="e-en">I don’t speak French.</div></div>'+
+    '<div class="ex"><div class="e-es">¿Hablas español?</div><div class="e-en">Do you speak Spanish?</div></div>'+
+    '<div class="gnote">Spanish drops “do/does.” The question is just the statement with question marks and rising tone.</div>'}
+};
+
+/* ---------------- DATA: sentence-builder ---------------- */
+const SENTENCES=[
+  {en:'I speak Spanish.',words:['Yo','hablo','español']},
+  {en:'She is at home.',words:['Ella','está','en','casa']},
+  {en:'We want to eat.',words:['Nosotros','queremos','comer']},
+  {en:'Do you have water?',words:['¿Tienes','agua?']},
+  {en:'I am from Mexico.',words:['Soy','de','México']},
+  {en:'He does not understand.',words:['Él','no','comprende']},
+  {en:'They live in the city.',words:['Ellos','viven','en','la','ciudad']},
+  {en:'Where is the bathroom?',words:['¿Dónde','está','el','baño?']},
+  {en:'I need to work today.',words:['Necesito','trabajar','hoy']},
+  {en:'Can you help me?',words:['¿Puedes','ayudarme?']},
+  {en:'I want a coffee, please.',words:['Quiero','un','café,','por','favor']},
+  {en:'We know the city well.',words:['Conocemos','bien','la','ciudad']},
+  {en:'What do you do?',words:['¿Qué','haces?']},
+  {en:'I go to the store every day.',words:['Voy','a','la','tienda','todos','los','días']},
+  {en:'She has a big family.',words:['Ella','tiene','una','familia','grande']}
+];
+
+/* ---------------- DATA: listening / speaking sets ---------------- */
+function listenPool(){
+  // short, useful es→en items drawn from words + sentences
+  const items=allWords().filter(w=>w.deck!=='numbers').map(w=>({es:w.es,en:w.en}));
+  SENTENCES.forEach(s=>items.push({es:s.words.join(' ').replace(/[¿?]/g,''),en:s.en}));
+  return items;
+}
+const SPEAK_PROMPTS=SENTENCES.map(s=>({en:s.en,es:s.words.join(' ')}));
+
+/* ---------------- DATA: the learning path ---------------- */
+const PATH=[
+  {unit:'Unit 1 · Sound & structure',nodes:[
+    {id:'pron',t:'Pronunciation',d:'The sounds that trip up English speakers',ic:'🗣️',go:()=>openPronunciation()},
+    {id:'g_present',t:'Present tense',d:'The one pattern that unlocks Spanish',ic:'🔑',go:()=>openGrammar('present')},
+    {id:'d_conj1',t:'Conjugation drill',d:'Regular -ar/-er/-ir verbs',ic:'⚡',go:()=>startConj('reg')},
+    {id:'w_basics',t:'Essentials deck',d:'Your first survival words',ic:'👋',go:()=>openDeck('basics')}
+  ]},
+  {unit:'Unit 2 · Say something',nodes:[
+    {id:'g_gender',t:'Masculine & feminine',d:'el vs la',ic:'⚖️',go:()=>openGrammar('gender')},
+    {id:'w_people',t:'People & pronouns',d:'Who’s doing what',ic:'🧑',go:()=>openDeck('people')},
+    {id:'sent1',t:'Build a sentence',d:'Put the words in order',ic:'🧩',go:()=>startSentences()},
+    {id:'g_serestar',t:'Ser vs. Estar',d:'The two “to be”s',ic:'🔀',go:()=>openGrammar('serestar')}
+  ]},
+  {unit:'Unit 3 · Level up the verbs',nodes:[
+    {id:'g_stem',t:'Stem-changing verbs',d:'quiero, puedo, pido',ic:'🥾',go:()=>openGrammar('stem')},
+    {id:'d_conj2',t:'Conjugation drill II',d:'Now with irregulars & stems',ic:'⚡',go:()=>startConj('all')},
+    {id:'listen1',t:'Listening quiz',d:'Understand what you hear',ic:'🎧',go:()=>startListen()},
+    {id:'g_persa',t:'The personal “a”',d:'A tiny word that matters',ic:'📌',go:()=>openGrammar('personal_a')}
+  ]},
+  {unit:'Unit 4 · Open your mouth',nodes:[
+    {id:'g_neg',t:'Negatives & questions',d:'No + verb; ¿…?',ic:'❓',go:()=>openGrammar('negquest')},
+    {id:'w_connect',t:'Connectors deck',d:'y, pero, porque…',ic:'🔗',go:()=>openDeck('connectors')},
+    {id:'speak1',t:'Speaking practice',d:'Say it out loud',ic:'🎙️',go:()=>startSpeak()},
+    {id:'sent2',t:'Build sentences II',d:'Longer, real phrases',ic:'🧩',go:()=>startSentences()}
+  ]}
+];
+
+/* =====================================================================
+   NAV / SCREENS
+   ===================================================================== */
+let backTo='learn';
+function go(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+name).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
+  const nav={learn:'nav-learn',verbs:'nav-verbs',words:'nav-words',speak:'nav-speak',you:'nav-you'}[name];
+  if(nav)document.getElementById(nav).classList.add('on');
+  window.scrollTo(0,0);
+  if(name==='learn')renderPath();
+  if(name==='verbs')renderVerbs();
+  if(name==='words')renderWords();
+  if(name==='speak')renderPractice();
+  if(name==='you')renderYou();
+}
+function paintTop(){
+  document.getElementById('tb-streak').textContent=S.streak||0;
+  document.getElementById('tb-xp').textContent=S.xp||0;
+  const t=today(),done=(S.lastDay===t)?(S.dayCount||0):0;
+  const hg=document.getElementById('hero-goal'); if(hg)hg.style.width=Math.min(100,(done/S.goal)*100)+'%';
+  const hs=document.getElementById('hero-sub'); if(hs)hs.textContent=done>=S.goal?'¡Meta cumplida! Goal done for today. 🎉':`${done}/${S.goal} XP today — keep going!`;
+}
+
+/* ---- learn path ---- */
+function renderPath(){
+  paintTop();
+  const el=document.getElementById('path'); el.innerHTML='';
+  PATH.forEach(u=>{
+    const h=document.createElement('div'); h.className='unit-h'; h.innerHTML=`<span class="dot"></span>${u.unit}`; el.appendChild(h);
+    u.nodes.forEach(n=>{
+      const d=document.createElement('div'); d.className='node'+(S.done[n.id]?' done':'');
+      d.innerHTML=`<div class="ic">${S.done[n.id]?'✓':n.ic}</div><div><div class="t">${n.t}</div><div class="d">${n.d}</div></div>`+
+        (S.done[n.id]?'<div class="badge">Done</div>':'<div class="chev">›</div>');
+      d.onclick=()=>{ backTo='learn'; curNode=n.id; n.go(); };
+      el.appendChild(d);
+    });
+  });
+}
+let curNode=null;
+function markDone(){ if(curNode){ S.done[curNode]=true; save(); } }
+
+/* =====================================================================
+   VERBS
+   ===================================================================== */
+let verbTab='core';
+function renderVerbs(){
+  const tb=document.getElementById('verb-tabs'); tb.innerHTML='';
+  VERB_TABS.forEach(([k,l])=>{const b=document.createElement('button');b.className='pill'+(verbTab===k?' on':'');b.textContent=l;b.onclick=()=>{verbTab=k;renderVerbs();};tb.appendChild(b);});
+  const el=document.getElementById('verb-list'); el.innerHTML='';
+  verbsIn(verbTab).forEach(v=>{
+    const forms=conjugate(v);
+    const d=document.createElement('div'); d.className='node'; d.style.marginTop='10px';
+    d.innerHTML=`<div class="ic">${v.irreg?'★':v.stem?'🥾':'•'}</div><div><div class="t">${v.inf}</div><div class="d">${v.en} · yo ${forms[0]}</div></div><div class="chev">›</div>`;
+    d.onclick=()=>openVerb(v);
+    el.appendChild(d);
+  });
+}
+function openVerb(v){
+  backTo='verbs';
+  const forms=conjugate(v);
+  const rows=PERSONS.map((p,i)=>(!S.settings.vos&&i===4)?'':`<tr class="${i===0?'es':''}"><td class="p">${p}</td><td class="f">${forms[i]}</td></tr>`).join('');
+  document.getElementById('detail-body').innerHTML=
+    `<div class="h1">${v.inf} <span style="color:var(--ink-faint);font-size:16px;font-weight:600">${v.en}</span></div>`+
+    `<div class="sub">${v.irreg?'Irregular — memorize these.':v.stem?'Stem-changing ('+({ie:'e→ie',ue:'o→ue',i:'e→i',uue:'u→ue'}[v.stem])+') — the “boot”.':'Regular '+v.type+' verb.'}</div>`+
+    `<div style="text-align:center;margin:10px 0"><button class="speakbtn" onclick="speakES('${forms.join(', ')}')">🔊 Hear all forms</button></div>`+
+    `<table class="conj">${rows}</table>`+
+    `<button class="btn block gold" style="margin-top:18px" onclick="startConj('one','${v.inf}')">⚡ Drill this verb</button>`;
+  go('detail');
+}
+
+/* =====================================================================
+   CONJUGATION DRILL  (the core feature)
+   ===================================================================== */
+let dq=[],di=0,dscore=0,dmode='';
+function personPool(){ const p=[0,1,2,3,5]; if(S.settings.vos)p.splice(4,0,4); return p; }
+function startConj(scope,inf){
+  dmode='conj';
+  let pool = scope==='reg' ? VERBS.filter(v=>!v.irreg&&!v.stem)
+           : scope==='one' ? VERBS.filter(v=>v.inf===inf)
+           : VERBS;
+  const persons=personPool();
+  dq=[];
+  const N = scope==='one'?persons.length:12;
+  for(let i=0;i<N;i++){
+    const v=pool[Math.floor(Math.random()*pool.length)];
+    const pi=persons[Math.floor(Math.random()*persons.length)];
+    dq.push({v,pi});
+  }
+  di=0;dscore=0; go('drill'); renderConj();
+}
+function renderConj(){
+  if(di>=dq.length)return drillDone('conj');
+  const {v,pi}=dq[di], forms=conjugate(v), correct=forms[pi];
+  document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
+  // distractors: other persons' forms of same verb
+  let others=forms.filter((f,i)=>f!==correct); others=shuffle([...new Set(others)]).slice(0,3);
+  const opts=shuffle([correct,...others]);
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap"><div class="qcue">Conjugate for <b>${PERSON_SHORT[pi]}</b></div>`+
+    `<div class="qbig"><span class="accentword">${v.inf}</span></div><div class="qsmall">${v.en}</div>`+
+    `<div class="opts" id="opts"></div></div>`;
+  const oe=document.getElementById('opts');
+  opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>answer(b,o,correct,()=>{
+    const key=v.inf+':'+pi; S.vmaster[key]=(S.vmaster[key]||0)+1; save();
+  });oe.appendChild(b);});
+}
+
+/* =====================================================================
+   LISTENING QUIZ
+   ===================================================================== */
+function startListen(){ dmode='listen'; dq=shuffle(listenPool()).slice(0,10); di=0;dscore=0; go('drill'); renderListen(); }
+function renderListen(){
+  if(di>=dq.length)return drillDone('listen');
+  const q=dq[di]; document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
+  const wrong=shuffle(dq.filter(x=>x.en!==q.en)).slice(0,3).map(x=>x.en);
+  const opts=shuffle([q.en,...wrong]);
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap"><div class="qcue">Tap to listen, then choose the meaning</div>`+
+    `<button class="playbtn" onclick="speakES('${q.es.replace(/'/g,"\\'")}')"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg></button>`+
+    `<div class="opts" id="opts"></div></div>`;
+  const oe=document.getElementById('opts');
+  opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>answer(b,o,q.en);oe.appendChild(b);});
+  setTimeout(()=>speakES(q.es),450);
+}
+
+/* =====================================================================
+   SENTENCE BUILDER
+   ===================================================================== */
+let sbPlaced=[];
+function startSentences(){ dmode='sent'; dq=shuffle(SENTENCES).slice(0,8); di=0;dscore=0; go('drill'); renderSent(); }
+function renderSent(){
+  if(di>=dq.length)return drillDone('sent');
+  const q=dq[di]; sbPlaced=[]; document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap" style="justify-content:flex-start;padding-top:20px"><div class="qcue">Build this sentence</div>`+
+    `<div class="qbig" style="font-size:24px">${q.en}</div>`+
+    `<div class="tiles" id="tiles"></div><div class="bank" id="bank"></div>`+
+    `<button class="btn block" id="sb-check" style="margin-top:18px;display:none" onclick="checkSent()">Check</button></div>`;
+  const bank=document.getElementById('bank');
+  shuffle(q.words.map((w,i)=>({w,i}))).forEach(o=>{
+    const t=document.createElement('button');t.className='tile';t.textContent=o.w;t.dataset.i=o.i;
+    t.onclick=()=>{ if(t.classList.contains('used'))return; t.classList.add('used'); sbPlaced.push({w:o.w,el:t}); paintTiles(); };
+    bank.appendChild(t);
+  });
+  paintTiles();
+}
+function paintTiles(){
+  const t=document.getElementById('tiles'); t.innerHTML='';
+  sbPlaced.forEach((p,idx)=>{const b=document.createElement('button');b.className='tile';b.textContent=p.w;b.onclick=()=>{p.el.classList.remove('used');sbPlaced.splice(idx,1);paintTiles();};t.appendChild(b);});
+  document.getElementById('sb-check').style.display=sbPlaced.length===dq[di].words.length?'block':'none';
+}
+function checkSent(){
+  const q=dq[di], got=sbPlaced.map(p=>p.w).join(' '), want=q.words.join(' ');
+  const ok=got===want;
+  document.getElementById('sb-check').style.display='none';
+  const t=document.getElementById('tiles'); t.style.borderColor=ok?'var(--good)':'var(--bad)';
+  if(ok){dscore++;playGood();addXP(3);} else {playBad(); const w=document.createElement('div');w.className='gnote';w.innerHTML=`<b>Answer:</b> ${want}`;document.getElementById('d-body').querySelector('.qwrap').appendChild(w);}
+  speakES(want);
+  setTimeout(()=>{di++;renderSent();},ok?900:2100);
+}
+
+/* =====================================================================
+   SPEAKING PRACTICE
+   ===================================================================== */
+let spI=0,spList=[];
+function startSpeak(){ dmode='speak'; spList=shuffle(SPEAK_PROMPTS).slice(0,10); spI=0; go('drill'); renderSpeak(); }
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function renderSpeak(){
+  if(spI>=spList.length)return drillDone('speak');
+  const q=spList[spI]; document.getElementById('d-prog').style.width=(spI/spList.length*100)+'%';
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap"><div class="qcue">Say this in Spanish out loud</div>`+
+    `<div class="qbig" style="font-size:26px">${q.en}</div>`+
+    `<div id="sp-reveal" style="margin-top:16px;min-height:30px"></div>`+
+    `<div class="opts">`+
+      (SR?`<button class="opt" onclick="spRecognize()" id="sp-mic">🎙️ Tap and speak</button>`:'')+
+      `<button class="opt" onclick="spShow()">Show answer &amp; hear it</button>`+
+      `<button class="btn teal block" style="margin-top:6px" onclick="spNext()">Next →</button>`+
+    `</div></div>`;
+}
+function spShow(){ const q=spList[spI]; document.getElementById('sp-reveal').innerHTML=`<div class="qbig accentword" style="font-size:24px">${q.es}</div>`; speakES(q.es); }
+function spRecognize(){
+  const q=spList[spI]; const mic=document.getElementById('sp-mic'); if(!SR)return;
+  const rec=new SR(); rec.lang='es-ES'; rec.interimResults=false; mic.textContent='🎙️ Listening…';
+  rec.onresult=e=>{ const said=e.results[0][0].transcript.toLowerCase().replace(/[¿?.,!]/g,'').trim();
+    const want=q.es.toLowerCase().replace(/[¿?.,!]/g,'').trim();
+    const ok=said===want||levSim(said,want)>=0.7;
+    document.getElementById('sp-reveal').innerHTML=`<div class="qbig accentword" style="font-size:22px">${q.es}</div><div class="qsmall">you said: “${said}”</div>`+
+      `<div style="font-family:var(--fdisp);font-weight:800;color:${ok?'var(--good)':'var(--sun)'};margin-top:6px">${ok?'¡Perfecto! ✓':'Close — try again'}</div>`;
+    if(ok){playGood();addXP(4);} speakES(q.es); mic.textContent='🎙️ Tap and speak';
+  };
+  rec.onerror=()=>{ mic.textContent='🎙️ Tap and speak'; };
+  rec.start();
+}
+function spNext(){ addXP(1); spI++; renderSpeak(); }
+function levSim(a,b){ const m=a.length,n=b.length; if(!m||!n)return 0; const d=Array.from({length:m+1},(_,i)=>[i,...Array(n).fill(0)]); for(let j=0;j<=n;j++)d[0][j]=j; for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1)); return 1-d[m][n]/Math.max(m,n); }
+
+/* ---- shared answer handler (multiple choice) ---- */
+function answer(btn,chosen,correct,onRight){
+  document.querySelectorAll('#opts .opt').forEach(b=>{b.classList.add('disabled');if(b.textContent===correct)b.classList.add('correct');});
+  if(chosen!==correct){btn.classList.add('wrong');playBad();}
+  else{dscore++;playGood();addXP(2);if(onRight)onRight();}
+  setTimeout(()=>{di++; dmode==='conj'?renderConj():dmode==='listen'?renderListen():null;},1000);
+}
+function drillDone(kind){
+  markDone();
+  const total = kind==='conj'||kind==='listen' ? dq.length : (kind==='sent'?dq.length:spList.length);
+  const sc = kind==='speak'? '⭐' : `${dscore}/${total}`;
+  const p = total? dscore/total : 1;
+  const gained = kind==='speak'? '' : `+${dscore*2} XP`;
+  document.getElementById('d-prog').style.width='100%';
+  document.getElementById('d-body').innerHTML=
+    `<div class="result"><div class="em">${kind==='speak'||p>=0.8?'🎉':p>=0.5?'👍':'💪'}</div>`+
+    `<div class="big">${kind==='speak'?'¡Bien hecho!':sc}</div>`+
+    `<div class="sub">${kind==='speak'?'Speaking reps done.':p>=0.8?'¡Excelente! '+gained:'Good practice. '+gained}</div>`+
+    `<button class="btn block gold" style="margin-top:20px" onclick="go(backTo)">Continue</button></div>`;
+  if(p>=0.8)playWin();
+}
+function quitDrill(){ go(backTo); }
+
+/* =====================================================================
+   WORDS: decks, flashcards, SRS review
+   ===================================================================== */
+const INTERVAL=[0,1,3,7,16,30];
+function dueWords(){ const t=today(); return allWords().filter(w=>{const s=S.srs[w.es];return !s||s.due<=t;}); }
+function reviewQueue(){ const t=today(),due=[],neu=[]; allWords().forEach(w=>{const s=S.srs[w.es];if(!s)neu.push(w);else if(s.due<=t)due.push(w);}); let q=shuffle(due).slice(0,20); if(q.length<20)q=q.concat(shuffle(neu).slice(0,20-q.length)); return q; }
+function gradeWord(id,known){ const s=S.srs[id]||{box:0,due:0}; s.box=known?Math.min(5,(s.box||0)+1):0; s.due=today()+INTERVAL[Math.min(s.box,5)]; S.srs[id]=s; save(); }
+function renderWords(){
+  document.getElementById('due-count').textContent=Math.min(20,dueWords().length);
+  const el=document.getElementById('deck-list'); el.innerHTML='';
+  DECKS.forEach(dk=>{
+    const known=dk.words.filter(w=>{const s=S.srs[w[0]];return s&&s.box>=3;}).length;
+    const d=document.createElement('div'); d.className='node'; d.style.marginTop='10px';
+    d.innerHTML=`<div class="ic">${dk.icon}</div><div><div class="t">${dk.name}</div><div class="d">${dk.words.length} words · ${known} known</div></div><div class="chev">›</div>`;
+    d.onclick=()=>openDeck(dk.id); el.appendChild(d);
+  });
+}
+let fcList=[],fcI=0,fcReview=false;
+function openDeck(id){ const dk=DECKS.find(d=>d.id===id); backTo='words'; fcList=dk.words.map(w=>({es:w[0],en:w[1]})); fcI=0; fcReview=false; document.getElementById('cards-title').textContent=dk.name; renderFC(); go('cards'); }
+function startReview(){ const q=reviewQueue(); if(!q.length){alert('Nothing due — great job! Explore a deck to learn new words.');return;} backTo='words'; fcList=q.map(w=>({es:w.es,en:w.en})); fcI=0; fcReview=true; document.getElementById('cards-title').textContent='Daily review'; renderFC(); go('cards'); }
+function renderFC(){
+  const c=fcList[fcI]; document.getElementById('fc').classList.remove('flip');
+  document.getElementById('fc-es').textContent=c.es; document.getElementById('fc-en').textContent=c.en;
+  document.getElementById('fc-pos').textContent=''; document.getElementById('fc-ex').textContent='';
+  document.getElementById('fc-count').textContent=`${fcI+1} / ${fcList.length}`;
+}
+function fcFlip(){ const f=document.getElementById('fc'); f.classList.toggle('flip'); if(f.classList.contains('flip'))fcSpeak(); }
+function fcSpeak(){ speakES(fcList[fcI].es); }
+function fcNext(){ if(fcReview){gradeWord(fcList[fcI].es,true);addXP(1);} if(fcI<fcList.length-1){fcI++;renderFC();}else finishCards(); }
+function fcPrev(){ if(fcI>0){fcI--;renderFC();} }
+function finishCards(){ markDone(); playWin(); go(backTo); if(backTo==='words')renderWords(); }
+
+/* =====================================================================
+   PRONUNCIATION + GRAMMAR (detail screens)
+   ===================================================================== */
+function openPronunciation(){
+  backTo='learn';
+  document.getElementById('detail-body').innerHTML=
+    `<div class="h1">Pronunciation</div><div class="sub">Spanish is spelled how it sounds. Master these and you can read any word aloud.</div>`+
+    `<div class="h2">Tricky sounds</div>`+
+    SOUNDS.map(s=>`<div class="ex" onclick="speakES('${s[2].replace(/'/g,"\\'")}')" style="cursor:pointer"><div class="e-es"><b style="color:var(--red)">${s[0]}</b> — ${s[1]}</div><div class="e-en">🔊 ${s[2]}</div></div>`).join('')+
+    `<div class="h2">Where's the stress?</div>`+
+    STRESS.map((s,i)=>`<div class="ex" onclick="speakES('${s[2].replace(/'/g,"\\'")}')" style="cursor:pointer"><div class="e-es">${i+1}. ${s[0]}</div><div class="e-en">${s[1]} — 🔊 ${s[2]}</div></div>`).join('')+
+    `<button class="btn block gold" style="margin-top:18px" onclick="markDone();go('learn')">Got it ✓</button>`;
+  go('detail');
+}
+function openGrammar(key){
+  backTo='learn'; const g=GRAMMAR[key];
+  document.getElementById('detail-body').innerHTML=`<div class="h1">${g.title}</div>${g.html}`+
+    `<button class="btn block gold" style="margin-top:20px" onclick="markDone();go('learn')">Got it ✓</button>`;
+  go('detail');
+}
+
+/* =====================================================================
+   SPEAK/PRACTICE hub + YOU
+   ===================================================================== */
+function renderPractice(){
+  const items=[
+    ['🎧','Listening quiz','Hear Spanish, choose the meaning',()=>{backTo='speak';startListen();}],
+    ['🎙️','Speaking practice','Say prompts out loud'+(SR?' (with mic check)':''),()=>{backTo='speak';startSpeak();}],
+    ['🧩','Sentence builder','Arrange words in Spanish order',()=>{backTo='speak';startSentences();}],
+    ['⚡','Conjugation drill','Present-tense forms, fast',()=>{backTo='speak';startConj('all');}]
+  ];
+  const el=document.getElementById('practice-list'); el.innerHTML='';
+  items.forEach(([ic,t,d,fn])=>{const n=document.createElement('div');n.className='node';n.style.marginTop='10px';n.innerHTML=`<div class="ic">${ic}</div><div><div class="t">${t}</div><div class="d">${d}</div></div><div class="chev">›</div>`;n.onclick=fn;el.appendChild(n);});
+}
+function renderYou(){
+  document.getElementById('st-streak').textContent=S.streak||0;
+  document.getElementById('st-xp').textContent=S.xp||0;
+  document.getElementById('st-words').textContent=Object.values(S.srs).filter(s=>s.box>=3).length;
+  document.getElementById('st-verbs').textContent=Object.keys(S.vmaster).length;
+  document.getElementById('sw-vos').className='switch'+(S.settings.vos?' on':'');
+  document.getElementById('sw-snd').className='switch'+(S.settings.snd?' on':'');
+}
+function toggleVos(){ S.settings.vos=!S.settings.vos; save(); renderYou(); }
+function toggleSnd(){ S.settings.snd=!S.settings.snd; save(); renderYou(); }
+
+/* =====================================================================
+   TTS + SOUND FX + UTIL
+   ===================================================================== */
+let esVoice=null;
+function pickVoice(){ try{const vs=speechSynthesis.getVoices();esVoice=vs.find(v=>/es-MX|es-419|es_MX/.test(v.lang))||vs.find(v=>/^es/i.test(v.lang))||null;}catch(e){} }
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function speakES(t){ if(!('speechSynthesis'in window))return; try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='es-MX';if(esVoice)u.voice=esVoice;u.rate=.92;speechSynthesis.speak(u);}catch(e){} }
+let actx=null; function ac(){ if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended')actx.resume(); return actx; }
+document.addEventListener('touchstart',function once(){ac();document.removeEventListener('touchstart',once);},{once:true});
+function tone(freqs,dur,type){ if(!S.settings.snd)return; try{const c=ac(),n=c.currentTime;freqs.forEach((f,i)=>{const o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,n+i*0.08);g.gain.setValueAtTime(0.18,n+i*0.08);g.gain.exponentialRampToValueAtTime(0.01,n+i*0.08+0.2);o.connect(g);g.connect(c.destination);o.start(n+i*0.08);o.stop(n+i*0.08+0.2);});}catch(e){} }
+function playGood(){ tone([660,880],0.2); }
+function playBad(){ tone([180,150],0.25,'triangle'); }
+function playWin(){ tone([523,659,784,1046],0.3); }
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+/* ---------------- INIT ---------------- */
+paintTop(); renderPath();
+setTimeout(()=>{const s=document.getElementById('splash');if(s){s.classList.add('hide');setTimeout(()=>s.remove(),700);}},1900);
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>
