@@ -11,6 +11,7 @@ GitHub Pages site under separate paths.
 | **Vigor** | [`apps/vigor/`](apps/vigor/) | `https://tadellsworth.github.io/scriptoria/vigor/` | Vanilla-JS PWA, Python build tooling |
 | **Line of Authority** | [`apps/line-of-authority/`](apps/line-of-authority/) | `https://tadellsworth.github.io/scriptoria/line-of-authority/` | Static HTML page, Python build tooling |
 | **Learn Thai** | [`apps/learn-thai/`](apps/learn-thai/) | `https://tadellsworth.github.io/scriptoria/learn-thai/` | Single-file PWA (no build) |
+| **Habla** (Spanish) | [`apps/habla/`](apps/habla/) | `https://tadellsworth.github.io/scriptoria/habla/` | Single-file PWA (no build) |
 
 Each app has its own toolchain, build, and service worker. They share nothing at runtime —
 editing one never touches the other.
@@ -25,7 +26,8 @@ editing one never touches the other.
 │   ├── bloom/       single-file PWA + Python build tooling (strength-progression workouts)
 │   ├── vigor/       single-file PWA + Python build tooling (daily strength & mobility)
 │   ├── line-of-authority/  static keepsake page + Python build tooling (apostolic succession)
-│   └── learn-thai/  single-file PWA, no build (Thai-language learning)
+│   ├── learn-thai/  single-file PWA, no build (Thai-language learning)
+│   └── habla/       single-file PWA, no build (speaking-first Spanish)
 └── .github/workflows/
     └── deploy.yml         builds every app → publishes to GitHub Pages
 ```
