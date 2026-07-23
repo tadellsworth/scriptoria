@@ -230,7 +230,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
       <div class="tog" style="border-bottom:none"><div><div style="font-family:var(--fdisp);font-weight:700">Sound effects</div></div><div class="switch on" id="sw-snd" onclick="toggleSnd()"><i></i></div></div>
     </div>
     <div class="h2">About</div>
-    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: verb conjugation across every tense — now including <b>commands</b> — the <b>ser-vs-estar</b> decision, sentence structure, and the core vocabulary real conversation is built from. Your streak, XP, learned words, and finished lessons are saved on <b>this device</b>, so you can pick up right where you left off. Subjunctive and an AI conversation partner are on the way.</div>
+    <div class="sub" style="padding:0 2px 20px">Habla is speaking-first: verb conjugation across every tense and mood — indicative, <b>commands</b>, and the <b>subjunctive</b> — the <b>ser-vs-estar</b> decision, sentence structure, and the core vocabulary real conversation is built from. Your streak, XP, learned words, and finished lessons are saved on <b>this device</b>, so you can pick up right where you left off. An AI conversation partner is on the way.</div>
   </section>
 
   <!-- ============ DRILL OVERLAY ============ -->
@@ -388,6 +388,12 @@ function commandForms(v){
   };
 }
 function commandArray(v){ const c=commandForms(v); return ['—',c.tu.aff,c.ud.aff,c.nos.aff,c.vos.aff,c.uds.aff]; }
+/* ---- imperfect (past) subjunctive: from the ellos-preterite, drop -ron, add -ra endings ---- */
+function accentLastVowel(s){ const m={a:'á',e:'é',i:'í',o:'ó',u:'ú'}; for(let i=s.length-1;i>=0;i--){ if(m[s[i]])return s.slice(0,i)+m[s[i]]+s.slice(i+1); } return s; }
+function conjImpSubj(v){
+  const base=conjPret(v)[5].replace(/ron$/,''); // ellos preterite minus -ron
+  return [base+'ra',base+'ras',base+'ra',accentLastVowel(base)+'ramos',base+'rais',base+'ran'];
+}
 function conjugate(v,tense){
   switch(tense||'present'){
     case 'preterite':return conjPret(v);
@@ -397,10 +403,12 @@ function conjugate(v,tense){
     case 'perfect':return HABER.map(h=>h+' '+participle(v));
     case 'progressive':return ESTAR_PR.map(e=>e+' '+gerund(v));
     case 'imperative':return commandArray(v);
+    case 'subjunctive':return conjSubj(v);
+    case 'pastsubj':return conjImpSubj(v);
     default:return conjPresent(v);
   }
 }
-const TENSES=[['present','Present'],['preterite','Preterite'],['imperfect','Imperfect'],['future','Future'],['conditional','Conditional'],['perfect','Perfect'],['progressive','Progressive'],['imperative','Commands']];
+const TENSES=[['present','Present'],['preterite','Preterite'],['imperfect','Imperfect'],['future','Future'],['conditional','Conditional'],['perfect','Perfect'],['progressive','Progressive'],['imperative','Commands'],['subjunctive','Subjunctive'],['pastsubj','Past subj.']];
 const TENSE_NAME=Object.fromEntries(TENSES);
 let curTense='present';
 const VERBS=[
@@ -649,7 +657,21 @@ const GRAMMAR={
     '<div class="ex"><div class="e-es">¡Habla! → ¡No hables!</div><div class="e-en">Speak! → Don’t speak! (watch the form switch)</div></div>'+
     '<div class="gnote"><b>8 irregular affirmative tú</b> commands to memorize:<br>decir → <b>di</b> · hacer → <b>haz</b> · ir → <b>ve</b> · poner → <b>pon</b> · salir → <b>sal</b> · ser → <b>sé</b> · tener → <b>ten</b> · venir → <b>ven</b></div>'+
     '<div class="ex"><div class="e-es">Hazlo. · Dime. · Ponte los zapatos.</div><div class="e-en">Do it. · Tell me. · Put your shoes on. (pronouns attach to affirmative commands)</div></div>'+
-    '<div style="text-align:center;margin-top:14px"><button class="btn gold" onclick="startCommands(\'all\')">🫡 Command drill</button></div>'}
+    '<div style="text-align:center;margin-top:14px"><button class="btn gold" onclick="startCommands(\'all\')">🫡 Command drill</button></div>'},
+  subjpres:{title:'The subjunctive (present)',html:
+    '<div class="sub">Not a tense — a <b>mood</b> for the unreal: wishes, doubts, emotions, requests. It almost always lives after <b>que</b>, in a second clause with a <b>different subject</b>.</div>'+
+    '<div class="gnote"><b>Trigger</b> + <b>que</b> + <b>subjunctive</b>.<br>Quiero <b>que</b> tú <b>hables</b>. — I want you to speak.</div>'+
+    '<div class="gnote">What triggers it — <b>WEIRDO</b>:<br><b>W</b>ishes (querer/esperar que) · <b>E</b>motions (alegrarse/temer que) · <b>I</b>mpersonal (es importante que) · <b>R</b>equests (pedir/recomendar que) · <b>D</b>oubt/denial (dudar/no creer que) · <b>O</b>jalá.</div>'+
+    '<div class="gnote"><b>Form</b> = the <b>yo</b> present, drop -o, flip the vowel: -ar → -e, -er/-ir → -a.<br>hablo → hable · tengo → tenga · digo → diga. Six irregular: sea, esté, vaya, dé, sepa, haya.</div>'+
+    '<div class="ex"><div class="e-es">Es importante que estudies. · Dudo que venga.</div><div class="e-en">It’s important that you study. · I doubt he’ll come.</div></div>'+
+    '<div style="text-align:center;margin-top:14px"><button class="btn gold" onclick="startSubj(\'pres\')">🔮 Practice the subjunctive</button></div>'},
+  subjpast:{title:'Past subjunctive & “if…”',html:
+    '<div class="sub">The subjunctive in the past — and the key to <b>hypotheticals</b>: “If I <b>were</b>… I would…”.</div>'+
+    '<div class="gnote"><b>Form (easy):</b> take the <b>ellos</b> preterite, drop <b>-ron</b>, add <b>-ra, -ras, -ra, -́ramos, -rais, -ran</b>.<br>hablaron → hablara · tuvieron → tuviera · fueron → fuera. Every irregular tags along for free.</div>'+
+    '<div class="gnote"><b>The big use — “si” hypotheticals:</b><br><b>Si</b> + past subjunctive, + <b>conditional</b>.<br>Si <b>tuviera</b> dinero, <b>viajaría</b>. — If I had money, I would travel.</div>'+
+    '<div class="ex"><div class="e-es">Si yo fuera tú… · Me gustaría que vinieras.</div><div class="e-en">If I were you… · I’d like you to come.</div></div>'+
+    '<div class="gnote">Also after past-tense triggers — <b>Quería que vinieras</b> (I wanted you to come) — and for extra-polite requests: <b>Quisiera…</b> (I would like…).</div>'+
+    '<div style="text-align:center;margin-top:14px"><button class="btn gold" onclick="startSubj(\'past\')">🕰️ Practice “if…” &amp; the past</button></div>'}
 };
 
 /* ---------------- DATA: ser vs estar decision bank ---------------- */
@@ -678,6 +700,42 @@ const SERESTAR=[
   {s:'___ las tres de la tarde.',ser:'Son',estar:'Están',a:'ser',why:'Telling time → ser'},
   {s:'Mi hermano ___ alto.',ser:'es',estar:'está',a:'ser',why:'Physical description → ser (DOCTOR: Description)'},
   {s:'El café ___ muy rico hoy.',ser:'es',estar:'está',a:'estar',why:'Tastes great right now → estar (vs. es rico = generally good)'}
+];
+
+/* ---------------- DATA: subjunctive practice (trigger → subjunctive) ---------------- */
+const PRES_SUBJ=[
+  {s:'Quiero que tú ___ conmigo.',pi:1,inf:'hablar',why:'Wish: querer que → subjunctive'},
+  {s:'Espero que ustedes ___ pronto.',pi:5,inf:'llegar',why:'Hope: esperar que → subjunctive'},
+  {s:'Ojalá que ___ sol mañana.',pi:2,inf:'hacer',why:'Ojalá → always subjunctive'},
+  {s:'Es importante que nosotros ___ la verdad.',pi:3,inf:'decir',why:'Impersonal: es importante que → subjunctive'},
+  {s:'Es necesario que tú ___ más agua.',pi:1,inf:'beber',why:'Impersonal: es necesario que → subjunctive'},
+  {s:'Dudo que ellos ___ la respuesta.',pi:5,inf:'saber',why:'Doubt: dudar que → subjunctive'},
+  {s:'No creo que él ___ razón.',pi:2,inf:'tener',why:'Denial: no creer que → subjunctive'},
+  {s:'Me alegro de que tú ___ aquí.',pi:1,inf:'estar',why:'Emotion: alegrarse de que → subjunctive'},
+  {s:'El profesor recomienda que yo ___ cada día.',pi:0,inf:'estudiar',why:'Recommendation: recomendar que → subjunctive'},
+  {s:'Es mejor que ustedes ___ temprano.',pi:5,inf:'dormir',why:'Impersonal: es mejor que → subjunctive'},
+  {s:'Prefiero que nosotros ___ a casa.',pi:3,inf:'volver',why:'Wish: preferir que → subjunctive'},
+  {s:'Te pido que ___ paciencia.',pi:1,inf:'tener',why:'Request: pedir que → subjunctive'},
+  {s:'Es posible que ella ___ tarde.',pi:2,inf:'venir',why:'Possibility: es posible que → subjunctive'},
+  {s:'Temo que tú ___ enfermo.',pi:1,inf:'estar',why:'Fear: temer que → subjunctive'},
+  {s:'Ojalá que todos ___ felices.',pi:5,inf:'ser',why:'Ojalá → always subjunctive'},
+  {s:'Quiero que tú ___ la puerta.',pi:1,inf:'abrir',why:'Wish: querer que → subjunctive'}
+];
+const PAST_SUBJ=[
+  {s:'Si yo ___ rico, viajaría por el mundo.',pi:0,inf:'ser',why:'Si + past subjunctive (hypothetical)'},
+  {s:'Si tú ___ más tiempo, ¿qué harías?',pi:1,inf:'tener',why:'Si + past subjunctive'},
+  {s:'Ella quería que nosotros ___ temprano.',pi:3,inf:'llegar',why:'Past trigger (quería que) → past subjunctive'},
+  {s:'Si nosotros ___ en México, hablaríamos español.',pi:3,inf:'vivir',why:'Si + past subjunctive'},
+  {s:'Me gustaría que tú ___ conmigo.',pi:1,inf:'venir',why:'Polite wish (me gustaría que) → past subjunctive'},
+  {s:'No había nadie que ___ la respuesta.',pi:2,inf:'saber',why:'Nonexistent antecedent → past subjunctive'},
+  {s:'Si ellos ___ la verdad, la dirían.',pi:5,inf:'saber',why:'Si + past subjunctive'},
+  {s:'Era importante que yo ___ la tarea.',pi:0,inf:'hacer',why:'Past impersonal → past subjunctive'},
+  {s:'Si usted ___ ayudarme, se lo agradecería.',pi:2,inf:'poder',why:'Si + past subjunctive (polite)'},
+  {s:'Quería que ustedes ___ la reunión.',pi:5,inf:'empezar',why:'Past trigger → past subjunctive'},
+  {s:'Si yo ___ tú, estudiaría más.',pi:0,inf:'ser',why:'“If I were you” → past subjunctive'},
+  {s:'Buscábamos a alguien que ___ inglés.',pi:2,inf:'hablar',why:'Uncertain antecedent → past subjunctive'},
+  {s:'Si ella ___ aquí, todo sería diferente.',pi:2,inf:'estar',why:'Si + past subjunctive'},
+  {s:'Ojalá ___ más horas en el día.',pi:2,inf:'haber',why:'Ojalá + past subjunctive (unlikely wish)'}
 ];
 
 /* ---------------- DATA: sentence-builder ---------------- */
@@ -760,6 +818,16 @@ const PATH=[
     {id:'g_commands',t:'Commands',d:'Tell people what to do',ic:'🫡',go:()=>openGrammar('commands')},
     {id:'d_commands',t:'Command drill',d:'Affirmative & negative orders',ic:'⚡',go:()=>startCommands('all')},
     {id:'p_serestar2',t:'Ser o Estar review',d:'Lock in the two “to be”s',ic:'🎯',go:()=>startSerEstar()}
+  ]},
+  {unit:'Unit 9 · The subjunctive',nodes:[
+    {id:'g_subjpres',t:'The subjunctive',d:'The mood for the unreal (WEIRDO)',ic:'🔮',go:()=>openGrammar('subjpres')},
+    {id:'p_subjpres',t:'Trigger practice',d:'Quiero que… · Dudo que…',ic:'✨',go:()=>startSubj('pres')},
+    {id:'d_subjpres',t:'Subjunctive drill',d:'Conjugate the subjunctive',ic:'⚡',go:()=>startConj('all',null,'subjunctive')}
+  ]},
+  {unit:'Unit 10 · Hypotheticals',nodes:[
+    {id:'g_subjpast',t:'Past subjunctive & “if…”',d:'Si tuviera…, viajaría',ic:'🕰️',go:()=>openGrammar('subjpast')},
+    {id:'p_subjpast',t:'“If…” practice',d:'Real hypotheticals out loud',ic:'💫',go:()=>startSubj('past')},
+    {id:'d_subjpast',t:'Past subjunctive drill',d:'From the ellos preterite',ic:'⚡',go:()=>startConj('all',null,'pastsubj')}
   ]}
 ];
 
@@ -842,6 +910,9 @@ function openVerb(v,tense){
     : t==='future'?(FUT_STEM[v.inf]?'Irregular future stem ('+FUT_STEM[v.inf]+'-).':'Future — infinitive + endings.')
     : t==='conditional'?(FUT_STEM[v.inf]?'Irregular stem ('+FUT_STEM[v.inf]+'-).':'Conditional — “would”.')
     : t==='perfect'?'Present perfect: haber + '+participle(v)+'.'
+    : t==='progressive'?'Progressive: estar + '+gerund(v)+'.'
+    : t==='subjunctive'?(SUBJ_IRR[v.inf]?'Irregular subjunctive — memorize.':'Present subjunctive — used after triggers (WEIRDO).')
+    : t==='pastsubj'?'Past subjunctive — from the ellos preterite ('+conjPret(v)[5]+'), key to “si…” hypotheticals.'
     : 'Progressive: estar + '+gerund(v)+'.';
   document.getElementById('detail-body').innerHTML=
     `<div class="h1">${v.inf} <span style="color:var(--ink-faint);font-size:16px;font-weight:600">${v.en}</span></div>`+
@@ -972,6 +1043,37 @@ function seAnswer(btn,chosen,correct,q){
 }
 
 /* =====================================================================
+   SUBJUNCTIVE DRILL  (present triggers & past “si” hypotheticals)
+   ===================================================================== */
+let subjMode='pres';
+function startSubj(mode){ dmode='subj'; subjMode=mode||'pres'; dq=shuffle((subjMode==='past'?PAST_SUBJ:PRES_SUBJ)).slice(0,12); di=0;dscore=0; go('drill'); renderSubj(); }
+function renderSubj(){
+  if(di>=dq.length)return drillDone('subj');
+  const q=dq[di], v=VERBS.find(x=>x.inf===q.inf);
+  const correct=(subjMode==='past'?conjImpSubj(v):conjSubj(v))[q.pi];
+  const foils=subjMode==='past'?[conjPresent(v)[q.pi],conjSubj(v)[q.pi]]:[conjPresent(v)[q.pi],conjPret(v)[q.pi]];
+  let distr=[...new Set(foils.filter(x=>x&&x!==correct))].slice(0,2);
+  const opts=shuffle([correct,...distr]);
+  document.getElementById('d-prog').style.width=(di/dq.length*100)+'%';
+  const sentence=q.s.replace('___','<span style="color:var(--ink-faint);letter-spacing:1px">____</span>');
+  document.getElementById('d-body').innerHTML=
+    `<div class="qwrap"><div class="qcue"><b>${subjMode==='past'?'Past subjunctive':'Subjunctive'}</b> · fill in <b>${v.inf}</b> for <b>${PERSON_SHORT[q.pi]}</b></div>`+
+    `<div class="qbig" style="font-size:23px;line-height:1.35">${sentence}</div>`+
+    `<div class="opts" id="opts"></div><div id="se-why" style="margin-top:14px"></div></div>`;
+  const oe=document.getElementById('opts');
+  opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>subjAnswer(b,o,correct,q);oe.appendChild(b);});
+}
+function subjAnswer(btn,chosen,correct,q){
+  document.querySelectorAll('#opts .opt').forEach(b=>{b.classList.add('disabled');if(b.textContent===correct)b.classList.add('correct');});
+  const ok=chosen===correct;
+  if(ok){dscore++;playGood();addXP(2);}else{btn.classList.add('wrong');playBad();}
+  const full=q.s.replace('___',correct);
+  document.getElementById('se-why').innerHTML=`<div class="gnote" style="text-align:left"><b>${correct}</b> — ${q.why}<br><span style="color:var(--ink-soft)">${full}</span></div>`;
+  speakES(full);
+  setTimeout(()=>{di++;renderSubj();},ok?1700:2700);
+}
+
+/* =====================================================================
    LISTENING QUIZ
    ===================================================================== */
 function startListen(){ dmode='listen'; dq=shuffle(listenPool()).slice(0,10); di=0;dscore=0; go('drill'); renderListen(); }
@@ -1070,7 +1172,7 @@ function answer(btn,chosen,correct,onRight){
 }
 function drillDone(kind){
   markDone();
-  const total = (kind==='conj'||kind==='listen'||kind==='cmd'||kind==='serestar') ? dq.length : (kind==='sent'?dq.length:spList.length);
+  const total = (kind==='conj'||kind==='listen'||kind==='cmd'||kind==='serestar'||kind==='subj') ? dq.length : (kind==='sent'?dq.length:spList.length);
   const sc = kind==='speak'? '⭐' : `${dscore}/${total}`;
   const p = total? dscore/total : 1;
   const gained = kind==='speak'? '' : `+${dscore*2} XP`;
@@ -1147,6 +1249,8 @@ function renderPractice(){
     ['🧩','Sentence builder','Arrange words in Spanish order',()=>{backTo='speak';startSentences();}],
     ['🎯','Ser o Estar','Pick the right “to be”, learn the rule',()=>{backTo='speak';startSerEstar();}],
     ['🫡','Command drill','Give orders: affirmative & negative',()=>{backTo='speak';startCommands('all');}],
+    ['🔮','Subjunctive','After wishes, doubts & emotions',()=>{backTo='speak';startSubj('pres');}],
+    ['🕰️','Hypotheticals','“If I were…” — past subjunctive',()=>{backTo='speak';startSubj('past');}],
     ['⚡','Conjugation drill','Any tense, fast',()=>{backTo='speak';startConj('all');}]
   ];
   const el=document.getElementById('practice-list'); el.innerHTML='';
