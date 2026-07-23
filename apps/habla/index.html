@@ -547,7 +547,103 @@ const DECKS=[
     ['alto','tall'],['bajo','short (height)'],['largo','long'],['corto','short (length)'],['joven','young'],
     ['fuerte','strong'],['rápido','fast'],['lento','slow'],['limpio','clean'],['sucio','dirty'],
     ['caliente','hot'],['lleno','full'],['vacío','empty'],['abierto','open'],['cerrado','closed'],
-    ['importante','important'],['verdadero','true'],['libre','free'],['próximo','next'],['claro','clear']]}
+    ['importante','important'],['verdadero','true'],['libre','free'],['próximo','next'],['claro','clear']]},
+  {id:'verbs_more',name:'More verbs',icon:'🎬',words:[
+    ['traer','to bring'],['mandar','to send'],['enviar','to send'],['contestar','to answer'],['responder','to respond'],
+    ['preguntar','to ask'],['explicar','to explain'],['decidir','to decide'],['recordar','to remember'],['olvidar','to forget'],
+    ['intentar','to try'],['terminar','to finish'],['mostrar','to show'],['enseñar','to teach'],['gastar','to spend'],
+    ['romper','to break'],['construir','to build'],['caer','to fall'],['levantar','to lift'],['tocar','to touch / play'],
+    ['importar','to matter'],['ocurrir','to happen'],['cerrar','to close'],['comenzar','to begin'],['conseguir','to get'],
+    ['lograr','to achieve'],['permitir','to allow'],['evitar','to avoid'],['mejorar','to improve'],['subir','to go up'],
+    ['bajar','to go down'],['sacar','to take out'],['prometer','to promise'],['prestar','to lend'],['morir','to die'],
+    ['nacer','to be born'],['crecer','to grow'],['matar','to kill'],['cocinar','to cook'],['limpiar','to clean']]},
+  {id:'routine',name:'Daily routine',icon:'🧼',words:[
+    ['despertarse','to wake up'],['levantarse','to get up'],['ducharse','to shower'],['bañarse','to bathe'],['vestirse','to get dressed'],
+    ['peinarse','to comb one’s hair'],['lavarse','to wash up'],['cepillarse','to brush'],['acostarse','to go to bed'],['dormirse','to fall asleep'],
+    ['sentarse','to sit down'],['ponerse','to put on'],['quitarse','to take off'],['sentirse','to feel'],['llamarse','to be called'],
+    ['casarse','to get married'],['divertirse','to have fun'],['relajarse','to relax']]},
+  {id:'clothing',name:'Clothing',icon:'👕',words:[
+    ['la camisa','shirt'],['la camiseta','t-shirt'],['los pantalones','pants'],['los vaqueros','jeans'],['los zapatos','shoes'],
+    ['las botas','boots'],['el vestido','dress'],['la falda','skirt'],['la chaqueta','jacket'],['el abrigo','coat'],
+    ['el suéter','sweater'],['el sombrero','hat'],['la gorra','cap'],['los calcetines','socks'],['las gafas','glasses'],
+    ['la bufanda','scarf'],['los guantes','gloves'],['el cinturón','belt'],['la corbata','tie'],['el traje','suit'],
+    ['el bolso','handbag'],['la cartera','wallet']]},
+  {id:'health',name:'Health',icon:'🩺',words:[
+    ['el médico','doctor'],['el doctor','doctor'],['la enfermera','nurse'],['el dentista','dentist'],['la salud','health'],
+    ['la medicina','medicine'],['la pastilla','pill'],['el dolor','pain'],['la fiebre','fever'],['el resfriado','cold'],
+    ['la tos','cough'],['la sangre','blood'],['la farmacia','pharmacy'],['la receta','prescription'],['la herida','wound'],
+    ['la cita','appointment'],['la vacuna','vaccine'],['el paciente','patient'],['la ambulancia','ambulance'],['la clínica','clinic']]},
+  {id:'work_school',name:'Work & school',icon:'💼',words:[
+    ['el jefe','boss'],['el empleado','employee'],['el cliente','customer'],['la empresa','company'],['el negocio','business'],
+    ['la reunión','meeting'],['el correo','mail'],['la computadora','computer'],['el proyecto','project'],['el sueldo','salary'],
+    ['el examen','exam'],['la clase','class'],['el estudiante','student'],['la universidad','university'],['la nota','grade / note'],
+    ['la lección','lesson'],['el maestro','teacher'],['el profesor','professor'],['la carrera','career / degree'],['el horario','schedule'],
+    ['el título','degree / title'],['la beca','scholarship']]},
+  {id:'money_shop',name:'Money & shopping',icon:'💳',words:[
+    ['el precio','price'],['la tarjeta','card'],['el efectivo','cash'],['el descuento','discount'],['la oferta','deal / offer'],
+    ['gratis','free (no cost)'],['el recibo','receipt'],['el cambio','change'],['la caja','checkout / box'],['el cajero','cashier / ATM'],
+    ['la compra','purchase'],['la venta','sale'],['el billete','bill / ticket'],['la moneda','coin'],['el euro','euro'],
+    ['el dólar','dollar'],['la ganga','bargain'],['la deuda','debt'],['el ahorro','savings']]},
+  {id:'kitchen',name:'Kitchen & table',icon:'🍴',words:[
+    ['el plato','plate'],['el vaso','glass'],['la taza','cup'],['el tenedor','fork'],['el cuchillo','knife'],
+    ['la cuchara','spoon'],['la olla','pot'],['la sartén','frying pan'],['el refrigerador','refrigerator'],['la estufa','stove'],
+    ['el horno','oven'],['el fregadero','sink'],['el jabón','soap'],['la toalla','towel'],['el espejo','mirror'],
+    ['la basura','trash'],['la servilleta','napkin'],['el mantel','tablecloth']]},
+  {id:'tech',name:'Technology',icon:'📱',words:[
+    ['el internet','internet'],['el celular','cell phone'],['la pantalla','screen'],['el correo electrónico','email'],['la aplicación','app'],
+    ['la contraseña','password'],['el mensaje','message'],['la foto','photo'],['el video','video'],['la red','network'],
+    ['el cargador','charger'],['el teclado','keyboard'],['el archivo','file'],['el enlace','link'],['el sitio web','website'],
+    ['la batería','battery'],['el wifi','wifi'],['el ordenador','computer (Spain)']]},
+  {id:'animals',name:'Animals',icon:'🐾',words:[
+    ['el caballo','horse'],['la vaca','cow'],['el cerdo','pig'],['la oveja','sheep'],['el ratón','mouse'],
+    ['el león','lion'],['el oso','bear'],['el elefante','elephant'],['el mono','monkey'],['el pez','fish (live)'],
+    ['el conejo','rabbit'],['el pato','duck'],['la gallina','hen'],['la abeja','bee'],['la mosca','fly'],
+    ['el tigre','tiger'],['la tortuga','turtle'],['la araña','spider'],['la serpiente','snake'],['el lobo','wolf']]},
+  {id:'city',name:'Around town',icon:'🚦',words:[
+    ['la esquina','corner'],['la cuadra','block'],['el semáforo','traffic light'],['la acera','sidewalk'],['la avenida','avenue'],
+    ['el puente','bridge'],['la estación','station'],['la parada','stop'],['la gasolinera','gas station'],['el edificio','building'],
+    ['la plaza','square'],['el centro','downtown / center'],['el barrio','neighborhood'],['la carretera','highway'],['el camino','road / way'],
+    ['la entrada','entrance'],['la salida','exit'],['el ascensor','elevator'],['la escalera','stairs'],['el buzón','mailbox']]},
+  {id:'abstract',name:'Ideas & concepts',icon:'💭',words:[
+    ['la idea','idea'],['la pregunta','question'],['la respuesta','answer'],['la razón','reason'],['la verdad','truth'],
+    ['la mentira','lie'],['la ayuda','help'],['el ejemplo','example'],['la manera','way / manner'],['la forma','form / way'],
+    ['la parte','part'],['el tipo','type / kind'],['el caso','case'],['el momento','moment'],['la historia','story / history'],
+    ['el cuento','tale'],['el sueño','dream'],['el miedo','fear'],['la suerte','luck'],['la paz','peace'],
+    ['la guerra','war'],['el amor','love'],['la esperanza','hope'],['la duda','doubt'],['la solución','solution'],['el problema','problem']]},
+  {id:'personality',name:'Personality',icon:'🧠',words:[
+    ['amable','kind'],['simpático','nice / friendly'],['antipático','unfriendly'],['inteligente','intelligent'],['tonto','silly / dumb'],
+    ['serio','serious'],['gracioso','funny'],['honesto','honest'],['valiente','brave'],['tímido','shy'],
+    ['generoso','generous'],['egoísta','selfish'],['trabajador','hard-working'],['perezoso','lazy'],['tranquilo','calm'],
+    ['loco','crazy'],['sano','healthy'],['débil','weak'],['pobre','poor'],['famoso','famous'],
+    ['raro','strange'],['peligroso','dangerous'],['útil','useful'],['justo','fair'],['curioso','curious'],['orgulloso','proud']]},
+  {id:'leisure',name:'Fun & leisure',icon:'🎭',words:[
+    ['el deporte','sport'],['el fútbol','soccer'],['la música','music'],['la canción','song'],['la película','movie'],
+    ['el arte','art'],['el juego','game'],['la pelota','ball'],['el equipo','team'],['el partido','match'],
+    ['el gimnasio','gym'],['el baile','dance'],['la fiesta','party'],['la revista','magazine'],['el periódico','newspaper'],
+    ['la noticia','news item'],['el concierto','concert'],['el pasatiempo','hobby'],['el dibujo','drawing'],['la cámara','camera'],
+    ['la afición','hobby / fandom']]},
+  {id:'professions',name:'Professions',icon:'👷',words:[
+    ['el ingeniero','engineer'],['el abogado','lawyer'],['el policía','police officer'],['el bombero','firefighter'],['el cocinero','cook'],
+    ['el camarero','waiter'],['el vendedor','salesperson'],['el conductor','driver'],['el piloto','pilot'],['el artista','artist'],
+    ['el músico','musician'],['el escritor','writer'],['el pintor','painter'],['el granjero','farmer'],['el soldado','soldier'],
+    ['el científico','scientist'],['el peluquero','hairdresser'],['el mecánico','mechanic']]},
+  {id:'quantities',name:'Quantities & logic',icon:'➗',words:[
+    ['algo','something'],['nada','nothing'],['alguien','someone'],['nadie','no one'],['cada','each'],
+    ['varios','several'],['ambos','both'],['demasiado','too much'],['bastante','quite / enough'],['suficiente','sufficient'],
+    ['tanto','so much'],['tan','so'],['apenas','barely'],['quizás','maybe'],['seguro','sure / safe'],
+    ['la mitad','half'],['el par','pair'],['el pedazo','piece'],['la vez','time / instance'],['el montón','a bunch'],
+    ['solo','only / alone'],['juntos','together']]},
+  {id:'numbers2',name:'More numbers',icon:'🔟',words:[
+    ['once','eleven'],['doce','twelve'],['trece','thirteen'],['catorce','fourteen'],['quince','fifteen'],
+    ['dieciséis','sixteen'],['diecisiete','seventeen'],['dieciocho','eighteen'],['diecinueve','nineteen'],['treinta','thirty'],
+    ['cuarenta','forty'],['cincuenta','fifty'],['sesenta','sixty'],['setenta','seventy'],['ochenta','eighty'],
+    ['noventa','ninety'],['primero','first'],['segundo','second'],['tercero','third'],['quinto','fifth'],
+    ['último','last'],['el millón','million'],['doble','double']]},
+  {id:'expressions',name:'Handy expressions',icon:'💬',words:[
+    ['de acuerdo','agreed / okay'],['por supuesto','of course'],['a veces','sometimes'],['otra vez','again'],['ahora mismo','right now'],
+    ['de repente','suddenly'],['sin embargo','however'],['por eso','that’s why'],['por ejemplo','for example'],['sobre todo','above all'],
+    ['por fin','finally'],['menos mal','thank goodness'],['en seguida','right away'],['lo siento','I’m sorry'],['con permiso','excuse me'],
+    ['¿verdad?','right?'],['tal vez','maybe'],['a lo mejor','maybe / perhaps'],['de nuevo','again'],['por cierto','by the way']]}
 ];
 function allWords(){const o=[];DECKS.forEach(d=>d.words.forEach(w=>o.push({es:w[0],en:w[1],deck:d.id})));return o;}
 function wordId(w){return w.es;}
