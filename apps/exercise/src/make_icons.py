@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Regenerate VIGOR's app icon — a brass "hour gauge" dial on a deep-pine rounded
+Regenerate EXERCISE's app icon — a brass "hour gauge" dial on a deep-pine rounded
 tile (the same mark used on the launch screen and the in-app gauge).
 
 Draws at 4x supersampling, then downsamples to 512/192/180 and writes the
@@ -79,7 +79,7 @@ def main():
     icons = {k: b64(draw_icon(px)) for k, px in sizes.items()}
 
     with open(HERE / "icons_b64.py", "w") as f:
-        f.write("# Auto-generated base64 PNG icons for VIGOR (apple-touch 180, PWA 192 & 512).\n")
+        f.write("# Auto-generated base64 PNG icons for EXERCISE (apple-touch 180, PWA 192 & 512).\n")
         f.write("# Regenerate with make_icons.py; committed here so build.py works without Pillow.\n")
         f.write("ICONS={\n")
         for k in ("180", "192", "512"):

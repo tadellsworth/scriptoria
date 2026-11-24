@@ -1,9 +1,9 @@
-# CLAUDE.md — VIGOR
+# CLAUDE.md — EXERCISE
 
-Standing context for working on **VIGOR** in Claude Code. Read this first.
+Standing context for working on **EXERCISE** in Claude Code. Read this first.
 
 ## What it is
-VIGOR is a single-file, offline-capable **workout PWA**, built as a personal gift for
+EXERCISE is a single-file, offline-capable **workout PWA**, built as a personal gift for
 the owner's 58-year-old father (male, 5'9", ~190 lb). It is **not** connected to any
 professional/work project — keep it entirely separate and free of any business branding.
 
@@ -28,11 +28,11 @@ large legible type, big tap targets. Not a neon gym-bro app.
   merges new defaults over old saves; keep that pattern when adding fields.
 - **Offline + installable.** `sw.js` (service worker) provides offline + the Android
   install prompt. It must sit next to `index.html` in its **own folder** (its scope is the
-  folder it lives in). Bump the cache name (`vigor-v1`) when you want to force-refresh.
+  folder it lives in). Bump the cache name (`exercise-v1`) when you want to force-refresh.
 
 ## Repo layout & build
 ```
-vigor/
+exercise/
   build.py            # assembles the single file; run this to build
   CLAUDE.md           # this file
   HANDOFF.md          # current state + feature roadmap
@@ -45,7 +45,7 @@ vigor/
   dist/               # build output: index.html + sw.js  (this is what you deploy)
 ```
 Build:  `python3 build.py`  → writes `dist/index.html` + `dist/sw.js`.
-Override output dir: `VIGOR_OUT=/path python3 build.py`.
+Override output dir: `EXERCISE_OUT=/path python3 build.py`.
 `build.py` extracts the inline `<script>`, runs `node --check` on it, injects the icons,
 and asserts no placeholder was left behind.
 

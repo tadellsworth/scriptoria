@@ -1,9 +1,9 @@
-/* Vigor service worker — offline support + installability.
-   Place this file in the SAME folder as vigor.html.
-   The folder it lives in becomes its scope, so keep Vigor in its own
-   directory (e.g. /vigor/vigor.html + /vigor/sw.js) to avoid caching
+/* Exercise service worker — offline support + installability.
+   Place this file in the SAME folder as exercise.html.
+   The folder it lives in becomes its scope, so keep Exercise in its own
+   directory (e.g. /exercise/exercise.html + /exercise/sw.js) to avoid caching
    other pages that share a parent folder. */
-const CACHE = 'vigor-v2';
+const CACHE = 'exercise-v1';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
