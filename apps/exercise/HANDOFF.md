@@ -1,4 +1,4 @@
-# VIGOR — Handoff
+# EXERCISE — Handoff
 
 Snapshot of where the project stands and what's on the table next. Pair with `CLAUDE.md`
 (architecture/conventions).
@@ -6,7 +6,7 @@ Snapshot of where the project stands and what's on the table next. Pair with `CL
 ## Current state
 - Fully working single-file PWA. Build reproduces `dist/index.html` (~211 KB) + `dist/sw.js`
   byte-for-byte via `python3 build.py`.
-- Service worker cache: `vigor-v1`. localStorage key: `vigor.v1`.
+- Service worker cache: `exercise-v1`. localStorage key: `vigor.v1`.
 - Deployed target: Netlify (static, HTTPS). Nothing server-side.
 
 ## Build & deploy (quick)
@@ -15,8 +15,8 @@ Snapshot of where the project stands and what's on the table next. Pair with `CL
    works). `index.html` at the folder root; `sw.js` beside it.
 3. Android: open in Chrome → **Install app** (needs HTTPS + sw.js). iOS: Share → Add to
    Home Screen also works; Android is the primary target.
-- Bump `vigor-v1` in `src/sw.js` when you want installed copies to force-refresh.
-- Keep VIGOR in its own directory so the service worker scope can't cache sibling apps.
+- Bump `exercise-v1` in `src/sw.js` when you want installed copies to force-refresh.
+- Keep EXERCISE in its own directory so the service worker scope can't cache sibling apps.
 
 ## Testing checklist after any change
 - `python3 build.py` passes (it runs `node --check`).

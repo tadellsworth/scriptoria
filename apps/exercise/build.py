@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VIGOR build — assembles the single-file PWA.
+EXERCISE build — assembles the single-file PWA.
 
 Pipeline:
   1. read  src/app_template.html            (app source, with __ICON*__ placeholders)
@@ -9,7 +9,7 @@ Pipeline:
   4. write dist/index.html  (named index.html for root hosting / Netlify)
   5. copy  src/sw.js -> dist/sw.js
 
-Output dir can be overridden:  VIGOR_OUT=/path/to/deploy python3 build.py
+Output dir can be overridden:  EXERCISE_OUT=/path/to/deploy python3 build.py
 
 Deploy:  drop dist/index.html + dist/sw.js in their OWN folder on an HTTPS host.
 """
@@ -17,7 +17,7 @@ import os, re, sys, shutil, subprocess, pathlib
 
 ROOT = pathlib.Path(__file__).parent.resolve()
 SRC  = ROOT / "src"
-OUT  = pathlib.Path(os.environ.get("VIGOR_OUT", ROOT / "dist"))
+OUT  = pathlib.Path(os.environ.get("EXERCISE_OUT", ROOT / "dist"))
 
 sys.path.insert(0, str(SRC))
 import icons_b64  # noqa: E402  (ICONS = {"180":..., "192":..., "512":...})
@@ -43,7 +43,7 @@ def check_js(html: str) -> None:
 def main() -> None:
     tmpl = (SRC / "app_template.html").read_text(encoding="utf-8")
 
-    print("VIGOR build")
+    print("EXERCISE build")
     check_js(tmpl)
 
     for key in ("180", "192", "512"):

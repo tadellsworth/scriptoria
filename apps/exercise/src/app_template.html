@@ -7,8 +7,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Vigor">
-<title>Vigor</title>
+<meta name="apple-mobile-web-app-title" content="Exercise">
+<title>Exercise</title>
 <link rel="apple-touch-icon" href="data:image/png;base64,__ICON180__">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -493,14 +493,14 @@ html.hc .block .body small,html.hc .move li,html.hc .stat .k{color:#46453b}
       <circle class="sp-hub" cx="100" cy="100" r="7"/>
     </svg>
   </div>
-  <div class="splash-word disp">VIGOR</div>
+  <div class="splash-word disp">EXERCISE</div>
   <div class="splash-sub">Strength · mobility · every day</div>
 </div>
 <div id="app">
   <!-- ============ TODAY ============ -->
   <section id="s-today" class="screen active">
     <div class="bar">
-      <div class="wordmark"><span class="dot"></span><b>VIGOR</b></div>
+      <div class="wordmark"><span class="dot"></span><b>EXERCISE</b></div>
       <button class="iconbtn" onclick="go('you')" aria-label="You">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
       </button>
@@ -597,7 +597,7 @@ html.hc .block .body small,html.hc .move li,html.hc .stat .k{color:#46453b}
         <div class="toggle" id="tg-weekend" onclick="toggleSet('weekend')"></div>
       </div>
       <div class="setrow">
-        <div class="lab"><b>Daily reminder</b><small>A nudge while Vigor is open or running</small></div>
+        <div class="lab"><b>Daily reminder</b><small>A nudge while Exercise is open or running</small></div>
         <div class="toggle" id="tg-reminder" onclick="toggleSet('reminderOn')"></div>
       </div>
       <div class="setrow" id="reminder-time-row" style="display:none">
@@ -621,7 +621,7 @@ html.hc .block .body small,html.hc .move li,html.hc .stat .k{color:#46453b}
     <div class="disclaimer">
       <b>Before you begin.</b> This is a general fitness routine, not medical advice. Check with your doctor before starting if you have heart, joint, blood-pressure, or other health concerns. Warm up, move within a comfortable range, breathe steadily (never hold your breath during holds or lifts), and stop if anything causes sharp pain or dizziness. Start lighter than you think — you can always add weight later.
     </div>
-    <p style="text-align:center;color:var(--ink-soft);font-size:.78em;margin-top:8px">Vigor · made for Dad · v1</p>
+    <p style="text-align:center;color:var(--ink-soft);font-size:.78em;margin-top:8px">Exercise · made for Dad · v1</p>
   </section>
 </div>
 
@@ -693,7 +693,7 @@ html.hc .block .body small,html.hc .move li,html.hc .stat .k{color:#46453b}
 
 <script>
 /* =========================================================
-   VIGOR — single-file PWA. Plain JS, localStorage, no deps.
+   EXERCISE — single-file PWA. Plain JS, localStorage, no deps.
    ========================================================= */
 
 /* ---- icons per exercise type (inline SVG) ---- */
@@ -903,7 +903,7 @@ const SEG_COLOR=['#7a68a8','#2f8278','var(--brass)','#8a877d','#3a5a7d','#9a6f20
 /* =========================================================
    STATE
    ========================================================= */
-const KEY='vigor.v1';
+const KEY='vigor.v1'; // kept from the app's former name (Vigor) so existing history still loads
 const DEFAULT={
   history:{}, weights:{},
   prog:{dumbbell:0,kettlebell:0,bodyweight:0}, // bodyweight = rep offset; weights nudge the settings directly
@@ -1675,7 +1675,7 @@ function toast(msg){
 function injectManifest(){
   const icon=(b64)=>('data:image/png;base64,'+b64);
   const m={
-    name:'Vigor',short_name:'Vigor',description:'A daily strength & mobility hour.',
+    name:'Exercise',short_name:'Exercise',description:'A daily strength & mobility hour.',
     start_url:'.',scope:'.',display:'standalone',orientation:'portrait',
     background_color:'#21413a',theme_color:'#264e41',
     icons:[
@@ -1825,7 +1825,7 @@ document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState==='visible'&&document.getElementById('player').classList.contains('open'))acquireWake();
 });
 
-/* ---- daily reminder (works while Vigor is open or running) ---- */
+/* ---- daily reminder (works while Exercise is open or running) ---- */
 let reminderT=null;
 function enableReminder(){
   if('Notification'in window&&Notification.permission==='default'){
@@ -1846,7 +1846,7 @@ function fireReminder(){
   try{
     if(isDone(todayKey()))return;
     if('Notification'in window&&Notification.permission==='granted'){
-      new Notification('Vigor',{body:'Time for your hour. You\u2019ve got this.'});
+      new Notification('Exercise',{body:'Time for your hour. You\u2019ve got this.'});
     }
   }catch(e){}
 }

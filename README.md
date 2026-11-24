@@ -8,7 +8,7 @@ GitHub Pages site under separate paths.
 | **Scriptoria** | [`apps/scriptoria/`](apps/scriptoria/) | `https://tadellsworth.github.io/scriptoria/` | Vite + React PWA |
 | **Lumen** | [`apps/lumen/`](apps/lumen/) | `https://tadellsworth.github.io/scriptoria/lumen/` | Vanilla-JS PWA, Python build tooling |
 | **Bloom** | [`apps/bloom/`](apps/bloom/) | `https://tadellsworth.github.io/scriptoria/bloom/` | Vanilla-JS PWA, Python build tooling |
-| **Vigor** | [`apps/vigor/`](apps/vigor/) | `https://tadellsworth.github.io/scriptoria/vigor/` | Vanilla-JS PWA, Python build tooling |
+| **Exercise** | [`apps/exercise/`](apps/exercise/) | `https://tadellsworth.github.io/scriptoria/exercise/` | Vanilla-JS PWA, Python build tooling |
 | **Line of Authority** | [`apps/line-of-authority/`](apps/line-of-authority/) | `https://tadellsworth.github.io/scriptoria/line-of-authority/` | Static HTML page, Python build tooling |
 | **Learn Thai** | [`apps/learn-thai/`](apps/learn-thai/) | `https://tadellsworth.github.io/scriptoria/learn-thai/` | Single-file PWA (no build) |
 | **Habla** (Spanish) | [`apps/habla/`](apps/habla/) | `https://tadellsworth.github.io/scriptoria/habla/` | Single-file PWA (no build) |
@@ -24,7 +24,7 @@ editing one never touches the other.
 │   ├── scriptoria/  Vite + React PWA (its own package.json, vite.config.ts)
 │   ├── lumen/       single-file PWA + Python corpus/build tooling (formato)
 │   ├── bloom/       single-file PWA + Python build tooling (strength-progression workouts)
-│   ├── vigor/       single-file PWA + Python build tooling (daily strength & mobility)
+│   ├── exercise/    single-file PWA + Python build tooling (daily strength & mobility; formerly Vigor)
 │   ├── line-of-authority/  static keepsake page + Python build tooling (apostolic succession)
 │   ├── learn-thai/  single-file PWA, no build (Thai-language learning)
 │   └── habla/       single-file PWA, no build (speaking-first Spanish)
@@ -66,16 +66,16 @@ python3 build.py       # assemble → apps/bloom/dist/index.html; sw.js is hand-
 [`apps/bloom/BLOOM-HANDOFF.md`](apps/bloom/BLOOM-HANDOFF.md) for the recorded-voice-cue
 feature status.
 
-**Vigor** (Python 3 + Node for the syntax gate):
+**Exercise** (Python 3 + Node for the syntax gate):
 
 ```bash
-cd apps/vigor
+cd apps/exercise
 python3 build.py       # extract inline JS → node --check → inject icons → dist/index.html + sw.js
 ```
 
 Edit `src/app_template.html` (the whole app), then rebuild — never hand-edit `dist/`.
-`build.py` writes to `apps/vigor/dist` by default; override with `VIGOR_OUT=/path`. See
-[`apps/vigor/CLAUDE.md`](apps/vigor/CLAUDE.md) for architecture and conventions.
+`build.py` writes to `apps/exercise/dist` by default; override with `EXERCISE_OUT=/path`. See
+[`apps/exercise/CLAUDE.md`](apps/exercise/CLAUDE.md) for architecture and conventions.
 
 **Line of Authority** (Python 3 only — a single static page):
 
@@ -92,7 +92,7 @@ Edit `data.json` to change or extend the succession, then rebuild. `build.py` wr
 
 Pushing to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which
 builds every app and publishes them to GitHub Pages — Scriptoria at the site root, Lumen at
-`/lumen/`, Bloom at `/bloom/`, Vigor at `/vigor/`, Line of Authority at `/line-of-authority/`,
+`/lumen/`, Bloom at `/bloom/`, Exercise at `/exercise/`, Line of Authority at `/line-of-authority/`,
 and Learn Thai at `/learn-thai/`.
 
 **One-time setup:** in the repo's **Settings → Pages → Build and deployment**, set
@@ -101,5 +101,5 @@ run the workflow manually from the **Actions** tab).
 
 > Scriptoria's Vite `base` is `/scriptoria/` to match the Pages project URL. If the repo is
 > ever renamed or moved to a custom domain, update `base` (and the PWA `scope`/`start_url`)
-> in `apps/scriptoria/vite.config.ts`. Lumen, Bloom, Vigor, Line of Authority and Learn Thai
+> in `apps/scriptoria/vite.config.ts`. Lumen, Bloom, Exercise, Line of Authority and Learn Thai
 > use only relative paths, so they need no such change.
